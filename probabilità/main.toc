@@ -1,0 +1,21 @@
+\contentsline {chapter}{\numberline {1}Elementi base di Probabilità}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Le varie definizioni di Probabilità}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Variabili casuali discrete e continue}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Elementi di calcolo combinatorio}{7}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Distribuzioni di probabilità}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Binomiale}{9}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}La distribuzione normale}{10}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}Geometrica ed ipergeometrica}{10}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Il teorema del limite centrale}{12}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Distribuzioni estremali}{16}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Inferenza statistica}{18}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Il caso di un set discreto di ipotesi}{18}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Ipotesi che dipendono da parametri continui}{19}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Una applicazione: il metodo dei minimi quadrati}{20}{section.5.3}%
+\contentsline {section}{\numberline {5.4}La propagazione degli errori}{21}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Intervallo di confidenza}{22}{section.5.5}%
+\contentsline {chapter}{\numberline {6}Il principio di massima entropia}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Un'applicazione: il metodo della PCA}{26}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Network}{28}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Matrici random}{30}{chapter.8}%
+\contentsfinish 

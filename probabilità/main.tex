@@ -1,0 +1,1372 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti Probabilità e Statistica}}}
+\author{Giacomo Galliani, corso del prof. S. Zapperi}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{Elementi base di Probabilità}
+
+\section{Le varie definizioni di Probabilità}
+    
+La definizione di probabilità nella storia della matematica è stata rivista più volte, nonostante l'argomento sembri a prima vista banale. 
+
+La prima definizione è dovuta ai grandi matematici francesi del primo '800 (e.g. Pascal), ed è detta definizione \emph{classica} della probabilità. 
+
+\dfn{Probabilità classica}{
+    Dato un insieme $N$ della totalità degli eventi, e detto $G$ il sottoinsieme che chiamiamo insieme di successo, la probabilità di $G$ è dato da 
+    \begin{equation}
+        P = \frac{G}{N}
+    \end{equation}
+}
+
+A questa sono associate alcune proprietà, che derivano direttamente dalla teoria elementare degli insiemi: 
+
+\begin{align}
+    & 0 \leq P \leq \ 1 \\
+    & P(c)= 1 \quad (evento \ certo) \\
+    & P(i) = 0 \quad (evento \ impossibile) \\
+    & P(A \cup B ) = P(A) + P(B) - P(A \cap B) 
+\end{align}
+
+Da questi assiomi, però, è possibile mostrare con diversi esempi che lo stesso problema dà diversi risultati (e.g. la probabilità della somma di due dadi). \\
+
+Questo problema portò i matematici come Bernoulli e Laplace a ridefinire la probabilità classica nel seguente modo: 
+
+\dfn{Probablità classica rivisitata}{
+    La probabilità classica funziona se gli eventi sono equi-probabili. 
+}
+
+\nt{
+    La def. classica rivistitata definisce la probabilità a partire dalla probabilità. 
+}
+
+Questo portò quindi ad un altra definizione: 
+\dfn{Approccio frequentista}{
+    \begin{equation}
+        P(A) := \lim_{N\rightarrow \infty}\frac{n_a}{N}
+    \end{equation}
+}
+
+Dunque l'approccio frequentista definisce la probabilità in modo empirico, dopo aver osservato un gran numero di eventi. \\
+
+Una definizione filosoficamente decisamente diversa è quella Bayesiana: in pratica, Bayes ci dice che la probabilità è def. a partire dalle informazioni che ho rispetto al sistema. Di fatto, non esiste la probabilità assoluta, ma solo quella condizionata alle informazioni che ho rispetto al sistema. Di fatto, con questo approccio io calcolo delle stime della probabilità che evolvono dinamicamente all'aumentare delle informazioni che ottengo sul sistema. \\
+
+Chiaramente, anche nell'approccio Bayesiano continuano a valere le proprietà: 
+\begin{equation}
+    P(A\cap B|I) = P(A|I) + P(B|I) - P(A\cap B|I)
+\end{equation}
+\begin{equation}
+    \label{union_rule}
+    P(A\cap B| I) = P(A|B, I)P(B |I)
+\end{equation}
+
+e a partire da queste semplici regole si dimostra il
+\thm{di Bayes}{
+    \begin{equation}
+    P(A|B, I) = \frac{P(B|A, I)P(A|I)}{P(B|I)}
+    \end{equation}
+}
+
+\begin{proof}
+    Si consideri l'eq. \ref{union_rule}. Questa ci dice che 
+    \begin{equation}
+        P(A\cap B| I) = P(A|B, I)P(B |I)
+    \end{equation}
+    ma ci dice anche 
+    \begin{equation}
+        P(A\cap B| I) = P(B|A, I)P(A |I)
+    \end{equation}
+    Uguagliando le due eq. si ottiene la tesi. 
+\end{proof}
+
+\section{Variabili casuali discrete e continue}
+
+Consideriamo una sequenza $x_n$, $n=0, .., N$. A ciascuna di queste corrisponde una probabilità $P_n=P(x_n)$. Chiaramente, la media di questa variabile è data da
+
+\begin{equation}
+    <x_n> = \sum_{n=1}^{N}P_nx_n
+\end{equation}
+
+Chiaramente dalla definizione si vede la linearità della media, così che valga 
+\begin{equation}
+    <\alpha x_n + \beta y_n> = \alpha<x_n> + \beta<y_n> 
+\end{equation}
+
+A partire dalla media, si definiscono i momenti k-esimi,
+\begin{equation}
+    m_k = <x_n^k>
+\end{equation}
+
+ed i momenti centrali 
+\begin{equation}
+    \mu_k = <(x_n - m_1)^k>
+\end{equation}
+
+Di cui il più importante è il momento centrale secondo, detto varianza: 
+\begin{equation}
+    \mu_2 = \sigma^2 = <(x_n - m_1)^2> = <x^2> - (<x>)^2
+\end{equation}
+
+L'ultima uguaglianza si può dimostrare facilmente esplicitando i termini: 
+\begin{align}
+    \mu_2 &= \sum_n P_n(x_n - m_1)^2 \\
+    &= \sum_nx_n^2 P_n - 2x_nm_1P_n + m_1^2 P_n \\
+    &= <x^2> - 2(<x>)^2 + (<x>)^2\sum_n P_n \\
+    &= <x^2> - (<x>)^2
+\end{align}
+
+dove nella seconda uguaglianza abbiamo espanso il quadrato del binomio, nella terza abbiamo raccolto le medie, nell'ultima usato che la somma di tutte le probabilità equivale ad 1. \\
+
+Consideriamo adesso le variabili \emph{continue}, e supponiamo che $x \in (-\infty, +\infty)$. Definiamo la distribuzione cumulata 
+\begin{equation}
+    F(t) = Prob(x<t)
+\end{equation}
+
+dalla definizione è ovvio che vale 
+\begin{equation}
+    \lim_{t \rightarrow -\infty}F(t) = 0 \quad \lim_{t \rightarrow \infty}F(t) = 1
+\end{equation}
+
+Definiamo ora la funzione densità di probabilità, $\rho= \rho(x)$ t.c. $\rho(x) = \frac{dF}{dx}$. Segue automaticamente che questa è normalizzata, 
+\begin{equation}
+    \int_R\rho(x)dx = 1
+\end{equation}
+
+E possiamo quindi definire la media 
+\begin{equation}
+    \mu = \int_Rdt \rho(t)t
+\end{equation}
+
+e la varianza
+\begin{equation}
+    \sigma^2 = \int_Rdt \rho(t)(t-\mu)^2
+\end{equation}
+
+Se ho due variabili \emph{indipendenti} $x,y$, allora vale $\rho(x, y) = f(x)g(y)$. Questo implica che 
+\begin{equation}
+    <x y> = \int_{R^2}dxdy xy\rho(x, y) ) = \left(\int_R dx xf(x) \right)\left(\int_R dy yg(y) \right)
+\end{equation}
+
+Ha senso allora definire la funzione correlatore $C= C(x, y) = <xy> - <x><y>$. \\
+
+Consideriamo il caso in cui ho due variabili, $x_1, x_2$, con densità di probabilità $f(x_1), g(x_2)$, che suppongo indipendenti. Considero la variabile somma $z = x_1 + x_2$. Quanto vale la sua varianza? 
+
+\begin{align}
+    \sigma_z^2 &= <(z - <z>)^2>  = <(x_1 + x_2 - <x_1 + x_2>)^2> \\
+    &= <(x_1 - <x_1> + x_2 - <x_2>)^2> \\
+    &= \sigma_{x_1}^2 + \sigma_{x_2}^2 + <2(x_1 -<x_1>)(x_2 - <x_2>)> \\
+    &= \sigma_{x_1}^2 + \sigma_{x_2}^2 + 2C(x_1, x_2) \\
+    &= \sigma_{x_1}^2 + \sigma_{x_2}^2
+\end{align}
+
+Questo è sufficiente a mostrare che se ho $N$ variabili indipendenti identiche, allora $\sigma^2 = N\sigma^2_i$. (e chiaramente il valor medio sarà $\mu = N\mu_i$)\\
+
+Possiamo ora mostrare che la media (aritmetica) è una buona stima del valor medio:
+considero $x$ con dis. $f(x)$, il suo valor medio è dato da
+\begin{equation}
+    \mu = \int_R dx \, x\, f(x)
+\end{equation}
+
+Se ho dei campioni $x_i$, allora la media aritmetica è 
+\begin{equation}
+    \hat{x} = \frac{1}{N}\sum_i x_i 
+\end{equation}
+Ma allora 
+\begin{equation}
+    <\hat{x}> = \frac{1}{N}\sum_i <x_i> = \mu
+\end{equation}
+
+Se facciamo lo stesso per la varianza troviamo: 
+\begin{align}
+    \sigma_{\hat{x}}^2 &= <(\hat{x} - \mu)^2> = \frac{1}{N^2}<\sum_i (x_i -\mu)^2> \\ &= \frac{\sum_i \sigma_i^2}{N}
+\end{align}
+
+Che mostra come valga $\sigma_x = \frac{\sigma}{\sqrt{Ns}}$. D'altra parte questa trattazione ha un problema nelle applicazioni reali: devo conoscere il valore medio. Invece nella maggior parte dei casi, io ho solo la media aritmetica, che fornisce una stima del valor medio.  Mi chiedo se allora la grandezza 
+\begin{equation}
+    V^2 = \frac{1}{N}\sum_i (x_i - \hat{x})^2
+\end{equation}
+
+è una buona stima della varianza. Ne prendo dunque il valor medio, 
+\begin{equation}
+    <V^2> = \frac{1}{N}\sum_i <x_i>^2 - (<\hat{x}>)^2
+\end{equation}
+
+Osservo che, invertendo la definizione di varianza, posso scrivere
+\begin{equation}
+    <x_i^2> = \sigma^2 + \mu^2
+\end{equation}
+e invece 
+\begin{equation}
+    <\hat{x}>^2 = \sigma^2_x + \mu^2 = \frac{\sigma}{N} + \mu^2
+\end{equation}
+
+Sostituendo nell'eq. trovo dunque
+
+\begin{equation}
+    <V^2> = \frac{1}{N}\left(\sum_i \sigma^2 + \mu^2 \right) - \frac{\sigma^2}{N} - \mu^2 = \sigma^2\left(1 - \frac{1}{N}\right)
+\end{equation}
+
+Dunque osserviamo che per $N$ piccolo, $V$ \emph{sottostima} la varianza. Quello che posso fare è definire un nuovo $V$ t.c. $<V> = \sigma^2, \, \forall N$. Chiaramente questa è data da 
+\begin{equation}
+    V^2 = \frac{V_i^2}{1 - \frac{1}{N}}
+\end{equation}
+
+e sostituendo l'espressione di $V_i$, ottengo
+\begin{equation}
+    V^2 = \frac{1}{N-1}\sum_i(x_i - \hat{x})^2
+\end{equation}
+
+Per calcolare i momenti utilizzando la definizione, devo calcolare degli integrali. Questi a volte possono essere impossibili da risolvere. Un metodo alternativo, anche se anche questo non è sempre possibile usarlo, è il metodo della \emph{funzione generatrice}. Data una distribuzione $\rho(x)$, la sua funzione generatrice è data da 
+\begin{tcolorbox}[colback=doc!10, colframe=black, boxrule=1pt]
+\begin{equation}
+    \label{caracteristic_function}
+    \phi(t) = \int_Rdx \, e^{itx}\, \rho(x)
+\end{equation}
+\end{tcolorbox}
+
+Alcune proprietà di questa funzione sono $|\phi(t)|^2 \leq 1$, $\phi(0)= 1$, $\phi^*(t) = \phi(-t)$. 
+
+Perché la funzione caratteristica è utile per i momenti? Calcoliamo la sua derivata rispetto al parametro $t$: 
+\begin{equation}
+    \frac{d\phi}{dt} = \frac{d}{dt}\int_{\mathbb{R}}dx \, e^{itx}\, \rho(x) = i\int_R dx x e^{itx}\rho(x) 
+\end{equation}
+
+Osservo allora una proprietà interessante: 
+\begin{equation}
+    \frac{d\phi}{dt}\biggr|_{t=0} = i<x>
+\end{equation}
+
+ed in generale, 
+\begin{tcolorbox}[colback=doc!10, colframe=black, boxrule=1pt]
+\begin{equation}
+    \frac{d^n\phi}{d(it)^n}\biggr|_{t=0}= <x^n>
+\end{equation}
+\end{tcolorbox}
+
+Se al posto dei momenti volessi i momenti centrali? nessun problema, basta definire 
+\begin{equation}
+    \phi^{'}(t) = \int_R dx \, e^{it(x-\mu)}\rho(x) = e^{-it\mu}\phi(t)
+\end{equation}
+
+e questa soddisfa 
+\begin{equation}
+    \frac{d^n\phi^{'}}{d(it)^n}\biggr|_{t=0}= \mu^{'}_n
+\end{equation}
+
+Un'altra proprietà comoda della funzione caratteristica è che, essendo di fatto una trasformata di Fourier, si comporta bene sotto convoluzione. Questo diventa comodo quando si ha a che fare con la somma di due (o più) variabili aventi delle densità di probabilità $f(x), g(y)$. Quanto vale $h(z)$, se $z = z+y$? Nello spazio delle densità, 
+
+\begin{equation}
+    h(z) = \int dxdyf(x)g(y)\delta(z-x-y) = \int dxf(x)g(z-x) 
+\end{equation}
+
+Poichè questa è semplicemente una convoluzione delle due funzioni, nello spazio delle funzioni caratteristiche avrò semplicemente 
+\begin{equation}
+    \phi_z(t) = \phi_f(t)\phi_g(t)
+\end{equation}
+
+Sempre a partire dalla funzione generatrice, possiamo definire i \emph{cumulanti}. Sia infatti la funzione $K(t) = \ln{\phi(t)}$, e prendiamone lo sviluppo di Taylor intorno a $t=0$: 
+\begin{equation}
+    K(t) = \sum_n^\infty k_n\frac{(it)^n}{n!}
+\end{equation}
+
+i coefficenti $k_n$ sono detti cumulanti. Hanno delle applicazioni nella teoria quantistica dei campi. \\
+
+Un'altra questione importante riguarda come si trasforma la densità di probabilità sotto un cambio di variabili. Il problema è dunque il seguente, io ho una variabile $x$ con densità di probabilità $\rho_x(x)$: se scrivo $u=u(x)$, quanto vale $\rho_u(u)$? \\
+
+Chiaramente, la probabilità si deve conservare, ovvero deve sempre valere 
+\begin{equation}
+    P(x_1 < x < x_2 ) = P(u(x_1)= u_1< u < u(x_2)= u_2)
+\end{equation}
+
+Che posso scrivere in termini di $\rho, \rho_u$: 
+\begin{equation}
+    \int_{x_1}^{x_2}dx\rho_x(x) = \int_{u_1}^{u_2}du\rho_u(u)
+\end{equation}
+
+D'altra parte se eseguo il cambio di coordinate nel primo integrale $x \rightarrow u$ trovo che 
+\begin{equation}
+    \int_{x_1}^{x_2}dx\rho_x(x) =  \int_{u_1}^{u_2}\rho_x(u)\biggr| \frac{dx}{du}\biggr| du
+\end{equation}
+
+Poichè tutte queste uguaglianze valgono per ogni scelta degli estremi di integrazione, posso passare all'uguaglianza per integrande e scrivere infine
+\begin{equation}
+    \rho_u(u) = \rho_x(u)\biggr| \frac{dx}{du}\biggr|
+\end{equation}
+
+\section{Elementi di calcolo combinatorio}
+
+Considero delle coppie di elementi $(n_1, n_2)$. Quale è il numero possibile di coppie? chiarmante, contandole ottengo $N_P = n_1n_2$. \\
+Partendo da questo punto, si può generalizzare la coppia al multipletto di $r$ elementi di categorie diverse, ed il numero di configurazioni si dimostra facilmente per induzione essere 
+\begin{equation}
+    N_m = \prod_i^r n_i
+\end{equation}
+
+Ad esempio, considero un sistema di $N$ spin $1/2$. Ciascuno di essi avrà autovalore lungo l'asse $z$ pari a $s_z = \pm 1/2$. Il numero totale di configurazioni sarà dato da 
+\begin{equation}
+    N_{conf} = \prod_i^N 2 = 2^N
+\end{equation}
+
+Ora considero una collezione $(\alpha_1, .., \alpha_n)$ di elementi. Da questi, estraggo $r$ elementi. Quante possibilità ci sono? Dipende se una volta che estraggo, l'elemento viene rimpiazzato oppure no. Il caso più semplice è quello con rimpiazzo: in questo caso, la legge del multipletto ci dice che $N_{tot} = n^r$. \\
+
+Invece, se sono semnza rimpiazzo, devo tenere conto che il mio sistema ogni volta che estraggo ha un elemento in meno: otterrò allora
+\begin{equation}
+    N_{tot} = n(n-1)..(n-r+1) = \frac{n!}{(n-r)!}
+\end{equation}
+
+Se ho invece $r=n$, ottengo il numero totale di permutazioni, che è dunque dato da $N_p = n!$\\
+
+Leggermente diverse dalle estrazioni sono le \emph{partizioni}: mi chiedo se, avendo un numero $N$ di oggetti, in quanti modi posso dividerli in $r$ ed $N-r$ elementi. Questo è di fatto simile alle estrazioni, tranne che per le partizioni non devo contare più volte tutte le permutazioni possibili, ne basta contare una. Dunque le partizioni sono le estrazioni, diviso il numero delle permutazioni possibili dell'estrazione, che sappiamo essere il fattoriale del numero di elementi estratti. Alla fine troviamo che
+\begin{equation}
+    N_{part} = \frac{N!}{(N-r)!r!} = \begin{pmatrix}
+        n \\ r
+    \end{pmatrix}
+\end{equation}
+
+Il simbolo $\begin{pmatrix} n \\ r \end{pmatrix}$ è detto \emph{coefficiente binomiale} e gode di alcune proprietà, tra cui il teorema binomiale: 
+\begin{equation}
+    (a+b)^n = \sum_k^n \begin{pmatrix}
+        n \\ k
+    \end{pmatrix}
+    a^k b^{n-k}
+\end{equation}
+
+\chapter{Distribuzioni di probabilità}
+
+\section{Binomiale}
+
+Il coefficiente binomiale definito nell'ultima sezione, viene anche utilizzato per definire una importante distribuzione, la distribuzione binomiale. Questa è infatti data da 
+\begin{equation}
+    B_p^n(k) = \begin{pmatrix}
+        n \\ k 
+    \end{pmatrix} p^k (1-p)^{n-k}
+\end{equation}
+
+Questa è correttamente normalizzata, perché
+\begin{equation}
+    \sum_k^{+\infty} B_p^n(k) = \sum_k^n \begin{pmatrix}
+        n \\ k 
+    \end{pmatrix} p^k (1-p)^{n-k} = (p+1-p)^n = 1
+\end{equation}
+
+Nella penultima uguaglianza ho usato il teorema binomiale, mentre nella prima ho usato la proprietà del coeff. binomiale 
+\begin{equation}
+    \begin{pmatrix}
+        n \\k
+    \end{pmatrix}
+    = 0 \quad \forall k> n
+\end{equation}
+
+che è del tutto ovvia se pensiamo al coefficiente come il numero di partizioni di un sistema. \\
+
+Ora vorremmo effettuare il calcolo dei momenti di questa distribuzione, che faremo calcolandoci la funzione caratteristica: 
+\begin{equation}
+    \phi(t) = \sum_k e^{ikt}B_p^n(k) = \sum_k^n \begin{pmatrix}
+        n \\ k
+    \end{pmatrix} (pe^{it})^k (1-p)^{n-k} = (pe^{it} +1 -p)^n
+\end{equation}
+
+Che possiamo dunque differenziare due volte: 
+\begin{equation}
+    \frac{\partial \phi}{\partial(it)} = np(pe^{it} + 1 -p)^{n-1}e^{it}
+\end{equation}
+\begin{equation}
+    \frac{\partial^2 \phi}{\partial(it)^2} = n(n-1)p^2(pe^{it} + 1 -p)^{n-2}e^{2it} +  np(pe^{it} + 1 -p)^{n-1}e^{it}
+\end{equation}
+
+Così da ottenere il momento primo e secondo: 
+\begin{equation}
+    <k> = \frac{\partial \phi}{\partial(it)}\biggr|_{t=0} = np 
+\end{equation}
+\begin{equation}
+    <k^2> = \frac{\partial^2 \phi}{\partial(it)^2}\biggr|_{t=0} = np + n(n-1)p^2 
+\end{equation}
+
+Così facendo troviamo infine la varianza: 
+\begin{equation}
+    \sigma^2 = np(1-p)
+\end{equation}
+
+\subsection{La distribuzione normale}
+
+Si tratta della distribuzione più importante, in gran parte grazie al teorema del limite centrale. La forma esplicita della distribuzione è data da 
+
+\begin{align}
+    \rho(x) = \mathcal{N}(x|\mu, \sigma^2 ) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{\frac{(x-\mu)^2}{2\sigma^2} \right\}
+\end{align}
+
+La sua funzione caratteristica è reale, perché la distribuzione è pari, e si calcola esattamente usando la tecnica del completamento del quadrato: 
+
+\begin{align}
+    \phi(t) = \int_{\mathbb{R}} dx \frac{e^{-\frac{(x-\mu)^2}{2\sigma^2} + itx}}{\sqrt{2\pi\sigma^2}} = \ldots = \exp\left\{i\mu t - \frac{\sigma^2 t}{2} \right\}
+\end{align}
+
+A partire da questa possiamo calcolare facilmente i momenti: calcoliamo inanzitutto le derivate della caratteristica: 
+
+\begin{align}
+    &\phi'(t) = \phi(t)(i\mu - \sigma^2)t \\
+    &\phi''(t) = \phi'(t)(i\mu - \sigma^2t) - \phi(t)\sigma^2 = \phi(t)(i\mu - \sigma^2 t)^2 - \phi(t)\sigma^2
+\end{align}
+
+Ricordando la comoda proprietà che \(\phi(0) = 1\) (poiché la distribuzione iniziale è normalizzata), otteniamo immediatamente che 
+
+\begin{align}
+    &\text{mean} = \mu \\
+    &\text{var} = \sigma^2
+\end{align}
+
+
+
+\section{Geometrica ed ipergeometrica}
+
+Consideriamo il seguente problema: abbiamo un mazzo di carte, e ne estraiamo \(N\). Quale è la probabilità che siano tutte carte nere, e all'ultima sia una carta rossa? Chiaramente il risultato dipende se rimettiamo la carta nel mazzo, oppure no. In ogni caso, consideriamo che \(n_1\) siano le carte nere, ed \(n_2 = n - n_1\) le carte rosse. Vediamo allora il risultato nei due casi: 
+
+\begin{enumerate}
+    \item Caso senza rimpiazzo: \\
+    
+    Alla j-esima estrazione, vi saranno \(n_1 - j\) carte nere, e \(N-j\) carte. Questo vuol dire che la probabilità di estrarre una carta alla j-esima estrazione è data da 
+
+    \begin{align}
+        n^1_j = n^1 -j
+    \end{align}
+
+    dunque il numero totale di possibilità in cui si possono estrarre (n-1) carte nere è dato da 
+
+    \begin{align}
+        \frac{n_1 !}{(n_1 -k+1)!}
+    \end{align}
+
+    Invece, il numero di modi in cui si può estrarre una carta rossa è dato da \(n_2!\), perché è la prima estratta. Il numero totale di configurazioni è dato da \(n!/(n-k)!\), da cui deduciamo che la probabilità è data da 
+
+    \begin{align}
+        p = \frac{n_1!n_2!(n-k)!}{(n_1 -k+1)!n!}
+    \end{align}
+
+
+    \item Caso con rimpiazzo: \\
+    Questo caso è più semplice, perché le probabilità di estrarre una carta nera/rossa sono costanti, e sono date da 
+    \begin{align}
+        p_1 = n_1/N, \quad p_2 = n_2/N
+    \end{align}
+
+    Dunque la probabilità è data da 
+    \begin{align}
+        p = p_1^{k-1}p_2 = \frac{n_1^{k-1}n_2}{N^{2k}}
+    \end{align}
+\end{enumerate}
+
+il caso con rimpiazzo è il caso della \emph{distribuzione geometrica}. Questa è semplice e si può anche scrivere come 
+
+\begin{align}
+    p(k) = p^{k-1}(1-p)
+\end{align}
+
+Studiamone rapidamente le proprietà introducendo, come al solito, la funzione caratteristica: si ha che 
+
+\begin{align}
+    \phi(t) = \sum_k <P(k)e^{ikt}> = \sum_{k=0}^{+\infty} e^{ikt}p^{k-1}(1-p)
+\end{align}
+
+la somma può essere ricondotta ad una serie geometrica ed essere quindi determinata in forma chiusa (il che spiega il nome della distribuzione). Svolgendo i calcoli, si trova infine che 
+
+\begin{align}
+    \phi(t) = \frac{(1-p)e^{it}}{1-pe^{it}}
+\end{align}
+
+e i suoi momenti sono dati da 
+
+\begin{align}
+    \mu = \frac{1}{1-p},  \quad \sigma^2 = \frac{p}{(1-p)^2} 
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Il teorema del limite centrale}
+
+Il teorema del limite centrale è un teorema centrale per tutta la statistica. Per prima cosa, enunciamolo: 
+
+\thm{del limite centrale}{
+    Consideriamo \(\left\{x_i\right\}, \, i=1, \ldots, n\) delle variabili casuali estratte da una certa distribuzione di probabilità \(\rho(x)\). Valga 
+
+    \begin{align}
+        <x^2> - (<x>)^2 = \sigma^2, \quad <x> = \mu
+    \end{align}
+
+    Allora, se consideriamo la variabile \(S\), definita da 
+
+    \begin{align}
+        S := \frac{1}{N}\sum_i^N x_i
+    \end{align}
+
+    vale che 
+    \begin{align}
+        \lim_{N\rightarrow \infty}\rho_S(S) = \mathcal{N}(S| \mu, \sigma/\sqrt{N})
+    \end{align}
+}
+
+in questo capitolo ci occupiamo di dimostrare questo importante teorema, dal caso più semplice (ovvero nel caso in cui le variabili di partenza siano disposte gaussianamente), al caso più generale dove queste seguano una distribuzione arbitraria, purché questa abbia varianza finita. \\
+
+\pf{CLT, caso gaussiano}{
+
+    Cominciamo considerando il caso dove 
+    \begin{align}
+        \rho(x_i) = \mathcal{N}(x_i | \mu, \sigma)
+    \end{align}
+
+    cioè stiamo considerando il caso dove le variabili di partenza sono distribuite gaussianamente. Da queste, scriviamo le nuove variabili 
+
+    \begin{align}
+        y_i := \frac{x_i - \mu}{N}
+    \end{align}
+
+    chiaramente vale \(<y_i> = 0\), e possiamo cacolare allora 
+
+    \begin{align}
+        \sigma_y^2 = <y_i^2> - (<y_i>)^2 = \frac{\sigma^2}{N^2}
+    \end{align}
+
+    Ora definiamo 
+    \begin{align}
+        S_y = \sum_{i=1}^N y_i 
+    \end{align}
+
+    che ci accorgiamo essere legata alla somma delle variabili \(x\) da \(S_x = S_y + \mu \). 
+
+    Ora, il calcolo della media e della varianza delle variabili \(y_i\) ci dice che la loro distribuzione è data da 
+    \begin{align}
+        \rho_y(y_i) = \mathcal{N}(y_i|0, \sigma^2/N^2)
+    \end{align}
+
+    Passando alla funzione caratteristica, si ha che 
+    \begin{align}
+        \phi_y (t) = e^{-\frac{\sigma^2t^2}{2N^2}}
+    \end{align}
+
+    sfruttando la comoda proprietà delle funzioni caratteristiche, sappiamo che vale 
+
+    \begin{align}
+        \phi_{S_y}(t) = (\phi_y (t))^N = e^{-\frac{\sigma^2t^2}{2N}}
+    \end{align}
+
+    Ma questa è la funzione caratteristica della distribuzione 
+    \begin{align}
+        \rho_{S_y} = \mathcal{N}(y | 0, \sigma/N) 
+    \end{align}
+
+    e la distribuzione \(\rho_{S_x}\) si ottiene per semplice traslazione:
+
+    \begin{align}
+        \rho_{S_x} = \mathcal{N}(x| \mu, \sigma/\sqrt{N})
+    \end{align}
+
+    che è proprio la tesi del teorema. 
+}
+
+\pf{CLT, caso esponenziale}{
+
+    Consideriamo adesso una distribuzione iniziale meno banale: prendiamo 
+
+    \begin{align}
+        \rho(x_i) = \lambda e^{-\lambda x}, \quad x >0
+    \end{align}
+
+    ci chiediamo ancora quanto valga \(\rho_{S_x}\). Passiamo alla funzione caratteristica: 
+
+    \begin{align}
+        \phi_x (t) = \int_0^{+\infty} \lambda e^{-\lambda x + itx} dx = \lambda \int_0^{+\infty} e^{(-\lambda +it)x}dx
+    \end{align}
+
+    Ora facciamo il cambio di variabili \((-\lambda +it)x = u\), così che scriviamo 
+    \begin{align}
+        \phi_x (t) = \frac{\lambda}{\lambda - it}\int_0^{+\infty} du e^{-u} = \frac{\lambda}{\lambda - it}
+    \end{align}
+
+    Se \(S_x = \sum_i x_i\), allora vale che 
+    \begin{align}
+        \phi_{S_x}(t) = (\phi_x(t))^N = \left(\frac{\lambda}{\lambda - it} \right)^N
+    \end{align}
+
+    E inoltre 
+    \begin{align}
+        \phi_{S/N}(t) =  \phi_S (t/N) = \left(\frac{\lambda}{\lambda - i(t/N)} \right)^N = \left(\frac{N\lambda}{N\lambda - it} \right)^N
+    \end{align}
+
+    Ora, per un \(N\) arbitrario, questa \emph{non} è la funzione caratteristica di una distribuzione normale. D'altra parte però, noi dobbiamo dimostrare che questa funzione tende alla funzione caratteristica di una normale, per \(N \rightarrow \infty\). Vediamo allora il comportamento di questa funzione a grande \(N\): 
+    
+    \begin{align}
+        \phi_{S/N}(t) &= \exp\left\{N\log\left(\frac{N\lambda}{N\lambda -it}\right)\right\} = \exp\left\{-N\log\left(\frac{N\lambda-it}{N\lambda}\right)\right\} \\
+        &= \exp\left\{-N\log\left(1 - \frac{it}{N\lambda}\right)\right\}
+    \end{align}
+
+    Per \(N\) grande, possiamo tenere solamente i termini fino al secondo ordine nel logaritmo: 
+
+    \begin{align}
+        \phi_{S/N}(t) \simeq \exp\left\{-N\left(-\frac{it}{N\lambda} - \frac{1}{2}\frac{t^2}{N^2\lambda^2}\right)\right\} = \exp\left\{\frac{it}{\lambda} - \frac{t^2}{2N\lambda^2}\right\}
+    \end{align}
+
+    Che è proprio la caratteristica di una distribuzione normale \(\mathcal{N}(\lambda^{-1}, \lambda^{-1}/\sqrt{N})\), che è proprio quanto volevasi dimostrare, ricordando la media e la varianza della distribuzione esponenziale. 
+
+}
+
+\pf{CLT, caso uniforme}{
+    Ora consideriamo \(\rho(x)= 1, \, x \in [0, 1]\). Come al solito, definiamo \(S = (\sum_i x_i)/N\), e varrà che 
+
+    \begin{align}
+        \phi_{S}(t) = (\phi(t/N))^N
+    \end{align}
+
+    dove vale che 
+    \begin{align}
+        \phi(t) = \int_0^1 e^{itx}dx = \frac{e^{it}-1}{it} \implies \phi_S = \left(\frac{N(e^{it/N}-1)}{it} \right)^N
+    \end{align}
+
+    Scriviamo allora
+
+    \begin{align}
+        \phi_S = \exp\left\{N\log\left(\frac{N(e^{it/N}-1)}{it}\right)\right\}
+    \end{align}
+
+    Prendendo il limite di questa espressione a grande \(N\), si trova che 
+
+    \begin{align}
+        \phi_S \simeq \exp\left\{\frac{1}{2}it - \frac{t^2}{24 N} \right\}
+    \end{align}
+
+    che è proprio il risultato del teorema del limite centrale, perché per una distribuzione uniforme vale chiaramente 
+
+    \begin{align}
+        \mu = \frac{1}{2}, \quad \sigma = \frac{1}{12}
+    \end{align}
+}
+
+\pf{CLT, caso generale}{
+
+    Ora supporremo che le variabili seguano una distribuzione generica \(\rho(x)\) con varianza finita. In particolare, sappiamo che in generale valgono le seguenti proprietà per la sua funzione caratteristica: 
+
+    \begin{align}
+        \phi(t)|_{t=0} = 1, \quad \phi'(t)|_{t=0} = i\mu, \quad \phi''(t)|_{t=0} = -\sigma^2 - \mu^2
+    \end{align}
+
+    Per semplicità, consideriamo le variabili a media nulla 
+
+    \begin{align}
+        y_i := x_i - \mu
+    \end{align}
+
+    Di cui possiamo prendere la funzione caratteristica della media aritmetica: 
+
+    \begin{align}
+        \phi_S = \exp\left\{ N\log\left(\phi\left(\frac{t}{N}\right)\right)\right\}
+    \end{align}
+
+    Nel limite di \(N\) grande, vale in generale che 
+
+    \begin{align}
+        \phi_S \simeq \exp\left\{ N\left(\phi(0) + \frac{t}{N}\phi'(t)|_{t=0} +\frac{1}{2}\frac{t^2}{N^2}\phi''(t)|_{t=0} - 1\right)\right\}
+    \end{align}
+
+    Usando ora le proprietà prima enunciate, concludiamo che 
+
+    \begin{align}
+        \phi_S = e^{-\frac{\sigma^2t^2}{2N^2}}
+    \end{align}
+
+    Dunque, vale \(\rho_{S_y} = \mathcal{N}(0, \sigma/\sqrt{N}) \implies \rho_{S} = \mathcal{N}(\mu, \sigma/ \sqrt{N})\). 
+}
+
+
+\chapter{Distribuzioni estremali}
+
+Ora rivolgiamo la nostra attenzione al seguente problema: consideriamo un set \(\left\{x_i\right\}, i=1, \ldots, n\). Di queste, consideriamo il massimo, ovvero 
+
+
+\begin{align}
+    M_n = \max_{i \in (1, \ldots, n)} \left\{x_i\right\}
+\end{align}
+
+Quale distribuzione di probabilità segue \(M_n\), se la distribuzione delle variabili iniziali è \(\rho(x)\) ? 
+
+Per rispondere alla domanda, cominciamo a considerare la funzione cumulata della distribuzione delle \(x_i\), che ricordiamo essere data da 
+
+\begin{align}
+    F(x) = \int_{-\infty}^x \rho(x')dx'
+\end{align}
+
+ricordiamoci ora del significato della funzione cumulata: è la probabilità che esca un numero minore di \(x\). Osserviamo allora che qualunque siano le distribuzioni \(\rho_m\), \(\rho\) le loro distribuzioni cumulate sono legate da 
+
+\begin{align}
+    F_N (M) = (F(x=M))^N
+\end{align}
+
+che è valida perché la probabilità di che il massimo sia minore di \(m\) è pari alla probabilità che ogni volta esca un numero minore di \(m\) elevato al numero di tentativi.\\ 
+
+Possiamo derivare la relazione per scoprire che 
+
+\begin{align}
+    \rho_N(M) = N F(M)^{N-1}\rho(M)
+\end{align}
+
+\ex{Distribuzione del massimo della distribuzione uniforme}{
+    La distribuzione uniforme è data da \(\rho(x) = 1, \, x \in [0,1]\). Usando la formula che abbiamo trovato, ricordando che la cumulata della distribuzione uniforme è data semplicemente da 
+
+    \begin{align}
+        F(x) = \int_0^x dx = x, \quad x \in [0, 1]
+    \end{align}
+
+    e troviamo allora che 
+    \begin{align}
+        F_N(m) = Nm^{n-1} 
+    \end{align}
+
+    Possiamo chiederci quale sia il valore medio di \(M\) al variare di \(N\), e troviamo dunque che ù
+    
+    \begin{align}
+        <M> = \int_0^1 dm m\rho_N(m) = \int_0^1 dm Nm^N = \frac{N}{N+1} 
+    \end{align}
+
+    Come ci aspettavamo, \(<M> \xrightarrow{n\rightarrow \infty} 1\). 
+
+}
+
+Chiaramente il ragionamento è perfettamente analogo per i minimi, con la unica differenza che la cumulata deve essere sostituita con la \emph{funzione sopravvivenza}, data da 
+
+\begin{align}
+    S(x) = 1 - F(x) = \int_x^{+\infty} \rho(x')dx' 
+\end{align}
+
+La funzione di sopravvivenza della distribuzione degli estremi è allora data da 
+
+\begin{align}
+    S_N (m) = (S(m))^N
+\end{align}
+
+\ex{La distribuzione di Weibull}{
+    Consideriamo delle variabili iniziali distribuite secondo 
+    \begin{align}
+        \rho(x) = x^\alpha (\alpha +1), \quad x \in  [0, 1]
+    \end{align}
+
+    Possiamo allora trovare facilmente la funzione di sopravvivenza, che è data da 
+
+    \begin{align}
+        S(x) = \int_x^1 x^\alpha (\alpha +1) = 1 - x^{\alpha +1}
+    \end{align}
+
+    Allora i minimi saranno distribuiti secondo 
+    \begin{align}
+        S_N(m) = (1-m^{\alpha+1})^N = e^{N\log(1-m^{\alpha +1})} \simeq e^{-Nm^{\alpha +1}}
+    \end{align}
+
+    Questa distribuzione è nota come distribuzione di Weibull. 
+}
+
+Data una qualsiasi distribuzione di probabilità di partenza, si hanno in realtà poche possibilità sulle distribuzioni estremali a grande \(N\). In effetti, vi è un teorema, di Fisher-Tippet-Gnedenko, che dice che per grande \(N\) la distribuzione dei massimi è sicuramente asintotica a una distribuzione di Weibull, o a una distribuzione di Gumbell, o ad una distribuzione di Frechet. 
+
+
+
+
+
+
+\chapter{Inferenza statistica}
+
+L'inferenza statistica si occupa della seguente questione: supponiamo di avere un set di dati \({x_i}, i \in (1, ..., N)\). In generale, questi dati avranno del rumore, se sono dati reali. Ora, io faccio un ipotesi su questi dati, che può essere di vario tipo, ad esempio
+
+\begin{enumerate}
+    \item  Suppongo che i dati seguano un andamento dato da un vettore di parametri \(\vec{\theta}\) (e.g. un andamento lineare con coefficiente angolare \(m\), ed intercetta \(q\)). 
+    \item Suppongo che i dati sono estratti casualmente da una certa distribuzione di probabilità. 
+    \item Suppongo che un subset sia estratto da una distribuzione, un'altro sia estratto da un'altra. 
+\end{enumerate}
+
+In ogni caso, voglio avere una tecnica che mi possa dire se queste ipotesi possono essere rigettate oppure no. Per rispondere alla domanda, useremo un approccio Bayesiano. 
+
+\section{Il caso di un set discreto di ipotesi}
+
+Per cominciare, supponiamo di avere delle informazioni \(k\) sul nostro sistema (ovvero i nostri dati), e supponiamo di fare un set discreto di ipotesi, \(H_1, ..., H_n\). \\
+
+Supponiamo di conoscere \(P(k |H_i)\) (ovvero la probabilità che dato \(k\), allora valga \(H_i\)): possiamo allora ricavare la probabilità inversa usando il teorema di Bayes: 
+
+\begin{align}
+    P(H_i |k) = \frac{P(k|H_i)P(H_i)}{P(k)}
+\end{align}
+
+Possiamo inoltre scrivere che \(P(k) = \sum_i P(k |H_i)P(H_i)\), così che troveremo
+
+\begin{align}
+    P(H_i |k) = \frac{P(k|H_i)P(H_i)}{\sum_i P(k |H_i)P(H_i)}
+\end{align}
+
+Questa scrittura potrebbe a prima vista sembrare inutile, perché noi non conosciamo tipicamente \(P(H_i)\). D'altra parte, possiamo ottenere il rapporto fra due ipotesi: 
+
+\begin{align}
+    \frac{P(H_i|k)}{P(H_j |k)} = \frac{P(k|H_i)P(H_i)}{P(k|H_j)P(H_j)} = \frac{P(k|H_i)}{P(k|H_j)}
+\end{align}
+
+Dove l'ultima uguaglianza vale se assumiamo che \(P(H_i) = P(H_j)\). \\
+
+Diamo un semplice esempio di applicazione: 
+
+\ex{Moneta truccata o non truccata?}{
+    Lanciamo una moneta, ed otteniamo due volte testa. Ci chiediamo quale sia la probabilità che la moneta sia truccata rispetto alla probabilità che non lo sia. \\
+
+    Indichiamo con \(H\) l'ipotesi che sia non truccata, \(\bar{H}\) l'ipotesi che lo sia: dobbiamo inanzitutto chiederci quanto valgono \(P(k|H), P(k, \bar{H})\)
+
+    La probabilità che data una moneta truccata, io ottengo in due tiri sempre testa è chiaramente 1. Invece la probabilità se non è truccata è pari ad \(1/4\). Segue che 
+
+    \begin{align}
+        \frac{P(H |k)}{P(\bar{H}|k)} = \frac{P(k|\bar{H})}{p(k|H)} = 4
+    \end{align}
+
+    Dunque è 4 volte più probabile che la moneta sia truccata. In particolare, poiché le ipotesi sono esclusive, \(P(k|H) + P(k|\bar{H})=1\). 
+}
+
+
+\section{Ipotesi che dipendono da parametri continui}
+Questo era il riscaldamento. Ora passiamo al caso in cui l'ipotesi dipende da un vettore di parametri. Per semplicità, abbrevieremo \(P(H(\vec{\theta})|X) := P(\theta | X)\). 
+
+Seguendo lo stesso ragionamento di prima, scriveremo che 
+
+\begin{align}
+    P(\theta | X) = \frac{P(X|\theta)P(\theta)}{P(X)} = \frac{P(X|\theta)P(\theta)}{\int d\theta P(X|\theta)P(\Theta)}
+\end{align}
+
+Quest'ultima è detta funzione di verosimiglianza. Ora se assumiamo che \(P(\theta) = cost. \), allora deve valere che la normalizzazione al denominatore sia unitaria, perché vale 
+
+
+\begin{align}
+    \int d\theta P(X|\theta) = 1  \implies P(\theta | X) = P(X| \theta)
+\end{align}
+
+Se abbiamo più osservabili, scriveremo che la funzione di verosimiglianza sarà data da 
+\begin{align}
+    L = \prod_i P(X_i | \theta)
+\end{align}
+
+Cerchiamo allora di determinare quale è il set \(\vec{\theta}\) che massimizza la funzione verosimiglianza: per farlo dobbiamo porre la derivata della funzione pari a zero, ma dato che si tratta di un prodotto conviene farlo per il logaritmo: 
+
+\begin{align}
+    \frac{\partial \ln (L)}{\partial \theta} = \sum_i \frac{\partial \ln (P(X_i |\theta))}{\partial \theta} = 0
+\end{align}
+
+Questo è il metodo della massima verosimiglianza. 
+
+\ex{I migliori parametri per un fit gaussiano}{
+    Considero un set di dati \(x_1, \ldots, x_N\). Faccio l'ipotesi che siano distributi gaussianamente. Quali sono i migliori \(\mu, \sigma\)? 
+
+    Vale 
+    \begin{align}
+        p(x_i | \mu, \sigma) = \frac{\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]}{\sqrt{2\pi\sigma^2}}
+    \end{align}
+
+    Posso allora prendere il logaritmo della funzione verosimiglianza:
+
+    \begin{align}
+        \ln{L} &= \sum_{i=1}^N \left[-\frac{(x_i-\mu)^2}{2\sigma^2} - \frac{1}{2}\ln(2\pi\sigma^2)\right] \\
+        &= -\frac{N}{2}\ln(2\pi\sigma^2) - \sum_{i=1}^N \frac{(\mu - x_i)^2}{2\sigma^2}
+    \end{align}
+
+    I migliori candidati per \(\mu, \sigma\) sono quelli che massimizzano la funzione, ovvero quelli per cui vale 
+
+    \begin{align}
+        &\frac{\partial \ln L }{\partial \mu} = 0 \\
+        &\frac{\partial \ln L}{\partial \sigma} = 0 
+    \end{align}
+
+    Svolgiamo allora i due calcoli: 
+
+    \begin{enumerate}
+        \item \(\mu\): \\
+        
+        Per il primo avremmo 
+        
+        \begin{align}
+            \frac{\partial \ln L }{\partial \mu} = \sum_{i=1}^N \frac{\mu-x_i}{\sigma^2} = 0 \implies \sum_{i=1}^N (\mu-x_i) = 0 \implies \mu = \frac{1}{N}\sum_i x_i
+        \end{align}
+
+        Cioè abbiamo mostrato che la migliore stima di \(\mu\) è la media dei dati. 
+        \item \(\sigma\): \\
+        
+        Si ha invece che 
+    
+        \begin{align}
+            \frac{\partial \ln L}{\partial \sigma} &= -\frac{N}{2}\frac{\partial}{\partial \sigma}\ln \sigma^2 - \left(\sum_{i=1}^N (x_i -\mu)^2\right)\frac{\partial }{\partial \sigma}\left(\frac{1}{2\sigma^2} \right) \\
+            &= -\frac{N}{\sigma} + \left(\sum_{i=1}^N (x_i -\mu)^2\right)\left(\frac{1}{\sigma^3}\right) = 0
+        \end{align}
+
+        L'ultima uguaglianza implica che deve valere
+        \begin{align}
+            \sigma^2 = \frac{1}{N}\left(\sum_{i=1}^N (x_i -\mu)^2\right)
+        \end{align}
+
+    \end{enumerate}
+}
+
+\section{Una applicazione: il metodo dei minimi quadrati}
+    
+Il metodo dei minimi quadrati è una tipica ricetta per eseguire un fit. L'idea è la seguente: si suppone che siano note \((x_i, y_i, \delta_i)\), e si vuole interpolare i dati in modo tale che questi rispettino una data legge \(y = y(x)\), che dipende da un vettore di parametri, \(\vec{\theta}\). Si ha allora che i parametri devo essere tali da minimizzare la variabile \(\chi^2\), definita da: 
+
+\begin{align}
+    \chi^2 = \frac{\sum_i (y_i - y_{\theta}(x_i))^2}{\delta_i}
+\end{align}
+
+Questo classico metodo non è altro che una applicazione del principio di massima verosimiglianza. \\
+
+Infatti, se supponiamo che le variabili siano distribuite gaussianamente intorno alla loro posizione "predetta" \(y(x_i)\), allora avremo che vale 
+
+\begin{align}
+    P (y_i, \theta) = \frac{1}{\sqrt{2\pi\delta_i^2}}\exp\left\{-\frac{(y_i - f(x_i, \theta))^2}{2\delta_i^2}\right\}
+\end{align}
+
+Scriveremo allora che il logaritmo della funzione di verosimiglianza non è altro che 
+
+\begin{align}
+    \ln L &= \sum_i \left\{-\frac{(y_i - f(x_i, \theta))^2}{2\delta_i^2}\right\} -\sum_i\frac{1}{2}\ln(2\pi \delta_i^2) \\
+    &= -\chi^2 + \text{cost.}
+\end{align}
+
+Abbiamo dunque mostrato che minimizzare la variabile \(\chi^2\) è equivalente a massimizzare la funzione verosimiglianza. 
+
+
+\section{La propagazione degli errori}
+
+Consideriamo questo semplice problema: noi effettuiamo una serie di misure, \(x_1, \ldots, x_n\) di una certa quantità di nostro interesse. Da questa, otteniamo una stima del valor medio e della sua incertezza, \(x_m, \delta x\). Ora, consideriamo una funzione \(y = f(x)\). Potremmo dire che vale \(y_m := f(x_m)\), ma come diamo una stima della sua incertezza, ovvero di \(\delta y\)? \\
+
+Per farlo, consideriamo che 
+\begin{align}
+    f (x_m \pm \delta x) \simeq f(x_m) \pm \frac{\partial f}{\partial x}\delta x
+\end{align}
+
+Dunque varrà che 
+\begin{align}
+    <(f(x+\delta x) - f(x))^2 > = <\frac{\partial f}{\partial x}>^2 \delta x^2 = \delta y^2
+\end{align}
+
+Da cui otteniamo l'importante legge 
+
+\begin{align}
+    \delta y = \biggr|\frac{\partial f}{\partial x}\biggr|\delta x
+\end{align}
+
+La domanda naturale è cosa succede se adesso la nuova variabile \(y\) è funzione di due variabili con due incertezze diverse, \((x_1, \delta x_1), (x_2, \delta x_2)\) ? \\
+
+Usiamo lo stesso tipo di ragionamento: 
+
+\begin{align}
+    f(x_{m1}+\delta x_1, x_{m2} + \delta x_2) \simeq f(x_{m1}, x_{m2}) + \frac{\partial f}{\partial x_1}\delta x_1 + \frac{\partial f}{\partial x_2}\delta x_2
+\end{align}
+
+Che mostra che 
+\begin{align}
+    <(f(x_{m1}+\delta x_1, x_{m2}+\delta x_2) - f(x_{m1}, x_{m2}))^2 > &= <\left(\frac{\partial f}{\partial x_1}\delta x_1 + \frac{\partial f}{\partial x_2}\delta x_2\right)^2> \\
+    &= \left(\frac{\partial f}{\partial x_1} \right)^2\delta x_1^2 + 2\left(\frac{\partial f}{\partial x_2} \right)^2 \delta x_2^2 +\left(\frac{\partial f}{\partial x_1} \frac{\partial f}{\partial x_2}\right)<\delta x_1 \delta x_2>
+\end{align}
+
+Vediamo dunque che la formula generale (per \(n\) variabili), è data da 
+\begin{align}
+    <\delta y^2> = \sum_{ij} \left(\frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}\right)<\delta x_i \delta x_j>
+\end{align}
+
+In termini della matrice di covarianza, definita da \(C_{ij} = <\delta x_i \delta x_j >\), scriveremo che 
+
+\begin{align}
+    <\delta y^2> = \sum_{ij} \left(\frac{\partial f}{\partial x_i}\frac{\partial f}{\partial x_j}\right) C_{ij}
+\end{align}
+
+\section{Intervallo di confidenza}
+
+Parlando di errori, non possiamo non parlare dell'intervallo di confidenza. Cominciamo con porci una semplice domanda: se abbiamo delle misure distribuite gaussianamente, con media \(\mu\) e deviazione standard \(\sigma\) quale è la probabilità di fare una misura che dista dalla media \(\delta\) ? \\
+
+La distribuzione di probabilità è data da 
+\begin{align}
+    \rho(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\end{align}
+
+da cui troviamo che la probabilità sarà: 
+\begin{align}
+    P = \int_{-\delta}^{+\delta}\frac{dx}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{x^2}{2\sigma^2}\right)
+\end{align}
+
+Decidere un intervallo di confidenza, vuol dire fare la decisione, completamente arbitraria, della probabilità \(P*\) al di sotto della quale un risultato di un esperimento non può essere considerato casuale. A questo punto, l'intervallo di confidenza esplicito è dato da 
+
+\begin{align}
+    1 - P* = \int_{-\delta}^{+\delta} \frac{dx}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{x^2}{2\sigma^2}\right)
+\end{align}
+
+Ad esempio, all'LHC l'intervallo di confidenza è pari a \(5\sigma\). \\
+
+Il primo passo dunque per progettare un esperimento, è definire l'intervallo di confidenza. Dopodiché, l'iter è di considerare i dati \(x_1, \ldots, x_n\), è fare un'ipotesi \(H_0\), detta \emph{ipotesi nulla}, alla quale corrisponde una variabile test, \(t* = t(x_1, \ldots, x_n)\). \\
+
+A questo punto, si calcola il \emph{p-value}, ovvero la probabilità di ottenere un valore uguale o meno probabile di \(t*\) (ad esempio \(t >t*\), per distribuzioni ad una coda). Se il p-value è \emph{minore} dell'intervallo di confidenza, allora non posso rigettare l'ipotesi. Se invece il p-value è maggiore dell'intervallo di confidenza, allora posso dire che l'ipotesi nulla è falsa. 
+
+
+\ex{Test z}{
+    Considero due vettori di misure, \(\vec{x}_1 = x_1^1, \ldots, x_1^n, \vec{x}_2 = x_2^1, \ldots, x_2^n\). Considero \emph{note} le loro varianze, \(\sigma_1^2, \sigma_2^2\). Scelgo un intervallo di confidenza \(\alpha\). Faccio l'ipotesi nulla che i due valori medi delle due misure siano gli stessi. \\
+
+    Definisco allora la variabile \(z\): 
+    \begin{align}
+        z := \frac{\bar{x_1}-\bar{x_2}}{\text{SE}}, \quad \text{SE} = \sqrt{\frac{\sigma_1^2}{n}+ \frac{\sigma_2^2}{n}}
+    \end{align}
+
+    Secondo l'ipotesi nulla, la variabile \(z\) sarà distribuita gaussianamente, precisamente con una distribuzione data da 
+
+    \begin{align}
+        \rho(z) = \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}
+    \end{align}
+
+    E possiamo facilmente calcolare il p-value: 
+
+    \begin{align}
+        p(z) = 1 - \int_{z}^{z}\rho(z')dz'
+    \end{align} 
+    
+    Se vale \(p > \alpha\) rigetto l'ipotesi nulla, se \(p < \alpha\) non posso rigettarla. 
+}
+
+\ex{Test di Student}{
+
+    Si tratta del test più utilizzato in biologia. In particolare, abbiamo un vettore di misure \(\vec{x} = x_1, \ldots, x_n\). Facciamo l'ipotesi nulla che questi siano campionati da una distribuzione gaussiana, con media \(\mu_0 \). \\
+
+    La situazione è sottilmente diversa da prima, perché adesso non conosciamo a priori la varianza delle nostre misure. Si definisce la variabile test \(t\) mediante la formula 
+
+    \begin{align}
+        t := \frac{\bar{x}-\mu_0}{\text{SE}}, \quad \text{SE} = \frac{\sigma^2_x}{N-1}
+    \end{align}
+
+    A questo punto si calcola il p-value conoscendo la distribuzione della variabile test \(t\), che Student mostrò essere pari a 
+
+    \begin{align}
+        P(t |N, \mu_0) = \frac{\Gamma (N/2)}{\Gamma(N-1/2)}\left(1 - \frac{t^2}{N-1}\right)^{-N/2}
+    \end{align}
+
+    La distribuzione tende alla distribuzione gaussiana per \(N \rightarrow +\infty\). Di fatto, quando ho \(N\) grande, posso usare sia il test \(z\), sia il test \(t\), senza alcuna apprezzabile differenza. 
+}
+
+
+\ex{Test di Kolgomorov-Smirnov}{
+
+    Si tratta di un test piuttosto universale, perchè si può applicare anche a dati non distribuiti gaussianamente. In pratica, consideriamo il set di misure \(\vec{x} = x_1, \ldots, x_n\), e facciamo l'ipotesi nulla che questi siano distribuiti secondo una certa distribuzione \(f(x)\). L'idea è quella di confrontare la distribuzione cumulata "sperimentale" con la distribuzione cumulata teorica, che è data chiaramente da
+
+    \begin{align}
+        F (x) = \int_{-\infty}^{x}f(x')dx'
+    \end{align}
+
+    Invece la "cumulata sperimentale" sarà data da 
+    \begin{align}
+        s(x) = \frac{\#_{oss} < x}{N_{tot}}
+    \end{align}
+
+    Si definisce allora 
+    \begin{align}
+        D = \sup_{x}|s(x)-F(x)|
+    \end{align}
+
+    Di cui Kolgomorov calcolò la distribuzione: 
+
+    \begin{align}
+        P(x> N\sqrt{D}) = \sqrt{2\pi x}\sum_k e^{-(2k-1)^2\frac{\pi^2}{\delta(x)^2}}
+    \end{align}
+
+    Da cui si può ottenere il p-value. Il test si può anche usare per vedere se due set di variabili distinte seguono la stessa distribuzione, anche se questa non è nota a priori. 
+}
+
+\ex{Test del \(\chi^2\)}{
+
+    Si tratta del test più tipico di bontà di un fit. Ogni volta che facciamo un fit, otteniamo una curva come risultato, ma dobbiamo chiederci se le discrepanze che osserviamo fra la curva ed i nostri dati sono frutto del caso oppure sono dovute al fatto che ad esempio sto provando a fittare con la curva sbagliata. \\
+
+    L'ipotesi nulla è dunque che valga \(y_i = f(x_i, \vec{\theta})\), con \(\theta\) un vettore di dimensione \(M\). Si determina dunque la variabile 
+
+    \begin{align}
+        \chi^2 := \sum_i \frac{(y_i - f(x_i, \vec{\theta}))^2}{\sigma^2_i}
+    \end{align}
+
+    Che è distribuita secondo 
+    \begin{align}
+        \rho(\chi | N, m) = \frac{2^{-\nu/2}e^{-\chi/2}}{\Gamma (\nu/2)} \quad \nu = N - M
+    \end{align}
+
+}
+
+
+\chapter{Il principio di massima entropia}
+
+Consideriamo adesso il seguente problema. Consideriamo un dado, ed il vettore \(q_i, \, i = 1, \ldots, 6\) la probabilità che da un lancio esca \(i\) come risultato. Chiaramente vale \(\sum_i q_i = 1\). Supponiamo di porre un altro vincolo, ad esempio un'informazione sul valore medio del risultato dei lanci: vale 
+
+\begin{align}
+    \mu = 3.5 = \sum_i q_i i 
+\end{align}
+
+Ora, è chiaro che ci sono infinite possibilità per \(q_i\) che rispettino questi due vincoli. Ad esempio potrebbe valere 
+\begin{align}
+    \vec{q} = (1/2, 0, 0, 0, 0, 1/2)
+\end{align}
+
+Oppure potrebbe valere
+\begin{align}
+    q_i = 1/6 \quad \forall i
+\end{align}
+
+Intuitivamente, ci viene da pensare che la seconda ipotesi sia la più probabile. Ma come mai? Come si fa ad avere un metodo sistematico, dati dei vincoli, a sapere quale è il vettore delle probabilità (o la distribuzione di probabilità per una variabile continua), più probabile? \\
+
+Abbiamo bisogno di una misura della non-informazione di un sistema: questa misura è l'entropia di Shannon, definita da 
+
+\begin{align}
+    S = -\sum_i P_i \log_2 (P_i)
+\end{align}
+
+Si noti che valendo \(p_i \in [0, 1]\), l'entropia è sempre positiva. Il principio di massima entropia ci dice che la configurazione più probabile, è quella che, rispettando i vincoli, massimizza l'entropia di Shennon. In generale dunque per trovare la distribuzione desiderata non dobbiamo fare altro che risolvere un problema di ottimizzazione vincolata, tipicamente svolto con il metodo dei moltiplicatori di Lagrange.\\
+
+Prima di dare un esempio di questo calcolo, diamo una motivazione un po' euristica del perché l'entropia di Shannon può essere considerata come una buona misura della nostra ignoranza di un sistema. Supponiamo di avere \(N\) scatole. In una sola di queste è presente un regalo. Supponiamo di potere fare delle domande sulla presenza o no del regalo in certe scatole. Quale è il modo più veloce per arrivare al regalo? 
+Per semplicità, consideriamo il caso in cui le scatole siano una potenza di due, ovvero valga \(N = 2^L\), per qualche numero naturale \(L\). Ora, il modo più rapido è certamente dividere volta per volta le scatole a metà, e chiederci in quale delle due metà sta la scatola. In questo modo, si arriva alla fine dopo una serie di 
+
+\begin{align}
+    S = \log_2 N = L 
+\end{align}
+
+domande. Interpretiamo dunque questo numero come il contenuto di informazione del sistema. \\
+Consideriamo un caso più generale, dove ogni scatola contiene un numero di oggetti diversi, dove solo uno di questi è il regalo. Una volta indovinata la scatola, si ha una probabilità \(P_i = n_i/N\) di trovare il regalo. Allora la formula precedente si generalizza a 
+
+\begin{align}
+    S = -\sum P_i \log_2 (P_i)
+\end{align}
+
+che è proprio l'entropia di Shannon definita prima. 
+
+\ex{Il caso di minori vincoli possibili}{
+    Supponiamo di non avere altri vincoli, se non che valga \(\sum_i P_i = 1\). Quale è la distribuzione più probabile? \\
+
+    Usando la tecnica dei moltiplicatori di Lagrange, scriveremo che deve valere 
+
+    \begin{align}
+        0 = \frac{d(S - \lambda(\sum_j P_j))}{dP_i} = -\log_2(P_i) -1 - \lambda
+    \end{align}
+
+    Come al solito, per capire quanto vale il moltiplicatore \(\lambda\), dobbiamo inserire il vincolo. Eleviamo allora l'espressione ad una potenza di 2 per ottenere: 
+
+    \begin{align}
+        P_i = 2^{-(\lambda +1)} \implies 1 = N 2^{-(\lambda +1)} \implies \lambda = \log_2(N) - 1
+    \end{align}
+
+    Sostituendo nella nostra condizione otteniamo che deve valere 
+    \begin{align}
+        -\log_2 (P_i) - 1 -\log_2 (N) + 1 = 0 \implies \log_2 (P_i) = -\log_2 N \implies P_i = 1/N 
+    \end{align} 
+
+    Abbiamo dunque trovato che la distribuzione più probabile è la distribuzione uniforme. 
+}
+
+\section{Un'applicazione: il metodo della PCA}
+
+La PCA è una potente tecnica statistica che permette di selezionare i dati più importanti. Molto spesso, si ha a disposizione un gran numero di dati, ma la maggior parte di questi non sono particolarmente utili, perché sono fortemente correlati fra di loro. La PCA permette invece di selezionare i dati più rilevanti. Chiaramente per farlo dovrò cercare di perdere meno informazione possibile, e qui entrerà in gioco la funzione entropia. \\
+
+Vediamo dunque come funziona: immaginiamo di avere una matrice di dati \(y_{ij}\), dove \(j\) indica una proprietà di un osservabile, \(i\) indica il numero della misura. Per prima cosa, considero la media di ogni proprietà, che sarà data da 
+
+\begin{align}
+    \bar{y}_j = \frac{1}{N}\sum_{i=1}^N y_{ij}
+\end{align}
+
+e la varianza di ogni proprietà: 
+
+\begin{align}
+    \sigma^2_j = \frac{1}{N-1}\sum_{i=1}^N (y_{ij}- \bar{y}_j)^2
+\end{align}
+
+Definiamo allora le variabili "riscalate", date da 
+
+\begin{align}
+    x_{ij} := \frac{y_{ij}-\bar{y}_j}{\sigma_j}
+\end{align}
+
+Queste hanno le speciali proprietà \(\bar{x}_j = 0, \, (\sigma_x)_j =0, \, \forall j\). 
+
+Di queste variabili prendiamo la matrice di covarianza, data da 
+\begin{align}
+    C_{jm} = \frac{1}{N}\sum_{i=1}^N x_{ij}x_{im}
+\end{align}
+
+In particolare, la matrice \(C\) è simmetrica, e dunque esiste una base dove è diagonale. \\
+
+Ora, la nuova base è costituita da combinazioni lineari dei vettori della vecchia base. Potremmo pensare che i nuovi vettori indichino una direzione nello spazio dei vecchi vettori. Indichiamo con \(z_i\) le componenti della base diagonale. Certamente varrà che 
+
+\begin{align}
+    z_i = \vec{v}\cdot \vec{y} + \xi_i
+\end{align}
+
+abbiamo solamente scritto \(z\) come la proiezione su una direzione, più un resto. Ora, mi chiedo quale sia la \(\vec{v}\) che mi dà la massima informazione. Uso allora il principio della massima entropia: 
+
+\begin{align}
+    S (\rho(z)) = -\int dz \rho(z)\ln(\rho(z)) \, \forall i 
+\end{align}
+
+e voglio massimizzare l'informazione che \emph{non perdo}, che sarà data da 
+
+\begin{align}
+    \text{MI} = S(\rho(z)) - S(\rho(z|y))
+\end{align}
+
+Nell'ipotesi di variabili distribuite normalmente, scriviamo che 
+
+\begin{align}
+    &S(\rho(z)) = \int \frac{e^{-z^2/2\sigma^2_z}}{\sqrt{2\pi}\sigma_z}\left(-\frac{z^2}{2\sigma^2_z} - \log(\sqrt{2\pi}\sigma_z)\right) = 1 + \log(\sqrt{2\pi}\sigma_z) \\
+    &S(\rho(z|y)) = \ldots = 1 + \log(\sqrt{2\pi}\sigma_{\xi})
+\end{align}
+
+Da cui deduciamo immediatamente 
+
+\begin{align}
+    \text{MI} = \log\left(\frac{\sigma_z}{\sigma_\xi}\right)
+\end{align}
+
+D'altra parte, vale che \(\sigma^2_z = \sum_{ij}v_i C_{ij}v_j\). Dunque massimizzare \(\sigma_z\) (e perdere la minima quantità di informazione) equivale a proiettare \(z\) lungo l'autovettore con l'autovalore più alto. 
+
+\chapter{Network}
+
+Un network, o un grafo, non è altro che un insieme di nodi, connessi con delle linee. \\
+
+Le linee possono essere direzionali, oppure non avere una direzione. Questo dipende dalla particolare situazione che sto cercando di rappresentare con un grafo. 
+
+\ex{Grafi direzionali e non}{
+    Un esempio di grafo non direzionale è il grafo che ottengo da una matrice di covarianza. Se ho una matrice di covarianza con molti dati, posso decidere di rappresentara più semplicemente attraverso un grafo. Questo prevede che io prenda le variabili che hanno correlazione superiore ad un certo valore soglia (e.g. \(0.8\)) e colleghi queste proprietà con una linea. Chiaramente se una proprietà è correlata con una, allora vale anche il contrario, dunque il grafo è non direzionale. \\
+
+    Un esempio di grafo direzionale è invece dato dalle chiamate fra vari cellulari, dove c'è sempre una persona che chiama ed una che riceve la chiamata. 
+
+}
+
+Storicamente, la teoria dei grafi nasce dal problema dei sette ponti di Koenisberg. Il teorema di Eulero dice che se il grafico ha almeno due nodi di grado dispari, allora non esiste un unico cammino che li congiunge tutti senza dover attraversare due volte lo stesso ponte. D'altra parte, se invece vale che un grafico non ha nodi di grado dispari, allora esiste certamente un cammino. \\
+
+Il grado di un nodo si definisce naturalmente come il numero di linee a cui è connesso. Chiaramente se un grafo è direzionale allora definiremo un grado di entrata ed un grado in uscita, ed il grado totale come la differenza di questi due. Il grado medio di un nodo è dato da 
+
+\begin{align}
+    &<k> = \frac{2L}{N}, \quad \text{non direzionale} \\
+    &<k> = \frac{L}{N}, \quad \text{direzionale}
+\end{align}
+
+Chiaramente per ogni grafo esiste un mapping esatto in una matrice \(A_{ij}\), che hanno componenti \(1, 0\) a seconda che i nodi siano connessi o meno. Chiaramente le matrici costruite in questo modo sono simmetriche nel caso di grafi non direzionali, ed asimmetriche nel caso di grafi non direzionali. \\
+
+Si parla di grafo bipartito quando il grafico si può dividere in due set indipendenti, ovvero due set distinti che ad ogni elemento sono collegati all'altro almeno con un collegamento. \\
+
+Infine, interessanti sono i cammini all'interno di un grafo. Un cammino è la strada tra un nodo iniziale ed un nodo finale, seguendo le linee del network. Da questa idea possiamo definire la distanza fra due nodi, come il numero di nodi che si attraversa nel cammino più veloce. Si definisce diametro del grafo la distanza più grande fra due nodi. \\
+
+Chiaramente, non è sempre possibile raggiungere un nodo da un altro seguendo un cammino. Se questo è possibile, si parla di grafo \emph{connesso}. Un ponte è una linea in un grafo connesso, che se rimossa renderebbe il grafo sconnesso. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Matrici random}
+
+Una matrice \emph{di Wigner} è una matrice \(X\) tale che \(X = X^T\), con elementi campionati random dalle distribuzioni 
+
+\begin{align}
+    &\rho(x_{ij}) = N(x_{ii}| 0, \sigma_d), \quad i=j \\
+    &\rho(x_{ij}) = N(x_{ij}| 0, \sigma_{od}), \quad i \neq j
+\end{align}
+
+Definiamo ora \(\tau(x)\) come 
+\begin{align}
+    \tau(X) = \frac{1}{N} \lim_{N \rightarrow \infty} <\text{Tr}(X)>
+\end{align}
+
+Data inoltre una qualsiasi funzione su queste matrici \(F\), scriveremo che 
+\begin{align}
+    \tau(F(X)) = \frac{1}{N} \lim_{N \rightarrow \infty} <\text{Tr}(F(X))>
+\end{align}
+
+Ora, in particolare, poiché vale \(X = X^T\), le matrici sono diagonalizabili, ed in particolare possiamo scrivere che la traccia è la somma degli autovalori, ovvero 
+
+\begin{align}
+    \tau(X) = \lim_{n \rightarrow \infty}<\frac{1}{N}\sum_k^N \lambda_k> 
+\end{align}
+
+ed inoltre, 
+
+\begin{align}
+    \tau(F(X)) = \lim_{N \rightarrow \infty} < \frac{1}{N} F(\lambda_k)> = <F(X)> = \int d\lambda \rho(\lambda)F(\lambda)
+\end{align}
+
+Questo mostra l'importanza di conoscere quanto vale \(\rho(\lambda)\). 
+
+\ex{Calcolo di \(\tau(X), \, \tau(X^2)\)}{
+
+    Per esercizio vediamo quanto valgono queste quantità, per delle matrici di Wigner. Si ha che 
+
+    \begin{align}
+        \tau(X) = \frac{1}{N}<\sum_i^N x_{ii}> = 0
+    \end{align}
+
+    Passando al quadrato, la matrice \(X^2\) ha componenti \((X^2)_{ij} = \sum_k^N X_{ik}X_{kj}\), per definizione. La sua traccia allora è data da 
+
+    \begin{align}
+        \text{Tr}(X^2) &= \sum_{ik}X_{ik}^2 = \sum_{i=k}X_{ik}^2 + \sum_{i \neq k}X_{ik}^2
+    \end{align}
+
+    Ora possiamo calcolare 
+
+    \begin{align}
+        \tau(X^2) = \frac{1}{N}<\sum_{ij}^N x^2_{ij}> = \frac{1}{N}[N\sigma_d^2 + N(N-1)\sigma^2_{od}]
+    \end{align}
+
+    Da cui è chiaro che nel limite \(N \rightarrow \infty\) si ottiene che 
+    \begin{align}
+        \tau(X^2) = N\sigma^2_{od}
+    \end{align}
+
+    Per evitare che i termini fuori dalla diagonale abbiano un importanza così grande, a volte si prende \(\sigma_d^2 = \sigma^2, \, \sigma_{od}^2 = \sigma^2/N\). Con questa scelta, si ha che 
+
+    \begin{align}
+        \tau(X^2) = 2\sigma^2
+    \end{align}
+}
+
+Ora, è possibile mostrare, usando la trasformata di Stetijies, che la distribuzione degli autovalori per una matrice random è data da 
+
+\begin{align}
+    \rho(\lambda) = \begin{cases}
+        \frac{\sqrt{4\sigma^2 - \lambda^2}}{2\pi \sigma^2}, \quad \lambda \in (-2\sigma, +2\sigma) \\
+        0 \quad \text{altrimenti}
+    \end{cases}
+\end{align}
+
+ovvero una caratteristica forma a semicerchio. Questo è un risultato fondamentale, soprattutto perché mi permette di distinguere velocemente se una matrice è generata random, cioè è solo rumore, oppure è interessante. 
+\end{document}

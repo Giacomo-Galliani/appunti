@@ -1,0 +1,13 @@
+\contentsline {chapter}{\numberline {1}Buchi neri e la loro termodinamica}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduzione}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Definizione matematica di buco nero}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Soluzione di Swartschild, orizzonti di Killing, gravità superficiale e temperatura di Hawking}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Buchi neri carichi e rotanti}{13}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Cariche conservate}{17}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Le soluzioni di Reisser-Nordstrom e Majamuda-Paparatu}{19}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Le teorie di Chern-Simons}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Caratteristiche generali della teoria}{21}{section.2.1}%
+\contentsline {section}{\numberline {2.2}La gravità in 3D come teoria CS}{22}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Il meccanismo di Kaluza-Klein}{23}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Buco nero di Kaluza-Klein}{27}{section.2.4}%
+\contentsfinish 

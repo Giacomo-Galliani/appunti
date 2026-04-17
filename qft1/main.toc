@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Lorentz and Poincarè symmetries}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}The Lorentz group}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Spinorial representation}{6}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Field representation}{7}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Poincarè group}{8}{section.1.4}%
+\contentsline {chapter}{\numberline {2}The scalar field}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The classical scalar field and the KG equation}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Canonical quantisation of the real scalar field}{11}{section.2.2}%
+\contentsline {section}{\numberline {2.3}The complex scalar field}{14}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Spin 1 Fields}{16}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Quick review of classical electrodynamics}{16}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Canonical quantisation}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Spin operator and its eigenstates}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Covariant quantisation}{19}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Spin \(1/2\) fields}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Charge conjugation}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}A lagrangian for Weyl spinors}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Dirac's lagrangian and equation}{23}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Canonical quantisation}{26}{section.4.4}%
+\contentsfinish 

@@ -1,0 +1,35 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti}}}
+\author{Giacomo Galliani, corso del prof.}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+
+
+\chapter{Introduction}
+\section{Definizioni}
+
+
+
+\end{document}

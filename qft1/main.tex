@@ -1,0 +1,1276 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Lecture notes on QFT}}}
+\author{Giacomo Galliani, course held by  prof. Raul Ronscht}
+\date{Accademic year 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{Lorentz and Poincarè symmetries}
+
+\section{The Lorentz group}
+
+Quantum field theory is the theory that emerges when one wishes to combine special relativity with quatum mechanics. As such, it is important to study the Loretnz and Poincarè symmetries, within their appropriate mathematical framework, that is, group theory. \\
+
+
+The Lorentz group is defined as the the group of \emph{linear transformations}, applied on a 4-vector in Minkoswki spacetime, that we usually indicate with \(x^\mu\), that leaves invariante it's "square" \(x^\mu x_\mu = g_{\mu\nu}x^{\mu}x^{\nu} = (x^0)^2 - (\vec{x}^2)\). (here, \(g_{\mu\nu} = \text{diag}(+, -, -, -)\)). The condition of linearity means that we can choose a linear rapresentation, in terms of witch we write can explicity write the transformation as 
+
+\begin{align}
+    x^\mu \rightarrow x'^\mu = \Lambda^{\mu}_\nu x^{\mu}
+\end{align}
+
+In general, mathematicians call the linear group of transformation that leave invariant \(\sum^m x_i^2 - \sum^n y_i^2\) \(O(n,m)\). Thus, the Lorentz group is \(O(3, 1)\). Now the fondamental condition of the invariant square means that 
+
+\begin{align}
+    x'^\mu x'_\mu = g_{\mu\nu}(\Lambda^\mu_\rho x^\rho)(\Lambda^\nu_\sigma x^\sigma) = g_{\rho \sigma}x^\rho x\sigma
+\end{align}
+
+that is, 
+
+\begin{align}
+    g_{\mu\nu}\Lambda^\mu_\rho \Lambda^\nu_\sigma = g_{\rho\sigma}
+\end{align}
+
+Every element of a group must have an inverse, such that moltiplication by left or right gives back the identity. What is the inverse of a Loretnz transformation? Take again the condition of leaving the square invariant: 
+
+\begin{align}
+    g_{\mu\nu} \Lambda^\mu_\rho \Lambda^\nu_\sigma = \Lambda_{\nu\rho} \Lambda ^\nu_\sigma = g_\rho \sigma \implies \Lambda_\nu^{\rho'} \Lambda^\nu_\sigma = g_{\rho\sigma}g^{\rho\rho'} = \delta_\sigma^{\rho'}
+\end{align}
+
+by definition, then, the inverse is given by 
+
+\begin{align}
+    (\Lambda^{-1})^\rho_\nu = \Lambda^\rho_\nu
+\end{align}
+
+In matrix form, we would write the condition of the square invariant as \(g = \Lambda ^T g \Lambda\). Da questa, è evidente che 
+
+\begin{align}
+    \det(\Lambda^2) = 1 \implies \det(\Lambda) = \pm 1 
+\end{align}
+
+Now the set of transformations that have determinant one forms a subgroup of \(O(3, 1)\) called the proper transformation, wich is denoted as \(SO(3, 1)\). In particular, we have that infinitesimal transformations, that is transformation close to identity, are always \emph{proper} transformations. 
+
+There is also another distinction. It is easy to check that \(\Lambda^0_0\) must obey \(\Lambda^2 \geq 1\). That is, we can devide transformations where \(\Lambda^0_0 > 1\), and \(\Lambda^0_0 < -1\). The first ones are called \emph{orhocronus}. From now on, when we will refer to lorentz group as the proper and ortocronus subgroup of \(O(3,1)\). 
+
+Now consider an infinitesimal transformation, that we will write as 
+
+\begin{align}
+    \Lambda^\mu_\nu = \delta^\mu_\nu + \omega^\mu_\nu
+\end{align}
+
+this one also has to leave the square invariant, so it holds
+
+\begin{align}
+    g_{\rho\sigma} &= g_{\mu\nu}(\delta^\mu_\rho + \omega^\mu_\rho)(\delta^\nu_\sigma + \omega^\nu_\sigma) \\
+    &= g_{\rho_\sigma} + g_{\mu\sigma}\omega^\mu_\rho + g_{\rho\nu}\omega^\nu_\sigma + o(\omega^2) \\
+    &= g_{\rho\sigma} + \omega_{\sigma\rho} + \omega_{\rho\sigma}
+\end{align}
+
+Thus, \(\omega_{\mu\nu}\) is antisimmetric. Since it is a \(4\times 4\) matrix, this means that it has 6 free parameters. This is right, as the six parameters corrispond to the 3 rotations and the 3 boosts that make up the Lorentz group. Introducing a parameter \(\eta\), called \emph{rapidity}, one can think as boost as \emph{hyperbolic} rotations, in the sense that they can be written as 
+
+\begin{align}
+    &t \rightarrow t\cosh \eta + x \sinh\eta \\
+    &x \rightarrow t\sinh \eta + x\cosh\eta 
+\end{align}
+
+Thus, each element of the group is written in a differentiabile function of the six parameters. Mathematicians call this tipe of group a Lie group. \\
+
+Now recall that in quantum mechanics, symmetries were realized by some operators acting on a state. This operators are a \emph{representation} of the group. A \emph{linerar rapresentation} of the group, is a map that assingns each element of the group a matrix, \(g \in G \rightarrow D(G)\), that preserve the group structure, that is, \(D(g_1 g_2) = D(g_1)D(g_2), \forall g_1, g_2 \in G\). \\
+
+Lie groups are special, in the sense that they have a special rapresentation: we can always write 
+
+\begin{align}
+    D(g(\theta)) = e^{i\theta^a T^a} 
+\end{align}
+
+where the elements \(\left\{T^a \right\}\) are called \emph{generators} of the group. Since this rapresentation must preserve the group structure, one finds that generators must obey some \emph{commutation relations}: 
+
+\begin{align}
+    [T^a, T^b] = if^{ab}_c T^c
+\end{align}
+
+where, surprisingly, the structure constants \(f\) do not depend on the particular rapresentation. The generators then live in a vector space, equipped with a bilinear closed form (that is, a bilinear map \(V \times V \rightarrow V\)). This place is called a \emph{Lie algebra} . For the Lorentz group, we will then write a general transformation as 
+
+\begin{align}
+    \Lambda = \exp\left(-\frac{i}{2}\omega_{\mu\nu}J^{\mu\nu} \right)
+\end{align}
+
+where the antisimmetric matrix \(\omega_{\mu\nu}\) carries the six parametrers, (the "angles" of rotation and boosts), and \(J^{\mu\nu}\) are the generators. To avoid causing confusion, we stress that the generators are elements of a vector space, so that each element of \(J^{\mu\nu}\) lives in a vector space. Don't be surprised than when we will use this object for some computations, and we will use more indexes on it, such as \((J^{\mu\nu})^{\rho}_\sigma\). Of course, if this was not the case than \(\Lambda\) would be a scalar, witch as little physical sense. \footnote{Strictly speaking, it has a mathetamical sense. Every group has a very simple rapresentation, called the trivial rapresentation, where every group element is mapped into the identity. The rapresentation is a valid one, because 1 times 1 is always 1 and then the group structure is preserved. This may seem a usless fact, but I think it's interesting, even for physicists, because it shows how not every rapresentation of the group is a useful one. }
+
+When we select a rapresentation, if we have an object, say a field, \(\phi^i\), this transforms under the action of the group as 
+
+\begin{align}
+    \phi^i \rightarrow \phi'^i = \left(e^{-\frac{i}{2}\omega_{\mu\nu}J^{\mu\nu}}\right)^i_j \phi^ j 
+\end{align}
+
+One can than \emph{classify} the objects, or the fields, based on how they transform under the action of the group. \\
+
+Before we start, there is a useful way to treat the generators of the Lorentz group. If one writes 
+
+\begin{align}
+    J^i = \frac{1}{2}\eps^{ijk}J^{jk}, \, K^i = J^{0i}
+\end{align}
+
+one then finds the following commutation relations: 
+
+\begin{align}
+    [J^i, J^j] = i\eps^{ijk}J^k, \, [J^i, K^j] = i\eps^{ijk}K^k, \, [K^i, K^j] = i\eps^{ijk}J^k
+\end{align}
+
+The first commutation relation is the usual angular momentum commutation relation from quantum mechanics. In Lie algebras, this is called a \(\mathfrak{su}(2)\) sub-algebras, witch is due to the fact that rotations are a subgroup of the Lorentz group. 
+
+The second commutation relation, shows that \(K^i\) behaves as a 3-vector under rotations. Finally, the last commutation tells that the combination of two boosts is equivalent to a rotation. \\
+
+Since we now understand that \(J\) and \(K\) perform a very different role in the Lorentz group, it is useful to write a general Lorentz transformation in a way that is more transparent: define 
+
+\begin{align}
+    \theta^i = -\frac{1}{2}\eps^{ijk}\omega^{jk}, \, \eta^i = \omega^{i0}
+\end{align}
+
+then, \(\theta^i\) are the angles of the rotations, and \(\eta^i\) are the 3 rapidities, associated with the 3 boosts. A general Lorentz transformation is then given by 
+
+\begin{align}
+    \Lambda = e^{(-i\vec{\theta}\cdot \vec{J} + i \vec{\eta}\cdot \vec{k})}
+\end{align}
+
+Where with the dot-product \(\cdot\) we mean the usual euclidean inner product in \(\mathbb{R}^3\). 
+
+Now let's look at how tensors transform. Tensor, by definition, are object that transform as 
+
+\begin{align}
+    T^{\mu\nu} \rightarrow T'^{\mu\nu} = \Lambda^\mu_\sigma \Lambda^{\nu}_\rho T^{\sigma\rho}
+\end{align}
+
+this is a first example of a \emph{reducible} rapresentation. What this means is that a tensor is made up of piecis, that transform independently under Lorentz transformations. 
+
+Too see why this is the case for tensors, lets split the tensor in simmetric and antisimmetric: 
+
+\begin{align}
+    T^{\mu\nu} = S^{\mu\nu} + A^{\mu\nu}, \, S^{\mu\nu} = \frac{1}{2}(T^{\mu\nu}+ T^{\nu\mu}), \, A^{\mu\nu} = \frac{1}{2}(T^{\mu\nu} - T^{\nu\mu})
+\end{align}
+
+Now, \(S^{\mu\nu}\) is the sum of its trace and a simmetric traceless tensor. The trace is given by 
+
+\begin{align}
+    S = g_{\mu\nu}S^{\mu\nu} 
+\end{align}
+
+since it is a contruction of all indices, it is clearly a Lorentz scalar. It is a 1 dimensional rapresentation of the group. The anti-simmetric part is instead a 6-dimensional rapresentation, and the simmetric traceless is 9 dimensional. In the formalism of group theory, one writes 
+
+\begin{align}
+    4 \times 4 = 6 + 1 + 9
+\end{align}
+
+Not only we can check how some objects transform under the action of \(SO(3, 1)\), but also it becomes interesting to classify the fields, based on how they behave under the very important subgroup \(SO(3)\), the group of rotations. \\
+
+Representations of \(SO(3)\) are labeled by two integers, \(j, j_z\), with \(j_z = -j, \ldots, j\). A scalar has \(j=0\). Instead a 4-vector is a reducible rapresentation of \(SO(3)\). This is because rotation acts only on the spacial components of \(V^\mu\). Then we will write 
+
+\begin{align}
+    4 = 1 + 3
+\end{align}
+
+where the 1 dimensional rapresentation has \(j=0\), the 3-dimensional has \(j=1\). (in general, the dimension of the representation is given by \(2j+1\)). 
+
+What of a tensor? If we think of a tensor as a tensor product of two vectors, then it is natural to write
+
+\begin{align}
+    4 \times 4 = (1 + 3) \times (1+3) = 1 \times 1 + 1 \times 3 + 3 \times 1 + 3 \times 3
+\end{align}
+
+This result has at least two interesting interpretations: 
+
+\begin{enumerate}
+    \item In terms of the adding rules of angular momenta. \\
+    We know that a 4-vector carries a \(j=0\) and \(j = 1\) representation. Then, when we add two of those up, we get: 
+    \begin{enumerate}
+        \item A singlet state, given by \(j_1 = 0, j_2 = 0\). This gives the dimension 1 representation. 
+        \item Two triplet states, given by \(j_1 = 1, j_2 = 0\) and \(j_1 = 0, j_2 = 1\). 
+        \item The last collection of \(j_1 = 1, j_2\) states, that is the tensor product of 3-dimensional representation, i.e. a 9-dimensional representation. 
+    \end{enumerate}
+    \item In terms of how rotation acts on different parts of the tensor. If we take \(T^{00}\), then it is a scalar, so we find the first 1-dimensional rep. Then, \(T^{i0}\) and \(T^{0i}\) are going to be vectors under rotations, and that explains the two 3-dimensional rep. Finally, \(T^{ij}\) is a 3-tensor, so a tensor product of two 3-vectors, and that explains the 9-dimensional rep. 
+\end{enumerate}
+
+
+\section{Spinorial representation}
+
+QFT is about particles, and particles in general carry a spin. We know since quantum mechanics that spin is better described by \(SU(2)\) rather then \(SO(3)\). The difference between the two groups is subtle. Their algebra is the same, and that reflects the fact that the two groups are \emph{locally} isomporphic. However, under a \(2\pi\) rotation, an electron (or a spin 1/2 particle) carries a minus sign in his wave function. Since mathematicians know that \(SO(3) = SU(2)/ \mathbb{Z}_2\), we will use \(SU(2)\). \\
+
+Another consequence of this is that rep. of \(SU(2)\) are labeled by \emph{half-integer} labels, \(j = 0, 1/2, 1, \ldots\). The rapresentation \(j= 1/2\) is called \emph{fundamental}, because it turns out that all representation can be constructed by \(j = 1/2\) peaces. For example if i combine two \(j= 1/2\) spin, is well known that i get 
+
+\begin{align}
+    1/2 \times 1/2 = 0 + 1 
+\end{align}
+
+\(SU(2)\) representation become even more important in qft because of a special feature of the Lorentz algebra: if we define 
+
+\begin{align}
+    J^{\pm, i} := \frac{J^i \pm iK^i}{2}
+\end{align}
+
+then the relation commutations become 
+
+\begin{align}
+    [J^{+i}, J^{+j}] = i\eps^{ijk}J^{+k}, \, [J^{-i}, J^{-j}] = i\eps^{ijk}J^{-k}, \, [J^{+i}, J^{-j}] = 0
+\end{align}
+
+Basically, we have shown that we can divide the Lorentz algebra in two \(\mathfrak{su}(2)\) subalgebras. This means that we can label representations by a pair of two half integers \(j_1, j_2\).  
+
+Let's now study their most important properties. We start with the easiest one, the scalar representation of dimension 1, witch has \(j_1 =0, j_2 = 0\). This has \(J^i = 0, K^i = 0\). Then we have two different representation of dimension 2, that we will label as \(\left(\frac{1}{2}, 0 \right), \left(0, \frac{1}{2}\right)\). Those are the left handed and right handed Weyl spinors, denoted tipically as \(\psi_L, \, \psi_R\). In those, \(J^+ = 0\) and \(J^-\) can be rapresented by \(2\times 2\) complex matrixes (the Pauli matrixes), or the other way around. Now that we know this, we can invert the relations for \(J^{\pm}\) and write rotation and boosts in terms of Pauli matrixes: 
+
+\begin{align}
+    &J^i = J^{+i} + J^{-i} = \frac{\sigma^i}{2} \\
+    &K^i = -i(J^{+}-J^{-}) = i\frac{\sigma^i}{2}
+\end{align}
+
+Thus we find the rules of transformation for Weyl spinors: 
+
+\begin{align}
+    \psi_L \rightarrow \psi'_L = \Lambda_L\psi_L, \, \Lambda_L = \exp\left(i (-\vec{\theta}\cdot \vec{J} + \vec{\eta}\cdot \vec{k}) \right) = \exp\left( (-i\vec{\theta}- \vec{\eta})\cdot \frac{\vec{\sigma}}{2} \right)
+\end{align}
+
+Similarly, one can find the rule of transformation for right handed spinors, given by 
+
+\begin{align}
+    \Lambda_R = \exp\left((-i\vec{\theta}+\vec{\eta})\cdot \frac{\vec{\sigma}}{2} \right)
+\end{align}
+
+Finally, the \(\left(\frac{1}{2}, \frac{1}{2} \right)\) representation is a 4-dimensional complex representation, that can be thought has the composition of a Weyl left handed spinor and a Weyl right handed spinor.
+
+\section{Field representation}
+
+In general, how does a \emph{field} transform under lorentz transformations? We can classify field depending on how they transform. 
+
+The simplest case is the scalar field. Since it is a scalar, \(\phi'(x') = \phi(x)\). However, in general \(\phi'(x) \neq \phi(x)\). Let us then compute the difference. The coordinate shift, if we take an infinitesimal transformation is given by 
+
+\begin{align}
+    x^\mu \rightarrow x'^\mu = x^\mu + \delta x^\mu, \, \delta x^\mu = -\frac{i}{2}\omega_{\sigma\nu}(J^{\sigma \nu})^\mu
+\end{align}
+
+Then we find that 
+
+\begin{align}
+    \delta_0 \phi := \phi'(x) - \phi(x) \simeq -\delta x^{\mu} (\partial_\mu \phi)
+\end{align}
+
+Now, if we try and put this in the form 
+
+\begin{align}
+    \delta_0 \phi = -\frac{i}{2}\omega_{\mu\nu}L^{\mu\nu}\phi
+\end{align}
+
+we find that the \(L^{\mu\nu}\) operators are 
+
+\begin{align}
+    L^{\mu\nu} = i(x^\nu\partial^\nu - x^\nu \partial^\mu) = x^\mu p^\nu - x^\nu p^\mu
+\end{align}
+
+if like in QM we call \(p^\mu = i\partial^\mu\). This generators obey the lorentz algebra, and form a representation of the algebra, using the field as a basis. \\
+
+Note that clearly if we take only the spacial components, than the operator is nothing but the angular momentum operator for quantum mechanics. \\
+
+
+Let us than do the same type of computation for a Weyl spinor. We can already guess what will be the outcome: the total angular momentum that we will find will be the sum of an orbital angular momentum, and a spin. Lets see: the only difference now is that \(\psi_L\) is not a scalar anymore, but rather transforms with the relation derived in the previous section. We can than compute
+
+\begin{align}
+    \delta_0 \psi_L &= \psi'_L (x) - \psi_L (x) \\
+    &\simeq \psi'_L (x') - \psi_L (x) -\delta x^\rho \partial_\rho \psi_L (x) \\ 
+    &\simeq -\frac{i}{2}\omega_{\mu\nu} S^{\mu\nu} - \delta x^\rho \partial_\rho \psi_L
+\end{align}
+
+Again, if we try and write this as 
+
+\begin{align}
+    \delta_0 \psi_L = -\frac{i}{2}\omega_{\mu\nu}J^{\mu\nu}\psi_L
+\end{align}
+
+we find, as promised, 
+
+\begin{align}
+    J^{\mu\nu} = S^{\mu\nu} + L^{\mu\nu}
+\end{align}
+
+because if we take the spacial components and define 
+
+\begin{align}
+    S^i = \frac{1}{2}\eps^{ijk}S^{jk}
+\end{align}
+
+this is the old spin operator from QM. \\
+
+Dirac fields are then fields \(\psi\) in the \((1/2, 1/2)\) representation. At first, it might not be obvious why we need them. One main reason is that a right-handed spinor is mapped in a left-handed spinor by parity. This is because \(K^i\) is a true vector under rotations, and so \(K^i \xrightarrow[P] -K^i\), while \(J^i\) is a pseudovector, and is mapped in itself by parity. \\
+
+If we want to make a theory that admits parity as a symmetry (e.g. electromagnetism), then we'll have to take a Dirac field that under parity is then simply transformed as 
+
+\begin{align}
+    \psi(x) \rightarrow \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 
+    \end{pmatrix}
+    \psi(x)
+\end{align}
+
+\section{Poincarè group}
+
+We now want to enlarge the Lorentz group, by adding spacetime translations, of the form 
+
+\begin{align}
+    x^\mu \rightarrow x'\mu = x^{\mu} + a^{\mu}
+\end{align}
+
+the resulting group is called the Poincarè group. \\
+
+Given \(p^\mu\) the generators of translations, we can find the commutation relations with the other generators and thus write down the whole Poincarè algebra. The main results of this computation are the following: 
+
+\begin{enumerate}
+    \item \(J^i, P^i, K^i\) all behave like vectors under spacial rotations. 
+    \item \(J^i, P^i\) commute with \(P^0\), and thus are conserved. This is not the case however for \(K^i\), that does not commute with \(P^0\). 
+\end{enumerate}
+
+Let's now give a representation of \(P^\mu\), on a basis of fields. This is done in the usual way: 
+
+\begin{align}
+    \phi' (x' -\eps) = e^{-ip^\mu (-\eps_\mu)}\phi'(x) \simeq \phi'(x) + ip^\mu \eps_\mu \phi'(x)
+\end{align}
+
+but also 
+
+\begin{align}
+    \delta_o \phi = \phi'(x) - \phi(x) \simeq -\eps^\mu \partial_\mu \phi
+\end{align}
+
+comparing the two expressions, we get 
+
+\begin{align}
+    p^\mu = i\partial^\mu
+\end{align}
+
+just as in QM. 
+
+
+\chapter{The scalar field}
+
+\section{The classical scalar field and the KG equation}
+
+Let's consider a field \(\phi\), witch is a scalar under Poincarè symmetries. To have a theory from it, we have to build a lagrangian, specifically a lorentz invariant lagrangian. Then we can write the equation of motion, and solve it to derive the properties of the field. \\
+
+To be able to write second order e.o.m., we need to have a "kinetic" therm in the lagrangian, witch is quadratic in the field first derivative. Since we need it to be a lorentz scalar, we'll write \(\partial_\mu \phi \partial^\mu \phi\). Then we add a potential therm. The easiest way to do it is by adding a quadratic term in the field, so the whole lagrangian reads
+
+\begin{align}
+    \mathcal{L} = \frac{1}{2}(\partial_\mu\phi \partial^\mu\phi -m^2\phi^2)
+\end{align}
+
+the parameter \(m\) is interpreted as the mass of the field, for reasons that will become apparent in a moment. If one computes the euler-lagrange equation of motion for this lagrangian, one finds the Klein-Gordon equation: 
+
+\begin{align}
+    (\partial_\mu\partial^\mu +m^2)\phi = (\square +m^2)\phi = 0
+\end{align}
+
+This is just a have equation, and the simplest solution is given by plane waves \(e^{\pm i p^\mu x_\mu}\), if and only if \(p^\mu p_\mu = m^2\) \footnote{of course, to see why, just plug the candidate solution in the equation. Then one finds that \(\partial_\mu \phi = \pm i p_\mu \phi\), and then \(\square \phi = -p_\mu p^\mu\phi\).}, i.e. they satisfy the mass-shell relation. This is the reason why we think of \(m\) as the mass of the field. \\
+
+To get the most general solution, one integrates all passibile plane waves: 
+
+\begin{align}
+    \phi(x) = \int \frac{d^3p}{(2\pi)^3\sqrt{2E_p}}(a_p e^{-ipx} + a_p^*e^{ipx})
+\end{align}
+
+at this level, \(a_p\) is just a complex coefficient. We will see that this coefficient plays a key role when we will quantize this field. Also, note that in this expression, lorentz invariance is not self evident. However, we will show later that the measure \(\frac{d^3p}{\sqrt{2E_p}}\) is a lorentz scalar.  
+
+Observe that one can obtain the hamiltonian, 
+
+\begin{align}
+    \mathcal{H} = \frac{1}{2}(\pi^2 + (\nabla\phi)^2 + m^2\phi^2)
+\end{align}
+
+and also the energy-momentum tensor: 
+
+\begin{align}
+    T^{\mu\nu} = (\partial^\mu\phi)( \partial^\nu\phi) - g^{\mu\nu}\mathcal{L}
+\end{align}
+
+We can also compute the conserved corrents, due to the lorentz symmetries. After some algebra, one finds that 
+
+\begin{align}
+    J^{\rho\sigma\mu} = x^{\rho}T^{\sigma\mu} - x^{\sigma}T^{\mu\rho}
+\end{align}
+
+to see some of the conserved charges, take \(\rho = i\), \(\sigma = j\), and let's compute the noether charge: 
+
+\begin{align}
+    M^{ij} = \int d^3x J^{ij0} = i \int d^3x \partial_0 \phi L_{ij} \phi
+\end{align}
+
+if \(L_{ij} = i(x^i\partial^j - x^j\partial^i)\), the generators of rotations in the field rapresentation. If we introduce the scalar product of two fields, as 
+
+\begin{align}
+    \Braket{\phi_1|\phi_2} = \frac{i}{2}\int d^3x \phi_1(\partial_o\phi_2) - (\partial_0\phi_1)\phi_2 := \frac{i}{2}\int d^3x \phi_1 \overleftrightarrow{\partial}_0 \phi_2
+\end{align}
+
+we find that the conserved charge is the expected value of the generators of the rotations: 
+
+\begin{align}
+    M^{ij} = \bra{\phi}L^{ij}\ket{\phi}
+\end{align}
+
+\section{Canonical quantisation of the real scalar field}
+
+Recall that when one wishes to go from classical mechanics to quantum mechanics, at least in the canonical quantisation, he has to take the position and momentum variables \(q_i, p_i\) and promote them to operators, that obey the famous commutation relations: 
+
+\begin{align}
+    [q_i, p_j] = i\delta^{ij}
+\end{align}
+
+where we have set \(\hbar = 1\). \\
+
+If one wishes then to quantize fields in the canonical way, he has to take the field \(\phi(t, \vec{x})\) and it's momentum \(Pi(t, \vec{x})\), promote them to operators, and require that they must obey 
+
+\begin{align}
+    [\phi(t, \vec{x}), \Pi(t, \vec{x}')] = i\delta(\vec{x}-\vec{x}')
+\end{align}
+
+Let us then start with a real scalar field, with lagrangian 
+
+\begin{align}
+    \mathcal{L}_{KG} = \frac{1}{2}((\partial_\mu \phi)(\partial^\mu \phi)-m^2\phi^2) \implies (\square +m^2)\phi = 0 
+\end{align}
+
+We know that the most general solution of the equation of motion can be written as 
+
+\begin{align}
+    \phi(t, \vec{x}) = \int \frac{d^3p}{(2\pi)^3\sqrt{2E_p}}(a_{\vec{p}}e^{-ipx}+a_{\vec{p}}^\dagger e^{ipx}), \quad E_p = \sqrt{\vec{p}^2 + m^2}
+\end{align}
+
+Since now the field has become an operators, also \(a, a^\dagger\) are operators. Imposing the commutation relation for the fields and it's time derivative, we find the commutation relation also for them: 
+
+\begin{align}
+    [a_{\vec{p}}, a^\dagger_{\vec{q}}] = (2\pi)^3\delta(\vec{p}-\vec{q}), \,  [a_{\vec{p}}, a_{\vec{q}}] = 0, \, [a^\dagger_{\vec{p}}, a^\dagger_{\vec{q}}] = 0
+\end{align}
+
+so those are the ladder operators that we know and love from quantum mechanics. \\
+
+From this, we create our \emph{Fock space}. First we define the vacuum state, as the normalized state that gets annihilated by the destruction operators: 
+
+\begin{align}
+    a_{\vec{p}}\ket{0} = 0, \, \forall \vec{p}, \quad \Braket{0 | 0} = 1
+\end{align}
+
+By acting on the vacuum with construction operators, we get particle states. The general rule is 
+
+\begin{align}
+    \ket{\vec{p}_1, \ldots, \vec{p_n}} = \sqrt{2E_{\vec{p}_1}}\ldots\sqrt{2E_{\vec{p}_n}}a^{\dagger}_{\vec{p}_1}\ldots a^{\dagger}_{\vec{p}_n}\ket{0}
+\end{align}
+
+The terms \(\sqrt{2E_{p_i}}\) are just normalization constants. 
+
+
+One nice thing about canonical quantisation is that is pretty straightforward: just take what you know about quantum mechanics, and now apply it to fields. The not so nice thing about canonical quantisation is that it doesn't seem to treat time and space on an equal footing. For example, the expression of the field doesn't \emph{feel} lorentz-invariant. Let's check if it actually is: 
+
+Start with the surely covariant expression 
+
+\begin{align}
+    \frac{d^4k}{(2\pi)^4}\delta(k^2-m^2)(2\pi)\theta(k_0)
+\end{align}
+
+Now let's split the time and spatial components: 
+
+\begin{align}
+    \frac{d^3k}{(2\pi)^3}dk_0 \delta(k_0^2 - (\vec{k}^2 + m^2))\theta(k_0) = \frac{d^3k}{(2\pi)^3}dk_0 \frac{\delta(k_0 - \sqrt{k^2 +m^2})}{2k_0}
+\end{align}
+
+where we have used the known properties of the delta function. Now if one integrates the expression with respect to time gets 
+
+\begin{align}
+    \frac{d^3k}{(2\pi)^3 2E_k}
+\end{align}
+
+we conclude that this measure is lorentz invariant. Notice that this is not quite what we have on the field: however this is not important, because when we act on the field on a state, say the vaccum, we get 
+
+\begin{align}
+    \phi\ket{0} &= \int \frac{d^3p}{(2\pi)^3\sqrt{2E_p}}e^{ipx}a^{\dagger}\ket{0} \\
+    &= \int \frac{d^3p}{(2\pi)^3(2E_p)}e^{ipx}\ket{p} 
+\end{align}
+
+and this expression \emph{is} Loretnz invariant. \\
+
+We could compute the hamiltonian of the theory: 
+
+\begin{align}
+    \mathcal{H} = \frac{1}{2}(\pi^2 + (\vec{\nabla}\phi)^2+ m^2\phi^2)
+\end{align}
+
+And if we put the explicit formula for the field in terms of the ladder operators, we find (after some algebra)
+
+\begin{align}
+    \mathcal{H} = \int \frac{d^3p}{(2\pi)^3}\left(\frac{E_p}{2} \right)(a^\dagger_p a_p + a_pa^\dagger_p) 
+\end{align}
+
+we can compute the 0 point energy as 
+
+\begin{align}
+    \mathcal{H}\ket{0} \propto (2\pi)^3 \delta(0) \rightarrow V
+\end{align}
+
+in a finite volume V. The zero energy is then identified as 
+
+\begin{align}
+    E_{0} = \frac{V}{2}\int \frac{d^3p}{(2\pi)^3}E_p \rightarrow \rho = \frac{E_0}{V} = \frac{1}{2}\int \frac{d^3p}{(2\pi)^3}E_p 
+\end{align}
+
+as the volume diverges, the zero energy and the zero point density diverge as well. This is because \(E_p = \sqrt{m^2 + p^2}\) is unbounded for large \(p\). One way to solve this would be to insert a cutoff momentum scale, say \(\Lambda\), and intagrate up to the scale. In the end, we will be interested only in energy differences, so this is not a big deal. Tecnically, this divergences are called \emph{UV divergences}.
+
+If we want to declare that the energy of the vaccum is zero, we could order the operators, so all the destruction operators act first. This is called \emph{normal ordering}. Then we find that quantizing fields and their functions (such as the hamiltionian) becomes an easy task: you just promote them to operators, and impose normal ordering. Given a general operator \(\mathcal{O}\), we denote its normal ordering by \(:\mathcal{O}:\). For example, we have \(:aa^\dagger: = a^\dagger a\). 
+
+Take also for example the spacial momentum \(p^i\). Since momentum is the conserved current due to invariance with respect to spacial translations, it is given by 
+
+\begin{align}
+    P^i = \int d^3x T^{0i}
+\end{align}
+
+Now, for a scalar field, \(T^{0i} = (\partial^0 \phi)(\partial^i \phi)\). So following the idea above, we make this an operator and we apply normal ordering: 
+
+\begin{align}
+    P^i = \int d^3x :(\partial^0\phi)(\partial^i\phi):
+\end{align}
+
+Now we have to substitute the expression of the fields in terms of ladder operators, and compute the derivaties. After some algebra one finds: 
+
+\begin{align}
+    P^i &= \int \frac{d^3p}{(2\pi)^3} \frac{p^i}{2}:(a_pa_p^\dagger + a_p^\dagger a_p): \\
+    &= \int \frac{d^3p}{(2\pi)^3}p^i a_p^\dagger a_p
+\end{align}
+
+what does this expression mean? Let's look closely: the operators in this expressions are \(P^i\) and the ladder operators. \(p^i\) \emph{is not} an operator, it is just a 3-vector. It comes from the exponential expansion of the field, after differentiation. This expression basically means that we are building our theory in the right way: let's compute 
+
+\begin{align}
+    P^i \ket{p} &= \sqrt{2E_p}\int \frac{d^3p'}{(2\pi)^3}p'^i a_{p'}^\dagger a_{p'}a_p^\dagger \ket{0} \\
+    &= \sqrt{2E_p}\int d^3p' \delta(p-p') a^\dagger_{p'} \ket{0} \\
+    &= \sqrt{2E_p}p^ia^\dagger_p \ket{0} \\
+    &= p^i \ket{p}
+\end{align}
+
+so \(\ket{p}\) is an eigenstate of the operator \(P^i\), with eigenvalue \(p^i\). 
+
+\nt{From the commutation relations of creation operators, the particle states \(\ket{p_1 \ldots p_n}\), are simmetric in the exchange of labels. Thus, the particles are \emph{bosons} in the sense that they obey Bose-Einstein statistics.}
+
+
+\section{The complex scalar field}
+
+A slight, but very useful, variation of the scalar real field is the scalar \emph{complex} field. Let's define 
+
+\begin{align}
+    \phi = \frac{1}{\sqrt{2}}(\phi_1 + i\phi_2), \quad \phi_1, \phi_2 \in \mathbb{R}^2
+\end{align}
+
+if we give this complex field the lagrangian
+
+\begin{align}
+    \mathcal{L} = (\partial_\mu \phi^*)(\partial^\mu \phi) - m^2 \abs{\phi}^2
+\end{align}
+
+then the two field components, \(\phi_1, \phi_2\) independently satisfy the KG equation (with the same mass). Thus the general solution for \(\phi\) is 
+
+\begin{align}
+    \phi = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}}(a_p e^{-ipx} + b^*_p e^{ipx})
+\end{align}
+
+the reader might wonder why we introduce such a field, if it is just a compact way of writing two indipendent fields. It turns out that if you watch closely the lagrangian, you'll find a new symmetry: a global phase. If we take 
+
+\begin{align}
+    \phi(x) \rightarrow e^{i\theta}\phi(x)
+\end{align}
+
+then the lagrangian is invariant. We then speak of a \emph{global} \(U(1)\) symmetry, at witch, via Noether's theorem, is associated a conserved charge. 
+
+Let us compute the conserved corrent. If we take an infinitesimal transformation, we have 
+
+\begin{align}
+    \phi(x) \rightarrow \phi(x) + i\theta\phi(x) = \phi(x) + \theta\delta(\phi(x)) \implies \phi^*(x) \rightarrow \phi^*(x) - i\theta\phi^*(x) = \phi^*(x) + \theta\delta(\phi^*(x))
+\end{align}
+
+so the conserved current is given by 
+
+\begin{align}
+    j^\mu &= -\left[\frac{\partial \mathcal L}{\partial(\partial_\mu\phi)}\delta(\phi) + \frac{\partial \mathcal L}{\partial(\partial_\mu\phi^*)}\delta(\phi^*) \right] \\
+    &= -i((\partial^\mu\phi^*)\phi + (\partial^\mu\phi)\phi^*) \\
+    &= i\phi^*\overleftrightarrow{\partial}^\mu \phi
+\end{align}
+
+then the charge is 
+
+\begin{align}
+    Q = \int d^3x j^0 = i\int d^3x \phi^*\overleftrightarrow{\partial}^0 \phi = \Braket{\phi* | \phi}
+\end{align}
+
+When we quantize this complex field, in the ususal way by simply promote the fourier coefficients to ladder operators, this time we have to pairs of ladder operators, \(a_p, a^\dagger_p\) and \(b_p, b^\dagger_p\). They create particle states acting on the vacuum state (witch this time is defined to satisfy \(a_p\ket{0} = 0\) and \(b_p\ket{0} = 0\)), and they create particle states with the same mass, and spin 0. Their difference is understood in therms of the \(U(1)\) charge: if one computes \(Q\) substituting the expression of the field in terms of the ladder operators, one finds 
+
+\begin{align}
+    Q = \int d^3x j^0 = \ldots = \int \frac{d^3p}{(2\pi)^3}(a_p^\dagger a_p - b_p^\dagger b_p)
+\end{align}
+
+witch is the number operators of particles created from \(a^\dagger_p\), minus the number operator of particle created from \(b_p^\dagger\). For this reason, the second type of particle is called \emph{antiparticle}. 
+
+
+\chapter{Spin 1 Fields}
+
+\section{Quick review of classical electrodynamics}
+
+We'd now like to quantize a vector field, say \(A^\mu\). This, of course, will give us a quantum theory of electromagnetism. To begin with, let's then refresh our mind on how we can think of electromagnetism as a classical field theory. 
+
+Starting from a vector potential (also called gauge potential) \(A^\mu = (\phi, \vec{A})\), one defines the \emph{field strength} \(F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu\). This tensor is antisimmetric, and thus has 6 free parameters, that corrispond to the electric and magnetic field. With a direct computation, one can get the relations 
+
+\begin{align}
+    F^{0i} = -E^i, \quad F^{ij} = -\eps^{ijk}B_k
+\end{align}
+
+Far from sources, the lagrangian that correctly reproduces the Maxwell equation is 
+
+\begin{align}
+    \mathcal{L} = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu} \implies \partial_\mu F^{\mu\nu} = 0
+\end{align}
+
+One of the remarkable things about electromagnetism is that it is a \emph{gauge theory}: the vector potential \(A^\mu\) is not defined uniquely, as one may take the \emph{gauge transformation} 
+
+\begin{align}
+    A^\mu \rightarrow A^\mu + \partial^\mu \chi
+\end{align}
+
+and the fields would not change. This can bring some practical problems as one tries to quantize the theory. Thus, when we will try to quantize this theory, we will \emph{fix} the gauge, that is, we will select a particular gauge choice, and stick with it. 
+
+One useful gauge choice is the Coulomb (or radiative) gauge. In such, one takes \(A_0 = 0, \nabla \cdot \vec{A} = 0\). The e.o.m. then become 
+
+\begin{align}
+    \partial_\mu (\partial^\mu A^\nu - \partial^\nu A^\mu) = 0 \rightarrow \square A^\nu = 0
+\end{align}
+
+that is, basically, a vector version of the KG equation with zero mass. The solution is then similar to the solution of the KG equation, with the mass-shell relation that now becomes \(p^2 = 0\), with a \emph{polarization} vector \(\vec{\eps}\): 
+
+\begin{align}
+    \vec{A} = \int\frac{d^3p}{(2\pi)^3\sqrt{2\omega_p}}\sum_{\lambda = 1, 2}\left[\vec{\eps}(\vec{p}, \lambda)a_{p, \lambda}e^{-ipx} + \vec{\eps}^*(\vec{p}, \lambda)a^\dagger_{p,\lambda}e^{ipx} \right], \quad \omega_p = p^0 = \abs{\vec{p}}
+\end{align}
+
+you might wonder why we've put the polarization vector to depend only on two discrete variables, \(\lambda = 1,2\). A priori, the polarization vector could point in any direction in space, and then we should take \(\lambda = 1, 2, 3\). The reason is that the condition \(\vec{\nabla}\cdot \vec{A} = 0\) implies \(\vec{p}\cdot \vec{\eps} = 0\). So \(\vec{\eps}\) must lie in the trasverse plane, and can only point in two different directions. 
+
+If you're confused, a tipical choice of \(\eps(\vec{k}, \lambda)\) is given by, if  \(\vec{k} = (0, 0, k)\), \(\vec{\eps}(k, 1) = (1, 0, 0), \, \vec{\eps}(k, 2) = (0, 1, 0)\). 
+
+\section{Canonical quantisation}
+
+Now that we have the general solution, in a preferred gauge, you can probably guess how we're going to quantize this field. Let's promote the fourier coefficients to operators, with commutation relation 
+
+\begin{align}
+    [a_{p, \lambda}, a^\dagger_{q, \nu}] = (2\pi)^3\delta(p-q)\delta_{\lambda\nu}
+\end{align}
+
+The reason for doing this is that in this way we can build the fock space, exactly how we builded it for the scalar field. But what does this imply for the fields in this case? compute the coniugate momentum: 
+
+\begin{align}
+    \begin{cases}
+        \Pi_0 = \frac{\delta}{\delta(\partial_0 A^0)}\left(-\frac{1}{4}F_{\mu\nu}F^{\mu\nu} \right) = 0 \\
+        \Pi_i = \frac{\delta}{\delta(\partial_0 A^i)}\left(-\frac{1}{4}F_{\mu\nu}F^{\mu\nu} \right) = \ldots = -F^{0i} = E^i 
+    \end{cases}
+\end{align}
+
+then the commutation relation is 
+
+\begin{align}
+    [A^i(t, \vec{x}), \Pi^j(t, \vec{y})] &= -i\int\frac{d^3k}{(2\pi)^3}e^{i\vec{k}\cdot(\vec{x}-\vec{y})}\frac{1}{2}\sum_\lambda (\eps^i\eps^{*j} + \eps^{*i}\eps^j) \\
+    &= -i\int \frac{d^3k}{(2\pi)^3}e^{i\vec{k}\cdot(\vec{x}-\vec{y})}\left(\delta^{ij} - \frac{k^ik^j}{k^2} \right)
+\end{align}
+  
+If it weren't for the last term, this would be the old Dirac's delta, exactly like the scalar field. The additional term is given by our particular gauge choice. This can be verified by taking the divergence of the field in the commutator: for the gauge condition, clearly \([\vec{\nabla}\cdot \vec{A}, \Pi^j] = 0\) should hold. It is easy to check that the RHS vanishes in this case only for the additional therm. On the other end, for the same reason we find that \([\vec{A}, \vec{\nabla}\cdot \vec{E}] = 0\) (recall that the spacial coniugate momentum is just the electric field). This means that the operator obtained by taking the divergence of the electric field commutes with everything. 
+
+The classic energy momentum tensor can be computed, 
+
+\begin{align}
+    T^{\mu\nu} = -F^{\mu\rho}\partial^\nu A_\rho + \frac{1}{4}g^{\mu\nu}F^2
+\end{align}
+
+And from this the classical hamiltonian, 
+
+\begin{align}
+    H = \int d^3x T^{00} = \ldots = \frac{1}{2}\int d^3x (E^2 + B^2)
+\end{align}
+
+the quantum version is given by imposing normal ordering: 
+
+\begin{align}
+    H = \frac{1}{2}\int \frac{d^3k}{(2\pi)^3}\omega_k \sum_{\lambda}a^\dagger_{k, \lambda}a_{k, \lambda}
+\end{align}
+
+\section{Spin operator and its eigenstates}
+
+Of course, the new exciting thing about the electromagnetic field is that it carries a spin. Given a particle state, how can we compute its spin? First things first, we must determin the angular momentum operator, using Noether's theorem. 
+
+The angolar momentum operator is the Noether charge associated with the global rotation symmetry of the lagrangian. In formulas, we write 
+
+\begin{align}
+    J^{jk} = \int d^3x j^{0(jk)}, \quad j^{\mu (jk)} = \frac{\partial\mathcal{L}}{\partial(\partial_\mu A^i)}(a^{\nu(jk)}\partial_\nu A^i - F^{i(jk)}) - a^{\mu(jk)}\mathcal{L}
+\end{align}
+
+Recall the meaning of all this symbols: the vector \(a^{\nu(jk)}\) measures of the coordinates transform under a spacial rotation. Similarly, the factor \(F^{i(jk)}\) measures how the fields transform under a spacial rotation. Since both are true vectors under rotations, we get 
+
+\begin{align}
+    \begin{cases}
+        a^{\ell(jk)} = \delta^{\ell j}x^k - \delta^{\ell k}x^j, \, a^{0(jk)} = 0 \\
+        F^{i(jk)} = \delta^{ij}A^k - \delta^{ik}A^j
+    \end{cases}
+\end{align}
+
+the conserved current is then 
+
+\begin{align}
+    j^{0(jk)} = -(\partial_0A^i)(x^k\partial^j - x^j\partial^k)A_i - (A^k\partial_o A^j - A^j \partial_0 A^k)
+\end{align}
+
+
+Thus, the total charge is a sum of two distinct operators, 
+
+\begin{align}
+    J^{jk} = M^{jk} + S^{jk}, \quad \begin{cases}
+        M^{jk} = \bra{A^i}L^{ij}\ket{A^i}, \, L^{ij} = i(x^j\partial^k - x^k\partial^j) \\
+        S^{ij} = \int d^3x :(A^i\partial_0 A^j - A^j\partial_0 A^i): 
+    \end{cases}
+\end{align}
+
+we recognize the expectaction value of the angular momentum operator, that appeared also in the scalar field case. Then, we have another operator, that we then assume to be the spin operators. We'd then like to see how this operator act on the particle states of our fock space. First, let's plug in the expansion of our field in the spin operator, performing normal ordering: one finds then 
+
+\begin{align}
+    S^{ij} = i\int \frac{d^3q}{(2\pi)^3}\sum_{\lambda \lambda'} \left[\eps^i(q, \lambda')\eps^{*j}(q, \lambda) - \eps^{*i}(q, \lambda)\eps^j(q, \lambda') \right]a^\dagger_{q, \lambda}a_{q, \lambda'}
+\end{align}
+
+we're now ready to see what 
+
+\begin{align}
+    S^{ij}a^\dagger_{k, \lambda''}\ket{0}
+\end{align}
+
+gives. To do this, we use our usual tricks on commuting the ladder operators: 
+
+\begin{align}
+    S^{ij}a^\dagger_{k, \lambda''}\ket{0} = i \sum_\lambda (\eps^i(k, \lambda'')\eps^{*j}(k, \lambda)- \eps^i(k, \lambda)\eps^j(k, \lambda''))a^\dagger_{k, \lambda}\ket{0} 
+\end{align}
+
+since now we haven't said anything about the direction of \(k\) and \(\eps\). Take \(\vec{k} = (0, 0, k)\) and let's check what the z component of the spin operator is (that is, how \(S^{12}\) acts on a particle state with momentum \(\parallel \hat{z}\)). We also choose polarization vectors like 
+
+\begin{align}
+    \eps(k, 1) = (0, 1, 0), \eps(k,2) = (1, 0, 0)
+\end{align}
+
+or, in more compact form, \(\eps^i(k, \lambda) = \delta^i_\lambda\). Then it's easy to check that 
+
+\begin{align}
+    &S^{12}a^\dagger_{k, 1}\ket{0} = ia^\dagger_{k,2}\ket{0} \\
+    &S^{12}a^\dagger_{k,2}\ket{0} = -ia^\dagger_{k,1}\ket{0}
+\end{align}
+
+so we find that this states with linear polarization \emph{are not} eigenstates of the spin operator in the longitudinal direction. But it's not hard to see that if we instead define 
+
+\begin{align}
+    a_{\pm}^\dagger := \frac{1}{\sqrt{2}}(a^\dagger_{k, 1} \pm i a^\dagger_{k,2}) \implies \begin{cases}
+        S^{12}a_{k+}^\dagger = a^\dagger_{k+}\ket{0} \\
+        S^{12}a_{k-}^\dagger = -a^\dagger_{k-}\ket{0}
+    \end{cases}
+\end{align}
+
+so we have explicitly built the eigenstates of the spin operator in the longitudinal direction, and we have also shown that it's eigenvalues are \(\pm1\). This is why we say that the photon has spin 1. Also, the eigenstates of spin are particles that are polarized circularly. 
+
+\section{Covariant quantisation}
+
+There is another way of quantizing electrodynamics, witch doesn't require picking up a gauge that doesn't brake covariance. Of course, the naive way of quantizing the field would be to compute it's coniugate momentum, 
+
+\begin{align}
+    \Pi^\mu = \frac{\partial\mathcal{L}}{\partial(\partial_0 A^\mu)}
+\end{align}
+
+and than require that the commutation relation 
+
+\begin{align}
+    [A^\mu(t, \vec{x}), \Pi^\nu(t, \vec{y})] = (2\pi)^3\delta(\vec{x}-\vec{y})g^{\mu\nu}
+\end{align}
+
+holds. But this soon one comes to a huge problem: given the free electromagnetic lagrangian, one finds \(\Pi^0 = 0\), as \(F^{00} = 0\). Then, \([A^0, \Pi^0] = 0\) everywhere, in contrast to the commutation relation that we were trying to implement. The theory, formulated this way, is non constistent. The trick is to choose a particular gauge, the lorentz gauge \(\partial_\mu A^\mu = 0\), only at the \emph{operator level}: we will not fix the gauge now, but after we quantize the theory, we'll only keep a subspace of states in the hilbert space, the \emph{physical states}, that obey \(\bra{\text{phys'}} \partial_\mu A^\mu \ket{\text{phys}}\).   
+
+What is the advantedge of doing this? Now we can take a \emph{physically equivalent} lagrangian given by 
+
+\begin{align}
+    \mathcal{L}' = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}(\partial_\mu A^\mu)^2
+\end{align}
+
+where, of course, physically equivalent here does not mean that the two lagrangian give the same physics (in fact, the physics is much different as one has a \(U(1)\) gauge symmetry, whereas the other does not), but it means that taken as an operator, it is equal to the previous standard lagrangian, when acting on the states that we defined to be physical.
+
+The cool thing about the primed lagrangian is that its equation of motion are given by 
+
+\begin{align}
+    \square A^\nu = 0
+\end{align}
+
+that is, massless KG. The most general solution is then 
+
+\begin{align}
+    A_\mu(x) = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2\omega_p}}\sum_{\lambda=0}^3[\eps_\mu(p, \lambda)a_{p, \lambda}e^{-ipx} + \eps^*_{\mu}(p, \lambda)a*_{p, \lambda}e^{ipx}]
+\end{align}
+
+This is similar to the result we had when we chose the polarization gauge. However, there is a big difference in the fact that now the polarization can point in any direction of the spacetime, so it's descrete label \(\lambda\) now takes values from 0 to 3, instead of only 1 and 2. Thus we would try to quantize the theory by imposing the commutation relation on the ladder operators: 
+
+\begin{align}
+    [a_{p, \lambda}, a^\dagger_{q, \lambda'}] = -(2\pi)^3\delta(p-q)g_{\lambda\lambda'}
+\end{align}
+
+The sign minus is needed to recover the previous relation in the radiation gauge, if the labels take the 1 and 2 values. If we compute 
+
+\begin{align}
+    \Braket{p, \lambda' | p, \lambda} &= 2\omega_p \bra{0}a_{p, \lambda}a^\dagger_{p, \lambda'} \\
+    &= -2\omega_p V g_{\lambda\lambda'}
+\end{align}
+
+so the states have \emph{negative norm} if \(\lambda = \lambda' = 0\). This would be a problem, but we must also select the physical states. 
+
+Let's then select the physical subspace. The condition for the states to be physical is equivalent to 
+
+\begin{align}
+    (\partial_\mu A^\mu)^+\ket{\text{phys}} = 0, \, \text{if} \, (\partial_\mu A^\mu)^+ = -i\int \frac{d^3p}{(2\pi)^2\sqrt{2\omega_p}}\sum_\lambda p_\mu \eps^\mu(p, \lambda)e^{-ipx}a_{p, \lambda}
+\end{align}
+
+We take a general particle state to be 
+
+\begin{align}
+    \ket{\psi} = \sum_{\lambda=0}^3 c_\lambda a^\dagger_{k, \lambda}\ket{0}
+\end{align}
+
+If we impose it to be physical, a quick computation shows that \(c_0 + c_3 = 0\) must hold. This is good news because it tells us that the previous states with negative norm are not physical states. There is still though a subset of states that are physical, but didn't show up in the previous quantisation. Those are the states 
+
+\begin{align}
+    \ket{\phi} = c(a^\dagger_{k,0} - a^\dagger_{k,3})\ket{0}, \, c \in \mathbb{R}
+\end{align}
+
+However, a simple computation shows that they have zero norm, and their scalar product with a particle state like \(\ket{\psi_T} = (c_1a^\dagger_{k,1} + c_2a^\dagger_{k,2})\) is zero. So they completely decouple from the spectrum of th e hamiltonian, and no experiment can detect if a state is \(\ket{\psi_T}\) or \(\ket{\psi_T} + \ket{\phi}\), so we can ignore them. 
+
+
+\chapter{Spin \(1/2\) fields}
+
+\section{Charge conjugation}
+
+Let's consider a right handed Weyl spinor. Under a Lorentz transformation, we know that this object transforms as 
+
+\begin{align}
+    \psi_R \rightarrow \Lambda_R \psi_R, \, \Lambda_R = \exp{\left((-i\vec{\theta}+\vec{\eta})\cdot \frac{\vec{\sigma}}{2}\right)}
+\end{align}
+
+Now consider the object \(\sigma^2 \Lambda_L^*\sigma^2\). Writing the exponential as a series, and using the fact that \(\sigma^2\sigma^2 = \mathcal{I}\) and also \(\sigma^2 \sigma^i \sigma^2 = -(\sigma^i)^*\) one finds 
+
+\begin{align}
+    \sigma^2\Lambda_L^*\sigma^2 = \Lambda_R
+\end{align}
+
+so the object \(\sigma^2\psi_L^*\) under a Lorentz transformation is mapped in 
+
+\begin{align}
+    (\sigma^2\psi^*_L) \rightarrow \Lambda_R \sigma^2 \psi^*_L
+\end{align}
+
+Guided by this observations, we define the \emph{charge conjugation} on LH spinors as 
+
+\begin{align}
+    \psi_L^c = i\sigma^2 \psi_L^* = \xi_R
+\end{align}
+
+note that, as \(\sigma^2\) is a purely complex matrix, \(i\sigma^2\) is real, and than 
+
+\begin{align}
+    \xi^*_R = i\sigma_2 \psi_L \implies \psi_L = -i\sigma^2 \xi_R^*
+\end{align}
+
+so we define charge conjugation for RH Weyl spinors as 
+
+\begin{align}
+    \psi_R^c = -i\sigma^2 \psi_R^*
+\end{align}
+
+With this definitions, it's easy to check that \((\psi_{L/R}^c)^c = \psi_{L/R}\)
+
+\section{A lagrangian for Weyl spinors}
+
+Now, we'd like to build a lagrangian for the dynamics of Weyl spinors. To have equation of motion in the usual sense, the lagrangian must include the derivative of our spinors. On the other end, to have a lagrangian that is Loretnz invariant, we also need to have a vector to contract the derivative of the spinor. One possible way to do this is introduce the 4-vector of pauli matrices, \(\sigma^\mu = (\mathbb{I}, \vec{\sigma})\) as well as \(\bar{\sigma}^\mu = (\mathbb{I}, -\vec{\sigma})\). Then the objects 
+
+\begin{align}
+    \xi^\dagger_{R}\sigma^\mu \psi_R, \quad \xi^\dagger_L \bar{\sigma}^\mu \psi_R
+\end{align}
+
+are 4 vectors under the Loretnz group. Thus, a possibile lagrangian is given by 
+
+\begin{align}
+    \mathcal{L} = i \psi_L^\dagger \bar{\sigma}^\mu\partial_\mu \psi_L
+\end{align}
+
+this leads to the e.o.m. 
+
+\begin{align}
+    \bar{\sigma}^\mu \partial_\mu \psi_L = 0 \implies \partial_0 \psi_L = \sigma^i\partial_i \psi_L
+\end{align}
+
+if we take another time derivative, 
+
+\begin{align}
+    \square\psi_L = 0 
+\end{align}
+
+as \(\sigma^i\sigma^j = \delta^{ij} + \eps^{ijk}\sigma^k\). But this is the KG massless equation! Thus we can write a general solution as 
+
+\begin{align}
+    \psi_L (x) = u_L e^{-ipx}
+\end{align}
+
+where \(u_L\) is a constant 2-component spinor. If we put this solution again in the equation, it tells us that 
+
+\begin{align}
+    \frac{\vec{p}\cdot \vec{\sigma}}{E}u_L = -u_L 
+\end{align}
+
+where \(E\) is just the zero component of \(p^\mu\). But since the object satisfies the KG \emph{massless} equation, we know that \(E = \abs{\vec{p}}\). Also recalling that for spinors \(\vec{\sigma}\) is related to the angular momentum via 
+
+\begin{align}
+    \vec{J} = \frac{\vec{\sigma}}{2}
+\end{align}
+
+we get in the end 
+
+\begin{align}
+    (\hat{p}\cdot \vec{J})u_L = -\frac{1}{2}u_L 
+\end{align}
+
+we recognize the classical helicity expression on the LHS, acting on the spinor. So we find that massless LH spinors are eigenstates of helicity, with eigenvalue \(-1/2\). 
+
+We can also compute the energy momentum tensor, 
+
+\begin{align}
+    T^{\mu\nu} = \frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi_L)}(\partial^\nu\psi_L) + \frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi^\dagger_L)}(\partial^\nu\psi^\dagger_L) - g^{\mu\nu}\mathcal{L} = i\psi_L^\dagger\bar{\sigma}^\mu \partial^\nu \psi_L
+\end{align}
+
+so for example the hamiltonian density is given by 
+
+\begin{align}
+    \mathcal{H} = T^{00} = i\psi_L^\dagger\partial_0\psi_L
+\end{align}
+
+The lagrangian also as a \emph{global} \(U(1)\) symmetry, (that is, under \(\psi_L \rightarrow e^{i\theta}\psi_L\)) that leads to a conserved current: 
+
+\begin{align}
+    j^\mu = -\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi_L)}F_i = \psi_L^\dagger\bar{\sigma}^\mu\psi_L \implies Q = \int d^3x \psi_L^\dagger\psi_L
+\end{align}
+
+To evaluate the corrent, we used the fact that \(F_i\) measures the variation of the field under a infinitesimal transformation (so we quickly get \(F_i = i\psi_L\)) and the fact that the transformation does not act on the coordinates. 
+
+Of course, this whole discussion could have been made for RH spinors, with lagrangian 
+
+\begin{align}
+    \mathcal{L} = i\psi_R^\dagger\sigma^\mu\psi_R \implies \sigma^\mu\partial_\mu\psi_R = 0 
+\end{align}
+
+all that follows is the same, except for the fact that the helicity in now \(1/2\). 
+
+\section{Dirac's lagrangian and equation}
+
+We've seen that if we want to have a theory that includes tha parity operation, we must work with both right and left spinors. Thus, we'd like to write a lagrangian for the two fields, with the easiest possible interaction between them. To do this, note that 
+
+\begin{align}
+    \Lambda^\dagger_L \Lambda_R = 1 = \Lambda_R^\dagger\Lambda_L
+\end{align}
+
+Then we find that, under a lorentz transformation, 
+
+\begin{align}
+    \psi_L^\dagger\psi_R \rightarrow \psi_L^\dagger\Lambda_L^\dagger\Lambda_R\psi_R = \psi_L^\dagger\psi_R
+\end{align}
+
+so \(\psi_L^\dagger\psi_R\) is a \emph{lorentz scalar}. Let's then write our lagrangian as 
+
+\begin{align}
+    \mathcal{L}_{D} = i(\psi_L^\dagger\bar{\sigma}^\mu\partial_\mu \psi_L) + i(\psi_R^\dagger\sigma^\mu\partial_\mu \psi_R) -m(\psi^\dagger_L\psi_R + \psi_R^\dagger\psi_L)
+\end{align}
+
+under parity, \(\psi_L \rightarrow \psi_R\) and \(\bar{\sigma}\mu\partial_\mu \rightarrow \sigma^\mu\partial_\mu\), so this lagrangian is parity invariant. If we compute the euler-lagrange equations for the two fields, we get
+
+\begin{align}
+    \begin{cases}
+        i\bar{\sigma}^\mu\partial_\mu\psi_L = m\psi_R \\
+        i\sigma^\mu\partial_\mu\psi_R = m\psi_L
+    \end{cases}
+\end{align}
+
+It's clear that the spinors are not anymore eigenstates of helicity. Do those equation still imply the Klein-Gordon equation? Let's check: start by applying \(i\sigma^\nu\partial_\nu\) to the first equation, 
+
+\begin{align}
+    -\bar{\sigma}^\nu\sigma^\mu \partial_\mu\partial_\nu \psi_L = mi\sigma^\nu\partial_\nu\psi_R = m^2\psi_L
+\end{align}
+
+In this way, using the second equation, we have successfully decoupled the two equations. Using the known fact that \(\bar{\sigma}^\mu\sigma^\nu + \sigma^\mu\bar{\sigma}^\nu = 2g^{\mu\nu}\), we find 
+
+\begin{align}
+    (\square + m^2)\psi_L = 0 
+\end{align}
+
+so Dirac's equation implies the KG equation, and also we can interpeter the \(m\) parameter as the mass of the field. Note that there was no way of inserting a mass therm in the previous lagrangians who only contained right or left spinors, without braking lorentz invariance. 
+
+
+There is a way of writing the lagrangian and the equations of motion in a more compact form. In particular we consider an objects (a 4-component spinor) that includes both the left and right handed spinor. Of course there are infinite ways to do this, but if we take the \emph{chiral rapresentation}, we write
+
+\begin{align}
+    \Psi = \begin{pmatrix}
+        \psi_L \\
+        \psi_R
+    \end{pmatrix}
+\end{align}
+
+we also have to introduce a \(4\times 4\) matrix that contains both \(\sigma^\mu, \bar{\sigma}^\mu\), that are called the gamma Dirac's matrixes: 
+
+\begin{align}
+    \gamma^\mu = \begin{pmatrix}
+        0 & \sigma^\mu \\
+        \bar{\sigma}^\mu & 0 
+    \end{pmatrix}
+\end{align}
+
+Importantly, this objects satisfy the \emph{Clifford algebra}: 
+
+\begin{align}
+    \left\{\gamma^\mu, \gamma^\nu \right\} = 2g^{\mu\nu}
+\end{align}
+
+Using also the convention that \(\slashed{A} = \gamma^\mu A_\mu\), then we write 
+
+\begin{align}
+    \mathcal{L} = \bar{\Psi}(i\slashed{\partial} - m)\Psi \implies (i\slashed{\partial} -m)\Psi = 0
+\end{align}
+
+where \(\bar{\Psi} = \Psi^\dagger\gamma^0\) (sometimes called the Dirac adjoint). You can check that \(\bar{\Psi}\Psi = \psi_L^\dagger\psi_R + \psi_R^\dagger\psi_L\). ù
+
+
+It is also useful to introduce 
+
+\begin{align}
+    \gamma^5 := i\gamma^0\gamma^1\gamma^2\gamma^3\gamma^4 \implies \gamma^5 = \begin{pmatrix}
+        -1 & 0 \\
+        0 & 1 
+    \end{pmatrix}
+\end{align}
+
+That satisfies \(\left\{\gamma^5, \gamma^\nu \right\} = 0\). This can be checked right away because the clifford algebra implies that \(\gamma^\mu\) anti-commutes with \(\gamma^\nu\) whenever \(\mu \neq \nu\). With \(\gamma^5\) we can define the projectors operator as 
+
+\begin{align}
+    P_L := \frac{1-\gamma^5}{2}, \quad P_R := \frac{1+\gamma^5}{2}
+\end{align}
+
+so that 
+
+\begin{align}
+    P_L\Psi = \begin{pmatrix}
+        \psi_L \\
+        0
+    \end{pmatrix}, \quad P_R\Psi = \begin{pmatrix}
+        0 \\
+        \psi_R
+    \end{pmatrix}
+\end{align}
+
+Other rapresentation can be useful in differt applications. For example the standard rapresentation is taken as 
+
+\begin{align}
+    \Psi = \frac{1}{\sqrt{2}}\begin{pmatrix}
+        \psi_R + \psi_L \\
+        \psi_R - \psi_L 
+    \end{pmatrix}
+\end{align}
+
+under a different rapresentation, \(\Psi\) and \(\gamma^\mu\) change, but is is shown that the lagrangian and the e.o.m. remain the same. 
+
+Let's now study the solutions of the Dirac's equation. Since it implies the KG equation, a general solution will be written as 
+
+\begin{align}
+    \Psi = c_1\Psi_1 + c_2\Psi_2, \quad \Psi_1 = u(p)e^{-ipx}, \, \Psi_2 = v(p)e^{ipx}
+\end{align}
+
+with \(u, v\) 4-component spinors. Dirac's equations then become
+
+\begin{align}
+    \begin{cases}
+        (\slashed{p}+m)u(p) = 0 \\
+        (\slashed{p}-m)v(p) = 0
+    \end{cases}
+\end{align}
+
+if \(m>0\), we can boost ourselves in the rest frame of the particle. There, \(p^\mu = (m, 0, 0, 0)\). The equation then tells us \(u_L = u_R\). A convenient normalization is given by \(u_L = u_R = \sqrt{m}\xi\), with \(\xi\) a 2-component spinor, such that \(\xi^\dagger\xi = 1\). To find the solution in a general frame, we perfrom a lorentz boost on this spinor. 
+
+If we take the ultra-relativistic limit of this expression, that is, we take \(p = (E, 0, 0, E)\), then we get that two possible spinor are given by 
+
+\begin{align}
+    u^1(p) = \sqrt{2E}\begin{pmatrix}
+        0 \\ \xi^1
+    \end{pmatrix}. \quad u^2(p) = \begin{pmatrix}
+        \xi ^2 \\ 0 
+    \end{pmatrix}
+\end{align}
+
+In a more compact expression, we can write 
+
+\begin{align}
+    u(p) = \begin{pmatrix}
+        \sqrt{p\cdot \sigma}\xi \\
+        \sqrt{p\cdot\bar{\sigma}\xi}
+    \end{pmatrix}
+\end{align}
+
+Similarly for the other spinor, we get 
+
+\begin{align}
+    v(p) = \begin{pmatrix}
+        \sqrt{p\cdot\sigma}\xi \\
+        -\sqrt{p\cdot\bar{\sigma}}\xi 
+    \end{pmatrix}
+\end{align}
+
+Let's now take a look at the global simmetries that this classical theory possesses. To begin with, we consider 
+
+\begin{align}
+    \Psi \rightarrow e^{i\alpha}\Psi
+\end{align}
+
+this is clearly a realized simmetry, for the Dirac's lagrangian. To see this explicitly, remember the Dirac's adjoint operation, and derive how it transforms: 
+
+\begin{align}
+    \bar{\Psi} = \Psi^\dagger \gamma^0 \rightarrow \Psi^\dagger\gamma^0 e^{-i\alpha} = \bar{\Psi}e^{-i\alpha}
+\end{align}
+
+Since \(\alpha\) is a constant and does not depend on the spacetime coordinates, then the lagrangian is invariant. 
+
+If instead we take 
+
+\begin{align}
+    \Psi = e^{i\beta\gamma^5}\Psi \implies \begin{cases}
+        \psi_L \rightarrow e^{i\beta}\psi_L \\
+        \psi_R \rightarrow e^{-i\beta}\psi_R
+    \end{cases}
+\end{align}
+ 
+this is sometimes called a \emph{chiral trasformation}. If we see how the trasformation act on the lagangian, we see that the term in the derivative is left invariant. However, the mass term transforms as 
+
+\begin{align}
+    \bar{\Psi}m\Psi \rightarrow m\bar{\Psi}e^{-2i\beta\gamma^5}\Psi
+\end{align}
+
+so the mass term \emph{brakes} the chiral symmetry. 
+
+\section{Canonical quantisation}
+
+We're now ready to quantize the spinor field. The interesting thing is that the mosto obvious way to do it, impose the usual commutation relations, is very much the wrong approch. This would lead to a theory that doesn't posses a ground state, with the eigenvalues of the hamiltionian unbounded from below. Instead we try to quantize imposing anti-commutation relations: 
+
+\begin{align}
+    \left\{ \Psi_a (t, \vec{x}), \Psi^\dagger_b(t, \vec{y})\right\} = \delta_{ab}\delta(\vec{x}-\vec{y})
+\end{align}
+
+Remembering the expression of a Dirac field in terms of plane waves (that we cam always make, as the Dirac euqation implies the KG equation) we get the ladder operators, 
+
+\begin{align}
+    \left\{a_p^r, a_q^{s\dagger} \right\} = \left\{b_p^r, b_q^{s\dagger} \right\} = (2\pi)^3\delta(\vec{p}-\vec{q})\delta^{rs}
+\end{align}
+
+and the other anti-commutators are zero. As always, define the vacuum state as the one that gets annihilated by both \(a_{ps}, b_{ps}\). Then particle states are obtained acting on the vaccum via creation operators. 
+
+\begin{align}
+    a^\dagger_{ps}\ket{0} \rightarrow \text{fermion}, \quad b^\dagger_{ps}\ket{0} \rightarrow \text{anti-fermion}
+\end{align}
+
+To get the correct normalization, that is to say to get 
+
+
+\begin{align}
+    \Braket{\vec{q}, r | \vec{p}, s} = (2\pi)^32E_p \delta(\vec{q}-\vec{p})\delta_{rs}
+\end{align}
+
+we define 
+
+\begin{align}
+    \ket{\vec{p}, s} := \sqrt{2E_p}a^\dagger_{\vec{p}, s}\ket{0}
+\end{align}
+
+Observe that due to the anti-commutation relation, this particle states obey Fermi-Dirac statistics. 
+
+As always, we can compute important physical operators, such as the Hamiltionian, that is classically given by 
+
+\begin{align}
+    \mathcal{H} = i\Psi^\dagger \partial^0 \Psi - \bar{\Psi}(i\slashed{\partial}-m)\Psi = \bar{\Psi}(-i\gamma^i\partial_i +m)\Psi
+\end{align}
+
+we get the quantum operator by imposing normal ordering: 
+
+\begin{align}
+    \mathcal{H} = \ldots = \int \frac{d^3p}{(2\pi)^3}\sum_{s = 1,2}E_p (a^\dagger_{p, s}a_{p, s} + b^\dagger_{p, s}b_{p, s})
+\end{align}
+
+and also the same procedure gives the momentum spacial operator: 
+
+\begin{align}
+    \vec{p} = \int \frac{d^3p}{(2\pi)^3}\vec{p}\sum_{s=1,2}(a^\dagger_{p, s}a_{p, s}+ b^\dagger_{p,s}b_{p,s})
+\end{align}
+
+The most interesting thing to explore is the spin of the particle states. For a spinor Weyl field \(\psi_l, \psi_R\) the spin operator is given by 
+
+\begin{align}
+    S^i = i \eps^{ijk}S^{jk} = \frac{\sigma^i}{2}
+\end{align}
+
+So the first problem we need to solve is find an appropriate form for this operator when acrting on a Dirac spinor. This is not hard, let's just define 
+
+\begin{align}
+    \Sigma^i = \begin{pmatrix}
+        \sigma^i & 0 \\
+        0 & \sigma^i
+    \end{pmatrix}  \implies S^i = \frac{1}{2}\int d^3x (\Psi^\dagger\Sigma^i\Psi)
+\end{align}
+
+And if we consider a particle in its rest frame, labeled by and index \(s\), we'll write it's state as 
+
+\begin{align}
+    a^\dagger_{0,s}\ket{0}
+\end{align}
+
+To find how \(S_z\) acts on this state, use the fact that since there are no particles in the vacuum state, it gets annihilated by the \(S_z\) operator. So we write 
+
+\begin{align}
+    S_z a^\dagger_{0, s}\ket{0} = [S_z, a^\dagger_{0,s}]\ket{0}
+\end{align}
+
+Now we can write \(S_z\) in terms of the ladder operators. One finds that it's only component that has a non-trivial commutation relation with \(a^\dagger_{0,s}\) is given by 
+
+\begin{align}
+    S_z = \int \frac{d^3p}{(2\pi)^3}\frac{1}{2E_p}\sum_{r,s'}a^\dagger_{p,r}a_{p,s}u^{s'\dagger}(p)\frac{\Sigma^3}{2}u^r(p)
+\end{align}
+
+In particular, the commutation relation is 
+
+\begin{align}
+    [a_{p,r}^\dagger a_{qs'}, a_{0s}] = \ldots = (2\pi)^3\delta_{ss'}\delta(\vec{p}-\vec{q})
+\end{align}
+
+
+
+
+\end{document}
+

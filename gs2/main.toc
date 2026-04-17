@@ -1,0 +1,11 @@
+\contentsline {chapter}{\numberline {1}La stringa classica}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Extra dimensioni - in meccanica quantistica}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Stringa non relativistica}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Particella relativistica: lagrangiana ed equazioni del moto}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}La stringa relativistica}{5}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}L'azione di Nanbu-Goto}{5}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Parametrizzazione e velocità della stringa}{9}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Studio delle equazioni del moto}{12}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Correnti conservate sul WS}{14}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Simmetrie di lorentz e correnti}{16}{subsection.1.4.5}%
+\contentsfinish 

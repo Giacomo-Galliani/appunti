@@ -1,0 +1,251 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti progetto Metodi Comp. della Fisica}}}
+\author{Giacomo Galliani, corso del prof. A. Vicini}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\begin{abstract}
+    Il calcolo delle ampiezze di scattering, con l'approccio di Feyman, ha una struttura che si presta bene ad un calcolo computazionale, con un linguaggio di programmazione che permetta un calcolo simbolico, come, ad esempio, Mathematica. Il nostro scopo sarà quello di creare un codice su Mathematica, in grado di calcolare delle ampiezze di scattering, in QCD, di processi \(2 \rightarrow 2\), forse \(2 \rightarrow 3\), e se facciamo un bel lavoro anche \(2 \rightarrow 4\). 
+
+    Prima di cominciare diamo un idea generale di come dovrà funzionare il nostro codice: 
+
+    \begin{enumerate}
+        \item La prima parte consiste nel generare \emph{grafi}. Un grafo è un insieme di punti, collegati da linee. Un diagramma di Feyman è costruito a partire da un grafo (possiamo pensarlo come il suo scheletro) dove poi aggiungiamo informazioni se una particella è un bosone o un fermione, la carica di una particella, se questa va avanti o indietro nel tempo ecc. Dunque a prima cosa che dovrà fare il nostro codice sarà generare in modo efficente diversi tipi di grafi. 
+        \item Una volta che abbiamo il grafo, dobbiamo promuoverlo a \emph{diagramma}. Dovremo quindi implementare tutte le regole di conservazione dei numeri quantici opportuni. 
+        \item Dai diagrammi, calcoliamo esplicitamente gli elementi di matrice, implementando le regole di Feyman. Successivamente dovremo poi sommare in modo appropriato su tutti gli elementi di matrice. 
+    \end{enumerate}
+\end{abstract}
+
+
+
+\chapter{Grafi}
+
+Cominciamo allora a parlare di grafi, di come trattarli all'interno del codice, e di come generarli. Inanzitutto, nota che il modo più comodo per usare un grafo in mathematica è usarlo come una lista. In pratica, il grafo avrà dei punti esterni ed interni. Per comodità, usiamo degli interi positivi per i punti esterni, e punti negativi per i punti esterni. A questo punto, ciò che caratterizza un grafo è quali punti sono collegati fra di loro. Dunque, un grafo sarà una lista di coppie di interi, che rappresentano i nodi legati del grafo.  
+
+Facciamo quindi subito un esempio: Prendiamo un grafico con 3 punti esterni ed 1 punto interno, con quelli esterni collegati solo a quello interno: 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {$-1$};
+            \vertex [above left = of a] (b) {$1$}; 
+            \vertex [below left = of a] (c) {$2$}; 
+            \vertex [right = of a] (d) {$3$};  
+            \diagram{
+                (b) --  (a); 
+                (c) --  (a); 
+                (a) --   (d); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+dove abbiamo adottato la convenzione che citavamo sopra. In mathematica, questo oggetto sarà trattato come la seguente lista: 
+
+\begin{align}
+    \text{grafobase} := \left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -1 \right\} \right\}
+\end{align}
+
+Lo abbiamo chiamato grafobase, perchè lo prenderemo come punto di partenza per generare tutti i possibili grafi, con numero di punti esterni \( >3\). 
+
+La generazione di questi grafici sarà associata ad una funzione, generagrafi, che prende come unico argomento un numero intero positivo, il numero di punti esterni, e restituisce una lista di grafi, che esaurisce tutte le possibilità.   
+
+Per capire come funziona la funzione, descriviamo qualitativamente come passare da un grafo con 3 punti esterni, ad un grafo con 4. Innanzitutto, ci sono due possibilità: 
+
+\begin{enumerate}
+    \item Incollo insieme due grafi da tre nodi. Ottengo 
+    \begin{center}
+         \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {$-1$};
+            \vertex [above left = of a] (b) {$1$}; 
+            \vertex [below left = of a] (c) {$2$}; 
+            \vertex [right = of a] (d) {$-2$};
+            \vertex [above right = of d]  (e){$3$}; 
+            \vertex [below right = of d ] (f) {$4$};  
+            \diagram{
+                (b) --  (a); 
+                (c) --  (a); 
+                (a) --   (d); 
+                (d) -- (e); 
+                (d) -- (f); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture} 
+    \end{center}
+    cioè nel linguaggio che useremo in mathematica, 
+    \begin{align}
+        \left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -1 \right\} \right\} \rightarrow \left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -2 \right\}, \left\{4, -2 \right\}, \left\{-1, -2 \right\} \right\}
+    \end{align}
+    osserva che in pratica abbiamo preso una linea, quella tra l'intero più alto e il numero negativo, e l'abbiamo sostituita con tre linee, che hanno tutte quante il nuovo indice più basso, -2, e come secondo intero hanno il precedente indice più basso, il precedente indice più alto, e infine il nuovo indice più alto. 
+    \item Provo ad attaccare solamente un altro punto al centro, ottenendo 
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {$-1$};
+            \vertex [above left = of a] (b) {$1$}; 
+            \vertex [below left = of a] (c) {$2$}; 
+            \vertex [above right = of a] (d) {$3$};  
+            \vertex [below right = of a] (e) {$4$};
+            \diagram{
+                (b) --  (a); 
+                (c) --  (a); 
+                (a) --   (d); 
+                (e) -- (a); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+    \end{center}
+    ovvero 
+    \begin{align}
+        \left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -1 \right\} \right\} \rightarrow \left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -1 \right\}, \left\{4, -1 \right\} \right\}
+    \end{align}
+    cioè, più semplicemente ho aggiunto una linea con l'indice più basso, e l'indice più alto \(+1\).
+\end{enumerate}
+
+Ora che sappiamo l'idea base, creiamo le due funzioni: 
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{grafo}
+    \KwResult{Se possibile, nuovo grafo con un nodo in più}
+    \BlankLine
+    Prendi il vettore degli indici del grafo (facendo Flatten)\; 
+    Da questo leggi indice più alto e più basso\; 
+    \For{i=min, i<-1, i++}{
+        \If{Il vertice i-esimo è collegato 3 volte}{
+            aggiungi il 4° elemento, inserendo nella lista una coppia \((i, max +1)\), e salvalo in una lista di grafi nuovigrafi\; 
+        }
+    }
+    Restituisci nuovigrafi\; 
+\caption{Inserzione4}
+\end{algorithm}
+
+\begin{algorithm}[H]
+    \SetAlgoLined
+    \KwData{grafo}
+    \KwResult{Se possibile, lista di grafi con un nodo in più}
+    \BlankLine
+    Prendi il vettore degli indici del grafo (facendo Flatten)\; 
+    Da questo leggi indice più alto e più basso\; 
+    \For{i=1, i<max, i++}{ (ciclo sui punti esterni)
+        attacca un grafobase al punto i-esimo, salva la configurazione in nuovigrafi
+    }
+    Restituisci nuovigrafi\; 
+\caption{Inserzione3}
+\end{algorithm}
+
+Si noti che per implementare questi algoritmi, un linguaggio come Mathematica che permetta di riconoscere rapidamente espressioni è molto comodo. Ad esempio, vediamo come possiamo implementare il ciclo for nell'algoritmo Inserzione3: possiamo usare la funzione ReplacePart[lista, nuovo, pos], che in una lista sostituisce l'elemento in pos con nuovo. Nel nostro caso, scriveremo: 
+
+temp = ReplacePart[grafo, pippo[{ext, int}, {grafo[[pos,1]], int}, {grafo[[pos,2]], int}], pos];
+
+temp = temp /. {pippo -> Sequence};
+
+Nella prima riga, pippo è un oggetto che mathematica non conosce, e quindi sostituisce "simbolicamente". In pratica, succede che 
+
+\begin{align}
+    \text{grafo} = \left\{\left\{1, -1 \right\}, \ldots \underbrace{\left\{i, -j\right\}}_{\text{pos}} , \ldots\right\} \rightarrow \left\{\left\{1, -1 \right\}, \ldots \underbrace{\text{pippo[{ext, int}, {grafo[[pos,1]], int}, {grafo[[pos,2]]}}}_{\text{pos}} , \ldots\right\}
+\end{align}
+
+successivamente, valuto l'espressione mettendo pippo uguale a Sequence: Sequence fa in modo che gli argomenti che ho passo non siano una lista, ma vengano inseriti come oggetti singoli. Dopo che ho effettuato questo comando, ottengo allora 
+
+\begin{align}
+    \text{grafo} = \left\{\left\{1, -1 \right\}, \ldots \left\{\text{ext}, \text{int}\right\}, \left\{\text{grafo}[\text{pos}, 1], \text{int}\right\}, \left\{\text{grafo}[\text{pos}, 2], \text{int}\right\} \ldots\right\}
+\end{align}
+
+che esattamente la forma che volevo (vedi discussione sopra). 
+
+Ora possiamo fare generagrafi: 
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{L'intero positivo \(n\) di nodi esterni dei grafi}
+\KwResult{La lista di tutti i possibili grafi}
+\BlankLine
+Fissa \(i=3\), numero di nodi ext. del grafico di base\;
+
+Crea listagrafi come la lista dei nuovi grafi, e inizalizza con solo grafobase\; 
+
+\While{\(i < n\)}{
+    Crea nuovigrafi3 come inserzione3 su listagrafi\; 
+    Crea nuovigrafi4 come inserzione4 su listagrafi\; 
+    Fai Flatten per avere due liste di grafi\; 
+    Unisci i due grafi e aggiorna listagrafi con Join\; 
+    Incrementa \(i\)\; 
+}
+
+Restituisci listagrafi\; 
+\caption{generagrafi}
+\end{algorithm}
+
+\chapter{Diagrammi}
+
+Ora che sappiamo generare tutti i possibili grafi, vogliamo assegnare a questi le regole di Feyman. 
+
+Per cominciare, ho bisogno di una funzione che a partire da un grafo, ad esempio a partire da 
+
+\begin{center}
+         \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {$-1$};
+            \vertex [above left = of a] (b) {$1$}; 
+            \vertex [below left = of a] (c) {$2$}; 
+            \vertex [right = of a] (d) {$-2$};
+            \vertex [above right = of d]  (e){$3$}; 
+            \vertex [below right = of d ] (f) {$4$};  
+            \diagram{
+                (b) --  (a); 
+                (c) --  (a); 
+                (a) --   (d); 
+                (d) -- (e); 
+                (d) -- (f); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture} 
+\end{center}
+
+che nel nostro linguaggio è dato da \(\left\{ \left\{1, -1 \right\}, \left\{2, -1 \right\}, \left\{3, -2 \right\}, \left\{4, -2 \right\}, \left\{-1, -2 \right\} \right\}\), mi restituisce 
+
+\begin{align}
+    V_{-1}[1, 2, -2]P[-1, -2]V_{-2}[3, 4, -2]
+\end{align}
+
+Ancora una volta, ci viene in aiuto la potenza di mathematica nel riconoscere i pattern. Infatti, come faccio a riconoscere un vertice, o un propagatore? è facile: 
+
+\begin{enumerate}
+    \item Il propagatore agisce tra punti interni. Siccome i punti interni sono negativi, mi basta controllare se esistono due punti negativi legati, \(i,j\). Se ci sono restituisco \(P[i,j]\).  
+    \item Il vertice si forma quando tre punti sono legati ad uno. Devo quindi cercare nel grafo se esiste una espressione base data da 
+    \begin{align}
+        \text{expr} = \left\{\left\{i, \text{int} \right\}, \left\{j, \text{int} \right\}, \left\{k, \text{int} \right\} \right\}
+    \end{align}
+    Se c'è, restituisco \(V_{\text{int}}[i,j,k]\).
+\end{enumerate}
+
+Ora, questo è certamente facile da implementare. D'altra parte, bisogna stare attenti: le regole di Feyman includono fattori che tra di loro non commutano. Quindi, è necessario stampare il risultato nell'ordine corretto. 
+
+
+Il trucco da usare è che il propagatore deve essere sempre in mezzo a due vertici, che hanno come centro i due argomenti del propagatore. Quindi devo percorrere la lista dei factors per trovare i propagatori, e a quel punto moltiplicare per i rispettivi vertici, nell'ordine corretto. A quel punto posso poi vedere se gli altri vertici sono legati ad altri propagatori. Avendo nominato i punti interni come interi negativi, posso partire dal "primo vertice" facilmente, perché questo avrà l'indice -1. Posso poi fare un ciclo che cerca un propagatore, e i vertici relativi. 
+
+
+\end{document}

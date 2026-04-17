@@ -1,0 +1,20 @@
+\contentsline {chapter}{\numberline {1}Aspetti fondamentali e struttura a grande scala}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Metrica di Robertson-Walker}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Distanze in Cosmologia}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Red-shift Surveys e la funzione di autocovarianza}{6}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Evoluzione delle perturbazioni}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}La teoria di Jeans}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Crescita delle fluttuazioni nell'era della materia}{17}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Crescita delle fluttuazioni nell'era della radiazione}{19}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Cenni alla teoria relativistica}{23}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Perturbazioni adiabatiche barioniche}{24}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Il problema della diffusione}{25}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Necessità di introdurre la materia oscura}{27}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Spettro di potenza della CMB}{33}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Teoria lineare delle RDS}{36}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Oltre la teoria lineare}{41}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Simulazioni numeriche}{41}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Un tentativo analitico: il collasso sferico}{42}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Teoria di Press-Shecter}{43}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Teoria perturbativa lagrangiana}{44}{section.3.4}%
+\contentsfinish 

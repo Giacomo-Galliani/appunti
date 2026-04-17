@@ -1,0 +1,867 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti di Gravità e Superstringhe 2}}}
+\author{Giacomo Galliani, corso del prof. A. Amariti}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+
+
+\chapter{La stringa classica}
+
+\section{Extra dimensioni - in meccanica quantistica}
+
+Con un semplice esempio si può apprezzare rapidamente come si modifica lo spettro di una Hamiltoniana, se in meccanica quantistica aggiungiamo una dimensione compatta, dalle piccole dimensioni. Consideriamo inanzitutto il problema della buca uno-dimensionale, cioè 
+
+\begin{align}
+    V(x) = \begin{cases}
+        0 \in [-a, a] \\
+        +\infty \, \text{altrimenti}
+    \end{cases} \implies \psi_k = \frac{2}{a}\sin\left(\frac{k\pi x}{a}\right), \, E_k = \frac{\hbar^2}{2\pi}\left(\frac{k\pi}{a} \right)^2
+\end{align}
+
+Se invece aggiungo una dimensione, ad esempio un cerchio di raggio \(R << a\), e prendo sempre \(V(x, y) = V(x)\), allora l'eq. di Schroedinger è data da 
+
+\begin{align}
+    -\frac{\hbar^2}{2m}\left(\frac{\partial^2\psi}{\partial x^2} + \frac{\partial^2\psi}{\partial y^2} \right) = E\psi(x, y)
+\end{align}
+
+Per risolverla, posso separare le variabili se faccio l'ansantz \(\psi(x, y) = X(x)Y(y)\). All'ora l'eq. diventa: (dividendo per \(\psi\))
+
+\begin{align}
+    -\frac{\hbar^2}{2m}\left(\frac{1}{X}\frac{\partial^2X}{\partial x^2} + \frac{1}{Y}\frac{\partial^2Y}{\partial y^2} \right) = E
+\end{align}
+
+Si trova risolvendo questa che 
+
+\begin{align}
+    &X_k = a_k\sin\left(\frac{k\pi x}{a} \right) \\
+    &Y_\ell = b_\ell\sin\left(\frac{\ell y}{R} \right) + c_\ell\cos\left(\frac{\ell y}{R} \right) 
+\end{align}
+
+
+e lo spettro è dato da 
+
+\begin{align}
+    E_{k, \ell} = \frac{\hbar^2}{2m}\left(\left(\frac{k\pi}{a} \right)^2  + \left(\frac{\ell}{R} \right)^2\right)
+\end{align}
+
+Se \(R << a\), è chiaro in che senso si può parlare di \emph{dimensione invisibile}: per eccitare un modo \(\ell : 0 \rightarrow 1\) ci vorrebbe un energia enorme, rispetto al gap \(E_{1,0}-E_{0,0}\). 
+
+\section{Stringa non relativistica}
+
+Vogliamo considerare le e.o.m. per le oscillazioni trasversali con 1 direzione trasversa, e una direzione longitudinale, per una stringa con lunghezza a riposo \(a\), tensione \(T_0\), massa per unità di lunghezza \(\mu_0\). Penseremo dunque ad una stringa nel piano \((x-y)\), con posizione a riposo da \((0,0) \rightarrow (0, a)\). 
+
+Le equazioni del moto per la coordinata \(y(x,t)\) della stringa, che seguono dalla meccanica sono 
+
+\begin{align}
+    \frac{\partial^2y}{\partial x^2} - \frac{\mu_0}{T_0}\frac{\partial^2 y}{\partial t^2} = 0 
+\end{align}
+
+La natura delle soluzioni dipende dal tipo di condizioni al contorno. Vi sono in particolare due tipi: 
+
+\begin{enumerate}
+    \item Condizioni di Dirichlet, imponiamo gli estremi fissi nel tempo, dunque \(y(t, x=0) = y(t, x=a) = 0\)
+    \item Condizioni di Neumann, dove gli estremi possono muoversi, ma la stringa deve arrivare agli estremi con derivata nulla, ovvero \(\partial_x(y(t, x=0)) = \partial_x(y(t, x=a)) = 0\). 
+\end{enumerate}
+
+Una buona quantità di soluzioni delle equazione è catturata dall'ansantz \(y(t,x) = y(x)\sin(\omega t +\phi)\). In questo modo, l'eq. diventa una ODE per \(y(x)\): 
+
+\begin{align}
+    y''(x) + \omega^2\frac{\mu_0}{T_0}y(x) = 0 
+\end{align}
+
+Le cui soluzioni sono date da: 
+
+\begin{enumerate}
+    \item condizioni di Dirichlet: \(y_n(x) = A_n\sin(n\pi x/a), \, n=1,2, \ldots\). Dunque le frequenze possibili sono \(\omega_n = \sqrt{\frac{\mu_0}{T_0}}\frac{n\pi}{a}\)
+    \item condizioni di Neumann: \(y_n(x) = A_n\cos(n\pi x/a)\, n =0,1, \ldots\), con le stesse frequenze di prima. 
+\end{enumerate}
+
+Un esempio di soluzione non catturata dall'ansantz è \(y(t,x) = At+b\), ovvero una traslazione rigida della stringa con velocità costante, che soddisfa le condizioni di Neumann. 
+
+Vediamo come possiamo scrivere un formalismo lagrangiano di questa teoria: prendiamo come lagrangiana 
+
+\begin{align}
+    L(t) = \int_0^a \left(\frac{1}{2}\mu_0 \dot{y}^2 - \frac{1}{2}T_o (y')^2 \right)dx = \int_0^a \mathcal{L}dx
+\end{align}
+
+Da questa definiamo il funzionale d'azione: 
+
+\begin{align}
+    S = \int_{t_1}^{f_f}L(t)dt
+\end{align}
+
+i cui argomenti sono i cammini \(y(t, x)\) nel rettangolo \([0, a]\times [t_1, t_f]\). Le equazioni del moto si ottengono variando i cammini \(y(t,x) \rightarrow y(t,x) + \delta y(t,x)\). Nota che la lagrangiana dipende solamente dalle derivate di \(y\), e che possiamo scrivere
+
+\begin{align}
+    &\mu_0 \dot{y}\delta\dot{y} = \partial_t(\mu_o \dot{y}\delta y) - \mu_0\ddot{y}\delta y \\
+    &T_0y'\delta y' = \partial_x (T_0 y' \delta y) - T_0 y'' \delta y
+\end{align}
+
+La variazione allora è 
+
+\begin{align}
+    \delta S = \int_{t_1}^{f_f}\int_0^a dt dx (\mu_0\dot{y}\delta \dot{y} - T_0 y' \delta y')
+\end{align}
+
+e integrando per parti, 
+
+\begin{align}
+    \delta S = \int_0^a (\mu_0\dot{y}\delta y)|^{t_f}_{t_i} + \int_{t_i}^{t_f}dt (T_0 y' \delta y)|^a_0 - \int_{t_i}^{t_f}dt \int_0^a dx (\mu_0 \ddot{y} + T_o y'')
+\end{align}
+
+ognuna di queste, secondo il principio di minima azione, deve annullarsi singolarmente. Vediamo dunque che ritroviamo in ordine le condizioni iniziali (sia N o D), le condizioni al bordo, e infine le equazioni del moto. 
+
+\section{Particella relativistica: lagrangiana ed equazioni del moto}
+
+
+Consideriamo una particella libera, relativistica con \(m>0\). Il nostro obbiettivo è scrivere la sua azione. Per piccole velocità, deve tendere al caso classico, ma deve essere diversa ad alte velocità, perché le equazioni del moto \(\dot{v} = 0\) sono valide ovunque, anche per \(v > c\). Procediamo allora nel modo seguente: 
+
+Dato il moto spaziotemporale, si può definire la linea di mondo \(\mathcal{P}\). Si richiede che l'azione sia lorentz-invariante, un funzionale dei cammini \(\mathcal{P}\) che partono da un origine \((0,\vec{0})\) e arrivano al tempo \(t_f\) nel punto finale, cioè \((ct_f, \vec{x}_f)\). Deve inoltre valere che, fissato una linea di mondo \(\mathcal{P}_i\), l'azione deve essere la stessa per tutti gli osservatori inerziali. Questo ci suggerisce che dovrà valere 
+
+\begin{align}
+    S \propto \int \frac{ds}{c}
+\end{align}
+
+
+dimensionalmente, ci serve una energia come costante, che sia un'invariante di lorentz: possiamo prendere la massa a riposo. Si trova allora che 
+
+\begin{align}
+    S = -mc\int ds
+\end{align}
+
+Dato che \(\frac{ds}{dt} = c\sqrt{1-(v/c)^2}\), la lagrangiana è data da 
+
+\begin{align}
+    S = -mc\int_{t_i}^{t_f}dt \sqrt{1 - \frac{v^2}{c^2}}
+\end{align}
+
+che è manifestamente valida solo se \(v < c\). Un'aspetto importante è l'invarianza sotto riparametrizzazioni: Considero due parametrizzazioni della stessa curva, 
+
+\begin{align}
+    &x^\mu = x^\mu(\tau) \, : \, \tau \in [\tau_i, \tau_f], \, x_1 = x^\mu(\tau_i), \, x_f = x^\mu(\tau_f)\\
+    &x^\mu = x^\mu(\tau') \, : \, \tau' \in [\tau'_i, \tau'_f], \, x_1 = x^\mu(\tau'_i), \, x_f = x^\mu(\tau'_f)   
+\end{align}
+
+In termini della parametrizzazione, l'intervallo ds si scrive 
+
+\begin{align}
+    ds^2 = -\eta_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}d\tau^2
+\end{align}
+
+Dunque l'azione è esplicitamente 
+
+\begin{align}
+    S = \int_{\tau_i}^{\tau_f}\sqrt{-\eta_{\mu\nu}\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}}d\tau
+\end{align}
+
+se nell'integrale faccio il cambio esplicito di coordinate \(\tau \rightarrow \tau'\), trovo 
+
+\begin{align}
+    S = \int_{\tau'_i}^{\tau'_f} d\tau' \sqrt{-\eta_{\mu\nu}\frac{dx^\mu}{d\tau'}\frac{dx^\nu}{d\tau'}}
+\end{align}
+
+che è esattamente l'azione che avrei calcolato se fossi partito prima da \(\tau'\). Dunque l'azione è invariante per riparametrizzazioni. Le equazioni del moto si trovano variando la linea di mondo, e imponendo che l'azione sia stazionaria: 
+
+
+\begin{align}
+    \delta S = -mc \int \delta(ds)
+\end{align}
+
+Per valutare questo, ricorda che 
+
+\begin{align}
+    \delta(ds^2) = 2ds\delta(ds) = -2\eta_{\mu\nu}\delta\left(\frac{dx^\mu}{d\tau}\right)\frac{dx^\nu}{d\tau}d\tau^2 \implies \delta(ds) = -\eta_{\mu\nu}\frac{d\delta(x^\mu)}{d\tau}\frac{dx^\nu}{d\tau}\frac{d\tau}{c}
+\end{align}
+
+Dunque troviamo che 
+
+\begin{align}
+    \delta S = m \int \eta_{\mu\nu}\frac{d\delta(x^\mu)}{d\tau}\frac{dx^\nu}{d\tau} d\tau = m \int \frac{d\delta(x^\mu)}{d\tau}\frac{dx_\mu}{d\tau}d\tau
+\end{align}
+
+Si definisce il momento come \(P_\mu = m\frac{dx_\mu}{d\tau}\), e si scrive 
+
+\begin{align}
+    \delta S = \int \frac{d\delta(x^\mu)}{d\tau} P_\mu = 0 \xrightarrow[]{\text{Int. per parti}} \delta S = \int_{\tau_i}^{\tau_f} d\tau \frac{d}{d\tau}(\delta(x^\mu))P_\mu - \int_{\tau_i}^{\tau_f} d\tau \delta(x^\mu)\frac{dP_\mu}{d\tau} = 0, \, \forall \delta(x^\mu)
+\end{align}
+
+Dunque le equazioni del moto sono 
+
+\begin{align}
+    \frac{dP_\mu}{d\tau} = 0 
+\end{align}
+
+e sono manifestamente invarianti rispetto a trasformazioni di lorentz. (sotto queste, \(x^\mu \rightarrow \Lambda^\mu_\nu x^\nu\)). 
+
+\section{La stringa relativistica}
+
+\subsection{L'azione di Nanbu-Goto}
+
+Ora vogliamo passare da una particella, ad un oggetto esteso in una direzione, la stringa. Anche per questa vogliamo scrivere un'azione. La differenza principale rispetto ad una particella puntiforme è che la stringa non traccia una linea di mondo, ma traccia una World-Sheet (WS). Questa superficie può essere una superficie chiusa nel caso di stringa chiusa, oppure una superficie aperta nel caso di stringa aperta. Su queste superfici, le linee con \(x^0\) costante sono proprio le stringhe. 
+
+Per prendere confidenza con l'argomento, consideriamo inanzitutto una superficie puramente spaziale, che sia descritta da due parametri, \(\xi^1, \xi^2\). Se lo spazio in cui la superficie è immersa è lo spazio euclideo 3-dimensionale, la superficie è descritta da 
+
+\begin{align}
+    \vec{x}(\xi^1, \xi^2) = (x^1(\xi^1, \xi^2), x^2(\xi^1, \xi^2), x^3(\xi^1, \xi^2)) 
+\end{align}
+
+Cioè la superficie fisica è l'immagine dello spazio dei parametri, sotto la mappa \(\vec{x}(\xi^1, \xi^2)\). 
+
+Equivalentemente, posso pensare che le \(\xi^i\) sono coord. locali sulla superficie. Questo vuol dire che la mappa inversa di \(\vec{x}\) manda punti sulla superficie nello spazio dei parametri. Localmente, la mappa è 1:1, e associa dunque ad ogni punto sulla superficie due coordinate, \((\xi^1, \xi^2)\). 
+
+Sulla superficie si introduce il concetto di area nel modo seguente: dato un "quadratino" nello spazio dei parametri \(d\xi^1d\xi^2\), voglio determinare \(dA\) cioè l'area (infinitesima) dell'immagine del quadratino, sulla superficie. In generale questo è un parallelogramma, con lati 
+
+\begin{align}
+    \begin{cases}
+        d\vec{v}_1 = \frac{\partial \vec{x}}{\partial \xi^1}d\xi^1 \\
+        d\vec{v}_2 = \frac{\partial \vec{x}}{\partial \xi^2}d\xi^2
+    \end{cases}
+\end{align}
+
+L'area allora è l'area del parallelogramma, cioè 
+
+\begin{align}
+    dA = \abs{d\vec{v}_1}\abs{d\vec{v}_2}\sin\theta = \sqrt{(d\vec{v}_1)^2(d\vec{v}_2)^2(1-\cos^2\theta)}
+\end{align}
+
+cioè, integrando nello spazio dei parametri, 
+
+\begin{align}
+    A = \int d\xi^1 d\xi^2 \sqrt{\left(\frac{\partial\vec{x}}{\partial \xi_1}\cdot \frac{\partial \vec{x}}{\partial \xi^1}\right)\left(\frac{\partial\vec{x}}{\partial \xi_2}\cdot \frac{\partial \vec{x}}{\partial \xi^2}\right) - \left(\frac{\partial\vec{x}}{\partial \xi_1}\cdot \frac{\partial \vec{x}}{\partial \xi^2}\right)^2}
+\end{align}
+
+Ora, vogliamo far vedere che questo funzionale della superficie è invariante per riparametrizzazioni. Prima di farlo, la riscriviamo in un modo più elegante: 
+
+Se \(\mathcal{S}\) è una superficie descritta da \(\vec{x}(\xi^1, \xi^2)\), allora un vettore tangente ad \(\mathcal{S}\), lungo \(ds\) è dato da \(d\vec{x} = \frac{\partial \vec{x}}{\partial \xi_i}d\xi_i\). Possiamo allora scrivere la metrica euclidea indotta sulla superficie come 
+
+\begin{align}
+    ds^2 = d\vec{x}\cdot d\vec{x} = \frac{\partial\vec{x}}{\partial \xi^i}\frac{\partial\vec{x}}{\partial \xi^j}d\xi^i d\xi^j = g_{ij}(\xi)d\xi^i d\xi^j
+\end{align}
+
+Ci accorgiamo allora che, elegantemente, l'area si scrive più compattamente come 
+
+\begin{align}
+    A = \int d\xi^1 d\xi^2 \sqrt{\det{g(\xi)}}
+\end{align}
+
+Ora, sotto una riparametrizzazione, vale sempre \(ds^2 = d\tilde{s}^2\). In termini delle metriche indotte, questo vuol dire 
+
+\begin{align}
+    g(\xi)_{ij}d\xi^i d\xi^j &= \tilde{g}(\tilde{xi})_{qp}d\tilde{\xi}^q d\tilde{\xi}^p \\
+    &= \tilde{g}(\tilde{xi})_{qp}\frac{d\tilde{\xi}^q}{d\xi^i}\frac{d\tilde{\xi}^p}{d\xi^j}d\xi^i d\xi^j 
+\end{align}
+
+concludiamo che 
+
+\begin{align}
+    g(\xi)_{ij} = \tilde{g}(\tilde{\xi})_{pq}\frac{d\tilde{\xi}^q}{d\xi^i}\frac{d\tilde{\xi}^p}{d\xi^j}
+\end{align}
+
+da cui 
+
+\begin{align}
+    \sqrt{\det g} = \sqrt{\det{\tilde{g}}}\abs{\det \tilde{M}}
+\end{align}
+
+se chiamo con \(\tilde{M}\) la matrice jacobiana del cambio di coordinate, cioè \(\tilde{M}_{ij} = \frac{\partial \tilde{\xi}^i}{\partial \xi^j}\). Chiamiamo invece \(M\) la matrice inversa. Troviamo allora 
+
+\begin{align}
+    \int d\xi^1 d\xi^2 \sqrt{\det{g}} \, \xrightarrow[]{\text{cambio coordinate}} \, \int d\tilde{\xi}^1 d\tilde{\xi}^2 \abs{\det M} \sqrt{\det g} \abs{\det{\tilde{M}}} = \int d\tilde{\xi}^1 d\tilde{\xi}^2 \sqrt{\det g} 
+\end{align}
+
+Se abbiamo una superficie spaziotemporale, cosa cambia? In particolare, noi siamo interessati al WS di una stringa. Parametrizziamo la superficie con parametri \(\sigma, \tau\), cioè la superficie è l'immagine della mappa 
+
+\begin{align}
+    x^\mu(\tau, \sigma), \quad \sigma \in [0, \sigma_1], \, \tau \in \mathbb{R}
+\end{align}
+
+Si assume anche che valga 
+
+\begin{align}
+    \frac{\partial x^0}{\partial \tau}\biggr|_{\sigma = 0 } \neq 0, \,  \frac{\partial x^0}{\partial \tau}\biggr|_{\sigma = \sigma_1} \neq 0
+\end{align}
+
+così che se \(\tau\) fluisce, anche il tempo \(x^0\) fluisce. Il funzionale dell'area allora è dato da 
+
+\begin{align}
+    A = \int d\sigma d\tau \sqrt{\left(\frac{\partial\vec{x}}{\partial \tau}\cdot \frac{\partial \vec{x}}{\partial \sigma}\right)^2 - \left(\frac{\partial\vec{x}}{\partial \tau}\cdot \frac{\partial \vec{x}}{\partial \tau}\right)\left(\frac{\partial\vec{x}}{\partial \sigma}\cdot \frac{\partial \vec{x}}{\partial \sigma}\right) }
+\end{align}
+
+Nota che rispetto alla nostra definizione dell'area per una superficie spaziale, questa differisce per un segno meno nella radice. Intuitivamente, è possibile che passando dalla geometria euclidea a quella di Minkowski cambino dei segni. Dobbiamo però verificare se l'argomento della radice è positivo. 
+
+Per farlo, considera il vettore tangente alla superficie. Eccetto per un punto finito di punti, il vettore tangente è definito da un vettore di tipo tempo, e un vettore di tipo spazio. Ma poichè la WS è tracciata dal moto fisico di una stringa, il vettore tangente ad ogni punto deve essere di tipo tempo. La famiglia dei vettori tangenti è data da (a meno di fattori scala globali)
+
+\begin{align}
+    V^\mu(\lambda) = \frac{\partial X^\mu}{\partial \tau} + \lambda \frac{\partial X^\mu}{\partial \sigma}
+\end{align}
+
+Imponiamo che questo sia di tipo tempo. Deve dunque valere 
+
+\begin{align}
+    V^2 = \lambda^2 (\partial_\sigma X)^2 + 2\lambda(\partial_\sigma X)(\partial_\tau X) + (\partial_\tau X)^2 > 0
+\end{align}
+
+affinché valga per ogni \(\lambda\), il discriminante deve essere negativo. Ma il discriminante è meno l'argomento della nostra radice! dunque la nostra scelta era corretta. 
+
+Assumiamo quindi che l'azione per la stringa sia proporzionale al funzionale d'area. Dimensionalmente, cosa ci manca? Qualunque siano le dimensioni di \(\sigma, \tau\) (anche se da ora in poi le fisseremo a \(L, T\)), l'area ha le dimensioni \(L^2\), mentre un'azione \(ML^2/T\). Ci serve un fattore \(M/T\). Possiamo prendere \(T_0/c\), se \(T_0\) è la \emph{tensione} della stringa. Scriviamo dunque, 
+
+\begin{align}
+    S = -\frac{T_0}{c}\int_{\tau_i}^{\tau_f}d\tau\int_{0}^{\sigma_1}d\sigma \sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}
+\end{align}
+
+che è la famosa azione di \emph{Nanbu-Goto}. Per costruzione, è invariante sotto riparametrizzazioni. 
+
+\clm{}{}{
+
+    Le equazioni del moto che seguono dall'azione di Nanbu-Goto sono date da 
+
+    \begin{align}
+        \frac{\partial P^\tau_\mu}{\partial \tau} + \frac{\partial P^\sigma_\mu}{\partial \sigma} = 0 
+    \end{align}
+
+    Dove \(P^\tau_\mu, \, P^\sigma_\mu\) sono i momenti coniugati, dati da 
+
+    \begin{align}
+        &P^\tau_\mu = \frac{\partial\mathcal{L}}{\partial \dot{X}} = -\frac{T_0}{c}\frac{(\dot{X}\cdot X')X'_\mu - (X')^2\dot{X}_\mu}{\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}} \\
+        &P^\sigma_\mu = \frac{\partial\mathcal{L}}{\partial X'} = -\frac{T_0}{c}\frac{(\dot{X}\cdot X')\dot{X}_\mu - (\dot{X})^2X'_\mu}{\sqrt{(\dot{X}\cdot X')^2 -(\dot{X})^2(X')^2}}
+    \end{align}
+}
+
+Per vedere questo, come al solito variamo l'azione: 
+
+\begin{align}
+    \delta S(\dot{X}, X') = \int_{\tau_i}^{\tau_f}d\tau \int_0^{\sigma_1}d\sigma \left(\frac{\partial\mathcal{L}}{\partial \dot{X}^\mu}\frac{\partial (\delta x^\mu)}{\partial \tau} + \frac{\partial \mathcal{L}}{\partial X'^\nu}\frac{\partial (\delta x^\nu)}{\partial \sigma} \right)
+\end{align}
+
+come al solito si integra per parti, 
+
+\begin{align}
+    \delta S = \int_{\tau_i}^{\tau_f}d\tau \int_0^{\sigma_1}d\sigma \partial_\tau(\delta x^\mu P_\mu^\tau) + \partial_\sigma(\delta x^\mu P^\sigma_\mu) - \delta x^\mu(\partial_\tau P_\mu^\tau + \partial_\sigma P^\sigma_\mu)
+\end{align}
+
+
+Per condizioni iniziali fisse, cioè imponendo \(\delta x^\mu(\tau_i, \sigma) = \delta x^\mu (\tau_f, \sigma) = 0\), la prima parte è sempre nulla. L'ultima invece, corrisponde alle equazioni del moto. Il termine in mezzo invece da' le condizioni al bordo: 
+
+\begin{align}
+    \int_{\tau_i}^{\tau_f}(\delta x^\mu P_\mu^\sigma)|_0^{\sigma_1} =  0
+\end{align}
+
+che possono essere di due tipi: 
+
+\begin{enumerate}
+    \item Dirichlet: estremi fissi, quindi \(\frac{\partial X^\mu}{\partial \tau}(\tau, \sigma^*) =0\), se \(\mu \neq 0\) e \(\sigma^* = 0, \sigma^1\)
+    \item Neumann, estremi liberi (solo per stringhe aperte) cioè \(P^\sigma_\mu (\tau, \sigma^*) =0\)
+\end{enumerate}
+
+chiaramente, le condizioni al bordo di Dirichlet implicano che vi siano degli oggetti (membrane) dove le stringhe si attaccano. 
+
+Ora, le equazioni del moto che derivano direttamente dall'azione sono orribili. Possiamo però sfruttare la libertà per riparametrizzazioni, per scriverle in una forma più accettabile. Una soluzione (parziale) è la \emph{gauge statica}: questa consiste nel legare \(x^0 = ct\), ovvero la coordinata temporale nel target space, a \(\tau\), uno dei due parametri della WS. Dunque, per ogni punto \(q\) nel WS, imponiamo \(\tau(q) = t\). Nel sistema di riferimento scelto, le linee a \(\tau\) costante sono quindi le linee a \(t\) costante, cioè le \emph{stringhe statiche}. Con questa scelta, vale che 
+
+\begin{align}
+        &\frac{\partial X^\mu}{\partial \tau} = \left(\frac{\partial X^0}{\partial \tau}, \frac{\partial \vec{X}}{\partial \tau}  \right) = \left( c, \frac{\partial \vec{X}}{\partial \tau}  \right) \\
+        &\frac{\partial X^\mu}{\partial \sigma} = \left(\frac{\partial X^0}{\partial \sigma}, \frac{\partial \vec{X}}{\partial \sigma}  \right) = \left( 0, \frac{\partial \vec{X}}{\partial \sigma}  \right) 
+\end{align}
+
+\ex{L'azione per stringa statica tesa}{
+
+    Consideriamo la seguente situazione: abbiamo una striga con estremi fissi, in \(x^1 =0\) ed \(x^1 = a >0\). Tutte le sue altre coordinate sono zero. Fissiamo allora la gauge statica, \(X^0 = c\tau\). Per le altre coordinate, se la stringa è statica, troviamo 
+
+    \begin{align}
+        \begin{cases}
+            X^1(\tau, \sigma) = f(\sigma) \, :  \, f(0) =0, \, = f(\sigma_1) = 0, \, f' > 0\\
+            X^{2, \ldots, d} = 0
+        \end{cases}
+    \end{align}
+
+    Le derivate delle coordinate di stringa si trovano allora facilmente: 
+
+    \begin{align}
+        \begin{cases}
+            \dot{X}^\mu = (c, 0, \ldots, 0) \\
+            X^{'\nu} = (0, f', 0, \ldots, 0)
+        \end{cases} \implies \begin{cases}
+            (\dot{X})^2 = -c^2 \\ 
+            (X')^2 = f^{'2} \\
+            \dot{X}\cdot X' = 0 
+        \end{cases}
+    \end{align}
+
+    Avendo tutti gli ingredienti, calcoliamo facilmente l'azione di Nanbu-Goto: 
+
+    \begin{align}
+        S = -\frac{T_0}{c}\int_{t_i}^{t_f}dt \int_0^{\sigma_1}d\sigma \sqrt{(cf')^2} = -T_0 \int_{t_i}^{t_f}dt f|^{\sigma_1}_0 = -T_0 \int_{t_1}^{t_f}a dt 
+    \end{align}
+
+    L'integranda rispetto al tempo dell'azione è la lagrangiana, \(L = T-V\). Poiché stiamo trattando la stringa statica, il termine cinetico è nullo, troviamo che per la stringa statica 
+    
+    \begin{align}
+        V = T_0 a
+    \end{align}
+
+    In particolare, questa è la quantità di energia che serve a creare una stringa di lunghezza \(a\). La massaa a riposo per unità di lunghezza è allora data da 
+    
+    \begin{align}
+        \mu_0 c^2 = V/a \implies \mu_0 = \frac{T_0}{c^2}
+    \end{align}
+
+    dunque la massa della stringa è dovuta \emph{tutta e sola} alla tensione della stringa. Poiché la stringa è statica, l'eq. del moto sono date da 
+
+    \begin{align}
+        \partial_\sigma P^\mu_\sigma = 0 
+    \end{align}
+
+    Calcoliamo il momento: 
+
+    \begin{align}
+        P^\mu_\sigma = -\frac{T_0}{c}\frac{c^2X^{'\mu}}{cf'} = -T_0 \frac{X^{'\mu}}{f'} = -T_0 (0, 1, 0, \ldots, 0)
+    \end{align}
+
+    ed è dunque automaticamente soddisfatta. 
+}
+
+\subsection{Parametrizzazione e velocità della stringa}
+
+Veniamo ora a parlare di velocità sulla stringa. Un candidato ingenuo è dato da 
+
+\begin{align}
+    \partial_t X
+\end{align}
+
+d'altra parte, c'è un problema: questa definizione dipende manifestamente dalla parametrizzazione in \(\sigma\). Il risultato sarà che dovremo considerare solo il moto traverso della stringa. 
+
+Infatti, la stringa non ha sottostrutture: non posso dire che un punto sulla stringa è andato su un punto dell'altra stringa, senza fissare una parametrizzazione. Questo mostra che il moto longitudinale sia non fisico. 
+
+Poiché la velocità abbiamo richiesto che sia invariante per riparametrizzazioni, viene naturale chiedersi come sarebbe possibile scrivere la lagrangiana in termini della velocità trasversa. Diamo allora un'espressione esplicita per la velocità trasversa: 
+
+Sia \(s\) un parametro a piacimento, che misuri la lunghezza lungo la stringa. Si prende allora una stringa, ad un instante fissato nel tempo e si definisce la lunghezza \(s(\sigma)\). Prendiamo poi \(ds = \abs{d\vec{X}} = \abs{\partial_\sigma X}d\sigma\) ovvero la lunghezza del vettore infinitesimo \(d\vec{X}\), rispetto ad un intervallo \(d\sigma\). Dunque, \(\frac{ds}{d\sigma} = \abs{\partial_\sigma \vec{X}}\). 
+
+Consideriamo allora il vettore \(\partial_s \vec{X}\). Ha alcune proprietà interessati, ad esempio vale 
+
+\begin{align}
+    \partial_s\vec{X}\cdot \partial_s\vec{X} = (\partial_\sigma\vec{X}\cdot \partial_\sigma\vec{X})\left(\frac{d\sigma}{ds} \right)^2  = 1 
+\end{align}
+
+Inoltre, \(\partial_s \vec{X} \parallel \partial_\sigma \vec{X}\), che è tangente alla stringa, perché è calcolato a \(t\) fissato. (ricorda che la stringa è una linea sul WS con \(t\) fissato). Dunque, \(\partial_s \vec{X}\) è un vettore tangente ed unitario alla stringa. Possiamo allora usarlo per definire la velocità trasversa: 
+
+\begin{align}
+    \vec{v}_{\perp} = \frac{\partial \vec{X}}{\partial t} - \left(\frac{\partial \vec{X}}{\partial t}\cdot \frac{\partial \vec{X}}{\partial s} \right)\frac{\partial \vec{X}}{\partial s}
+\end{align}
+
+Ora possiamo provare a scrivere la lagrangiana in termini di questa, mettendoci nella gauge statica. 
+
+Notiamo che il quadrato di questa velocità è dato da 
+
+\begin{align}
+    v_\perp^2 = \left(\frac{\partial\vec{X}}{\partial t}\right)^2 - \left(\frac{\partial\vec{X}}{\partial t}\cdot\frac{\partial \vec{X}}{\partial s} \right)^2
+\end{align}
+
+dove abbiamo usato che \(\partial_s \vec{X}\) ha norma 1. Per calcolare l'azione ho bisogno di calcolare 
+
+\begin{align}
+    \dot{X}^2 = c^2 + \left(\frac{\partial \vec{X}}{\partial t} \right)^2, \quad X'^2 = \left(\frac{\partial \vec{X}}{\partial t} \right)^2, \quad (\dot{X}\cdot X') = \frac{\partial \vec{X}}{\partial t}\cdot \frac{\partial\vec{X}}{\partial \sigma}
+\end{align}
+
+così che l'azione di Nanbu-Goto assume una forma familiare in termine della velocità trasversa: 
+
+\begin{align}
+    S_{NG} = -T_0 \int_{t_i}^{t_f}\int_0^{\sigma_1}dt d\sigma \frac{ds}{d\sigma} \sqrt{1 - \frac{v_\perp^2}{c^2}}
+\end{align}
+
+cioè la lagrangiana è data da \(L = -T_0\int ds \sqrt{1 - \frac{v_\perp^2}{c^2}}\). Questa ha la forma di energia a riposo volte un fattore relativistico, proprio come la particella. 
+
+Diamo allora una parametrizzazione esplicita. Al tempo \(t=0\), si assegni una parametrizzazione \(\sigma\) della stringa. Si prenda poi la stringa al tempo \(t = \eps\): sulla superficie della stringa, si considerano i vettori tangenti alla stringa, e si interseca questi con la stringa al tempo \(\eps\). Se \(\sigma_0\) era la parametrizzazione sulla stringa al tempo 0, assegno \(\sigma_0\) al tempo \(\eps\) al punto che viene intersecato dalla perpendicolare. Poi estendo a tutti i tempi la procedura, ed ho trovato una particolare parametrizzazione, che ha la comoda proprietà che le linee a \(\sigma\) costante sono ortogonali alle linee con \(t\) costante, cioè le stringhe. In formule, 
+
+\begin{align}
+    \frac{\partial \vec{X}}{\partial \sigma}\cdot \frac{\partial \vec{X}}{\partial t} = 0 \implies \vec{v}_\perp = \frac{\partial \vec{X}}{\partial t}
+\end{align}
+
+con questa scelta, si dimostra che i momenti sono dati da 
+
+\begin{align}
+    P^{\mu \tau } = \frac{T_0}{c^2}\frac{\frac{ds}{d\sigma}}{\sqrt{1 - \frac{v_\perp^2}{c^2}}}\frac{\partial X^\mu}{\partial \tau}, \quad P^{\mu\sigma} = -T_0\sqrt{1 - \frac{v_\perp^2}{c^2}}\frac{\partial X^\mu}{\partial \sigma}
+\end{align}
+
+E le equazioni del moto sono sempre date da 
+
+\begin{align}
+    \frac{\partial P^{\tau \mu}}{\partial \tau} = - \frac{\partial P^{\sigma\mu}}{\partial \sigma}
+\end{align}
+
+Nella gauge statica, \(X^0 = c\tau \), cioè \(P^{\sigma 0} = 0, \, P^{\tau 0} = -\frac{T_0}{c}\frac{ds}{d\sigma}\left(1 - \frac{v_\perp^2}{c^2}\right)^{-1/2}\). Dunque la seconda è una costante nel tempo. 
+
+Nelle direzioni spaziali, invece, se si definisce 
+
+\begin{align}
+    T_{eff} = T_0 \sqrt{1 - \frac{v_\perp^2}{c^2}}, \quad \mu_{eff} = \frac{T_0}{c^2}\sqrt{1 - \frac{v_\perp^2}{c^2}}
+\end{align}
+
+Le equazioni del moto diventano 
+
+\begin{align}
+    \mu_{eff}\frac{\partial \vec{v}_\perp}{\partial t} = \frac{\partial}{\partial s}\left(T_{eff}\frac{\partial \vec{X}}{\partial s} \right)
+\end{align}
+
+Una parametrizzazione esplicita possibile, si ottiene richiedendo che ogni segmento di lunghezza \(\sigma\) abbia la stessa energia. Per farlo, definiamo 
+
+\begin{align}
+    A(\sigma ) = \frac{ds}{d\sigma}\sqrt{1 - \frac{v_\perp^2}{c^2}}
+\end{align}
+
+nota che se scelgo \(A(\sigma) = 1\), allora l'eq. si riduce a 
+
+\begin{align}
+    \vec{\ddot{X}} = c \vec{X}''
+\end{align}
+
+Nota che la condizione di parametrizzazione può essere vista come un vincolo differenziale, in quanto posso scriverla come 
+
+\begin{align}
+    \left(\frac{ds}{d\sigma} \right)^2 + \frac{v_\perp^2}{c^2} = 1
+\end{align}
+
+oppure, (moltiplicando per \(\partial_s\vec{X}^2 =1\) il primo fattore, e ricordando che \(v_\perp = \partial_t \vec{X}\) in questa parametrizzazione) 
+
+\begin{align}
+    \left(\frac{\partial \vec{X}}{\partial \sigma} \right)^2 + \frac{1}{c^2}\left(\frac{\partial \vec{X}}{\partial t} \right)^2 = 1
+\end{align}
+
+Gli altri vincoli vengono dalle condizioni al contorno. In particolare, se abbiamo estremi liberi, alla contorno vale \(\vec{P}^\sigma = 0\), ma poiché 
+
+\begin{align}
+    \vec{P}^\sigma = -T_0 \sqrt{1-\frac{v_\perp^2}{c^2}}\frac{d\sigma}{ds}\frac{d\vec{X}}{d\sigma} = -T_0 \frac{\partial \vec{X}}{\partial \sigma}
+\end{align}
+
+Dunque le condizioni al contorno dicono 
+
+\begin{align}
+    \frac{\partial \vec{X}}{\partial \sigma}\biggr|_{\sigma = 0} = \frac{\partial \vec{X}}{\partial \sigma}\biggr|_{\sigma = \sigma_1} = 0 
+\end{align}
+
+\subsection{Studio delle equazioni del moto}
+
+Molto bene: adesso abbiamo tutti gli ingredienti per risolvere le equazioni. La più generale soluzione dell'equazione delle onde si scrive 
+
+\begin{align}
+    \vec{X}(t, \sigma) = \frac{1}{2}(\vec{F}(ct+\sigma) + \vec{G}(ct -\sigma))
+\end{align}
+
+Imponiamo le condizioni al bordo: per \(\sigma = 0\), otteniamo \(\vec{F}'(u) = \vec{G}' (u)\) dove \(u\) indica un generico argomento della funzione. Dunque, \(\vec{F}(u) = \vec{G}(u) +\) cost. Possiamo riassorbire la costante nella definizione di \(\vec{F}\) e scrivere quindi che 
+
+\begin{align}
+    \vec{X}(\sigma, t) = \frac{1}{2}(\vec{F}(ct + \sigma) + \vec{F}(ct-\sigma))
+\end{align}
+
+Invece, per \(\sigma = \sigma_1\), avremo che \(\vec{F}'(u) = \vec{F}'(u+2\sigma)\), cioè \(\vec{F}\) è quasi-periodica. Scriviamo allora 
+
+\begin{align}
+    \vec{F}(u+2\sigma_1) = \vec{F}(u) + \frac{2\sigma_1}{c}\vec{v}_0
+\end{align}
+
+Ci resta da imporre la condizione di parametrizzazione. La scriviamo nel modo seguente: 
+
+\begin{align}
+    \left(\frac{\partial \vec{X}}{\partial \sigma} \right)^2 + \frac{1}{c^2}\left(\frac{\partial \vec{X}}{\partial t} \right)^2 = \left(\frac{\partial \vec{X}}{\partial \sigma} \right)^2 + \frac{1}{c^2}\left(\frac{\partial \vec{X}}{\partial t} \right)^2 \pm \underbrace{\frac{2}{c}\frac{\partial \vec{X}}{\partial \sigma}\cdot \frac{\partial \vec{X}}{\partial t}}_{=0} = \left(\frac{\partial \vec{X}}{\partial \sigma} \pm \frac{1}{c}\frac{\partial \vec{X}}{\partial t} \right)^2 = 1  
+\end{align}
+
+Per imporle, calcoliamo 
+
+\begin{align}
+    \begin{cases}
+        \partial_\sigma \vec{X} = \frac{1}{2}(\vec{F}'(ct+\sigma) - \vec{F}'(ct-\sigma)) \\
+        \frac{1}{c}\partial_t \vec{X} = \frac{1}{2}(\vec{F}'(ct+\sigma) + \vec{F}'(ct-\sigma))
+    \end{cases} \implies \partial_\sigma\vec{X} \pm \partial_t\vec{X}/c = \pm \vec{F}'(ct\pm\sigma)
+\end{align}
+
+Dunque, per qualsiasi argomento \(u\), abbiamo che 
+
+\begin{align}
+    \biggr|\frac{dF(u)}{du}\biggr|^2 = 1 \implies \abs{dF} = \abs{du}
+\end{align}
+
+Per capire cosa descrive \(F(u)\), ricorda che il moto dell'estremo \(\sigma =0\) è descritto da \(\vec{X}(t, 0) = \vec{F}(ct)\), dunque \(\vec{F}(u)\) è la posizione del p.to \(\sigma =0\) al tempo \(u/c\). 
+
+Torniamo adesso alla costante \(\vec{v}_0\) che abbiamo introdotto, e indaghiamo il suo significato fisico. Poiché vale 
+
+\begin{align}
+    \vec{F}(2\sigma_1) = \vec{F}(0) + \frac{2\sigma_1}{c}\vec{v}_0 \implies \vec{X}\left(\frac{2c_1}{t}, 0\right) = \vec{X}(0, 0) + \frac{2\sigma_1}{c}\vec{v}_0
+\end{align}
+
+cioè \(\vec{v}_0\) è la velocità media del punto \(\sigma =0\) nell'intervallo di tempo \([0, 2\sigma_1/c]\). Si mostra che è questo vale anche per tutti gli altri punti. 
+
+\ex{Stringa in rotazione uniforme}{
+
+    Consideriamo ora come esempio una particolare configurazione di stringa. Prendiamo una rotazione rigida della stringa nel piano \(x,y\) intorno al suo centro, che supponiamo essere in \(0,0\).  
+
+    Assumiamo che la stringa abbia lunghezza \(\ell\), e pulsazione \(\omega\). Vogliamo determinare \(F(u)\) in questo caso. Il punto \(\vec{x}(t,0)\) si muove secondo 
+
+    \begin{align}
+        \vec{x}(t,0) = \frac{\ell}{2}(\cos(\omega t), \sin(\omega t))
+    \end{align}
+
+    Questo ci dice che \(F(u) = 1/2(\cos(\omega u/c), \sin(\omega u/c))\), e si ottiene inoltre \(\vec{v}_0 = 0\). Imponiamo allora la periodicità, cioè 
+
+    \begin{align}
+        F(u+2\sigma_1) = F(u) \implies \frac{\omega }{c}2\sigma_1 = 2\pi m \implies \frac{\omega}{c} = \frac{\pi}{\sigma_1}m
+    \end{align}
+
+    Quale \(m\) devo prendere? Guardiamo \(\vec{X}(0, \sigma)\): 
+
+    \begin{align}
+        \vec{X})(0, \sigma) = \frac{1}{2}(\vec{F}(\sigma) + \vec{F}(-\sigma)) = \frac{\ell}{2}\left(\cos\left(\frac{\pi m \sigma}{\sigma_1}\right), 0\right) 
+    \end{align}
+
+    Dunque se \(m=1\), in \(\sigma \in [0, \sigma_1]\) ho la stringa, invece se \(m>1\) la sto avvolgendo più volte. Scegliamo allora \(m=1\): 
+
+    \begin{align}
+        \frac{\omega}{c} = \frac{\pi}{\sigma_1} = \pi \frac{T_0}{E}
+    \end{align}
+
+    Poiché sappiamo che \(|F'|^2 = 1\), allora 
+
+    \begin{align}
+        \frac{dF}{du} = \frac{\omega \ell}{2c}\left(-\sin\left(\frac{\omega u}{c}\right), \cos\left(\frac{\omega u}{c} \right) \right) \implies \left(\frac{\omega\ell}{2c}\right)^2 = 1
+    \end{align}
+
+    Dunque scopriamo come sono legate \(\ell\) e l'energia della stringa: 
+
+    \begin{align}
+        \ell = \frac{2c}{\omega} = \frac{2\sigma_1}{\pi} = \frac{2}{\pi}\frac{E}{T_0}
+    \end{align}
+
+    cioè la stringa è di un fattore \(2/\pi\) più corta rispetto alla stringa statica.  
+
+    In particolare, osserviamo che la relazione 
+    
+    \begin{align}
+        \frac{\omega \ell}{2} = c 
+    \end{align}
+
+    implica, dove \(v=c\) cioè agli estremi, che \(\omega \propto 1/E\). 
+}
+
+Possiamo tornare allo studio delle soluzioni delle equazioni del moto, e chiederci ora cosa succede per la stringa chiusa: ancora una volta, la soluzione più generale è data da 
+
+\begin{align}
+    \vec{X}(u,v) = \frac{1}{2}(\vec{F}(u,v) + \vec{G}(u.v))
+\end{align}
+
+con \(u = ct+\sigma\), \(v = ct-\sigma\). Similmente al caso della stringa aperta, si trova 
+
+\begin{align}
+    \begin{cases}
+        F'(u) = \partial_\sigma X + (1/c)\partial_t X \\
+        G'(v) = \partial_\sigma X - (1/c)\partial_t X
+    \end{cases} \implies |F'|^2 = |G'|^2 = 1
+\end{align}
+
+Le condizioni al contorno ora invece diventano condizioni di periodicità, ovvero 
+
+\begin{align}
+    \vec{X}(t, \sigma+\sigma_1) = \vec{X}(t, \sigma) \implies F(u+\sigma_1) - F(u) = G(v+\sigma_1) - G(v)
+\end{align}
+
+Potrebbe esistere un punto \(u_0, v_0\) t.c. 
+
+\begin{align}
+    \vec{F}'(u_0) = \vec{G}'(v_0) 
+\end{align}
+
+Allora, se indichiamo \(\sigma_0, t_0\) i parametri che otteniamo invertendo \(u_0, v_0\), vale 
+
+\begin{align}
+    \frac{1}{c}\partial_t\vec{X}(t_0, \sigma_0) = \vec{F}'(u_0)  
+\end{align}
+
+poiché \(\vec{F}'\) è un vettore unitario, allora si ottiene che in quel punto la velocità della stringa è pari a \(c\). Poiché vale anche \(\partial_\sigma \vec{X} =0\), la stringa ha una \emph{cuspide} in quel punto. 
+
+\subsection{Correnti conservate sul WS}
+
+In generale, sappiamo dal teorema di Noether che una simmetria di una lagrangiana implica una carica conservata, e una simmetria nella densità lagrangiana implica una corrente conservata. In particolare, data un'azione 
+
+\begin{align}
+    S = \int \prod_{\alpha =0}^k d\xi^\alpha \mathcal{L}(\phi^a, \partial_\alpha \phi^a)
+\end{align}
+
+dove \(a\) è un indice che corre sui campi, e \(\alpha\) è un'indice che corre sulle dimensioni dello spaziotempo. Se facciamo una trasformazione infinitesima, 
+
+\begin{align}
+    \phi^a(\xi) \rightarrow \phi^a(\xi) + \delta\phi^a(\xi) = \phi^a(\xi) + \eps^i k^a_i (\phi)
+\end{align}
+
+In particolare, se questa trasformazione lascia invariata \(\mathcal{L}\), allora si ha che, dato 
+
+\begin{align}
+    \eps^iJ_i^a = \frac{\partial\mathcal{L}}{\partial(\partial_\alpha\phi)}\delta\phi^a
+\end{align}
+
+vale allora \(\partial_\alpha J^\alpha_i = 0\). Dove qui l'indice \(i\) corre sulle simmetrie. 
+
+Cosa succede nel caso io abbia un WS? L'indice \(\alpha\) in questo caso correrà sulle coordinate del WS. In questo senso, si parla di WS correnti. I campi \(\phi^a\) sono sostituiti dalle coordinate di stringa \(X^\mu\). 
+
+Un esempio notevole è quello del momento. Considera la variazione \emph{costante} 
+
+\begin{align}
+    \delta X^\mu (\tau,\sigma) = \eps^\mu
+\end{align}
+
+questa lascia invariata la lagrangiana di Nanbu-Goto, perché ricorda che questa dipende solamente dalle derivate di \(X^\mu\). Le correnti sono allora del tipo 
+
+\begin{align}
+    \eps^\mu J^\alpha_\mu = \frac{\partial \mathcal{L}}{\partial (\partial_\alpha X^\mu)}\delta X^\mu = \frac{\partial \mathcal{L}}{\partial (\partial_\alpha X^\mu)} \eps^\mu 
+\end{align}
+
+Troviamo allora che le componenti della corrente trasformata per traslazioni rigide sono 
+
+\begin{align}
+    (J_\mu^0, J_\mu^1) = (P_\mu^\tau, P_\mu^\sigma)
+\end{align}
+
+e l'eq. di conservazione è \(\partial_\alpha J^\alpha_\mu = 0\), i.e. le equazioni del moto. 
+
+Quali sono le cariche conservate? nella gauge statica, 
+
+\begin{align}
+    P_\mu(\tau) = Q_\mu(\tau) = \int_0^{\sigma_1}P_\mu^\tau (\tau, \sigma)d\sigma
+\end{align}
+
+Ora, queste sono effettivamente conservate date tutte le condizioni al contorno? Calcoliamo 
+
+\begin{align}
+    \frac{dP_\mu}{d\tau} = \int_0^{\sigma_1}\frac{\partial P^\tau_\mu}{\partial \tau}d\sigma = -\int_0^{\sigma_1}\frac{\partial P^\sigma_\mu}{\partial \sigma}d\sigma = -P^\sigma_\mu |^{\sigma_1}_0
+\end{align}
+
+Ora, ci sono tre possibili casi: 
+
+\begin{enumerate}
+    \item stringa chiusa: devo identificare \(\sigma_1, 0\) e quindi il momento totale si conserva 
+    \item stringa aperta, con condizioni di Neumann (estremi liberi): agli estremi il momento si annulla, e quindi si conserva. 
+    \item stringa aperta, con condizioni di Dirichlet: \(\frac{dP_\mu}{dt} \neq 0\). 
+\end{enumerate}
+
+osserva che queste correnti sono correnti sul WS, non nello spaziotempo, nel senso che sono nulle ovunque se non sul WS. 
+
+
+Come ottengo le leggi di conservazione sullo spaziotempo? posso sfruttare l'invarianza per riparametrizzazioni. Fissiamo ad esempio la gauge-statica, \(t = \tau\). 
+
+\clm{}{}{
+
+    Ogni curva sul WS può essere usata per calcolare il momento conservato \(p_\mu\). 
+}
+
+\pf{}{Per il momento, abbiamo solo calcolato il momento, integrando \(p^\tau_\mu\) su una linea con \(\tau\) costante. 
+
+    Un modo di pensare a questa operazione è che abbiamo preso il flusso della densità di momento, vista come una corrente due-dimensionale. In effetti, data una curva chiusa \(\Gamma\) che rinchiude una regione \(R\) del WS, il flusso uscente è dato da 
+    
+    \begin{align}
+        P_\mu(\Gamma) = \oint_\Gamma (P_\mu^\tau d\sigma - P^\sigma_\mu d\tau)
+    \end{align}
+
+    usando il teorema della divergenza, troviamo 
+
+    \begin{align}
+        P_\mu(\Gamma) = \int_R \left(\frac{dp^\tau_\mu}{d\tau} + \frac{dp_\mu^\sigma}{d\sigma} \right) = 0
+    \end{align}
+
+    grazie alle equazioni del moto. L'integranda è nulla allora per ogni curva chiusa. Supponiamo di costruire la nostra curva chiusa nel modo seguente: una curvaa \(\gamma\) che ha come inizio \(\sigma=0\), come fine \(\sigma = \sigma_1\), una curva \(\beta\) su \(\sigma_1\) costante, una curva \(\bar{\gamma}\) che inizia in \(\sigma_1\) e finisce in \(\sigma =0\), e infine una curva \(\alpha\) con \(\sigma=0\) costante che chiude il cerchio. Sappiamo che \(P(\Gamma) =0\), e anche le curve su \(\sigma\) costanti, perché lì \(d\sigma=0\) e contribusce solo il termine \(P^\sigma_\mu\) che però per le condizioni al contorno è nullo. Dunque abbiamo trovato che 
+
+    \begin{align}
+        \int_\gamma (P^\tau_\mu d\sigma - P^\sigma_\mu d\tau) = \int_{\bar{\gamma}} (P^\tau_\mu d\sigma - P^\sigma_\mu d\tau) 
+    \end{align}
+
+    Dunque ottengo la stessa quantità integrando su qualunque curva. Se prendiamo una curva a \(\tau\) costante, ritroviamo il punto di partenza. 
+}
+
+\subsection{Simmetrie di lorentz e correnti}
+
+Siccome \(S_{NG}\) è uno scalare di lorentz, le trasformazioni di lorentz delle coordinate \(x^\mu\) sono simmetrie. Vogliamo allora determinare le cariche conservate. 
+
+Ricorda che una trasformazione di lorentz, è una trasformazione (se la prendiamo infinitesima)
+
+\begin{align}
+    x^\mu \rightarrow x'^\mu = x^\mu + \eps^{\mu\nu}x_\nu \quad | \quad \delta(\eta_{\mu\nu}x^\mu x^\nu) = 0 
+\end{align}
+
+con \(\eps\) costante e opportunamente piccolo. Questo impone delle condizioni su \(\eps^{\mu\nu}\): 
+
+\begin{align}
+    2\eta_{\mu\nu}\delta(x^\mu)x^\nu = 2\eta_{\mu\nu}\eps^{\mu\rho}x_\rho x_\nu = 2 \eps^{\mu\rho}x_\rho x_\mu = 0 
+\end{align}
+
+ciò impone quindi che la parte simmetrica di \(\eps^{\mu\nu}\) sia zero, ovvero \(\eps\) è un tensore antisimmetrico. 
+
+Studiamo allora l'invarianza di \(\mathcal{L}\) sotto queste trasformazioni. Usando nuovamente la notazione \(\xi = (\tau, \sigma)\), la lagrangiana è costruita a partire da pezzi del tipo 
+
+\begin{align}
+    \eta_{\mu\nu}\frac{\partial x^\mu}{\partial \xi^\alpha}\frac{\partial x^\nu}{\partial \xi^\beta}
+\end{align}
+
+e ognuno di questi e lorentz-invariante. Infatti, prendiamo 
+
+\begin{align}
+    \delta\left(\eta_{\mu\nu}\frac{dx^\mu}{d\xi^\alpha}\frac{dx^\nu}{d\xi^\beta} \right) &= \eta_{\mu\nu}\left(\frac{d\delta(x^\mu)}{d\xi^\alpha}\frac{dx^\nu}{d\xi^\beta} + \frac{dx^\mu}{d\xi^\alpha}\frac{d\delta(x^\nu)}{d\xi^\beta}\right) \\
+    &= \eta_{\mu\nu}\left(\eps^{\mu\rho}\frac{dx_\rho}{d\xi^\alpha}\frac{dx^\nu}{d\xi^\beta} + \eps^{\nu\rho}\frac{dx^\mu}{d\xi^\alpha}\frac{dx_\rho}{d\xi^\beta} \right) \\
+    &= \eps_{\nu\rho}\frac{dx^\rho}{d\xi^\alpha}\frac{dx^\nu}{d\xi^\beta} + \eps_{\mu\rho}\frac{dx^\mu}{d\xi^\alpha}\frac{dx^\rho}{d\xi^\beta} = 0 
+\end{align}
+
+Poiché \(\eps_{\nu\rho}\) è antisimmetrico. 
+
+Veniamo allora a determinare quali sono le correnti conservate. Avremmo, dal teorema di Noether, 
+
+\begin{align}
+    \eps^{\mu\nu}J^\alpha_{\mu\nu} &= \frac{\partial \mathcal{L}}{\partial(\partial_\alpha X^\mu)}\delta(X^\mu) \\
+    &= P^\alpha_\mu \eps^{\mu\nu}X_\nu = -\frac{1}{2}\eps^{\mu\nu}(X_\mu P_\nu^\alpha - X_\nu P^\alpha_\mu)
+\end{align}
+
+è naturale allora definire 
+
+\begin{align}
+    M^\alpha_{\mu\nu} = X_\mu P^\alpha_\nu - X_\nu P^\alpha_\mu
+\end{align}
+
+Per costruzione è antisimmetrico, e obbedisce all'equazione di conservazione 
+
+\begin{align}
+    \frac{\partial M^\tau_{\mu\nu}}{\partial \tau} + \frac{\partial M^\sigma_{\mu\nu}}{\partial \sigma} = 0 
+\end{align}
+
+Le cariche si ottengono lungo una curva qualsiasi \(\gamma\) del WS secondo 
+
+\begin{align}
+    M_{\mu\nu} = \int_\gamma (M^\tau_{\mu\nu}d\sigma - M^\sigma_{\mu\nu}d\tau)
+\end{align}
+
+ad esempio, se sono in 4 dimensioni, allora ho 6 cariche conservate, che sono dovute all'invarianza dalle tre rotazioni spaziali, e dai tre boost. Dunque, \(M^\tau_{\mu\nu}\) è la densità di momento angolare sulla stringa, si definisce 
+
+\begin{align}
+    L_i = \frac{1}{2}\eps_{ijk}M^{jk}
+\end{align}
+
+Ad esempio, se ho un boost, la carica è data da 
+
+\begin{align}
+    M^{0i} = \int d\sigma (c\tau P^{\tau i} - X^i P^{\tau 0}) = ctP^i - \int d\sigma X^i P^{\tau 0}
+\end{align}
+
+\end{document}

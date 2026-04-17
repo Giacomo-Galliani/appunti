@@ -1,0 +1,1005 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti Teoria delle Interazioni Fondamentali}}}
+\author{Giacomo Galliani, corso dei prof. A. Vicini, M. Zaro}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{Il propagatore di Feyman}
+\section{Il propagatore del campo scalare}
+
+Lo scopo principale del corso è capire come si possono fare \emph{praticamete} calcoli di ampiezze di transizione. Poiché trattiamo di particelle elementari, ad energie molto alte, il linguaggio adatto è la teoria quantistica dei campi. A differenza però di un corso in qft, qui considereremo solamente dei campi con dirette applicazioni fisiche. \\
+
+Come detto, vogliamo studiare ampiezze di transizione, cioè processi di scattering. Quasi sempre, penseremo allo scattering fra due (o più) particelle nel modo seguente: all'inizio \(t = -\infty\) abbiamo due particelle infinitamente distanti, che non sentono l'effetto di una sull'altra. Successivamente, le particelle entrano nel range dell'interazione: questo è un punto delicato, dove tipicamente non siamo in grado di risolvere le equazioni esattamente. Dovremo quindi ricorrere a tecniche perturbative. D'altra parte, alla fine abbiamo ancora la \emph{teoria libera}, cioè due particelle che all'infinito non si sentono più. \\
+
+Alla luce di questa discussione qualitativa, è chiaro che il calcolo base che dovremo impostare è la probabilità che una particella venga creata in un punto \(x\), e venga misurata (cioè distrutta) in \(y\). \\
+
+L'elemento di matrice rilevante in questo caso, se consideriamo un campo scalare \(\phi\), è dato da 
+
+\begin{align}
+    \bra{0}\phi(y)\phi(x)\ket{0}
+\end{align}
+
+Poiché si tratta di un campo scalare, possiamo scrivere 
+
+\begin{align}
+    \phi(x) = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}}(e^{-ipx}a_p + e^{ipx}a^\dagger_p)
+\end{align}
+
+dobbiamo allora calcolarci 
+
+\begin{align}
+    \bra{0}\int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}}(e^{-ipy}a_p + e^{ipy}a^\dagger_p)\int \frac{d^3p'}{(2\pi)^3}\frac{1}{\sqrt{2E_{p'}}}(e^{-ipx}a_{p'} + e^{ipx}a^\dagger_{p'})\ket{0}
+\end{align}
+
+Nella teoria quantistica, gli \(a_p, a^\dagger_p\) non sono semplici coefficienti di Fourier, ma sono gli operatori di distruzione e costruzione che obbediscono alle relazioni di commutazione 
+
+\begin{align}
+    &[a_p, a^\dagger_{p'}] = (2\pi)^3\delta^3(p-p') \\
+    &[a_p, a_{p'}] = 0 \\
+    &[a^\dagger_p, a^\dagger_{p'}] = 0 
+\end{align}
+
+Ricordando poi che vale \(a_p \ket{0} = 0, \, \forall p\), l'unico contributo non nullo all'integrale viene dal prodotto 
+
+\begin{align}
+    a_pa^\dagger_{p'} = a^\dagger_{p'}a_p + (2\pi)^3 \delta^3(p-p')
+\end{align}
+
+A questo punto, \(a_p\) annichila il vuoto e l'unico pezzo che conta è il commutatore. L'integrale in \(p'\) a questo punto è banale grazie alla delta di Dirac, ed otteniamo 
+
+\begin{align}
+    \bra{0}\int \frac{d^3p}{(2\pi)^3}\frac{1}{2E_p}e^{-ip(y-x)}\ket{0}
+\end{align}
+
+Questo oggetto può essere scritto in maniera manifestamente covariante. Basta scrivere il fattore \((2E_p)^{-1}\) come il risultato di un integrale per residui: 
+
+\begin{align}
+    \bra{0}\int \frac{d^3p}{(2\pi)^3}\frac{dp_0}{2\pi i }\frac{-e^{-ip(y-x)}}{p^2 - m^2} \ket{0}
+\end{align}
+
+Per vedere questo, scrivi \(p^2 -m^2 = p_0^2 -\underbrace{(p_2 + m^2)}_{E^2_p} \). Allora, vista come una funzione della variabile complessa \(p_0\) la funzione ha due poli sull'asse reale, dove \(p_0 = \pm E_p\). Ora dobbiamo scegliere il cammino di integrazione. La scelta tipica è nota come \emph{prescrizione di Feymann}, ed è la seguente: prendi l'asse reale, e circonda con semicerchio \emph{inferiore} il primo polo, con un semicerchio \emph{superiore} il secondo polo. Per chiudere il cammino di integrazione, considera il segno di \(x_0-y_0\): se è positivo, allora chiudi il cammino nel semipiano superiore, se è negativo nel semipiano inferiore.  
+
+\begin{center}
+    \begin{tikzpicture}
+
+  % Definisci i parametri
+  \def\Ep{2}
+  \def\eps{0.3}
+  \def\R{4}
+
+  % Disegna gli assi
+  \draw[->] (-5,0) -- (5,0) node[right] {Re$(p_0)$};
+  \draw[->] (0,-2) -- (0,4) node[above] {Im$(p_0)$};
+
+  % Disegna i poli
+  \filldraw (\Ep,0) circle (2pt) node[below] {$E_p$};
+  \filldraw (-\Ep,0) circle (2pt) node[above] {$-E_p$};
+
+  % Disegna il cammino di integrazione
+  \draw[thick, doc] (-4,0) -- (-\Ep-\eps,0);
+  \draw[thick, doc] (-\Ep-\eps,0) arc (180:360:\eps);
+  \draw[thick, doc] (-\Ep+\eps,0) -- (\Ep-\eps,0);
+  \draw[thick, doc] (\Ep-\eps,0) arc (0:180:\eps);
+  \draw[thick, doc] (\Ep+\eps,0) -- (4,0);
+
+
+\end{tikzpicture}
+\end{center}
+
+
+
+
+Questa funzione della differenza \(x-y\) è detta \emph{propagatore}, la indichieremo con \(D(x-y)\), ed è la funzione di green dell'equazione di Klein-Gordon. Ciò vuol dire che soddisfa \footnote{Per verificarlo, passa nello spazio di Fourier. Indicando con \(\tilde{D}(p)\) le componenti di Fourier, trovi allora che deve valere \((p^2 - m^2)\tilde{D}(p) = i\). Da questa ottieni un espressione per \(\tilde{D}\), e scrivendo il propagatore come trasformata di Fourier, ritrovi proprio la nostra espressione. }
+
+\begin{align}
+    ((\partial^\mu\partial_\mu)_x + m^2)D(y-x) = -i\delta^4 (x-y)
+\end{align}
+
+A partire da questo, si definisce il propagatore di Feymann, come 
+
+\begin{align}
+    D_F(x-y) = \begin{cases}
+        D(y-x), \, \text{se } y_0 > x_0 \\ 
+        D(x-y), \, \text{se } y_0 < x_0  
+    \end{cases}
+\end{align}
+
+Una nota su come definiamo e normalizziamo gli stati. Noi partiamo sempre dallo stato di vuoto, \(\ket{0}\), che è definito come lo stato che viene annichilito dall'operatore di distruzione, ovvero realizza 
+
+\begin{align}
+    a_{\vec{k}} \ket{0} = 0, \, \forall \vec{k}
+\end{align}
+
+Invece, agendo su questo con gli operatori di creazione, creiamo gli stati delle particelle. Possiamo agire anche più volte ed ottenere stati di più particelle con lo stesso momento: 
+
+\begin{align}
+    &\ket{k} = N_1 a^\dagger_{\vec{k}}\ket{0} \\
+    &\ket{2k} = N_2 a^\dagger_{\vec{k}}a^\dagger_{\vec{k}}\ket{0}
+\end{align}
+
+questi stati sono tra loro ortogonali. Per vederlo, calcoliamo il prodotto scalare: 
+
+\begin{align}
+    \Braket{2k | k} &= N_2^*N_1 \bra{0}a_{\vec{k}}a_{\vec{k}}a^\dagger_{\vec{k}}\ket{0} \\
+    &= N_2^* N_1 \bra{0}a_{\vec{k}}(1-a^\dagger_{\vec{k}}a_{\vec{k}})\ket{0} \\
+    &= N_2^*N_1 \bra{0}a_{\vec{k}} \ket{0} = 0 
+\end{align}
+
+Per avere stati ortonormali, dobbiamo imporre la corretta normalizzazione. Ingenuamente, uno potrebbe richiedere 
+
+\begin{align}
+    \Braket{\vec{k} | \vec{k}'} = (2\pi)^3\delta(\vec{k}-\vec{k}')
+\end{align}
+
+ma questa in realtà \emph{non} è una scelta corretta, perché non è loretnz-invariante. Per trovare un corretto punto di partenza, considera allora 
+
+\begin{align}
+    \frac{d^3 k}{2E_p} = d^4k \delta(k^2 - m^2)\theta(k_0)
+\end{align}
+
+che si verifica facilmente da destra verso sinistra, integrando rispetto al tempo, usando le proprietà della delta di Dirac. In particolare, la misura a sinistra è uno scalare di Lorentz. D'altra parte, anche \(d^3k \delta(\vec{k})\) è uno scalare, e posso scrivere 
+
+\begin{align}
+    d^3k \delta(\vec{k}) = \left(\frac{d^3k}{2E_p}\right)\delta(\vec{k})2E_p
+\end{align}
+
+concludiamo che \(\delta(k)(2E_p)\) è uno scalare! scriveremo allora 
+
+\begin{align}
+    \ket{k} = \sqrt{2E}a^\dagger_{\vec{k}}\ket{0}
+\end{align}
+
+\section{Il propagatore fermionico}
+
+Consideriamo la lagrangiana di Dirac 
+
+\begin{align}
+    \mathcal{L}_{\text{Dirac}} = \bar{\psi}(x)(i\gamma_\mu\partial^\mu -m)\psi(x)
+\end{align}
+
+e la conseguente equazione di Dirac, che si ottiene usando le equazioni di eulero-lagrange: 
+
+\begin{align}
+    (i\slashed{\partial} -m)\psi(x) =  0, \quad \slashed{\partial} := \gamma_\mu\partial^\mu
+\end{align}
+
+La soluzione è scomponibile in onde piane, secondo 
+
+\begin{align}
+    \psi(x) = u_{\vec{p}}e^{-ipx} + v_{\vec{p}}e^{ipx}
+\end{align}
+
+dove le funzioni \(u, v\) (chiamate spesso \emph{spinori}), obbediscono alle equazioni
+
+\begin{align}
+\begin{cases}
+    (\slashed{p}-m)u_{\vec{p}} = 0 \\
+    (\slashed{p}+m)v_{\vec{p}} = 0 
+\end{cases}
+\end{align}
+
+
+la più generale soluzione dell'equazione di Dirac è data da 
+
+\begin{align}
+    \psi(x) = \int \frac{d^3p}{\sqrt{2E_{\vec{p}}}(2\pi)^3}\sum_s\left( b^s_{\vec{p}}u^s_{\vec{p}}e^{-ipx} + d^{\dagger, s}_{\vec{p}}v^s_{\vec{p}}e^{ipx} \right)
+\end{align}
+
+Ora, quando quantizzo la teoria, voglio che gli stati rispettino la statistica fermionica: questo impone le leggi di \emph{anti-commutazione}: \footnote{c'è un modo semplice di vedere perché questo deve valere. Per la statistica fermionica, è impossibile creare dal vuoto uno stato avente due particelle identiche. Ciò è automaticamente realizzato se valgono le relazioni di anticommutazione, perchè \(b^{\dagger, r}_p b^{\dagger, s}_{p'} \ket{0} = - b^{\dagger, s}_{p'} b^{\dagger, r}_p  \ket{0}\). Dunque gli stati fermionici sono completamente antisimmetrici nelle etichette (momento, spin, ecc.) che li caratterizzano. }
+
+\begin{align}
+    \left\{b_{\vec{p}}^r, b_{\vec{p}'}^{\dagger, s}\right\} = (2\pi)^3 \delta_{rs}\delta(\vec{p}-\vec{p}') = \left\{d_{\vec{p}}^r, d_{\vec{p}'}^{\dagger, s}\right\}
+\end{align}
+
+Ora che abbiamo chiaro come si descrive un fermione in teoria dei campi, vogliamo calcolare il propagatore fermionico. Questo vuol dire determinare la funzione di green \(S_R(x-y)\), t.c. 
+
+\begin{align}
+    (i\slashed{\partial} -m)S_R(x-y) = i\delta(x-y)\mathbb{I}_{4\times 4}
+\end{align}
+
+una osservazione importante è che posso allora scrivere \((i\slashed{\partial}+m)D_R(x-y)\), con \(D_R\) il propagatore del campo scalare. Infatti, 
+
+\begin{align}
+    (i\slashed{\partial} -m)(i\slashed{\partial} +m)D_R(x-y) = (-\square + m^2)D_R(x-y) = i\delta(x-y)
+\end{align}
+
+nell'ultima uguaglianza abbiamo usato il fatto che il propagatore del campo scalare è la funzione di green dell'equazione di Klein-Gordon. Ma allora vale 
+
+\begin{align}
+    S_R(x-y) = (i\slashed{\partial} + m)\int \frac{d^4p}{(2\pi)^3}\frac{i}{p^2 -m^2}e^{ip(x-y)} = \int \frac{d^4p}{(2\pi)^3}\frac{i(\slashed{p}+m)}{p^2 -m^2}e^{ip(x-y)} 
+\end{align}
+
+d'altra parte, potevamo ottenere immediatamente lo stesso risultato passando in trasformata di Fourier, 
+
+\begin{align}
+    i\delta(x-y) = (\slashed{p}-m)S_R(x-y) = \int \frac{d^4p}{(2\pi)^4}(\slashed{p}-m)\tilde{S}_R(p)e^{-ip(x-y)}
+\end{align}
+
+Ricordando ora che 
+
+\begin{align}
+    i\delta(x-y) = \int \frac{d^4p}{(2\pi)^4}e^{-ip(x-y)}
+\end{align}
+
+troviamo dunque che
+
+\begin{align}
+    (\slashed{p}-m)\tilde{S}_R = i \implies \tilde{S}_R = \frac{i(\slashed{p}+m)}{p^2-m^2} \implies \tilde{S}_F(p) = \frac{i(\slashed{p}+m)}{p^2 -m^2 +i\eps} 
+\end{align}
+
+in accordo con quello precedentemente trovato. 
+
+\section{Il propagatore del fotone}
+
+Cominciamo con lo scrivere la lagrangiana della QED: 
+
+\begin{align}
+    \mathcal{L}_{QED} = \bar{\psi}(i \gamma_\mu(\partial^\mu +ieA^\mu) -m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \mathcal{L}_{GF}
+\end{align}
+
+Non tutti i termini sono immediati, dunque spieghiamo lo scopo di ciascun termine: 
+
+\begin{enumerate}
+    \item \(F_{\mu\nu}\) è la parte dinamica del campo e.m. Questo permette di ottenere le equazioni di Maxwell \(\partial_\mu F^{\mu\nu} = J^{\nu}\).
+    \item Il campo \(A_\mu\) compare anche nel pezzo di lagrangiana di Dirac. Questo termine rappresenta l'accoppiamento fra il potenziale di gauge e i campi di materia. Classicamente, avremmo scritto \(-A_\mu J^\mu\), ma sappiamo che per un fermione di Dirac, la corrente è data da \(J_\mu = -e\bar{\psi}\gamma_\mu \psi\).
+    \item Il termine \(\mathcal{L}_{GF}\) è detto gauge fixing. Vedremo più in dettaglio dopo che senza questo termine, la lagrangiana è invariante rispetto a trasformazioni di gauge locali. Questo però genera una ambiguità, che non permette di calcolare il propagatore. Una possibile scelta per il gauge fixing è \(\mathcal{L}_{GF} = -(1/2)(\partial_\mu A^\mu)^2\).  
+\end{enumerate}
+
+Vediamo più in dettaglio la trasformazione locale di cui parlavamo. Supponiamo che il campo si trasformi come 
+
+\begin{align}
+    \psi(x) \rightarrow \psi'(x) = e^{ie\alpha(x)}\psi(x) \implies \bar{\psi}(x) \rightarrow \bar{\psi}'(x) = \bar{\psi}(x)e^{-ie\alpha(x)}
+\end{align}
+
+vediamo come cambia la lagrangiana: la parte di dirac \emph{non} è invariante, infatti 
+
+\begin{align}
+    \mathcal{L}_{\text{Dirac}} = \bar{\psi}(i\slashed{\partial} -m)\psi = i \bar{\psi}\slashed{\partial}\psi -m\bar{\psi}\psi
+\end{align}
+
+il termine con la massa è invariante, mentre invece il primo termine contiene una derivata che agisce su \(\alpha(x)\), che non è costante per ipotesi. In particolare, calcoliamo
+
+\begin{align}
+    \mathcal{L}'_{\text{Dirac}} &= -m\bar{\psi}\psi + i\bar{\psi}e^{-i\alpha(x)}(e^{i\alpha(x)}(\slashed{\partial}\psi) + ie \gamma^\mu \partial_\mu \alpha(x)e^{ie\alpha(x)}\psi) \\
+    &= \mathcal{L}_{\text{Dirac}} + i\bar{\psi}(ie\gamma^\mu\partial_\mu)\psi
+\end{align}
+
+Dunque, possiamo avere una lagrangiana invariante, se inseriamo un campo che si trasformi come 
+
+\begin{align}
+    A_\mu \rightarrow A'_\mu = A_\mu + \partial_\mu\alpha(x)
+\end{align}
+
+tipicamente, la lagragiana di Dirac con l'aggiunta di questo termine di interazione, che ci accorgiamo a posteriori essere il termine di accoppiamento materia-campo e.m. della lagrangiana di Maxwell classica, si scrive 
+
+\begin{align}
+    \mathcal{L} = \bar{\psi}(i\slashed{D} - m)\psi -\frac{1}{4}F_{\mu\nu}F^{\mu\nu}
+\end{align}
+
+dove abbiamo introdotto la \emph{derivata covariante}, data da 
+
+\begin{align}
+    D^\mu = \partial^\mu + ieA^\mu
+\end{align}
+
+In particolare, per tutto quello che abbiamo detto, vale che 
+
+\begin{align}
+    \slashed{D}\psi \rightarrow \slashed{D}\psi' = e^{ie\alpha(x)}\slashed{\psi}
+\end{align}
+
+così che la lagrangiana è ad occhio invariante. Una teoria di questo tipo si dice teoria di \emph{gauge}, con gruppo di gauge \(G = U(1)\), perché le trasformazioni \(e^{ie\alpha(x)}\) sono mappe dallo spaziotempo al gruppo di Lie \(U(1)\). \\
+
+In questo caso particolare, gli elementi del gruppo sono rappresentati sempre come scalari. Questo è un caso particolare, che deriva dalla semplicità del gruppo di gauge \(U(1)\). Vedremo che ad esempio in cromodinamica, il gruppo di gauge sarà più complicato, e come questo porti a grande differenze fisiche nella teoria.   
+
+Ora, il campo \(A_\mu\) è descritto da un vettore, quindi ha quattro componenti. Mi chiedo se queste componenti sono \emph{fisiche}, ovvero se sono tutte indipendenti fra di loro. Scopriremo che in realtà solamente due sono indipendenti, e in particolare diremo che il fotone è descritto da due gradi di libertà \emph{trasversali}. Vediamo perché: 
+
+Inanzitutto, c'è la libertà di gauge: il campo è invariante se aggiungo il gradiente di qualunque funzione scalare: dunque posso sempre fissare il gauge ponendo una componente uguale a 0. Chiaramente allora la libertà di gauge toglie un grado di libertà al fotone. 
+
+Ora, quando inserisco il termine di gauge fixing, una parte del tensore \(F_{\mu\nu}\) si ricombina con questo, e forma una divergenza totale, che non contribuisce all'azione, e conseguentemente alle equazioni del moto: si trova che alla fine queste sono date da 
+
+\begin{align}
+    \square A^\nu = J^\nu \implies \square \partial_\nu A^\nu = \partial_\nu J^\nu = 0
+\end{align}
+
+dove nell'ultima abbiamo usato che \(J^\nu\) è la corrente conservata, associata alle trasformazioni di fase globali. Ma questo significa che se definisco un campo \(\phi\) come 
+
+\begin{align}
+    \phi := \partial_\mu A^\mu \implies \square\phi = 0
+\end{align}
+
+questo fissa un altro grado di libertà, e dunque gli unici gradi sono 2. Ora, abbiamo accenato al fatto che il gauge fixing serva al calcolo della funzione di green. Vediamo più in dettaglio: il propagatore del fotone è la funzione di Green, cioè la soluzione dell'equazione 
+
+\begin{align}
+    \square \triangle^{\mu\nu} - \partial^\mu\partial_\lambda \triangle^{\lambda\nu} = -g^{\mu\nu}\delta(x-y)
+\end{align}
+
+questo \emph{senza} il gauge fixing: abbiamo già detto che se introduciamo il secondo termine, allora bisogna semplicemente risolvere 
+
+\begin{align}
+    \square \triangle^{\mu\nu} = -g^{\mu\nu}\delta(x-y)
+\end{align}
+
+Per risolverla, passiamo nello spazio di Fourier: 
+
+\begin{align}
+    \triangle^{\mu\nu} = g^{\mu\nu}\int \frac{d^3 p}{(2\pi)^3}\tilde{\triangle}(p)e^{-ipx} \implies \tilde{\triangle}(p) = p^{-2}
+\end{align}
+
+dunque il propagatore del fotone è dato da 
+
+\begin{align}
+    \triangle^{\mu\nu} = g^{\mu\nu}\int \frac{d^3p}{(2\pi)^3}\frac{e^{-ipx}}{p^2 +i\eps}
+\end{align}
+
+abbiamo menzionato che i due gradi di libertà indipendenti del fotone sono gradi trasversali. Vediamo perché: decomponiamo il campo \(A^\mu\) in termini di Fourier: 
+
+\begin{align}
+    A_\mu = \int \frac{d^3k}{\sqrt{2\omega}(2\pi)^3}\sum_s (\eps_\mu^s a_{\vec{k}}^s e^{-ikx} + \eps_\mu^{* , s}a_{\vec{k}}^{\dagger, s}e^{ikx})
+\end{align}
+
+ora, i vettori \(\eps_\mu\) che indicano la direzione del fotone, sono vettori quadridimensionali, e come tali posso decomporlo in  
+
+\begin{align}
+    \eps_\mu(\vec{k}) = \eps_{T, \mu} + a k_{\mu} + b\bar{k}_\mu
+\end{align}
+
+dove in particolare: 
+
+\begin{enumerate}
+    \item se scrivo \(k_\mu = (k, \vec{k})\), allora \(\bar{k}_\mu = (k, -\vec{k})\)
+    \item Il vettore \(\eps_{T, \mu} = (0, \vec{\eps}_T)\) è un vettore tridimensionale, e \emph{trasversale}: questo vuol dire che soddisfa \(\vec{k}\cdot \vec{\eps}_T = 0\)
+\end{enumerate}
+
+Ora, chiaramente poiché se prendo \(\partial_\mu \rightarrow k_\mu\), è chiaro che \(\partial_\mu A^\mu \propto b\). D'altra parte, abbiamo visto che dalle equazioni del moto, \(\partial_\mu A^\mu\) non interagisce con gli altri campi e non partecipa alla dinamica: posso dunque porre \(b=0\). D'altra parte, con una trasformazione di gauge posso sempre porre \(a=0\). Questo prova il nostro punto. 
+
+Questo trova una applicazione pratica nella \emph{somma sulle polarizzazioni}: infatti, spesso vorremo calcolare 
+
+\begin{align}
+    \sum_\lambda \eps_\mu(p, \lambda)\eps^\nu (p, \lambda) = \Pi^{\mu\nu}
+\end{align}
+
+Ora, qualunque cosa sia \(\Pi^{\mu\nu}\), poiché i vettori di polarizzazione sono trasversali, deve certamente valere che \(\Pi^{\mu\nu}p_\nu = \Pi^{\mu\nu}\bar{p}_\nu = 0\). Non è difficile convincersi che il tensore più generale che soddisfa questa condizione è dato da 
+
+\begin{align}
+    \Pi_{\mu\nu} = -g_{\mu\nu} +\frac{p_\mu \bar{p}_\nu + \bar{p}_\mu p_\nu}{p\cdot \bar{p}}
+\end{align}
+
+in un calcolo realistico, l'espressione si semplifica ulteriormente. Questo perché se calcolo un elemento di matrice, questo spesso ha la forma 
+
+\begin{align}
+    M = M_\mu \eps^\mu_\lambda(p)
+\end{align}
+
+D'altra parte, vale l'identità di Ward, che ci dice \(\partial_\mu M^\mu =0 \implies p_\mu M^\mu =0\). Dunque quando prendo il prodotto del tensore \(\Pi^{\mu\nu}\) e lo contraggo con l'elemento di matrice \(\eps_\mu\), solo la parte proporzionale alla metrica sopravvive. Per questo motivo, in tutti i calcoli pratici useremo 
+
+\begin{align}
+    \Pi^{\mu\nu} = -g^{\mu\nu}
+\end{align}
+
+\subsection{Un primo esempio di calcolo}
+
+
+Come primo esempio di calcolo di un processo realistico, consideriamo il caso di un fotone, con polarizzazione \(r\) e momento \(p\), che da origine ad una coppia particella - antiparticella, con momenti \(k_1, k_2\) e spin \(s_1, s_2\). \\
+
+Questo è il famoso (e importante) risultato che una coppia elettrone-positrone può formarsi a partire da un fotone incidente. 
+
+Calcolare l'elemento di matrice ci permetterà di scrivere la regola di Feyman per questo vertice. Il problema è il seguente, voglio calcolare 
+
+\begin{align}
+    \Braket{k_1, k_2 | p} = \bra{0}\sqrt{2E_1}\sqrt{2E_2}b^{r_1}_{k_1}d^{r_2}_{k_2}\underbrace{\left(-i\int d^4x e \bar{\psi}\gamma_\mu \psi A^\mu\right)}_{\text{Hamiltioniana d'interazione}}a^{\dagger, r}_{p}\sqrt{2\omega}\ket{0}
+\end{align}
+
+il prossimo step è di scrivere \(\psi, \bar{\psi}, A^\mu\) in trasformata di Fourier, esplicitando così gli operatori di creazione e distruzione. D'altra parte, faccio la seguiente osservazione: poiché il campo \(A^\mu\) moltiplica l'operatore \(a^{\dagger, r}_{p}\), sapendo le relazioni di commutazione di \(a, a^{\dagger}\), posso commutare i due operatori, e \(a\) annichilisce il vuoto. L'unico contributo non nullo avviene quando il commutatore non è banale, cioè quando viene selezionato \(a_p\). Un ragionamento uguale vale anche per \(b, d\) e si trova che l'elemento di matrice diventa 
+
+\begin{align}
+    \Braket{k_1, k_2 | p} = (-ie)\int d^4x \bra{0}\bar{u}^{r_1}_{k_1}e^{ik_1 x}\gamma_\mu v^{r_s}_{k_2}e^{ik_2 x}\eps^{\mu, r}e^{-ipx}\ket{0}
+\end{align}
+
+In particolare, gli esponenziali che rimangono dallo sviluppo di Fourier si ricombinano in una delta di Dirac, che esprime la conservazione dell'impulso: 
+
+\begin{align}
+    \Braket{k_1, k_2 | p} = (-ie)(2\pi)^4\delta(k_1 + k_2 -p)\bar{u}_{k_1}\gamma^\mu v_{k_2}\eps_{\mu}(p)
+\end{align}
+
+notiamo in particolare il coefficiente \(-ie\gamma^\mu\): questo è particolare di questo vertice, ed è la sua regola di Feyman. \\
+
+Oltre alla regola specifica del vertice, osserviamo una proprietà universale di questi processi: per ogni fermione entrante, questo porta con se \(u(p)\), per ogni anti-fermione entrante, questo porta con sè \(\bar{v}(p)\). Similmente, se il fermione è uscente porta \(\bar{u}(p)\), e un antifermione uscente \(v(p)\). Non è difficile convincersi che queste regole discendono dalle relazioni di commutazione degli operatori di creazione e distruzione. 
+
+
+\chapter{La teoria dell'urto}
+
+Siamo pronti ad applicare quello che abbiamo imparato per cominciare a fare dei conti pratici: vogliamo calcolare degli elementi di matrice, al fine di determinare la sezione d'urto di alcuni processi fisici. \\
+
+Ma cosa è una sezione d'urto? vediamolo con un esempio schematico. Abbiamo un insieme di particelle, di tipo B, che vengono lanciate contro un bersaglio, ovvero delle particelle di tipo A. L'impatto avviene su una superficie \(S\). Se pensiamo che le particelle di tipo B siano in un cubetto di lato \(\ell_B\) e di densità \(\rho_B\), e il bersaglio sia di lato \(\ell_A\) e di densità \(\rho_A\), è intuitivo che varrà
+
+\begin{align}
+    N_{\text{eventi}} \propto \rho_A \rho_B \ell_A \ell_B S
+\end{align}
+
+La \emph{sezione d'urto} \(\sigma\) è definita come la costante di proporzionalità. Dimensionalmente, è un area. Uno può pensarla come l'area effettiva delle particelle di tipo A, viste dalle particelle di tipo B. \\
+
+Ora, immaginiamo che le particelle di tipo B vengano lanciate sul bersaglio, tutte ad una diversa altezza. Se indichiamo con \(b\) il \emph{parametro d'impatto}, cioè la distanza minima fra la particella e il bersaglio, tutte le particelle B avranno diverso parametro di impatto. Indicata con \(P(b)\) la probabilità che avvenga l'impatto dato un certo parametro di impatto (quantità che tipicamente viene fornita dalla teoria di campo), allora vale 
+
+\begin{align}
+    N_{\text{eventi}} = \int d^2b \rho_B \ell_B P(b) = \rho_B \ell_B \int d^2b  P(b) 
+\end{align}
+
+Se il bersaglio è singolo, \(N_A = 1\), e \(N_B = \frac{N_B}{S}\sigma = \rho_B \ell_B \sigma \). Concludiamo allora che 
+
+\begin{align}
+    \sigma = \int d^2b P(b)
+\end{align}
+
+Il calcolo di questo integrale è particolarmente tedioso, perché in \(P(b) = |\Braket{i|f}|^2\) vorremo scrivere gli stati iniziali e finali come autostati dell'impulso. D'altra parte, dobbiamo effettuare l'integrale nello spazio. Dovremmo quindi prendere dei pachetti d'onda piccati, e poi alla fine del conto prendere il limite di pacchetto molto piccato. Alla fine del lungo calcolo, si trova che 
+
+\begin{align}
+    d\sigma = dp_f \frac{(2\pi)^4 \delta(P_A + P_B - P_f)M^2_{AB \rightarrow f}}{4E_AE_B |p_{z,A}/E_A + p_{z,B}/E_B|}
+\end{align}
+
+Il differenziale \(dp_f\) rappresenta un volumetto infinitesimo nello spazio delle fasi. In generale, per \(n\) corpi nello stato finale si scrive 
+
+\begin{align}
+    dp_f = \left(\prod_i^n \frac{d^3p_i}{(2\pi)^3 2E_i} \right)(2\pi)^4 \delta(p_{IN} - \sum_i p_i)
+\end{align}
+
+Per fissare meglio le idee, vediamo invece come si scrive per due corpi finali. Allora avremmo 
+
+\begin{align}
+    dp_{f2} = \frac{d^3p_1 d^3p_2}{(2\pi)^2 4E_1E_2}\delta(p_1 + p_2 -p_{IN})
+\end{align}
+
+Nel caso più gerale, i due corpi hanno masse diverse. Questo vuol dire che \(p_1^2 = m_1^2 \neq p_2^2 = m_2^2\). Posso usare la delta per integrare in \(d^3p_2\), ed ottenere 
+
+\begin{align}
+    dp_{f2} = \frac{d^3p_1}{(2\pi)^2 4E_1E_2}\delta(E_1 +E_2 - E_{IN}) = \frac{p_1^2 dp_1 d\Omega^2}{(2\pi)^2 4E_1E_2}\delta(E_1 +E_2 - E_{IN})
+\end{align}
+
+Ora, vorremo usare l'ultima delta nell'energia per integrare in \(dp_1\). Per farlo, devo scrivere 
+
+\begin{align}
+    \delta(E_1+E_2-E_{IN}) = \delta(p_1 - \bar{p}_1)\left(\frac{d}{dp_1}(E_1 + E_2 -E_{IN}) \right)^{-1}
+\end{align}
+
+Per trovare \(\bar{p}_1\) si tratta solamente di algebra, perché possiamo metterci nel SR del centro di massa dove \(P_{IN} = 0\), e scriveremo \(E_{1} = \sqrt{m_1^2 + p_1^2}, \, E_{2} = \sqrt{m_2^2 + p_2^2}, \, E_{IN} = \sqrt{m_1^2 m_2^2 + 2p_1^2}\). Si trova infine che 
+
+\begin{align}
+    \bar{p}^2_1 = \frac{E^4_{IN} + m_1^4 + m_2^4 -2E_{IN}^2 m_1^2 -2E^2_{IN}m_2^2 - 2m_1^2m_2^2}{4E^2_{IN}} = \frac{\lambda(E^2_{IN}, m_1^2, m_2^2)}{4E^2_{IN}}
+\end{align}
+
+Troviamo infine che vale 
+
+\begin{align}
+    dp_{f2} = \frac{d\varphi d\cos\theta}{16\pi^2}\frac{\bar{p}_1}{E_{IN}}
+\end{align}
+
+\section{Calcolo del processo \(e^+e^- \rightarrow \mu^+\mu^-\)}
+
+Consideriamo ora la lagrangiana 
+
+\begin{align}
+    \mathcal{L} = \underbrace{i\bar{\psi}_e \slashed{D}\psi_e -m_e\bar{\psi}_e\psi_e}_{\text{elettrone}} + \underbrace{i\bar{\psi}_\mu \slashed{D}\psi_\mu -m_\mu\bar{\psi}_\mu\psi_\mu}_{\text{muone}} - \underbrace{\frac{1}{4}F_{\mu\nu}F^{\mu\nu}}_{\text{fotone}} 
+\end{align}
+
+Poichè la derivata convariante è la stessa che agisce su entrambi i campi di materia, e ricordando che vale \(D_\mu = \partial_\mu -ieA_\mu\), i due campi hanno diversa massa ma stessa carica (che è proprio quello che succede sperimentalmente con elettrone e muone). 
+
+\nt{Poichè i due campi di materia compaiono disaccopiati, questo vuol dire che i due campi non interagiscono direttamente tra di loro. Ad esempio, un processo del tipo 
+
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [above left = of a ] (b) {$e^-$}; 
+            \vertex [below left = of a] (c) {$\mu^+$}; 
+            \vertex [right = of a ] (d) {$\gamma$}; 
+
+            \diagram{
+                (b) -- [fermion] (a) -- [fermion] (c); 
+                (a) -- [boson] (d); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+    \end{center}
+
+    \emph{non} è permesso da questa teoria. (e in effetti non si osserva neanche in natura)
+}
+
+Ora, quello che noi faremo è calcolare processi al \emph{primo ordine}. Questo vuol dire che considereremo dei diagrammi ad albero, dove non ci sono dei loop chiusi. In particolare, il primo step è sempre disegnare le particelle uscenti ed entranti: 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [above left = of a ] (b) {$e^-$}; 
+            \vertex [below left = of a] (c) {$e^+$}; 
+            \vertex [right = of a ] (d);
+            \vertex [above right = of d ] (e) {$\mu^-$};
+            \vertex [below right = of d ] (f) {$\mu^+$}; 
+
+
+            \diagram{
+                (b) -- [fermion] (a) -- [fermion] (c); 
+                %(a) -- [boson] (d); 
+                (e) -- [fermion] (d) -- [fermion] (f)
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+A questo punto, bisogna collegare il diagramma in modo che 
+
+\begin{enumerate}
+    \item Tutti i processi siano permessi dalla lagrangiana 
+    \item Non si formino loop chiusi
+\end{enumerate}
+
+In questo caso, l'unica possibilità è data da \footnote{In caso ci fossero più possibilità, dobbiamo considerarle tutte separatamente e sommare su queste}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [above left = of a ] (b) {$e^-$}; 
+            \vertex [below left = of a] (c) {$e^+$}; 
+            \vertex [right = of a ] (d);
+            \vertex [above right = of d ] (e) {$\mu^-$};
+            \vertex [below right = of d ] (f) {$\mu^+$}; 
+
+
+            \diagram{
+                (b) -- [fermion] (a) -- [fermion] (c); 
+                (a) -- [boson, edge label = $\gamma$] (d); 
+                (e) -- [fermion] (d) -- [fermion] (f)
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+Usando le regole di feynman che abbiamo visto, è l'elemento di matrice legato a questo processo sarà dato da 
+
+\begin{align}
+    M_{\vec{s}} = \bar{v}_{s_1}(p_1)(ie\gamma_\mu)u_{s_2}(p_2)\frac{-ig^{\mu\nu}}{(p_1 + p_2)^2 +i\eps}\bar{u}_{s_3}(p_3)(ie\gamma_\nu)v_{s_4}(p_4)
+\end{align}
+
+Infatti: 
+
+\begin{enumerate}
+    \item Nel primo pezzo riconosco il vertice calcolato nella sezione precedente. Questo spiega il fattore \(ie\gamma_\mu\). D'altra parte, ho una particella \(e^-\) entrante con momento \(p_2\), che porta con sé un fattore \(u(p_2)\), mentre il positrone con momento \(p_1\) porta un fattore \(\bar{v}(p_1)\). 
+    \item In mezzo, il fotone deve propagarsi: dunque riconosciamo il propagatore del fotone, con momento \(p_1+p_2\), grazie alla conservazione del momento 
+    \item I fattori della fine si ottengono esattamente come quelli del primo pezzo. 
+\end{enumerate}
+
+Per calcolare la probabilità del processo dobbiamo calcolare 
+
+\begin{align}
+    P_{e^+e^- \rightarrow \mu^+\mu^-} = \abs{M_{\vec{s}}}^2 = M_{\vec{s}}M^*_{\vec{s}}
+\end{align}
+
+dobbiamo quindi calcolarci \(M^*_{\vec{s}}\). Andiamo per pezzi, abbiamo che: 
+
+\begin{align}
+    (\bar{v}(p_1)ie\gamma^\mu u(p_2))^* = (-ie)u^+(p_2)(\gamma^0\gamma^\mu)^+v(p_1)
+\end{align}
+
+Ricordando che \(\gamma^{0+} = \gamma^0\), si ha che 
+
+\begin{align}
+    (\bar{v}(p_1)ie\gamma^\mu u(p_2))^* = (-ie)u^+(p_2)\gamma^{\mu +}\gamma0 v(p_1)
+\end{align}
+
+ora, \(\gamma^{\mu +}\gamma^0 = \gamma^0\gamma^{\mu}\), e quindi 
+
+\begin{align}
+    (\bar{v}(p_1)ie\gamma^\mu u(p_2))^* &= (-ie)u^+(p_2)\gamma0\gamma^{\mu} v(p_1) \\
+    &= (-ie)\bar{u}(p_2)\gamma^{\mu} v(p_1)
+\end{align}
+
+
+\nt{Prendere il complesso coniugato equivale a percorrere la linea fermionica al contrario!}
+
+L'intero complesso coniugato dell'elemento di matrice sarà allora dato da 
+
+\begin{align}
+    M^*_{\vec{s}} = v_{s_1}(p_1)(-ie\gamma_\mu)\bar{u}_{s_2}(p_2)\frac{ig^{\mu\nu}}{(p_1 + p_2)^2 -i\eps}u_{s_3}(p_3)(-ie\gamma_\nu)\bar{v}_{s_4}(p_4)
+\end{align}
+
+a \emph{polarizzazione fissata} \(\vec{s} = (s_1, s_2, s_3, s_4)\), la probabilità del processo è data da \(M_{\vec{s}}M^*_{\vec{s}}\). D'altra parte, molte volte, e la cosa semplifica anche i calcoli, noi non misuriamo lo spin di questi oggetti, e possiamo \emph{sommare sulle polarizzazioni}: 
+
+\begin{align}
+    P_{e^+e^- \rightarrow \mu^+\mu^-} = \sum_{\vec{s}}(MM^*)_{\vec{s}}
+\end{align}
+
+dovremo allora imparare a gestire scritture del tipo 
+
+\begin{align}
+    \sum_{\vec{s}} \bar{v}_{s_1}(p_1)_{\alpha}(ie\gamma^\mu_{\alpha\beta})u_{s_2}(p_2)_\beta\bar{u}_{s_2}(p_2)_\gamma (-ie)\gamma^{\mu'}_{\gamma\delta}v_{s_1}(p_1)_\delta
+\end{align}
+
+dove abbiamo esplicitato anche gli indici degli spinori. Ora, per valutare questa espressione dobbiamo chiaramente usare la regola delle \emph{somme di spin}, che in generale ricordiamo essere data da:
+
+\begin{align}
+    \sum_{s_1}u_{s_1}(p_1)_\beta\bar{u}_{s_1}(p_1)_\gamma = \slashed{P}_{2\, \beta\gamma} + m\mathbb{I}_{\beta\gamma}
+\end{align}
+
+E quella dello spinore \(v\) è simile, solamente con un segno meno davanti alla massa. Dunque la riga precedente si riduce a 
+
+\begin{align}
+    \sum_{\vec{s}} \bar{v}_{s_1}(p_1)_{\alpha}(ie\gamma^\mu_{\alpha\beta})u_{s_2}(p_2)_\beta\bar{u}_{s_2}(p_2)_\gamma (-ie)\gamma^{\mu'}_{\gamma\delta}v_{s_1}(p_1)_\delta &= e^2 (\slashed{P}_{1\, \delta\alpha} - m\mathbb{I}_{\delta\alpha}\gamma^\mu_{\alpha\beta}(\slashed{P}_{2\, \beta\gamma}+m\mathbb{I}_{\beta\gamma})\gamma^{\mu'}_{\gamma\delta}) \\
+    &= e^2\text{Tr}((\slashed{P}_1 - m)\gamma^{\mu}(\slashed{P}_2 +m)\gamma^{\mu'})
+\end{align}
+
+A questo punto non è difficile vedere che la somma sullo spin di tutto l'elemento quadro di matrice si riduce a 
+
+\begin{align}
+    P_{e^+e^- \rightarrow \mu^+\mu^-} = e^2\text{Tr}((\slashed{P}_1 - m_e)\gamma^{\mu}(\slashed{P}_2 +m_e)\gamma^{\mu'}) \frac{g_{\mu\nu}g_{\mu'\nu'}}{(p_1 + p_2)^4}e^2\text{Tr}((\slashed{P}_3 - m_\mu)\gamma^{\nu}(\slashed{P}_2 +m_\mu)\gamma^{\nu'})
+\end{align}
+
+Questa riga rivela quanto sia importante capire come sia imporante sapere come fare la traccia delle matrici gamma. Vediamo allora come si calcola: 
+
+\begin{align}
+    \text{Tr}(\gamma^\mu) = \text{Tr}(\gamma^\mu\underbrace{\gamma^s\gamma^s}_{= \mathbb{I}}) = \text{Tr}(\gamma^s\gamma^\mu\gamma^s) = -\text{Tr}(\gamma^\mu\gamma^s\gamma^s) = -\text{Tr}(\gamma^\mu) 
+\end{align}
+
+Dunque, \(\text{Tr}(\gamma^\mu) = 0\). Più in generale, si mostra con gli stessi passaggi che vale 
+
+\begin{align}
+    \text{Tr}(\gamma^{\mu_1}\ldots\gamma^{\mu_n}) = (-)^n\text{Tr}(\gamma^{\mu_1}\ldots\gamma^{\mu_n}) 
+\end{align}
+
+dunque quando ho la traccia di un numero dispari di matrici gamma, sappiamo già che il risultato è zero. Se invece ne ho due? 
+
+\begin{align}
+    \text{Tr}(\gamma^\mu\gamma^\nu) &= \frac{1}{2}\text{Tr}(\left\{\gamma^\mu, \gamma^\nu \right\}) \\
+    &= \frac{2g^{\mu\nu}\text{Tr}(\mathbb{I}_{4\times 4})}{2} = 4g^{\mu\nu}
+\end{align}
+
+Per 4 matrici, si usano trucchi simili per dimostrare che 
+
+\begin{align}
+    \text{Tr}(\gamma^\mu\gamma^\nu \gamma^\rho\gamma^\sigma) = 4g^{\mu\nu}g^{\rho\sigma} - 4g^{\mu\rho}g^{\nu\sigma} + 4g^{\mu\sigma}g^{\nu\rho}
+\end{align}
+
+trucchi simili possono essere usati se ho più di 4 matrici, ma è consigliato usare dei programmi appositi. 
+
+Nel nostro calcolo, dobbiamo usare la formula per 2 e per 4 matrici. Ora, per creare una coppia di muoni, l'energia totale deve essere superiore a due volte la massa del muone, che sperimentalmente è circa 200 volte la massa dell'elettrone. Per questo motivo, possiamo fare l'ottima approssimazione di \(m_e \simeq 0\), per semplificare i conti. La traccia sullo stato iniziale è allora data da 
+
+\begin{align}
+    \text{Tr}(\slashed{P}_1\gamma^\mu \slashed{P}_2\gamma^\rho) &= P_{1\alpha}P_{2\beta} \text{Tr}(\gamma^\alpha\gamma^\mu\gamma^\beta\gamma^\rho) \\
+    &= 4P_{1\alpha}P_{2\beta}[g^{\alpha\mu}g^{\beta\rho} - g^{\alpha\beta}g^{\mu\rho} + g^{\alpha\rho}g^{\mu\beta}]
+\end{align}
+
+La traccia sullo stato finale è leggermente più complicata perché non possiamo trascurare la massa del muone. Dovremmo dunque calcolare 
+
+\begin{align}
+    \text{Tr}((\slashed{P}_3 - m_\mu)\gamma^{\nu}(\slashed{P}_2 +m_\mu)\gamma^{\sigma}) = \text{Tr}(\slashed{P}_3\gamma^\nu\slashed{P}_4\gamma^\sigma) - m^2_\mu \text{Tr}(\gamma^\mu\gamma^\sigma)
+\end{align}
+
+Svolgendo l'algebra contraendo gli indici, si trova infine 
+
+\begin{align}
+    \sum_{\vec{s}}\abs{M}^2 = \frac{32e^2}{(P_1+P_2)^4}(P_1\cdot P_4 P_3\cdot P_2 + P_1\cdot P_3 P_4\cdot P_2 + 2m^2_\mu P_1\cdot P_2) 
+\end{align}
+
+Per trattare meglio l'espressione, introduciamo 3 invarianti, detti \emph{invarianti di Mandelstram}. Sono definiti come 
+
+\begin{align}
+    \begin{cases}
+        s = (P_1 + P_2)^2 = 2m_e^2 + 2P_1\cdot P_2 \simeq 2P_1\cdot P_2 \\
+        t = (P_1-P_2)^2 = m_e^2 + m_\mu^2 -2P_1 \cdot P_3 \\
+        u = (P_1 - P_4)^2 = m_e^2 + m_\mu^2 - 2P_1\cdot P_4
+    \end{cases}
+\end{align}
+
+Non sono completamente indipendenti tra di loro, poiché vale \(s+t+u = \sum_i m_i^2\), come si verifica facilmente per questo caso. Invertendo le definizioni è possibile scrivere i prodotti scalari fra momenti in termini di invarianti di Mandelstram, e in questo modo troviamo che possiamo scrivere 
+
+\begin{align}
+    \sum_{\vec{s}}\abs{M}^2 = \frac{32e^4}{s^2}\left(\frac{(u-m^2_\mu)^2}{4} + \frac{(t-m^2_\mu)^2}{4} + m^2_\mu \frac{s}{2}\right)
+\end{align}
+
+Apriamo ora una parentesi sulle dimensioni delle nostre quantità. Per la sezione d'urto deve valere 
+
+\begin{align}
+    [\sigma] = [\ell]^2 = [E]^{-2}
+\end{align}
+
+ma poiché tipicamente scriviamo 
+
+\begin{align}
+    \sigma = \frac{1}{8E_{IN}^2}\abs{M}^2dp_{S}
+\end{align}
+
+ciò implica che il prodotto fra l'elemento di matrice al quadrato e l'elemento dello spazio delle fasi deve essere \emph{sempre adimensionale}. Dalla definizione di \(dp_s\) si trova che 
+
+\begin{align}
+    [dp_S] = [E]^{-4+2n} \implies [\abs{M}^2] = [E]^{4-2n}
+\end{align}
+
+nel caso di \(n=2\), cioè nel caso di nostro interesse per il momento, entrambi sono adimensionali. 
+
+
+Facciamo ora delle considerazioni \emph{cinematiche} per determinare i valori degli invarianti da scrivere nell'elemento di matrice. Inanzitutto, ci mettiamo nel sistema del centro di massa. Allora, 
+
+\begin{align}
+    P_1 + P_2 = (2E, \vec{0}) \implies s = 4E^2
+\end{align}
+
+Poiché il momento deve conservarsi, i momenti uscenti dovranno essere opposti tra di loro, e prendere ciascuno metà dell'energia. Possiamo scrivere dunque 
+
+\begin{align}
+    \begin{cases}
+        P_3 = (E, P\sin\theta, 0, P\cos\theta), \quad P = \sqrt{E^2 - m^2_\mu} \\
+        P_4 = (E, -P\sin\theta, 0, -P\cos\theta)
+    \end{cases} 
+\end{align}
+
+strettamente parlando, ci sarebbe da considerare anche un angolo \(\varphi\), che però possiamo sempre mettere a zero data la simmetria cilindrica del sistema. Trovo allora che vale anche 
+
+\begin{align}
+    \begin{cases}
+        t = (P_1-P_3)^2 = -2E^2\left(1 - \frac{p}{E}\cos\theta\right) + m_\mu^2 \\
+        u = (P_1 - P_4)^2 = -2E^2\left(1 + \frac{p}{E}\cos\theta\right) + m_\mu^2 
+    \end{cases}
+\end{align}
+
+sostituiamo allora nell'elemento di matrice: 
+
+\begin{align}
+    \sum_{\vec{s}}\abs{M}^2 &= \frac{32e^4}{16E^4}\left(\frac{4E^4}{4}\left(1 + \frac{p}{E}\cos\theta\right)^2 \frac{4E^4}{4}\left(1 - \frac{p}{E}\cos\theta\right)^2  +\frac{4m_\mu^2E^2}{2}\right) = \\
+    &= 4e^4\left(1 + \frac{m_\mu^2}{E^2} + \left(1 - \frac{m_\mu^2}{E^2}\cos^2\theta \right)\right)
+\end{align}
+
+
+abbiamo finalmente scritto l'elemento di matrice! Ora possiamo assemblare la sezione d'urto: 
+
+\begin{align}
+    d\sigma = \frac{1}{8E^2}\sum_{\vec{s}}\abs{M}_{\vec{s}}(1/4)dp_s
+\end{align}
+
+ho diviso per 4 perché devo mediare per su tutte le possibili configurazioni iniziali: anche se non misuro le polarizzazioni, lo stato iniziale avrà una polarizzazione random che non posso sapere! La sezione d'urto sarà allora (esplicitando lo spazio delle fasi finale a due corpi)
+
+\begin{align}
+    d\sigma = \frac{1}{32E^2_{IN}}\sum_{\vec{s}}\abs{M}_{\vec{s}}^2 \frac{\sqrt{E^2-m_\mu^2}}{2E}\frac{d^2\Omega}{16\pi^2}
+\end{align}
+
+e infine esplicitando l'elemento di matrice, 
+
+\begin{align}
+    d\sigma = \frac{1}{32E^2}\frac{4e^4}{16\pi^2}\left(1 + \frac{m^2_\mu}{E^2} + \left(1 - \frac{m_\mu^2}{E^2} \right)\cos^2\theta \right)\frac{\sqrt{1 - \frac{m_\mu^2}{E^2}}}{2}d\cos\theta d\varphi
+\end{align}
+
+
+avendo fatto questo lungo conto, è lecito chiedersi se per un diagramma simile dobbiamo rifare tutti i conti, o se in un certo senso possiamo "riciclare" il risultato ottenuto. Consideriamo ad esempio un processo \(e^+\mu^+ \rightarrow e^+\mu^+\). L'unico diagramma di Feyman che possiamo disegnare è dato da 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex(a); 
+            \vertex[left = of a] (b) {$e^+$}; 
+            \vertex[above right = of a] (c) {$e^+$}; 
+            \vertex [below right= of a] (d); 
+            \vertex [below left = of d] (e) {$\mu^+$}; 
+            \vertex [right = of d] (f) {$\mu^+$}; 
+            \diagram{
+                (c) -- [fermion] (a) -- [fermion] (b);  
+                (a) -- [boson, edge label = $\gamma$] (d); 
+                (f) -- [fermion] (d) -- [fermion] (e); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+Modulo una rotazione, questo diagramma è equivalente al diagramma del processo che abbiamo precedentemente considerato!
+
+Se provassimo a calcolare l'elemento di matrice del processo, ci accorgeremmo che matematicamente le due formulazioni sono equivalenti, se però faccio le sostituzioni 
+
+\begin{align}
+    \begin{cases}
+        P_1 \rightarrow Q_1 \\
+        P_2 \rightarrow -Q_3 \\
+        P_3 \rightarrow Q_4 \\
+        P_4 \rightarrow -Q_2 
+    \end{cases}
+\end{align}
+
+Possiamo allora facilmente verificare come cambiano gli invarianti di Mandelstram: 
+
+\begin{align}
+    \begin{cases}
+        s \rightarrow t' \\
+        t \rightarrow u' \\
+        u \rightarrow s'
+    \end{cases}
+\end{align}
+
+e calcoliamo immediatamente il modulo quadro dell'elemento di matrice del processo:
+
+\begin{align}
+    \abs{M}^2_{e^+\mu+ \rightarrow e^+\mu^+} = \frac{32e^4}{t^2}\left(\frac{(s-m_\mu)^2}{4} + \frac{(u-m_\mu)^2}{4} +\frac{t}{2}m_\mu^2 \right)
+\end{align}
+
+questa è nota come \emph{simmetria di crossing}. 
+
+Torniamo a parlare del nostro elemento di matrice. In particolare, notiamo una simmetria in \(\cos\theta\). Potevamo aspettarcela? In realtà, si tratta di una conseguenza del fatto che abbiamo sommato su tutte le polarizzazioni. Vediamo allora cosa facciamo se consideriamo un processo a polarizzazioni fisse, ad esempio \(e^+_Le^-_L \rightarrow \mu^+_L\mu^-_L\). Cosa cambia nel calcolo? 
+
+Siccome non vogliamo buttare via tutto i progressi che abbiamo fatto tracciando le matrici gamma, possiamo sommare su tutte le polarizzazioni, e poi proiettare sul sottospazio di nostro interesse. In particolare, l'elemento di matrice è dato da 
+
+\begin{align}
+    M = \bar{v}_L(p_1)\left(\frac{1+\gamma^5}{2} \right)\gamma^\mu\left(\frac{1-\gamma^5}{2} \right)u(p_2)
+\end{align}
+
+Così che la traccia sullo stato iniziale diventa 
+
+\begin{align}
+    \text{Tr}\left(\slashed{P}_1\gamma^\mu\slashed{P}_2\gamma^\sigma\left(\frac{1-\gamma^5}{2} \right)\right)
+\end{align}
+
+Ritroviamo quindi metà traccia che abbiamo già calcolato per lo stato polarizzato, più un'altra traccia che include anche la \(\gamma^5\). Come si tracciano le matrici di Dirac se ho anche una \(\gamma^5\)? Inanzitutto \(\gamma^5\) è il prodotto di 4 gamma con indici diversi, quindi Tr\(\gamma^5 = 0\). Vale inoltre che Tr\(\gamma^5\gamma^\nu\gamma^\mu = 0\), e anche che la traccia del prodotto di \(\gamma^5\) con un numero dispari di gamma è 0. Dunque la prima traccia non banale, e quella anche che interessa a noi, è data da 
+
+\begin{align}
+    \text{Tr}(\gamma^5\gamma^\mu\gamma^\nu\gamma^\rho\gamma^\sigma) = 4i\eps^{\mu\nu\rho\sigma}
+\end{align}
+
+a questo punto, si tratta solamente di svolgere il prodotto delle nuove traccie, e di sostituire i nuovi prodotti fra i momenti che appaiono in termini degli invarianti di Mandelstram, e si ottiene che 
+
+\begin{align}
+    M^2_{LL\rightarrow LL} = e^4(1+\cos\theta)^2
+\end{align}
+
+Questo stesso risultato si può ottenere in un modo un po più fisico, in termini della conservazione del momento angolare. 
+
+Consideriamo infatti la coppia elettrone-positrone che stanno per collidere. Siamo sempre nel limite di alte energie, e possiamo considerarli massless. Per particelle massless, la chiralità (cioè l'autovalore di \(\gamma^5\)) e l'elicità (cioè l'autovalore di \(\vec{p}\cdot \vec{\sigma}\)) conincidono, mentre per le antiparticelle massless, sono una l'opposto dell'altra. I momenti saranno \(P = (E, 0, 0, E)\) per l'elettrone, e \(\bar{P} = (E, 0, 0, -E)\) per il positrone. 
+
+Scriviamo esplicitamente gli spinori: \footnote{Nota che con il formalismo di sommare sulle polarizzazioni, e al limite proiettare dopo sulla polarizzazione desiderata, non abbiamo fino ad ora dovuto mai scrivere uno spinore esplicitamente.} Per l'elettrone avremo (nel limite ultra-relativistico)
+
+\begin{align}
+    u(P) = \begin{pmatrix}
+        \sqrt{P\cdot \sigma}\xi^+ \\
+        \sqrt{P\cdot \bar{\sigma}}\xi^+
+    \end{pmatrix}
+\end{align}
+
+con \(\sigma_z \xi^+ = \xi^+\). Ma questo implica che \(P\cdot \sigma = E(1+\sigma_z), \, P\cdot \bar{\sigma} = E(1-\sigma_z)\), cioè 
+
+\begin{align}
+    u(P) = \sqrt{2E}\begin{pmatrix}
+        \xi^+ \\ 0
+    \end{pmatrix}
+\end{align}
+
+Similmente per il positrone ci interessa 
+
+\begin{align}
+    v(P) = \begin{pmatrix}
+        \sqrt{\bar{P}\cdot \sigma} \xi^- \\
+        -\sqrt{\bar{P}\cdot \bar{\sigma}} \xi^- 
+    \end{pmatrix} = \sqrt{2E} \begin{pmatrix}
+        \xi^- \\ 0 
+    \end{pmatrix}
+\end{align}
+
+Possiamo allora calcolare esplicitamente il termine 
+
+\begin{align}
+    \eps^\mu_{in} = \bar{v}(\bar{p})\gamma^\mu u(P) = \underbrace{(\sqrt{2E}\xi^-, 0)\begin{pmatrix}
+        0 & 1 \\ 
+        1 & 0 
+    \end{pmatrix}}_{=\bar{v}(\bar{P})}\begin{pmatrix}
+        0 & \sigma^\mu \\ 
+        \bar{\sigma}^\mu & 0 
+    \end{pmatrix}\begin{pmatrix}
+        \sqrt{2E}\xi^ + \\ 0 
+    \end{pmatrix}
+\end{align} 
+
+Svolgendo il prodotto righe per colonne, 
+
+\begin{align}
+    \eps^\mu_{in} = 2E \xi^-\bar{\sigma}^\mu \xi^+ = 2E \begin{pmatrix}
+        0 \\ 1 \\ i \\ 0
+    \end{pmatrix}
+\end{align}
+
+Ora, per quanto riguarda il termine, \(\eps^\mu_{out}\), questo risulta da una rotazione, nel piano (x,z), della polarizzazione iniziale. Esplicitamente, 
+
+\begin{align}
+    \eps^\mu_{out} = R(\theta)^\mu_\nu \eps^\mu_{in} = \begin{pmatrix}
+        0 \\ cos\theta \\ i \\ -\sin\theta
+    \end{pmatrix}
+\end{align}
+
+ora semplicemente vale che 
+
+\begin{align}
+    \abs{M}^2 \propto \abs{\eps_{in}\eps_{out}}^2 = (1+\cos\theta)^2
+\end{align}
+
+
+\section{Urto compton}
+
+Un processo leggermente più complicato consiste nell'urto compton, che è l'urto fra un fotone ed un elettrone, \(e^-\gamma \rightarrow e^-\gamma\). In effetti, in questo caso sono possibili due diagrammi di Feymann: 
+
+\begin{multicols}{2}
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex(a); 
+            \vertex[above left = of a](b) {$e^-$};
+            \vertex[below left = of a](c);
+            \vertex[right = of a ](d); 
+            \vertex[above right= of d](e) {$e^-$};
+            \vertex[below right = of d](f); 
+            \diagram{
+                (b) -- [fermion] (a) -- [fermion, edge label = $e^-$] (d) -- [fermion] (e); 
+                (c) -- [boson, edge label = $\gamma$] (a);  
+                (d) -- [boson, edge label = $\gamma$] (f); 
+            }; 
+        \end{feynman} 
+    \end{tikzpicture}
+    \end{center}
+
+    \columnbreak
+
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex(a); 
+            \vertex[above left = of a](b) {$e^-$};
+            \vertex[above right = of a](c);
+            \vertex[below = of a ](d); 
+            \vertex[below right= of d](e) {$e^-$};
+            \vertex[below left = of d](f); 
+            \diagram{
+                (b) -- [fermion] (a) -- [fermion, edge label = $e^-$] (d) -- [fermion] (e); 
+                (c) -- [boson, edge label = $\gamma$] (a);  
+                (d) -- [boson, edge label = $\gamma$] (f); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+    \end{center}
+\end{multicols}
+
+Quindi, rispetto al calcolo \(e^+e^- \rightarrow \mu^+\mu^-\), dobbiamo calcolare \(\abs{M_1}^2, \abs{M_2}^2, 2\text{Re}(M_1M_2^*)\). Per farlo, usiamo le stesse regole di Feyman della sezione precedente. L'unica differenza è che ora nello stato intermedio c'è un fermione, e dunque apparirà il propagatore fermionico. Sempre sommando su tutte le possibili polarizzazioni, guardando al primo diagramma scriveremo 
+
+\begin{align}
+    \abs{M_1}^2 &= e^4 \text{Tr}\left(\slashed{p}_3\gamma^{\mu_4}\frac{\slashed{p}_1 + \slashed{p}_2}{(p_1 + p_2)^2}\gamma^{\mu_2}\slashed{p}_1\gamma^{\nu_2}\frac{\slashed{p}_1 + \slashed{p}_2}{(p_1+p_2)^2}\gamma^{\nu_4}\right)g_{\mu_2\nu_2}g_{\mu_4\nu_4} \\
+    &= e^4 \text{Tr}\left(\slashed{p}_3\gamma^{\mu}\frac{\slashed{p}_1 + \slashed{p}_2}{(p_1 + p_2)^2}\gamma^{\nu}\slashed{p}_1\gamma_{\nu}\frac{\slashed{p}_1 + \slashed{p}_2}{(p_1+p_2)^2}\gamma_{\mu}\right)
+\end{align}
+
+L'espressione sembra essere più complicata di quella precedente, perché si tratta della traccia di 8 matrici di Dirac. D'altra parte, ci accorgiamo che, data l'algebra di Clifford, si ha che 
+
+\begin{align}
+    \gamma^\mu \gamma^\nu \gamma_\mu = - \gamma_\mu\gamma^\mu\gamma^\nu + 2g^{\mu\nu}\gamma_\mu = -4\gamma^\nu + 2\gamma^\nu = -2\gamma^\nu
+\end{align}
+
+Usando quindi anche la ciclicità della traccia, l'argomento di matrice si scrive più semplicemente come 
+
+\begin{align}
+    \abs{M_1}^2 = \frac{16e^4}{s^2}\text{Tr}\left(\slashed{p}_3(\slashed{p}_1+\slashed{p}_2)\slashed{p}_1(\slashed{p}_1+\slashed{p}_2)\right)
+\end{align}
+
+queste sono solo 4 matrici, e le sappiamo tracciare. 
+
+\end{document}
+
+ 

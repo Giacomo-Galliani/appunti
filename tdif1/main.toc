@@ -1,0 +1,9 @@
+\contentsline {chapter}{\numberline {1}Il propagatore di Feyman}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Il propagatore del campo scalare}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Il propagatore fermionico}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Il propagatore del fotone}{6}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Un primo esempio di calcolo}{9}{subsection.1.3.1}%
+\contentsline {chapter}{\numberline {2}La teoria dell'urto}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Calcolo del processo \(e^+e^- \rightarrow \mu ^+\mu ^-\)}{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Urto compton}{19}{section.2.2}%
+\contentsfinish 

@@ -1,0 +1,40 @@
+\contentsline {chapter}{\numberline {1}Equazioni di Maxwell}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Potenziali Elettrodinamici}{4}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}gauge di Lorentz}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}gauge di Coulomb}{5}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Soluzione per l'equazione delle onde con termine di sorgente}{6}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Leggi di conservazione per il campo elettromagnetico}{8}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}L'equazione per l'energia}{8}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Il caso di campi armonici}{9}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}L'equazione per il momento lineare}{11}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}L'equazione per il momento angolare}{12}{subsection.1.3.4}%
+\contentsline {chapter}{\numberline {2}Onde piane}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Equazioni di Helmholtz e soluzioni}{13}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Aspetti interessanti della riflessione e rifrazione}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}L'angolo di Brewster}{15}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}La riflessione totale}{15}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Propagazione in mezzi dielettrici lineari}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Relazioni di Kramers-Kronig}{18}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Velocità di gruppo}{19}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Il modello di Lorentz}{20}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Plasmoni superficiali}{21}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Guide d'onda}{25}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Materiali con indici di rifrazione negativo}{28}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Radiazione di cariche localizzate}{30}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Termine di dipolo elettrico}{32}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Scattering a grandi lunghezza d'onda}{34}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Relatività ristretta}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Una introduzione "storica"}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Le equazioni del moto relativistiche}{37}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Leggi di conservazione in forma covariante}{42}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Leggi di trasformazione dei campi}{43}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Radiazione emessa da cariche in moto}{45}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Potenziali di Lienard-Wiechert}{45}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Potenza irraggiata}{47}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Trattazione covariante}{50}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}I potenziali ritardati in forma covariante}{50}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Lienard-Wiechert in forma covariante}{51}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Spettro di emissione}{52}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Aspetti qualitativi dello spettro per particelle ultrarelativistiche}{52}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Forma esatta dello spettro}{53}{subsection.5.4.2}%
+\contentsfinish 

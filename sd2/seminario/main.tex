@@ -1,0 +1,1021 @@
+\documentclass{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Seminario sd2 - appunti per la presentazione}}}
+\author{Giacomo Galliani}
+\date{Anno accademico 2025-2026}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\chapter{Seminario}
+
+\section{Introduzione al seminario e l'argomento di Derrick}
+
+In questo seminario, studieremo alcune soluzioni \emph{statiche} e ad energia \emph{finita} delle equazioni di Eulero-Lagrange di opportune teorie di campo. Vedremo che questo studio porterà risultati dalla grande rilevanza sia matematica che fisica. Queste soluzioni sono dette \emph{solitoni}. Naturalmente, non è detto che queste soluzioni possano esistere. \\
+
+Per cominciare, vediamo dunque un argomento classico, originalmente formulato da Derrick, che permette di identificare le dimensioni dove è \emph{possibile} che esistano solitoni. 
+
+Prendiamo quindi una lagrangiana di puro gauge + un campo di Higgs, ovvero 
+
+\begin{align}
+    \mathcal{L} = \frac{1}{2}\nabla_\mu \Phi \nabla^\mu \Phi - V(\Phi) - \frac{1}{2}\text{Tr}(F \wedge *F)
+\end{align}
+
+e consideriamo la teoria su uno spazio di Minkowski \(D+1\)-dimensionale, ovvero la metrica sarà data da \(\eta_{\mu\nu} = \text{diag}(-, +, \ldots, +)\). Affinchè abbia senso parlare di soluzioni ad energia finita, prenderemo un potenziale che abbia un minimo globale in un campo \(\phi_0\), e che valga \(V(\phi_0) = 0\). (in particolare, dunque, \(V(\Phi) \geq 0\))\\
+
+Prendiamo allora una coppia \(\Phi, A\) che sia una soluzione statica delle equazioni di eulero-lagrange associate a questa lagrangiana, e abbia energia finita. Questo vuol dire in particolare che sono un punto critico del funzionale 
+
+\begin{align}
+    E [\Phi, A] &= \int dx^D \left[ \underbrace{\frac{1}{2}(\partial_t \Phi)^2}_{=0} + \frac{1}{2}(\nabla \Phi)^2 + V(\Phi) + \frac{1}{2}|F|^2\right] = E_{GD} + E_{U} + E_{F}
+\end{align}
+
+dove abbiamo riconosciuto la somma di 3 contributi, l'energia potenziale, l'energia data dal gradiente del campo, e l'energia del campo di gauge. 
+
+\nt{Tutti i 3 termini, sono termini positivi. I primi due sono ovvi, data la condizione già discussa sul potenziale.
+
+    Invece, per il termine di gauge, dobbiamo indagare meglio questo da cosa è dato. In particolare, ricorda che 
+
+    \begin{align}
+        F = F_{ \mu\nu} dx^{\mu} \wedge dx^{\nu} = F_{ij}dx^i \wedge dx^j + F_{0i} dx^0 \wedge dx^i = B_{ij} dx^i \wedge dx^j + E_i dx^0 \wedge dx^i
+    \end{align}
+
+    Dunque, la densità di energia del campo di gauge, è data da 
+    \begin{align}
+        -Tr(E^2 +B^2)
+    \end{align}
+
+    Poiché queste sono tutte funzioni nell'algebra, scriveremo ad esempio \(E_i = E_i^a T_a\). Dunque la traccia sarà proporzionale a \(\text{Tr}(T_aT_b)\). Nel caso di \(\mathfrak{su}(n)\), vale nella rappresentazione aggiunta \(\text{Tr}(T^a T^b) = -\frac{1}{2}\delta^{ab}\), e si può dimostrare che per un algebra di Lie qualsiasi, la traccia è definita negativa. 
+}
+
+Consideriamo allora la famiglia ad un parametro di coppie di campi, date da 
+
+\begin{align}
+    \Phi_c = \Phi(cx), \quad A_ = cA (cx), \, c \in \mathbb{R}
+\end{align}
+
+Dalle quali deduciamo 
+
+\begin{align}
+    D \Phi_c = c \Phi(cx), \quad F = c^2 F(cx)
+\end{align}
+
+Possiamo allora facilmente trovare che l'energia per ciascun membro della famiglia è data da 
+
+\begin{align}
+    E_c = c^{-(D+2)}E_{GU} + c^{-D}E_U + c^{-(D+4)}E_F
+\end{align}
+
+Ma noi sappiamo che per \(c=1\) dovremo avere un punto critico del funzionale: imponiamo allora che la sua derivata si annulli in quel punto: 
+
+\begin{align}
+    \frac{dE_c}{dc}\biggr|_{c=1} = 0 \implies (D+4)E_F + (D+2)E_{GU} + DE_U = 0 
+\end{align}
+
+Questa condizione non può essere soddisfatta, se \(D > 4\). Abbiamo dunque raggiunto un assurdo, e possiamo concludere che non esistono solitoni, se \(D >4\). Si noti inoltre che è solo grazie al potenziale di gauge che si possono avere delle soluzioni per \(D = 3, 4\). Questo è il motivo per cui nei casi che studieremo noi, la lagrangiana includerà sempre il potenziale di gauge. 
+
+\section{Un caso particolare: il monopolo di Dirac}
+
+Cominciamo allora dal caso più semplice, quello in cui il gruppo di gauge è abeliano. (i.e. prendiamo \(\mathfrak{g} = \mathfrak{u}(1)\)). Come è noto, e come abbiamo visto nella parte finale del corso, questa è la teoria di Maxwell dell'elettromagnetismo, se lo spazio è dato da \(\mathbb{R}^{1+3}\), con metrica lortentziana. Abbiamo anche visto che le equazioni di Maxwell si scrivono, nel linguaggio delle forme differenziali, come 
+
+\begin{align}
+    dF = 0 \quad d*F = *J
+\end{align}
+
+Dove \(F\) è la due-forma intensità di campo /di curvatura, e la \(J\) è la 1-forma quadricorrente \(J = J_\mu dx^{\mu}\). \\
+
+Soffermiamoci sul significato della prima equazione: la forma \(F\) è una forma chiusa. Dunque, se come detto siamo nello spazio di Minkowski, \(F\) è anche esatta, e ciò significa che esiste una 1-forma \(A\), il potenziale di gauge, definito su \emph{tutto lo spazio}, t.c. \(F = dA\). \\
+
+D'altra parte, se invece noi prendiamo uno spazio non contraibile, ad esempio togliendo un punto allo spazio di partenza, \(\mathbb{R}\times \mathbb{R}^3 \setminus \left\{0\right\}\), allora avremo che \(F\) non è più per forza esatta, ed esistono dei potenziali locali \(A_\alpha\), definiti su degli aperti \(U_\alpha\), che coprono lo spazio di base. \\
+
+Questo stesso discorso può anche essere visto dal punto di vista dei fibrati. Un fibrato principale con gruppo di struttura \(U(1)\), è una varietà che localmente, cioè per \(x \in U_\alpha \subset M\), è dato da \(U_\alpha \subset M \times U(1)\). Se su questo è assegnata una 1-forma di connesione \(\omega\), che dice come confrontare punti su diverse fibre, allora data una sezione locale del fibrato, ovvero una legge \(s: U_\alpha \rightarrow U_\alpha \times U(1)\), questa può essere usata per fare il pull-back della connessione, ed ottenere il potenziale di gauge locale, \(A_\alpha = s_\alpha^*(\omega)\). Ora, se lo spazio di base è contraibile, allora il fibrato è banale, e possono sempre costruire una sezione \emph{globale} del fibrato, con cui fare il pull-back della connessione, ed ottenere il potenziale di gauge \emph{globale}. Questo fallisce nel caso in cui \(M\) non è contraibile: allora il fibrato può avere una topologia non banale, e possono non esistere sezioni globali del fibrato. In questo caso, il potenziale è definito solo localmente. \\
+
+Risolviamo le equazioni di Maxwell nel caso in cui prendiamo come spazio di base \(\mathbb{R}\times \mathbb{R}^3 \setminus \left\{0\right\}\). In particolare, questo vuol dire cercare delle 1-forme \(A_\alpha\) che soddisfino: 
+
+\begin{enumerate}
+    \item siano ben definite e regolari negli aperti \(U_\alpha\) che ricoprono lo spazio di base
+    \item Nelle regioni di intersezione \(U_\alpha \cap U_\beta\), i potenziali devono essere legati da una trasformazione di gauge. 
+\end{enumerate}
+
+Nel caso abeliano, da cosa sono date le trasformazioni di gauge? Avremmo, \(\forall \gamma: M \rightarrow U(1)\): 
+
+\begin{align}
+    A' &= \gamma^{-1}A\gamma + \gamma^{-1} d\gamma = A + e^{-i\xi(x)}d(e^{i\xi(x)}) \\
+    &= A + i \frac{\partial \xi}{\partial x^{\mu}}dx^{\mu}
+\end{align}
+
+D'altra parte, poichè \(A\) ha valori nell'algebra \(\mathfrak{u}(1)\), spesso scriviamo \(A\) come la parte immaginaria di \(A\), così che la trasformazione diventa 
+
+\begin{align}
+    A' = A + \frac{\partial \xi}{\partial x^{\mu}}dx^{\mu}
+\end{align}
+
+
+Per prima cosa, dobbiamo scegliere i nostri aperti, che ricoprano lo spazio di base. Poichè osserviamo che \(\mathbb{R}^3 \setminus \left\{0\right\} = \mathbb{R}\times S^2\), possiamo prendere due aperti che coprano i due emisferi della 2-sfera: 
+
+\begin{align}
+    U_+ = \left\{(x, y, z) \in \mathbb{R}^3 : z > -\eps\right\}, \quad U_- = \left\{(x, y, z) \in \mathbb{R}^3 : z < \eps\right\} 
+\end{align}
+
+Dunque la regione di intersezione è la striscia 
+
+\begin{align}
+    U_+ \cap U_- = \left\{(x, y, z) \in \mathbb{R}^3 : z \in (-\eps, +\eps) \right\}
+\end{align}
+
+Afferiamo ora che una scelta che soddisfa le nostre due condizioni è data da 
+
+\begin{align}
+    A_{\pm} = \frac{g}{4\pi}(\pm 1 - \cos\theta)d\phi
+\end{align}
+
+\begin{enumerate}
+    \item La prima condizione è ovvia. 
+    \item Per mostrare che le due sono legate dal una trasformazione di gauge, prendi la differenza 
+    \begin{align}
+        A_+ - A_- = \frac{g}{2\pi}d\phi = i \frac{\partial \xi}{\partial x^{\mu}}dx^{\mu}
+    \end{align}
+
+    Dunque passando in coordinate sferiche, \(\xi(x) = \xi(\phi)\), e vale 
+
+    \begin{align}
+        \xi(\phi) = -i \frac{g\phi}{2\pi}
+    \end{align}
+\end{enumerate}
+
+
+Ora possiamo chiederci come sono fatti i campi risultanti, calcolando la \(F = dA_{\pm}\). Si ottiene dunque 
+
+\begin{align}
+    F = d\left(\frac{g}{4\pi}(\pm 1 -\cos\theta) \right) \wedge d\phi = \frac{g \sin\theta}{4\pi} d\theta \wedge d\phi
+\end{align}
+
+Passando in coordinate cartesiane, il campo è dato da 
+
+\begin{align}
+    F = \frac{g}{4\pi r^3}(x dy \wedge dz + y dz \wedge dx + z dx \wedge dy)
+\end{align}
+
+Da cui leggiamo che il campo elettromagnetico risultate è puramente magnetico, ed in direzione \emph{radiale}! 
+
+\begin{align}
+    \vec{E} = 0, \quad \vec{B} = \frac{g}{4\pi r^2}\hat{r} 
+\end{align}
+
+Per demistificare quello che abbiamo fatto, se avessimo fatto lo stesso ragionamento per \(*F\) al posto di \(F\), avremmo ottenuto il campo elettrico risultate da una carica all'origine! \\
+
+Interpretiamo la nostra soluzione come il campo di un monopolo magnetico. Il primo ad ottenere questo risultato fu Dirac, anche se non usò le due carte per coprire lo spazio, il chè risultava in una singolarità lungo tutta la linea \(z=0\), che chiaramente non aveva senso fisico. \\
+
+Dirac non si fermò però alla soluzione, e notò un altro fondamentale fatto, che segue inserendo nella teoria i campi di materia. Infatti, questi si accoppiano al campo e.m. attraverso la derivata covariante: 
+
+\begin{align}
+    D\psi = d\psi - iqA\psi 
+\end{align}
+
+d'altra parte, anche il campo di materia è la sezione di un fibrato, e quindi è definito solo localmente come \(\psi_+, \psi_-\) nelle due regioni. In particolare, le funzioni di transizione per le due sezioni sono membri del gruppo \(U(1)\), e sono date da 
+
+\begin{align}
+    \psi_+ = e^{iq\xi(x)}\psi_-
+\end{align}
+
+dunque nel nostro caso 
+
+\begin{align}
+    \psi_+ = e^{iq\frac{g\phi}{2\pi}}\psi_-
+\end{align}
+
+Ora ricordiamo che la \(\theta\) è una coordinata angolare! In effetti, è la coordinata sul cerchio \(S^1\) che appare nella zona di intersezione \(U_+ \cap U_- = S^1 \times [-\eps, \eps]\). Dunque la "funzione di transizione" \(\exp\left(i\frac{qg \phi}{2\pi}\right)\) deve essere periodica, in \(\phi \in (0, 2\pi)\). Dunque deve valere 
+
+\begin{align}
+    pg = 2\pi N
+\end{align}
+
+che è la \emph{condizione di quantizzazione} di Dirac. \\
+
+Nonostante sia una soluzione delle equazioni di eulero-lagrange (cioè di Maxwell), il monopolo di Dirac non è un solitone: questo perchè non ha energia finita. Questo si vede facilmente perchè \(B \approx r^{-2}\) per \(r \rightarrow 0\), così che \(|F|^2 \approx r^{-4}\), il che rende la funzione non integrabile all'origine. 
+
+\section{Il fibrato di Hopf}
+
+Il numero intero \(N\) è detto numero di monopolo, ed è rilevante dal punto di vista geometrico. In effetti, il numero classifica i fibrati principali con fibra \(U(1)\) sulla \(S^2\). \\
+
+Nota infatti che \(\mathbb{R}^3 \setminus \left\{0\right\}\) è omotopico ad \(S^2\), come mostra la mappa esplicita data da .... \\
+
+Il caso \(N=0\) è naturalmente il caso banale. Infatti in questo caso le funzioni di transizione sono tutte l'identità, ed il fibrato è globalmente \(P(N=0) = S^2 \times S^1\). \\ 
+
+Un caso decisamente più interessante è \(P(N=-1)\). In questo caso, mostreremo che lo spazio totale è dato da  \(S^3\), e per questo il fibrato è noto come la fibrazione di Hopf della \(S^3\). Per vedere che vale \(P(N=-1) = S^3\), assumeremmo che lo spazio totale del fibrato sia \(S^3\), e mostreremo che questo impone che le funzioni di transizione sono del tipo \(e^{-i\phi}\). \\
+
+Inanzitutto, poichè \(S^3 \subset \mathbb{R}^4 \simeq \mathbb{C}^2\), daremo una descrizione in termini dei numeri complessi della tre-sfera: scriveremo dunque 
+
+\begin{align}
+    S^3 = \left\{(Z^0, Z^1)\in \mathbb{C}^2 : Z^0 \bar{Z^0} + Z^1\bar{Z}^1 = 1\right\}
+\end{align}
+
+Una possibile parametrizzazione è data da 
+
+\begin{align}
+    Z^0 = \cos (\theta/2)e^{i\xi_0}, \quad Z^1 = \sin(\theta/2)e^{i\xi_1}, \quad (\theta, \xi_0, \xi_1) \in S^1 \times \mathbb{R}^2
+\end{align}
+
+Ora dobbiamo capire quale sia una proiezione sullo spazio di base, \(\pi: S^3 \rightarrow S^2\). \\
+
+Per qualunque spazio complesso \(k+1\)-dimensionale, è possibile definire una varietà complessa \(k\)-dimensionale, detta spazio proiettivo complesso. In particolare, data la relazione di equivalenza \(Z^0 \approx Z^1\), \(Z^0, Z^1 \in \mathbb{C}^{k+1}\) se esiste \(c \in \mathbb{C}\setminus \left\{0\right\}\) t.c. \(Z^0 = cZ^1\), lo spazio proiettivo è definito come il quozientato dello spazio complesso k-dimensionale con questa relazione di equivalenza. \\
+
+In particolare, ci interessa \(\mathbb{CP}^1\): se su questa prendiamo gli aperti \(U_+ := \mathbb{C}^2 \setminus \left\{Z^0 = 0\right\}\), ed \(U_- := \mathbb{C}^2 \setminus \left\{Z^1 = 0\right\}\), le possibili coordinate su questo spazio sono 
+
+\begin{align}
+    \lambda = Z^0/Z^1, \, \text{in } U_+, \quad \tilde{\lambda} = Z^1/Z^0, \, \text{in } U_-
+\end{align}
+
+Tenendo in mente le coordinate della \(S^3\), scriveremo (se chiamiamo \(\phi: \xi_0-\xi_1\))
+
+\begin{align}
+    \lambda &= \cot(\theta/2)e^{i\phi} \\
+    \tilde{\lambda} &= \tan(\theta/2)e^{-i\phi}
+\end{align}
+
+
+Non è difficile dunque credere che \(\mathbb{CP}^1 \simeq S^2\). Abbiamo quindi trovato la nostra proiezione sullo spazio di base. Possiamo allora definire delle sezioni 
+
+\begin{align}
+    s: \lambda \in U_+ \rightarrow S^3 \\
+    \tilde{s}: \tilde{\lambda} \in U_- \rightarrow S^3
+\end{align}
+
+dalle quali proveremo a leggere le funzioni di transizione nelle regioni di sovrapposizione dove \(Z^0, Z^1 \neq 0\), e vale \(\lambda \tilde{\lambda} = 1\). In particolare allora, scegliamo le sezioni (gli unici vincoli che abbiamo è che siano delle funzioni regolari delle coordinate \(\lambda, \tilde{\lambda}\), e che l'immagine della funzione appartenga alla \(S^3\))
+
+\begin{align}
+    s(\lambda) &= \frac{(1, \lambda)}{\sqrt{1 + |\lambda|^2}} \\
+    \tilde{s}(\lambda) &= \frac{(\tilde{\lambda}, 1)}{\sqrt{1 + |\tilde{\lambda}|^2}} 
+\end{align}
+
+che rispettano i vincoli che abbiamo ricordato (chiaramente \((1, \lambda)\) rappresenta un punto in \( \mathbb{C}^2\), che ha norma \(\sqrt{1+|\lambda|^2}\)). Con semplici passaggi algebrici allora ci accorgiamo che 
+
+\begin{align}
+    \tilde{s}(\tilde{\lambda}) = \frac{(\tilde{\lambda}, 1)}{\sqrt{1 + |\tilde{\lambda}|^2}} = \frac{\tilde{\lambda}(1, \lambda)}{|\tilde{\lambda}|\sqrt{|\lambda|^2 + 1}} = e^{-i\phi} s(\lambda)
+\end{align}
+
+il chè conclude la nostra dimostrazione. 
+
+
+\section{Monopoli non-abeliani}
+
+Vediamo allora cosa cambia se il gruppo di gauge è non-abeliano. Prendiamo dunque \(G = SU(2)\). In particolare, inseriamo nella lagrangiana anche un campo di Higgs, i.e. un campo \(\Phi: \mathbb{R}^{1+3} \rightarrow \mathfrak{su}(2)\). Questo è necessario per avere una teoria di bosoni massivi, ovvero di forze a corto raggio. Prenderemo una lagrangiana che è dunque data da 
+
+
+\begin{align}
+    \mathcal{L} = \frac{1}{2}(D_\mu\Phi^a)(D^{\mu}\phi^a) - U(\Phi) + \frac{1}{2}\text{Tr}(F_{\mu\nu}F^{\mu\nu})
+\end{align}
+
+Ricorda che poichè \(\Phi\) ha valori nell'algebra di \(SU(2)\), potremo prendere una base \(T^a\) dello spazio vettoriale (e.g. \(T^a = i/2 \sigma^a\)), e scrivere \(\Phi = \Phi^a T^a\). Nota che con questa scelta si ha che \(\text{Tr}(T^aT^b) = -1/2\delta^{ab}\), così che ad esempio vale anche 
+
+\begin{align}
+    \text{Tr}(F_{\mu\nu}F^{\mu\nu}) = -\frac{1}{4}F^a_{\mu\nu}F^{a \mu\nu}
+\end{align}
+
+Chiarito questo, possiamo tornare alla nostra lagrangiana: la lagrangiana è gauge invariante se \(U(\phi)\) lo è. Scegliamo allora 
+
+\begin{align}
+    U(\phi) = \frac{c}{4}(|\phi|^2 - v^2)^2, \quad |\Phi|^2 = \phi^a\Phi^a, \quad c \in \mathbb{C}, \, v \in \mathbb{R}^+
+\end{align}
+
+
+A partire dalla lagrangiana, si trovano le equazioni di eulero-lagrange, che in questo caso sono date da 
+
+\begin{align}
+    (D_\mu F^{\mu\nu})^a = -\eps^{abc}(\partial^\nu \phi^b)\phi^c, \quad (D_\mu D^\mu \Phi)^a = -c(|\Phi|^2 -v^2)\Phi^a
+\end{align}
+
+Ricordando che il nostro scopo è studiare i solitoni, cerchiamo delle soluzioni statiche, ad energia finita di queste equazioni. La condizione di energia finita implica che a grande \(r\), vale: 
+
+\begin{align}
+    F_{\mu\nu} \rightarrow 0, \quad |\Phi| \rightarrow v, \quad D_\mu \Phi \rightarrow 0
+\end{align}
+
+In particolare, la condizione sul modulo di \(\Phi\) non viene preservata da tutte le trasformazioni di gauge: a grande \(r\), le uniche trasformazioni ammesse sono dunque per \(g \in U(1) \subset SU(2)\). Diciamo allora che vi è una rottura spontanea di simmetria \(SU(2) \rightarrow U(1)\), che porta i solitoni in questa teoria ad essere simili ai monopoli di Dirac, se osservati da una opportuna distanza. \\
+
+Vi sono comunque delle grosse differenze rispetto al caso precedente, perchè
+
+\begin{enumerate}
+    \item Nel caso precedente avevamo solo un campo di gauge, mentre ora abbiamo anche un campo di Higgs 
+    \item Quando mi avvicino all'origine la struttura non abeliana del gruppo diventa rilevante, e permette al campo di essere regolare all'origine, il che porta ad avere una energia finita. 
+\end{enumerate}
+
+Per comodità, sfruttiamo la libertà di gauge ponendo \(A_0 = 0\). Questo è utile perchè così facendo per tutte le funzioni \(f\) che non dipendono dal tempo vale \(D_0 f = 0\). Per comodità poniamo \(v = 1\), cosa che è sempre possibile se riscaliamo il campo di Higgs: 
+
+\begin{align}
+    \hat{\Phi} = \frac{\Phi}{|\Phi|}
+\end{align}
+
+Poichè il campo diventa un campo di gauge \(U(1)\) all'infinito, ovvero un campo elettromagnetico, e per la precisione solamente un campo magnetico, perchè \(A_0 = 0\), e le funzioni sono tutte indipendenti dal tempo, vorremo calcolare la carica del monopolo non abeliano. Possiamo farlo calcolando il flusso del campo magnetico, attraverso la \(S^2_{\infty}\), i.e. la 2-sfera con raggio infinito. \\
+
+Per fare questo, seguiamo il seguente programma: 
+
+\begin{enumerate}
+    \item calcolo (all'infinito) il pontenziale di gauge \(A^a_i\). Per farlo, sfrutteremo il fatto che la condizione di energia finita implica (all'infinito) \(D_i \Phi = 0\) insieme a \(|\Phi|^2 = 1\). 
+    \item noto il potenziale di gauge, calcoleremo il tensore di intensità di campo \(F^a_{ij}\), usando la sua definizione 
+    \item dal campo leggeremo il campo magnetico abeliano, che è dato da
+    \begin{align}
+        B_k = \eps_{ijk}F^a_{ij}\hat{\Phi}^a
+    \end{align}
+
+    e nota la sua espressione potremo calcolare il flusso. 
+\end{enumerate}
+
+Cominciamo dunque: 
+
+\subsection{Calcolo del potenziale di gauge all'infinito}
+
+La condizione \(D_i \hat{\Phi} = 0\) implica che valga 
+
+\begin{align}
+    \partial_i\hat{\Phi} + [A_i, \hat{\Phi}] = 0 
+\end{align}
+
+esplicitando sia il potenziale sia il campo di Higgs, in termini della base che abbiamo scelto in \(\mathfrak{su}(2)\), troviamo 
+
+\begin{align}
+    \partial_i \hat{\phi}^a T^a + A^a_i \hat{\Phi}^b_i [T^a, T^b] = \partial_i \hat{\phi}^a T^a + A^a_i \hat{\Phi}^b_i \eps^{abc} T^c = 0  
+\end{align}
+
+dunque deve valere 
+
+\begin{align}
+    -\partial_i \phi^c = \eps^{abc}A^a_i \hat{\phi}^b, \quad |\Phi^2| = 1
+\end{align}
+
+Il calcolo è decisamente più intuitivo e semplice se passiamo ad una notazione vettoriale, negli indici latini: 
+
+\begin{align}
+    -\partial_i \vec{\Phi} = \vec{A}_i \times \vec{\Phi}
+\end{align}
+
+Il lato destro si può riscrivere notando che 
+
+\begin{align}
+    \vec{\Phi} \times (\partial_i \vec{\phi} \times \vec{\phi}) = \vec{\phi}(\partial_i \vec{\phi}\cdot \vec{\phi}) - \partial_i \vec{\Phi}(\vec{\Phi}\cdot \vec{\Phi})
+\end{align}
+
+Ma poichè il vettore \(\vec{\Phi}\) ha norma uno, questo si riduce a 
+
+\begin{align}
+    \vec{\Phi} \times (\partial_i \vec{\phi} \times \vec{\phi}) = -\partial_i \vec{\Phi}
+\end{align}
+
+sostituendo, otteniamo che 
+
+\begin{align}
+    \vec{A}_i \times \vec{\phi} = -(\partial_i \vec{\phi}\times \vec{\phi}) \times \phi
+\end{align}
+
+Da cui concludo che 
+
+\begin{align}
+    \vec{A}_i = -(\partial_i \vec{\phi}\times \vec{\phi}) + k_i \vec{\phi}
+\end{align}
+
+Oppure nella notazione con gli indici, 
+
+\begin{align}
+    A^a_i = -\eps^{abc}(\partial_i \phi^b)\phi^c + k_i \phi^a
+\end{align}
+
+L'ultimo pezzo non contribusce al flusso del campo magnetico, e come tale non lo portiamo avanti nei calcoli che seguono. 
+
+\subsection{Calcolo dell'intensità del campo}
+
+Ora bisogna solamente applicare la definizione, che ricordiamo essere (nel caso di \(\mathfrak{su}(2)\))
+
+\begin{align}
+    F^a_{ij} = \partial_i A^a_j - \partial_j A^a_i - \eps^{abc} A^b_i A^c_j
+\end{align}
+
+Vediamo dunque che il tensore si divide in due pezzi. Calcoliamoli entrambi con calma: da una sostituzione diretta trovo
+
+
+\begin{align}
+    \partial_i A^a_j &= -\eps^{abc}((\partial_{ij}\phi^b)\phi^c + (\partial_j \phi^b)(\partial_i \phi^c)) \\
+    \partial_j A^a_i &= -\eps^{abc}((\partial_{ji}\phi^b)\phi^c + (\partial_i \phi^b)(\partial_j \phi^c))
+\end{align}
+
+sottraendoli dunque sopravvive solamente ù
+
+\begin{align}
+    \partial_i A^a_j - \partial_j A^a_i &= -\eps^{abc} [(\partial_j \phi^b)(\partial_i \phi^c) - (\partial_i \phi^c)(\partial_j \phi^b)] \\
+    &= 2\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c)
+\end{align}
+
+
+Il secondo pezzo è ancora più laborioso. In particolare, sostituendo troviamo che 
+
+\begin{align}
+    \eps^{abc}A^b_i A^c_j = \eps^{abc}\eps^{bde}\eps^{chg}[(\partial_i \phi^d)\phi^e (\partial_j \phi^h)\phi^g]
+\end{align}
+
+usando la nota proprietà dei simboli di levi-civita, scriviamo che il prodotto diventa \(\eps^{bde}(\delta^{ah}\delta^{bg} -\delta^{ag}\delta^{bh})\). Troviamo allora che 
+
+\begin{align}
+    \eps^{abc}A^b_i A^c_j = \eps^{bde}(\partial_i\phi_d)\phi^e [(\partial_j \phi^a)\phi^b - (\partial_j\phi^b)\phi^a]
+\end{align}
+
+Riconosco che nel primo termine vi è la coppia degli indici \(b, e\) che è sia simmetrica che anti-simmetria sotto lo scambio. Concludo che quel fattore è zero e scrivo 
+
+\begin{align}
+    \eps^{abc}A^b_i A^c_j = -\eps^{bde}(\partial_i \phi^d)\phi^e (\partial_j \phi^b)\phi^a
+\end{align}
+
+Infine, possiamo scrivere che il tensore completo è dato da 
+
+\begin{align}
+    F^a_{ij} = 2\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c) + \eps^{bde}(\partial_i \phi^d)\phi^e (\partial_j \phi^b)\phi^a
+\end{align}
+
+o, equivalentemente, 
+
+\begin{align}
+    F^a_{ij} = 2\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c) - \eps^{dbe}(\partial_i \phi^d)\phi^e (\partial_j \phi^b)\phi^a
+\end{align}
+
+\section{calcolo del campo magnetico e del flusso}
+
+Quando calcoliamo il campo magnetico, la formula si semplifica. Infatti, vale 
+
+\begin{align}
+    F^a_{ij}\phi^a =  2\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c)\phi^a - \eps^{dbe}(\partial_i \phi^d)\phi^e (\partial_j \phi^b)
+\end{align}
+
+Rinominando gli indici ci accorgiamo che il secondo termine è identico al primo, così che vale 
+
+\begin{align}
+     F^a_{ij}\phi^a =  \eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c)\phi^a
+\end{align}
+
+ed il campo magnetico è dato da 
+
+\begin{align}
+    B_k = \frac{1}{2}\eps_{ijk}\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c)\phi^a
+\end{align}
+
+e finalmente il suo flusso è 
+
+\begin{align}
+    Q = \frac{1}{2}\int_{S^2_{\infty}} \eps^{ijk}\eps^{abc}(\partial_i \phi^b)(\partial_j \phi^c)\phi^a n^k d^2S
+\end{align}
+
+Ricorda che \(\phi\) è una funzione da \(S^2_\infty\), a valori nell'algebra, con il vincolo \(|\phi|^2 = 1\). Come spazio vettoriale, l'algebra di \(SU(2)\) è isomorfa ad \(\mathbb{R}^3\), poichè ha dimensione 3. D'altra parte, il vincolo \(\phi^a\phi^a\) restringe \(\mathbb{R}^3\) alla \(S^2\). Dunque, possiamo intepretare \(\phi: S^2_{\infty} \rightarrow S^2\), e l'integranda precedente come il pull-back di \(\phi\) della forma di volume standard in \(S^2\). Ricordando la definizione del grado topologico di una funzione, allora si ha che 
+
+\begin{align}
+    Q = \text{Vol}(S^2)N = 4\pi N
+\end{align}
+
+Con \(N = \deg(\phi)\).
+
+
+\subsection{Limite di Bogolmony}
+
+Non solo il numero di monopolo \(N\) determina la quantizzazione del flusso, ma da anche un limite all'energia del monopolo. In effetti, se consideriamo il limite \(c \rightarrow 0\), il funzionale dell'energia del nostro monopolo è dato da 
+
+\begin{align}
+    E[\phi, A] = \int d^3 x [\frac{1}{4}F^a_{ij}F^a_{ij} + \frac{1}{2}(D_i \phi^a)(D_i \phi^a)]
+\end{align}
+
+Definiamo ora il campo magnetico \emph{non abeliano}, dato da 
+
+\begin{align}
+    B^a_k = \eps_{ijk}F^a_{ij}
+\end{align}
+
+In questi termini, il funzionale si scrive 
+
+\begin{align}
+    E = \frac{1}{2}\int d^3x [B^a_k B^a_k + (D_k \phi^a)(D_k \phi^a)]
+\end{align}
+
+oppure usando il trucco di completare il quadrato, 
+
+\begin{align}
+    E = \frac{1}{2}\int d^3x [(B_k -D_k\phi)^a(B_k -D_k\phi)^a ] + \int d^3x (B^a_k D_k \phi^a) = E_1 + E_2
+\end{align}
+
+
+Poichè chiaramente \(E_1 \geq 0\), si ha che \(E \geq E_2\). D'altra parte, possiamo riscrivere \(E_2\) evidenziando come questa sia legata al numero di monopolo: inanzitutto, noto che l'identità di bianchi implica che \(D_k B_k = 0\), ovvero in particolare possiamo scrivere 
+
+\begin{align}
+    B^a_k(D_k \phi^a) = D_k(B^a \phi^a)
+\end{align}
+
+Il termine all'interno della derivata può essere riscritto, notando che 
+
+\begin{align}
+    B_k \phi = B^a_k \phi^b T^a T^b \implies B^a_k \phi^a = -2\text{Tr}(B_k \phi)
+\end{align}
+
+Dunque scriveremo 
+
+\begin{align}
+    E_2 &= -2\int d^3x \text{Tr}(D_k (B_k\phi)) = -2\int d^3x \text{Tr}(\partial_k (B_k\phi)+ [A_k, B_k\phi]) \\
+    &= -2\int d^3x \text{Tr}(\partial_k (B_k\phi)) = \int d^3x \partial_k (B^a_k\phi^a) = \int_{S^2_\infty} B^a_k\phi^a n^k d^2S = 4\pi N
+\end{align}
+
+
+Dunque, abbiamo provato che vale 
+
+\begin{align}
+    E \geq 4\pi N
+\end{align}
+
+il limite è saturato se \(E_1 = 0\), ovvero se vale 
+
+\begin{align}
+    B^a_k = D_k \phi^a
+\end{align}
+
+nota come \emph{equazione di Bogolmony}. Si tratta di 9 PDE accoppiate. In particolare, dato un numero di monopolo \(N\), lo spazio delle soluzioni (modulo trasformazioni di gauge) è \(4(N-1)\) dimensionale. Si dimostra inoltre che si tratta di un sistema integrabile, ma è possibile determinare soluzioni esplicite solo nel caso di \(N=1, 2\). \\
+
+Il numero di monopolo si può leggere facilmente anche dal comportamento asindotico del ponteziale di Higgs. Infatti, deve valere 
+
+\begin{align}
+    |\phi| = 1 - \frac{N}{r} + o(r^{-2}), \quad r \rightarrow \infty
+\end{align}
+
+
+perchè altrimenti non varrebbe, su una soluzione delle equazioni
+
+\begin{align}
+    \int_{\mathbb{R}^3} B^a_k(D_k\phi^a)d^3x = \int_{\mathbb{R}^3} (D_k\phi^a)(D_k\phi^a)d^3x = \frac{1}{2}\int_{\mathbb{R^3}}\nabla^2(|\phi|^2)d^3x = \frac{1}{2}\int_{S^2_\infty} \partial_k\left(1 - \frac{2N}{r}\right)n^k d^2S = 4\pi N 
+\end{align}
+
+\section{Instantoni nelle teorie di Yang-Mills}
+
+Cominciamo dando una definizione: 
+
+\dfn{Instantoni}{
+    Gli Instantoni sono soluzioni delle equazioni classiche di eulero-lagrange, la cui \emph{azione}, in spazio \emph{euclideo} è finita. 
+}
+
+Spazio eulcideo significa che consideremo una metrica \(\eta_{\mu\nu} = \text{diag}(+, \ldots, +)\). Uno può chiedersi perchè siamo interessati a queste soluzioni. La risposta è che in meccanica quantistica, la probabilità di passare da uno stato iniziale ad uno stato finale oltre una data certa barriera di potenziale è regolata dal fattore 
+
+\begin{align}
+    e^{-S/\hbar}
+\end{align}
+
+con \(S\), proprio l'azione \emph{euclidea}. Torneremo su questo punto con più chiarezza in seguito. \\
+
+Il nome instantone deriva proprio dal fatto che essendo in metrica euclidea, la soluzione è simultaneamente localizzata nel tempo e nello spazio. \\
+
+In particolare, studieremo gli istantoni nelle teorie di puro Yang-Mills. Questo vuol dire che, scelto un certo gruppo di gauge \(G\), la azione sarà data da 
+
+\begin{align}
+    S = -\int_{\mathbb{R}^4}\text{Tr}(F\wedge *F) 
+\end{align}
+
+e le equazioni di eulero lagrange sono le equazioni di Yang-Mills, ovvero 
+
+\begin{align}
+    D*F = 0
+\end{align}
+
+Cominciamo ora ad indagare cosa implica la condizione che l'azione sia finita. In particolare, osserviamo che deve valere 
+
+\begin{align}
+    F_{\mu\nu} \approx o(r^{-3})
+\end{align}
+
+(Ricorda che siamo in 4 dimensioni, quindi il determinante dello Jacobiano è \(\propto r^3\)). Il potenziale di gauge allora deve essere della forma 
+
+\begin{align}
+    A_\mu = -(\partial_\mu g)g^{-1} + o(r^{-2})
+\end{align}
+
+con \(g = g(x^\mu) \in G\). Nel caso in cui \(G = SU(2)\), allora, poichè stiamo definendo le proprietà dei campi all'infinito, dobbiamo specificare solamente 
+
+\begin{align}
+    g: S^3_{\infty} \rightarrow SU(2) = S^3
+\end{align}
+
+da cui notiamo che possiamo associare un grado a questa funzione. In effetti, questo risulterà molto importante. \\
+
+Poichè stiamo trattando i campi all'infinito, e meglio considerare la compattificazione di \(\mathbb{R}^4\), ovvero \(S^4 = \mathbb{R}^4 \cup \left\{ \infty \right\}\). In effetti, le metriche di \(S^4\) ed \(\mathbb{R}^4\) sono conformalmente equivalenti, e le equazioni di YM sono invarianti rispetto a trasformazioni conformi. Dunque possiamo pensare che data una soluzione delle equazioni su \(S^4\), questa si proietti stereograficamente su \(\mathbb{R}^4\). Vale anche l'opposto, come dimostrato da Uhlenkbek: data una soluzione su \(\mathbb{R}^4\), esiste un fibrato con base \(S^4\), dal quale possiamo proiettare stereograficamente la soluzione su \(\mathbb{R}^4\). \\
+
+Quest'ultimo approccio è geometricamente interessante, perchè essendo il fibrato su uno spazio non contraibile, questo può essere non banale. \\
+
+In particolare, mostreremo come è possibile \emph{classificare} i fibrati principali con fibra \(SU(2)\), su base \(M = S^4\), attraverso il grado topologico della mappa \(g\). Daremo anche un'idea di come questo si generalizza se \(G\) è un gruppo generico e lo spazio di base è \(S^n\). \\
+
+Consideriamo allora un fibrato principale \(P\) con base \(S^4\). Consideriamo la proiezione stereografica, data dalle due mappe 
+
+\begin{align}
+    f_N: S^4 \setminus N, \quad f_S: S^4 \setminus S
+\end{align}
+
+Dove con \(N, S\) abbiamo indicato il polo nord e il polo sud della sfera. 
+
+Le connessioni proiettate sono \(d + A_n, \, d + A_S\) in \(\mathbb{R}^4\). Uno potrebbe fare il pullback attraverso \(f\), ed ottenere \(f_N* A_N\) su \(S^4\), ma si mostra che se il fibrato non è banale, allora questa funzione non si estende in modo liscio fino al polo nord. Vale lo stesso per \(f_S*A_S\) al polo sud. Dunque, possiamo pensare che \(f_N^*A_n, \, f_S^*A_S\) siano def. su \(S^4 \setminus \left\{N, S\right\} \simeq \mathbb{R} \times S^3\), e legate da una trasformazione di gauge, 
+
+\begin{align}
+    f_N^*A_N = gf_S^*(A_S)g^{-1} - (dg)g^{-1}, \quad g : \mathbb{R} \times S^3 \rightarrow SU(2) = S^3
+\end{align}
+
+\subsection{Classi di Chern}
+
+Apriamo ora una partentesi. Consideriamo una teoria di gauge su \(\mathbb{R}^D\), con gruppo di gauge \(G = SU(N)\). La classe di Chern, è definita come 
+
+\begin{align}
+    C = \det\left(1 + \frac{iF}{2\pi} \right)    
+\end{align}
+
+Scrivendo \(1 + \frac{iF}{2\pi} = \exp\left[\ln\left(1 + \frac{iF}{2\pi}\right)\right]\), otteniamo che 
+
+\begin{align}
+    C = \exp\left[\text{Tr}\ln\left(1 + \frac{iF}{2\pi}\right)\right]
+\end{align}
+
+Espandendo il logaritmo e l'esponenziale in serie di Taylor, si ottiene 
+
+\begin{align}
+    C = C_1(F) + C_2(F) + \ldots 
+\end{align}
+
+dove ogni termine \(C_p\) (detta la p-esima forma di Chern) si mostra essere una 2p-forma. In particolare è un polinomio in \(\text{Tr}(F^k)\), da cui si ottiene che è gauge-invariante. Dall'identità di bianchi inoltre segue che le forme sono chiuse. \\
+
+Prendiamo allora \(G = SU(2)\). calcoliamo le prime 2 forme di Chern: usando gli svluppi di Taylor troviamo 
+
+\begin{align}
+    C &= \text{Tr}\left\{\ln\left(1 + \frac{iF}{2\pi} \right) \right\} + \frac{1}{2}\text{Tr}^2\left\{\ln\left(1 + \frac{iF}{2\pi} \right) \right\} \\
+    &= \text{Tr}\left(\frac{iF}{2\pi} \right) + \frac{1}{2}\left[\text{Tr}\left(\frac{F \wedge F}{(2\pi)^2}\right) + \text{Tr}^2\left(\frac{iF}{2\pi}\right)\right]
+\end{align}
+
+Riconosciamo allora 
+
+\begin{align}
+    C_1 = \frac{i}{2\pi}\text{Tr}F, \quad C_2 = \frac{1}{8\pi^2}\text{Tr}(F\wedge F) + \frac{i}{4\pi}\text{Tr}^2 F
+\end{align}
+
+Ricordandoci ora che \(F\) è senza traccia (poichè a valori nell'algebra \(\mathfrak{su}(2)\), lo spazio vettoriale delle matrici anti-hermitiane), ottieniamo
+
+\begin{align}
+    C_1 = 0, \quad C_2 = \frac{1}{8\pi^2}\text{Tr}(F \wedge F)
+\end{align}
+
+Si può verificare esplicitamente come \(dC_2 =0\). Se come spazio base abbiamo \(\mathbb{R}^4\), allora questa è anche chiusa, e si verifica che vale 
+
+\begin{align}
+    C_2 = dY_3, \quad Y_3 = \frac{1}{8\pi^2}\text{Tr}\left(dA \wedge A + \frac{2}{3}A^3 \right) = \frac{1}{8\pi^2}\text{Tr}\left(F \wedge A - \frac{1}{3}A^3 \right)
+\end{align}
+
+Integrare le forme di Chern su varietà di dimensione opportuna restituisce dei numeri interi. Ad esempio, verifichiamo che 
+
+\begin{align}
+    \int_{\mathbb{R}^4} C_2 = \frac{1}{8\pi^2}\int_{\mathbb{R}^4}\text{tr}(F\wedge F) = \frac{1}{8\pi^2}\int_{S^3_{\infty}} \text{Tr}\left(F \wedge A - \frac{1}{3}A^3\right)
+\end{align}
+
+Ricordando ora che all'infinito, il nostro instantone aveva \(F_{\infty} = 0\), \(A_{\infty} = dg g^{-1}\), otteniamo 
+
+\begin{align}
+    \int_{\mathbb{R}^4} C_2 = -\frac{1}{24\pi^2}\int_{S^3_{\infty}}\text{Tr}(dg g^{-1})^3 = \deg(g) \in \mathbb{Z} = c_2
+\end{align}
+
+In effetti, il secondo numero di Chern è un numero di grande importanza per la geometria del fibrato. 
+
+\clm{}{}{
+
+    Il secondo numero di chern \(c_2 = \deg (g)\) \emph{classifica} i fibrati principali su base \(S^4\), con fibra \(SU(2)\). 
+}
+
+In questo approccio abbiamo compattificato \(\mathbb{R}^4\) in \(S^4\), e dunque non vi sono le condizioni al contorno. D'altra parte, ricopriamo la \(S^4\) con due aperti \(U_+, U_-\), entrambi contraibili, e con regione di intersezione il "cilindro" \(S^3 \times [-\eps, \eps]\), con \(S^3\) la 3-sfera equitoriale (un po' come facevamo con il monopolo di Dirac, lì la regione di sovrapposizione era veramente un cilindro \(S^1 \times [-\eps, \eps]\)). 
+
+In coordinate locali, la forma di connesione e la curvatura del fibrato sono date da 
+
+\begin{align}
+    \omega = \begin{cases}
+        \gamma_+^{-1}A_+ \gamma_+ + d\gamma_+ \gamma_+^{-1} \\
+        \gamma_-^{-1}A_- \gamma_- + d\gamma_- \gamma_-^{-1}
+    \end{cases}, 
+    \quad 
+    \Omega = \begin{cases}
+        \gamma_+^{-1}F_+ \gamma_+\\
+        \gamma_-^{-1}F_- \gamma_-
+    \end{cases}
+\end{align}
+
+Dove i campi nelle due regioni \(A_+, F_+\) e \(A_-, F_-\) sono legati da una trasformazione di gauge, ovvero 
+
+\begin{align}
+    A_- = gA_+ g^{-1} - dg g^{-1}, \quad F_- = gF_+g^{-1}
+\end{align}
+
+se \(g\) soddisfa \(\gamma_- = g\gamma_+\). Poichè gli aperti sono contraibili, è possibile definire su questi la 3-forma di Chern-Simons, tale che la derivata esterna sia la 2-forma di Chern. 
+
+Calcoliamo allora 
+
+\begin{align}
+    k = \frac{1}{8\pi^2}\int_{S^4} \text{Tr}(\Omega \wedge \Omega) = \frac{1}{8\pi^2}\left[\int_{U_+} \text{Tr}(F_+ \wedge F_+) + \int_{U_-} \text{Tr}(F_- \wedge F_-)\right]
+\end{align}
+
+Localmente le forme sono esatte, così che possiamo passare alle 3-forme di Chern-Simons, e usando il teorema di stokes scriviamo 
+
+
+\begin{align}
+    k = \frac{1}{8\pi^2}\int_{S^3}\left(\text{Tr}\left(F_+ \wedge A_+ - \frac{1}{3}A_+^3\right) - \text{Tr}\left(F_- \wedge A_- - \frac{1}{3}A_-^3\right)\right)
+\end{align}
+
+Con alcuni passaggi algebrici, sostituendo \(A_+\) in termini di \(A_-, g\) si ottiene 
+
+\begin{align}
+    k = \frac{1}{8\pi^2}\int_{S^3}\text{Tr}\left[\frac{1}{3}(dg g^{-1})^3 - d\text{Tr}(A_+ \wedge dg g^{-1})\right] 
+\end{align}
+
+Poichè la \(S^3\) è senza bordo, troviamo infine che vale 
+
+\begin{align}
+    k = \frac{1}{24\pi^2}\int_{S^3}\text{Tr}[(dgg^{-1})]^3 = \deg(g) \in \mathbb{Z}
+\end{align}
+
+in pratica, il fibrato ristretto a \(U_+, U_-\) è banale, tutta l'informazione topologica sullo spazio del fibrato totale è contenuta nella funzione di transizione. Il grado classifica le funzioni di transizione in classi di omotopia, e funzioni di transizioni appartenenti alla stessa classe di omotopia danno lo stesso fibrato. \\
+
+In generale, i fibrati principali su spazio di base \(S^n\), sono classificati da \(\pi_n(G)\), con \(G\) il gruppo di struttura. 
+
+\subsection{Istantoni ad azione minima}
+
+Mostriamo ora un limite (simile a quello dei monopoli non-abeliani), all'azione della nostra soluzione, che è legato al secondo numero di chern \(c_2\) (Anche detto numero di istantone). \\
+
+In effetti, un argomento semplice mostra come se \(k\neq 0\), allora non è possibile che la soluzione abbia azione nulla. Infatti, possiamo vedere \(\mathbb{R}^4\) come una fogliazione di 3-sfere concentriche. Se l'azione è nulla, vuol dire che su ogni sfera di raggio \(r\), deve valere 
+
+\begin{align}
+    A_\mu = -\partial_\mu g_r g_r^{-1}, \quad g_r: S^3_{r} \rightarrow SU(2) = S^3
+\end{align}
+
+i.e. deve essere una campo gauge equivalente al vuoto. D'altra parte, sappiamo che vale \(\deg(g_{\infty}) = k \neq 0\), e per continuità, varrà che \(\deg_r(g) = k, \, \forall r > 0\). \\
+
+Ora, quando \(r \rightarrow 0\), il campo \(A_\mu\) deve tendere ad una costante se vuole essere ben definito in \(r=0\). Ma poichè il grado topologico non è zero, ad ogni \(r\) \(g\) cercherà di fare "il giro" \(k\) volte del gruppo \(SU(2)\), sulla sfera. Questo non è possibile e concludiamo che non possono esistere soluzioni con \(k \neq 0\) e ad azione nulla. \\
+
+Noto questo, è naturale chiedersi quale sia il limite inferiore dell'azione, e in quale caso questo viene saturato. Sfrutteremo un ragionamento simile al caso dei monopoloi non abeliani, sfuttando il trucco di completare il quadrato. 
+
+\clm{}{}{
+
+    Si consideri una soluzione delle equazioni di eulero lagrange, per una teoria di Yang-Mills con azione euclidea finita. Sia \(k\) il suo numero di istantone. \\
+
+    Allora la sua azione è limitata dal basso, ed in particolare vale 
+
+    \begin{align}
+        S \geq 8\pi^2 |k|
+    \end{align}
+
+    In particolare, il limite è saturato (se \(k>0\)), se il campo è anti-self-dual, i.e. vale \(F = -*F\). \\
+    Se invece \(k<0\), il limite è saturato se il campo è SD, ovvero vale \(F = *F\). 
+}
+
+Come anticipato, useremo un trucco alla Bogolmony. Consideriamo allora l'azione che ricordiamo essere data da 
+
+\begin{align}
+    S = -\int_{\mathbb{R}^4}\text{Tr}(F\wedge *F)
+\end{align}
+
+Possiamo vedere il termine dentro la traccia, \(F \wedge *F\), come il doppio prodotto risultante da un quadrato di un binomio. In questo caso allora usiamo \(a \rightarrow F, \, b \rightarrow *F\), e otteniamo che 
+
+\begin{align}
+    ab = \frac{1}{2}\left((a + b)^2 - a^2 - b^2\right) \rightarrow F\wedge *F = \frac{1}{2}\left((F+*F)\wedge (F+*F) - (F\wedge F) - (*F \wedge *F)\right)
+\end{align}
+
+notando che vale \(F \wedge F = *F \wedge *F\), allora scriveremo
+
+\begin{align}
+    S = -\frac{1}{2}\int_{\mathbb{R}^4}\text{Tr}((F+*F)\wedge (F+*F)) + \int_{\mathbb{R}^4}\text{Tr}(F\wedge F) 
+\end{align}
+
+Ora il primo termine è non-negativo (ricorda che \(\text{Tr}(T^aT^b) = -(1/2)\delta^{ab}\)), mentre il secondo è legato alla due forma di Chern:  
+
+\begin{align}
+    S \geq 8\pi^2 k
+\end{align}
+
+Il limite è saturato quando l'integranda del primo integrale è identicamente nulla su tutto \(\mathbb{R}^4\), i.e. quando \(F = -*F\). 
+
+Le equazioni \(F = -*F\) sono dette ASD, oppure ASDYM. Ricordando che le equazioni di YM, ovvero le equazioni di eulero-lagrange di una teoria di puro yang-mills sono date da \(D*F = 0\), ricordando che l'identità di bianchi dice \(DF =0\), è chiaro che le equazioni di ASD implicano le equazioni di YM. 
+
+\subsection{Risolvere le equazioni ASD: un possibile ansatz}
+
+Nonostante siano di ordine inferiore rispetto alle equazioni di YM, le ASD rimangono un sistema non lineare accoppiato di PDE. \\
+
+Un potente ansatz riduce questo complicato problema all'equazione di Laplace. In questo modo, saremo in grado di costruire una soluzione \emph{esplicita} delle equazioni, per un numero di istantone \(k\) \emph{arbitrario}. 
+
+Per prima cosa, introduciamo gli oggetti antisimmetrici \(\sigma_{\mu\nu}\) che sono definiti da 
+
+\begin{align}
+    \sigma_{ab} = -\eps_{abc}T_c, \quad \sigma_{a4} = -\sigma_{4a} = T_a
+\end{align}
+
+Questi oggetti sono matrici reali 4x4, anti-simmetriche. Questo vuol dire che sono elementi dell'algebra \(\mathfrak{so}(4)\). In particolare, ricorda che \(\mathfrak{so}(4) = \mathfrak{su}(2) \oplus \mathfrak{su}(2)\) . \\
+
+Dalla definizione, uno può calcolare il commutatore,
+
+\begin{align}
+    [\sigma_{\mu\kappa}, \sigma_{\nu\lambda}] = -\delta_{\mu\kappa}\sigma_{\nu\lambda} + \delta_{\mu\lambda}\sigma_{\kappa\lambda} + \delta_{\kappa\lambda}\sigma_{\mu\lambda} - \delta_{\nu\lambda}\sigma_{\mu\kappa}
+\end{align}
+
+le seguenti regole per il prodotto, 
+
+\begin{align}
+    \sigma_{\mu\nu}\sigma_{\mu\kappa} = -\frac{3}{4}\mathbb{I}\sigma_{\nu\kappa} - \sigma_{\nu\kappa}, \quad \sigma_{\mu\nu}\sigma_{\mu\nu} = -3\mathbb{I}
+\end{align}
+
+ed in particolare questi oggetti soddisfano 
+
+\begin{align}
+    \frac{1}{2}\eps_{\mu\nu\kappa\lambda}\sigma_{\kappa\lambda} = \sigma_{\mu\nu}
+\end{align}
+
+ovvero sono oggetti anti-simmetrici. 
+
+Usiamo questi per costruire delle soluzioni di ASDYM. In particolare, afferiamo che 
+
+\clm{}{}{
+
+    Sia \(\rho: \mathbb{R}^4 \rightarrow \mathbb{R}\) una funzione. La connessione 
+
+    \begin{align}
+        A = \sigma_{\mu\nu}\left(\frac{\partial_\nu \rho}{\rho}\right) dx^{\mu}
+    \end{align}
+
+    è soluzione dell'equazione ASDYM, s.se \(\rho\) soddisfa l'eq. di laplace, i.e. vale \(\square \rho = 0\)
+
+}
+
+La dimostrazione è per sostituzione, e usa le regole di moltiplicazione che abbiamo usato sopra. In particolare, poichè le sigma sono SD, una contrazione con \(F_{\mu\nu}\), che vorremmo fosse ASD, deve essere nullo se \(F_{\mu\nu}\) è ottenuto dalla connessione soluzione. \\
+
+Non dobbiamo allora far altro che verificare che 
+
+\begin{align}
+    \sigma_{\mu\nu}F_{\mu\nu} = 0 \quad \text{s.se} \, \,   \sigma_{\mu\nu}(\partial_\mu A_\nu - A_{\mu}A_\nu)  = 0 
+\end{align}
+
+Sostituendo, troviamo 
+
+\begin{align}
+    0 &= \sigma_{\mu\nu}\left(\partial_{\mu}\sigma_{\nu\lambda}\frac{\partial_\lambda\rho}{\rho} + \sigma_{\mu\kappa}\sigma_{\nu\lambda} \frac{\partial_\kappa \rho \partial_\lambda \rho}{\rho^2}\right) \\
+    &= \left(\frac{3}{4}\delta_{\mu\lambda} + \sigma_{\mu\lambda}\right)\left(\frac{\partial_\mu \partial_\lambda \rho}{\rho} - \frac{\partial_\mu\rho \partial_\lambda \rho}{\rho^2} \right) - \left(\frac{3}{4}\delta_{\nu\lambda} + \sigma_{\nu\lambda}\right) \sigma_{\nu\kappa}\left(\frac{\partial_\lambda \rho \partial_\kappa \rho}{\rho^2}\right) 
+\end{align}
+
+
+Ora nel primo prodotto, la contrazione di un oggetto simmetrico con un antisimmetrico da zero. Nel secondo, se agisco con delta succede la stessa cosa. Allora otteniamo 
+
+\begin{align}
+    0 &= \frac{3}{4}\left(\frac{\partial_\mu \partial_\mu \rho}{\rho} - \frac{\partial_\mu\rho \partial_\mu \rho}{\rho^2} \right) -  \sigma_{\nu\lambda}\sigma_{\nu\kappa}\left(\frac{\partial_\lambda \rho \partial_\kappa \rho}{\rho^2}\right) \\
+    &= \frac{3}{4}\left(\frac{\partial_\mu \partial_\mu \rho}{\rho} - \frac{\partial_\mu\rho \partial_\mu \rho}{\rho^2} \right) + \frac{3}{4}\left(\frac{\partial_\mu \rho \partial_\mu \rho}{\rho^2}\right) \\
+    &= \frac{3}{4}\frac{\square \rho}{\rho}
+\end{align}
+
+Ora che abbiamo capito come costruire soluzioni esplicite delle nostre equazioni, possiamo chiederci quale siano le proprietà di queste soluzioni. \\
+
+Chiaramente, la prima cosa che uno vorrebbe fare sarebbe scrivere la soluzione con la più semplice delle soluzioni dell'equazione di laplace, ovvero \(\rho = r^{-2}\). Questo però si trova essere un termine di puro gauge, con numero di istantone pari a 0. Dunque come è possibile trovare delle soluzioni che abbiano numero di istantone arbitrario? \\
+
+Costruiamo una soluzione dell'equazione di Laplace, sovrapponendo \(N+1\) soluzioni "standard" delle equazioni (ricorda che l'eq. di Laplace è lineare). Allora otteniamo che 
+
+\begin{align}
+    \rho = \sum_{p=0}^N \frac{\lambda_p}{|x-x_p|^2}
+\end{align}
+
+Questa soluzione è singolare in tutti gli \(N+1\) punti \(x_p\). D'altra parte, se si calcola il tensore di intensità di campo, ci si accorge che questo non è singolare! Si tratta dunque di singolarità di gauge, ovvero delle singolarità che è possibile rimuovere, facendo una opportuna trasformazione di gauge. Ogni trasformazione di gauge, la posso pensare come definita su una sfera che circonda la singolarità: poichè deve rimuovere una sola singolarità, dovrà avere grado topologico 1. Togliendo il contributo all'infinito, che è già garantito nel nostro approccio, si trova che questa soluzione ha numero di istantone pari a \(N\). Dunque questo ansatz è molto potente. Per \(N=1, 2\), tutte le possibili soluzioni delle ASDYM sono ottenibili da questo ansatz. 
+
+\subsection{Motivazione fisica dello studio}
+
+
+Abbiamo accennato che lo studio degli istantoni era motivato dalla meccanica quantistica, dove le probabilità di transizione da uno stato iniziale ad uno stato finale si ottengono in prima approssimazione esponenziando meno l'azione classica. Vogliamo ora dare più dettagli su questo argomento. \\
+
+In particolare, consideriamo una particella, di massa unitaria, che si muove secondo un potenziale, in \(\mathbb{R}^D\). Per il momento consideriamo la meccanica classica, per cui l'equazione del moto che segue la particella è data da 
+
+\begin{align}
+    \ddot{q}^k = -\frac{\partial V}{\partial q^k}, \quad k=1, \ldots, D. 
+\end{align}
+
+Supponiamo il potenziale si possa scrivere come \(V = -(1/2)(\nabla W)^2\), per qualche funzione delle coordinate \(W(q)\). \\
+
+La legge del moto di Newton diventa allora 
+
+\begin{align}
+    \dot{q}^k = \frac{\partial W}{\partial q^k}
+\end{align}
+
+Come si può verificare esplicitamente derivando rispetto al tempo: 
+
+\begin{align}
+    \ddot{q}^k = \frac{\partial^2 W}{\partial q^j \partial q^k}\dot{q}^j = \frac{\partial^2 W}{\partial q^j \partial q^k}\frac{\partial W}{\partial q^j} = \frac{1}{2}\frac{\partial }{\partial q^k}\left(\frac{\partial W}{\partial q^j} \right)^2 = - \frac{\partial}{\partial q^k}\left(-\frac{1}{2}(\nabla W)^2 \right)
+\end{align}
+
+
+L'energia totale della particella è data da 
+
+\begin{align}
+    \frac{1}{2}\dot{q}^2 + V(q) = \frac{1}{2}(\nabla W)^2 + V(q) = 0 
+\end{align}
+
+Ma possiamo generalizzarla ad una energia \(E\) se aggiungiamo una costante all'energia potenziale. Ora, se pensiamo al sistema come un sistema in QM, dove il sistema è governato dall'equazione di Schroedinger, ovvero 
+
+\begin{align}
+    E \psi = -\frac{\hbar^2}{2}\nabla^2\psi + V(q)\psi
+\end{align}
+
+dove ora la funzione d'onda \(\psi\) è una funzione complessa delle coordinate, in \(L^2\), il cui modulo al quadrato restituisce la distribuzione di probabilità di trovare una particella in una data posizione. Come tale possiamo scriverla 
+
+\begin{align}
+    \psi(q) = a(q)\exp{i\left(W(q)/\hbar \right)}
+\end{align}
+
+dove ora \(a(q, W(q))\) sono funzioni reali. L'approssimazione di WKB è una nota approssimazione semi-classica, che consiste nel prendere le correzioni quantistiche di ordine \(\hbar\). In particolare, se ci mettiamo nella regione classicamente proibita, ovvero in una regione \(V > E\), la funzione è asindoticamente \(\psi = a(q)e^{W(q)/\hbar}\), allora si trova che l'eq. è approssimatamente quella di un flusso del gradiente con potenziale "rovesciato", ovvero 
+
+\begin{align}
+    \frac{1}{2}|\nabla W|^2 = V(q) - E
+\end{align}
+
+In effetti, lo studio delle soluzioni del flusso di gradiente in un potenziale rovesciato è rilevante in teoria dei campi. Consideriamo le equazioni di Yang-Mills, su \(\mathbb{R}^4\) con metrica euclidea. In particolare, consideriamo \(Y = \mathbb{R}^3, t \in \mathbb{R}\). Le equazioni ASDYM possono essere viste come l'evoluzione temporale di una famiglia ad un parametro di connessioni \(\vec{A}\) su \(Y\).\\
+
+Sia \(A = A_4dt + \bar{A}\). Prendiamo il gauge \(A_4= 0\), così che 
+\begin{align}
+    F_{4i} = \frac{\partial A_i}{\partial t}
+\end{align}
+
+Se questo è ASD, allora deve valere 
+
+\begin{align}
+    F_{4i} = \frac{1}{2}\eps_{ijk}F_{jk}
+\end{align}
+
+In forma vettoriale, si può scrivere 
+
+\begin{align}
+    \frac{d\bar{A}}{dt} = \frac{\delta W[\bar{A}]}{\delta \bar{A}}
+\end{align}
+
+se \(W[\bar{A}]\) è dato dall'integrale su \(Y\) della 3-forma di Chern, ovvero 
+
+\begin{align}
+    W[\bar{A}] = \int_{Y} \text{Tr}(\bar{A}\wedge d\bar{A} + \frac{2}{3}\bar{A}^3)
+\end{align}
+
+D'altra parte, se considerassimo la lagrangiana di YM in metrica lortentziana, questa sarebbe data da
+
+\begin{align}
+    S = -\frac{1}{2}\int_{\mathbb{R}^4}\text{Tr}(F_{\mu\nu}F^{\mu\nu})
+\end{align}
+
+nel gauge temporale, possiamo scrivere 
+
+\begin{align}
+    S = -\frac{1}{2}\int_{\mathbb{R}^4}\text{Tr}\left(\frac{dA_i}{dt}\frac{dA_i}{dt} \right) - \text{Tr}\left(F_{ij}F_{ij} \right)
+\end{align}
+
+Notiamo che questa si può scrivere in un modo formalmente simile a quello del moto di una particella, se identifichiamo 
+
+\begin{align}
+    |\dot{\bar{A}}|^2 = \int_{Y}\text{Tr} \left(\frac{dA_i}{dt}\frac{dA_i}{dt} \right) d^3x, \quad V[\bar{A}] = \frac{1}{2}\int_{Y}\text{Tr}(F_{ij}F_{ij})d^3x
+\end{align}
+
+infatti la lagrangiana a questo punto assume la nota forma 
+
+\begin{align}
+    L = \int \left(\frac{1}{2}|\dot{\bar{A}}|^2 - V[\bar{A}] \right)dt
+\end{align}
+
+In effetti, possiamo anche scrivere, 
+
+\begin{align}
+    V[\bar{A}] = \frac{1}{2}\int_Y \text{Tr}\left(\frac{\delta W}{\delta A_i}\frac{\delta W}{\delta A_i}\right) d^3x =: \frac{1}{2}\biggr|\frac{\delta W}{\delta A} \biggr|^2
+\end{align}
+
+Formalmente, dunque, YM con metrica lorentziana si comporta come una particella classica, se sono fatte le seguenti formali sostituzioni: 
+
+\begin{align}
+    Y \rightarrow \mathbb{R}^D, \quad |A|^2 \rightarrow q^2 = q^k q^k, \quad\frac{\delta}{\delta A} \rightarrow \nabla, 
+\end{align}
+
+Dunque abbiamo con successo mappato formalmente un problema in teoria dei campi (classica) in un problema di meccanica classica. Vediamo cosa succede se quantizziamo entrambe le teorie. Le equazioni ASD danno il moto in un potenziale rovesciato, ed in particolare dunque, possiamo chiudere il cerchio pensando che la teoria di campo quantistica YM sia una teoria che prevede il passaggio tra connessioni separate da muri di potenziale. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
