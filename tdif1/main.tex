@@ -1000,6 +1000,99 @@ Usando quindi anche la ciclicità della traccia, l'argomento di matrice si scriv
 
 queste sono solo 4 matrici, e le sappiamo tracciare. 
 
+\chapter{Rinormalizzazione e contributi a più loop}
+
+Torniamo alla lagrangiana della QED: 
+
+\begin{align}
+    \mathcal{L}_{QED} = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + \bar{\psi}(i\slashed{\partial} -m)\psi - e\bar{\psi}\gamma^\mu \psi A_\mu
+\end{align}
+
+da quanti parametri dipende la teoria? Da due, ovvero la massa \(m\) della particella (e.g. elettrone), e la carica \(e\). 
+
+Quando noi andiamo a vedere oltre al primo ordine in teoria delle perturbazioni, dobbiamo considerare anche i diagrammi di Feynman che includano dei loop: ad esempio, per il processo \(e^-e^+ \rightarrow \mu^+\mu^-\), avremo 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [above left = of a] (b) {$e^-$}; 
+            \vertex [below left = of a] (c) {$e^+$}; 
+            \vertex[right = of a] (d); 
+            \vertex[right = of d] (e); 
+            \vertex[right = of e] (f); 
+            \vertex[above right = of f] (g) {$\mu^-$};
+            \vertex[below right = of f] (h) {$\mu^+$}; 
+            \diagram{
+                (a) -- [boson, edge label = $\gamma$] (d); 
+                (b) -- [fermion] (a) -- [fermion] (c); 
+                (d) -- [fermion, half left, edge label = $e^-$] (e);
+                (e) -- [fermion, half left , edge label = $e^+$] (d); 
+                (e) -- [boson, edge label = $\gamma$] (f);  
+                (h) -- [fermion] (f) -- [fermion] (g); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+Questo può portare alcuni problemi. Alcuni sono di natura matematica: infatti molt dei contributi di questi diagrammi sono divergenti. D'altra parte, i parametri della nostra teoria risultano anche essere modificati. Consideriamo infatti il contributo al propagatore di un campo scalare: 
+
+Le regole di Feyman saranno, se il campo ha massa \(m_0\) che compare nella lagrangiana, il propagatore scalare:
+
+\begin{align}
+    \frac{i}{p^2-m_0^2 +i\eps}
+\end{align}
+
+e similmente possiamo assegnare una regola di Feyman al diagramma con loop amputato, cioè al cerchio senza i termini di propagatore che arrivano ai lati. La regola diremo essere 
+
+\begin{align}
+    i\Sigma(p^2)
+\end{align}
+
+La somma su tutti gli ordini del propagatore è data da 
+
+\begin{align}
+    \frac{i}{p^2 - m_0^2 +i\eps}\left[1 + \frac{(i)^2\Sigma(p)^2}{p^2 - m_0^2 + i\eps} + \left(\frac{(i)^2\Sigma(p)^2}{p^2 - m_0^2 + i\eps} \right)^2  + \ldots \right] = \frac{i}{p^2 - m_0^2 + \Sigma(p^2) + i\eps}
+\end{align}
+
+dove nell'uguaglianza abbiamo riconosciuto la forma di una serie geometrica. Ora, nell'interpretazione del campo come collezione di operatori di creazione e distruzione, che agiscono su stati di \emph{particelle}, è necessario che il propagatore risommato abbia un polo semplice nella massa della particella. Richiediamo allora questa come condizione, sostituendo 
+
+\begin{align}
+    m_0^2 = m^2 + \delta m^2
+\end{align}
+
+dove \(m\) è la massa \emph{rinormalizzata}, e \(\delta m^2\) è detto controtermine. Il propagatore risommato allora è dato da 
+
+\begin{align}
+    \frac{i}{p^2 - m^2 - \delta m^2 + \Sigma(p^2)+i\eps}
+\end{align}
+
+A noi interessa il comportamento del propagatore per \(p^2 \rightarrow m^2\), e quindi sviluppiamo in serie di Taylor \(\Sigma\): 
+
+\begin{align}
+    \frac{i}{(p^2-m^2) - \delta m^2 +\Sigma(m^2) + \Sigma'(m^2)(p^2-m^2) + \frac{1}{2}(p^2-m^2)^2 \Sigma''(m^2) + \ldots }
+\end{align}
+
+osserviamo che allora se identifichiamo \(\delta m^2 = \Sigma(m^2)\), allora otteniamo 
+
+\begin{align}
+    \frac{i}{(p^2-m^2 +i\eps)(1+\Sigma'(m^2))} = \frac{i Z_\phi}{p^2-m^2 + i\eps}, \quad Z_\phi := \frac{1}{1+\Sigma'(m^2)}
+\end{align}
+
+che è nella forma che volevamo! L'unico problema sorge nella costante moltiplicativa \(Z_\phi\) (detta wave-function costant) che può dare dei problemi perchè l'interpretazione probabilistica di questa teoria, ha senso solo se il residuo del propagatore per \(p^2 = m^2\) è 1. D'altra parte, noi possiamo riassorbire questa costante, se normalizziamo in modo diverso i nostri campi: 
+
+\begin{align}
+    \phi_0 = Z_\phi^{-1/2}\phi \implies \mathcal{L} = Z_\phi^{-1}\mathcal{L}_0
+\end{align}
+
+Adesso vediamo cosa succede nel caso di un fermione. Ricordiamo la forma del propagatore fermionico, 
+
+\begin{align}
+    \frac{i}{\slashed{p}-m+i\eps} = \frac{i(\slashed{p}+m)}{p^2-m^2 + i\eps}
+\end{align}
+
+Come regola di un diagramma di un loop amputato, assumiamo \(i\Sigma(\slashed{p})\)
+
 \end{document}
 
  
