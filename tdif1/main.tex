@@ -1093,6 +1093,48 @@ Adesso vediamo cosa succede nel caso di un fermione. Ricordiamo la forma del pro
 
 Come regola di un diagramma di un loop amputato, assumiamo \(i\Sigma(\slashed{p})\)
 
+Ipostando allora il calcolo come per il campo scalare, abbiamo alla fine che il propagatore risommato è dato da 
+
+\begin{align}
+    \frac{i}{(\slashed{p}-m+i\eps)(1+\Sigma'(m))}
+\end{align}
+
+tipicamente, si ha che \(\Sigma(\slashed{p}) = A(p^2, m)\mathbb{I} + B(p^2, m)\slashed{p}\). Per ottenere allora \(\Sigma'\), scrivi 
+
+\begin{align}
+    \frac{\partial}{\partial \slashed{p}} = \frac{\partial p^2}{\partial \slashed{p}}\frac{\partial}{\partial p^2} = 2\slashed{p}\frac{\partial}{\partial p^2}
+\end{align}
+
+che implica
+
+\begin{align}
+    \frac{\partial \Sigma}{\partial \slashed{p}} = 2\slashed{p}\frac{\partial A(p^2)}{\partial p^2} + B(p^2) + 2p^2 \frac{\partial B(p^2)}{\partial p^2}
+\end{align}
+
+Veniamo a parlare ora del fotone. Questo è molto interessante, perchè al primo livello perturbativo il fotone è massless. Ci chiediamo se attraverso il processo di rinormalizzazione il fotone aquista massa. Il fotone è più complicato, in quanto teoria di gauge. In particolare, l'invarianza di gauge implica delle condizioni sulle funzioni di green, che sono dette Identità di Ward. Ad esempio, una identità di Ward è 
+
+\begin{align}
+    M = M^\mu \eps_\mu \implies k_\mu M^\mu = 0 
+\end{align}
+
+Ora, immaginiamo che la regola di Feyman per il contributo a un loop amputato sia data da 
+
+\begin{align}
+    i \Pi^{\mu\nu}(p^2) = A(p^2)p^2g^{\mu\nu} + B p^\mu p^\nu
+\end{align}
+
+dove abbiamo decomposto il tensore negli unici due tensori simmetrici disponibili. La WI mette un vincolo su \(A, B\): 
+
+\begin{align}
+    p_\mu \Pi^{\mu\nu} = 0 = A(p^2)p^2p^\nu + B p^2 p^\nu \implies A = -B 
+\end{align}
+
+scriveremo dunque in forma generale, che 
+
+\begin{align}
+    \Pi^{\mu\nu} = (p^2g^{\mu\nu}-p^\mu p^\nu)\Pi(p^2)
+\end{align}
+
 \end{document}
 
  
