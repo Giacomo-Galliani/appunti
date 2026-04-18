@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1776198797.64145 "/home/marin/documents/qft1/main.tex" "main.pdf" "main" 1776198799.22316 0
+["pdflatex"] 1776511685.19162 "/home/marin/appunti/qft1/main.tex" "main.pdf" "main" 1776511686.85355 0
   "/etc/texmf/web2c/texmf.cnf" 1776007129.54043 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/marin/documents/qft1/main.tex" 1776198795.72312 61713 d4d8096bd8a11da8772beaf8e5814670 ""
+  "/home/marin/appunti/qft1/main.tex" 1776511683.20308 61830 c12cd07a1a1b0a7bb50e2465eac1762d ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newpx/px-lms.enc" 1699652218 3877 2ca811886181a05a861d20a35de75e06 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
@@ -348,13 +348,13 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1776008551.85946 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776008606 8213975 ea2ad71cf415a6caecaab02f57dd30c7 ""
-  "letterfonts.tex" 1776180013.41524 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
-  "macros.tex" 1776180013.38324 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1776198799.08615 11224 5c8fecd0c7104a83f060f497283ccd47 "pdflatex"
-  "main.tex" 1776198795.72312 61713 d4d8096bd8a11da8772beaf8e5814670 ""
-  "main.toc" 1776198799.08989 1646 4380aba7e1337e39cf5cdac320f48bf0 "pdflatex"
-  "preamble.tex" 1776180013.20624 20067 644084ebe6805daf52bcc90d5e356213 ""
-  "settings/fncystyle.sty" 1776180013.54724 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
+  "letterfonts.tex" 1776429879.9055 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
+  "macros.tex" 1776429879.9055 1390 e02343db25b6b0a7b14fed906327ad7b ""
+  "main.aux" 1776511686.71575 12119 b394438e2eee6b776077596eba6250f2 "pdflatex"
+  "main.tex" 1776511683.20308 61830 c12cd07a1a1b0a7bb50e2465eac1762d ""
+  "main.toc" 1776511686.71575 1745 9be3b2a4005274f0406bab40f5b93039 "pdflatex"
+  "preamble.tex" 1776429879.9095 20067 644084ebe6805daf52bcc90d5e356213 ""
+  "settings/fncystyle.sty" 1776429879.9095 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)
   "main.aux"
   "main.log"

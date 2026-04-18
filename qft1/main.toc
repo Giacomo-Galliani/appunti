@@ -17,4 +17,5 @@
 \contentsline {section}{\numberline {4.2}A lagrangian for Weyl spinors}{22}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Dirac's lagrangian and equation}{23}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Canonical quantisation}{26}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Interacting Fields and perturbation theory}{29}{chapter.5}%
 \contentsfinish 
