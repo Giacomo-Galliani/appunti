@@ -1269,13 +1269,232 @@ In particular, the commutation relation is
     [a_{p,r}^\dagger a_{qs'}, a_{0s}] = \ldots = (2\pi)^3\delta_{ss'}\delta(\vec{p}-\vec{q})
 \end{align}
 
+One then finds 
+
+\begin{align}
+    [S_z, a^\dagger_{0s}]\ket{0} &= \int \frac{d^3p}{(2\pi)^3}\frac{1}{2E_p}\sum_{r s'}(2\pi)^3 \delta_{ss'}\delta^{(3)}(\vec{p})u^{s'\dagger}(p)\frac{\Sigma^3}{2}u'^{r}(p)\ket{0} \\
+    &= \frac{1}{2m}\sum_r u^{s\dagger}(0)\frac{\Sigma^3}{2}u^r(0)a^\dagger_{0r}\ket{0}
+\end{align}
+
+To proceed, write explicitly the spinors: 
+
+\begin{align}
+    u^s(p=0) = \sqrt{m}\begin{pmatrix}
+        \xi \\ \xi 
+    \end{pmatrix} \implies [S_z, a^\dagger_{0s}]\ket{0} = \frac{1}{2}\sum_r \begin{pmatrix}
+        \xi^{r\dagger} & \xi^{r\dagger}
+    \end{pmatrix} \frac{\Sigma^3}{2}\begin{pmatrix}
+        \xi^r  \\ \xi^r
+    \end{pmatrix}a^\dagger_{0s}\ket{0}
+\end{align}
+
+But remember that the 2-dimensional spinors are 
+
+\begin{align}
+    \xi^{r=1} = \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}, \quad \xi^{r=2} = \begin{pmatrix}
+        0 \\ 1 
+    \end{pmatrix}
+\end{align}
+
+So the eigenvalues are \(\pm 1/2\), if \(s = 1, 2\).  
+
+Lastly, remember that the lagrangian has a \(U(1)\) global symmetry. The charge operator, after applying normal ordering, looks like
+
+\begin{align}
+    Q = \int \frac{d^3p}{(2\pi)^3}\sum_{s_1, s_2}(a^\dagger_{ps}a_{ps} - b^\dagger_{ps}b_{ps})
+\end{align}
+
+so particles (created by \(a^\dagger\)) carry a positive charge, while antiparticles, created by \(b^\dagger\) have a negative charge. 
 
 
 
 \chapter{Interacting Fields and perturbation theory}
 
-Since now, we've only considered non-interacting theories. 
+Since now, we've only considered non-interacting theories. Since we'd like to use this theory to make predictions about real events, we have to start to take into consideration what happens when we have interaction between fields. 
 
+The main problem when one introduces interaction, is that normally the equations of motion become non linear: thus we cannot expand the solutions in terms of plane waves anymore. To be more specific, we can pick a preferred time, and there expand via fourier analysis our fields: but then this will evolve in time through a non-linear Hamiltionian.
+
+For example, a one particle state \(a^\dagger_k\ket{0}\) can evolve into \((a^\dagger_k)^2\ket{0}\), i.e. a two particles state. This means that the Hilbert space of the interacting theory is going to be very different from the hilbert space of the free theories. 
+
+We're going to assume that the interactions are \emph{local}, and that they cointain only the fields, not their derivatives. The hamiltonian of the interaction is going to be labeled 
+
+\begin{align}
+    H_{int} = \int d^3x \mathcal{H}_{int} = -\int d^3x \mathcal{L}_{int}
+\end{align}
+
+Some popular interaction theories are given by 
+
+\begin{enumerate}
+    \item \(\phi^4\) theory (auto-interacting scalar field): 
+    \begin{align}
+        \mathcal{L} = \frac{1}{2}(\partial_\mu \phi)^2 - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4
+    \end{align}
+    \item quantum electrodynamics (interaction between spinor and gauge \(U(1)\) field): 
+    \begin{align}
+        \mathcal{L}_{QED} = \bar{\psi}(i\slashed{\partial}-m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} - e\bar{\psi}\gamma^\mu A_\mu \psi 
+    \end{align}
+    \item Yukawa coupling (interaction between scalar and spinor field): 
+    \begin{align}
+        \mathcal{L}_{YK} = \bar{\psi}(i\slashed{\partial}-m)\psi + \frac{1}{2}(\partial_\mu \phi)^2 - \frac{1}{2}m^2 \phi^2 -g\bar{\psi}\psi \phi^2
+    \end{align}
+\end{enumerate}
+
+
+What we're mainly interested in computing in QFT are scattering amplitudes, i.e. probabilities that a certain interaction will occur. An exact computation of this processes can be done only in \(1+1\) dimensions. In a more realistic scenario, one must compute the amplitudes using perturbation theory. 
+
+So far, we've only worked in the Heisenberg picture. For a moment, let's get back to the Schroedinger picture, and consider a state \(\ket{a}\) ad a fixed time \(T\). Of course, this state will evolve in time, but at the beggining, it will be an eigenstate of a set of operators, that we label by \(a\). Similarly, we also consider a different state \(\ket{b}\). If we let the states evolve with time, we get 
+
+\begin{align}
+    \ket{a(t)} = e^{-iH (t-T)}\ket{a}
+\end{align}
+
+and the matrix element of the transition \(\ket{a} \rightarrow \ket{b}\) at a time \(T_f\) will be 
+
+\begin{align}
+    \bra{b}e^{-iH(T_f-T)}\ket{a}
+\end{align}
+
+We define the \emph{S matrix} as the matrix whose element are given by the latter amplitude, as the difference in time becomes infinite: 
+
+\begin{align}
+    \bra{b}S\ket{a} := \lim_{(T_f-T) \rightarrow \infty} \bra{b}e^{-iH(T_f-T)}\ket{a}
+\end{align}
+
+\clm{}{}{
+    From probability conservation, \(SS^\dagger = 1\), so \(S\) is \emph{unitary}. 
+
+}
+
+To see this, define a complet set of states \(\ket{n}\) such that \(\sum_n \ket{n}\bra{n} = 1\). Now, since the set is complete, the probability that \(\ket{a}\) will transition into one of this is 1, in formulas 
+
+\begin{align}
+    \sum_n |\bra{n}S\ket{a}|^2 = 1 \implies \sum_n \bra{a}S^\dagger \ket{n} \bra{n}S\ket{a} = 1 \implies \bra{a}SS^\dagger\ket{a} = 1
+\end{align}
+
+And if the starting state is correctly normalized, \(S\) must be unitary. 
+
+Many times it's useful to write
+
+\begin{align}
+    S = \mathbb{I} + i T
+\end{align}
+
+that is, separate the propability that the state will remain the same, or having particle interaction. 
+
+Now let's get back to the Heisenberg picture: remembering how the two pictures are related, the matrix elements of the S matrix are quickly found: 
+
+\begin{align}
+    \bra{b}S\ket{a} = \Braket{b, T_f | a, T_i}
+\end{align}
+
+Now, it's clear that we'd like a way of computing the \(S\) matrix. One way is called the LSZ formula. Consider then the matrix element between two states, of \(n\) and \(m\) particles, so \(\Braket{\vec{p}_1, \ldots, \vec{p}_n, T_f | \vec{k}_1, \ldots \vec{k}_n, T_i}\). Imagine that this particle state are created by a real scalar free field. We can invert the expansion of the field to obtain the ladder operators: 
+
+\begin{align}
+    &\sqrt{2E_k}a_k = i \int d^3x e^{ikx} \overleftrightarrow{\partial}_0 \phi_{free} \\
+    &\sqrt{2E_k}a^\dagger_k = -i\int d^3x e^{-ikx}\overleftrightarrow{\partial}_0 \phi_{free}
+\end{align}
+
+If \(T_f-T_i \rightarrow \infty\), particles are well separated. Assuming the interaction decreases in magnitude with distance, we can imagine that in that limit, the relevant theory is the free theory. We then write
+
+\begin{align}
+    \phi(x) \rightarrow \begin{cases}
+        \sqrt{Z}\phi_{in}(x), \quad \text{as } t \rightarrow -\infty \\
+        \sqrt{Z}\phi_{out}(x), \quad \text{as } t \rightarrow \infty 
+    \end{cases}
+\end{align}
+
+with \(Z\) a normalizing factor. Thus, we have 
+
+\begin{align}
+    \sqrt{2E_k}a^{\dagger(in)}_k &= -i\int d^3x e^{-ikx}\overleftrightarrow{\partial}_0 \phi_{in} \\
+    &= -i\sqrt{Z}\lim_{t\rightarrow -\infty}\int d^3x e^{-ikx}\overleftrightarrow{\partial}_0 \phi(x) 
+\end{align}
+
+and in the same way, 
+
+\begin{align}
+    \sqrt{2E_k} = i\sqrt{Z}\lim_{t\rightarrow \infty}\int d^3x e^{-ikx}\overleftrightarrow{\partial}_0 \phi(x) 
+\end{align}
+
+Notice that the two operators act on different spaces: the initial/final states at \(T_i / T_f\). 
+
+This gives a way to compute the S matrix element: 
+
+\begin{align}
+    \Braket{\vec{p}_1, \ldots, \vec{p}_n, T_f | \vec{k}_1, \ldots \vec{k}_m, T_i} &= \sqrt{2E_{k_1}}\bra{\vec{p}_1, \ldots, \vec{p}_m, T_f}a^{\dagger(in)}_{k_1}\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} \\
+    &= -iZ^{-1/2}\lim_{t\rightarrow -\infty}\int d^3x e^{-ik_1x}\bra{\vec{p}_1, \ldots \vec{p}_n, T_f}\overleftrightarrow{\partial}_0\phi\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
+
+Now this is good but doesn't quite look lorentz covariant. We can write it in a way that makes it more explicit, using the fondamental theorem of calculus: 
+
+\begin{align}
+    \left(\lim_{t\rightarrow \infty} - \lim_{t\rightarrow -\infty} \right)f(t) = \int_{-\infty}^{+\infty}dt \frac{df}{dt} \implies \sqrt{2E_{k}}(a^{\dagger(in)}_k - a^{\dagger(out)}_k) = \int_{-\infty}^{+\infty} \int d^3x (iZ^{1/2})\partial_0 (e^{-ikx}\overleftrightarrow{\partial}_0 \phi)
+\end{align}
+
+Applying the derivative and remembering that \(\partial_0^2 e^{-ikx} = -k_0^2 e^{-ikx} = (\nabla^2 -m^2)e^{-ikx}\), we write 
+
+\begin{align}
+    \sqrt{2E_{k}}(a^{\dagger(in)}_k - a^{\dagger(out)}_k) = i Z^{1/2}\int d^4x (e^{-ikx}\partial_0^2\phi - \phi(\nabla^2-m^2)e^{ikx})
+\end{align}
+
+Now, we want to work with quantities that are localized in space: we can then integrate by parts in space, and drop the boundary terms, to get 
+
+\begin{align}
+    \sqrt{2E_{k}}(a^{\dagger(in)}_k - a^{\dagger(out)}_k) = iZ^{1/2}\int d^4x e^{-ikx}(\square +m^2)\phi(x)
+\end{align}
+
+please note that the integral is \emph{not} zero, as the field doesn't satisfy the KG equation everywhere in spacetime, but only at some fixed times. 
+
+Using this useful relation, we get back to our matrix elements and we write 
+
+\begin{align}
+    \sqrt{2E_{k_1}}\bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}(a^{\dagger(in)}_{k_1}- a^{\dagger(out)}_{k_1})\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} = \\
+    = i Z^{1/2}\int d^4x e^{-ikx}(\square +m^2)\bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
+
+this is exactly the matrix element from the beggining, as \(a^{\dagger(out)}_{k_1}\) acts on the bra annihilating it. 
+
+Ultimately, we'd like to use this trick to eliminate all the states. We have to understand how to eliminate the final states, then. To do this we start with 
+
+\begin{align}
+    \bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
+
+and we try to remove the \(\vec{p}_1\) particle, with the \(a_{p_1}^{(out)}\) operator. So we get 
+
+\begin{align}
+    \bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} = \sqrt{2E_{p_1}}\bra{\vec{p}_2, \ldots, \vec{p}_n, T_f}a_{p_1}^{(out)}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
+
+we define the \emph{time ordered} product: 
+
+\begin{align}
+    T\left\{\phi(x) \phi(y) \right\} = \begin{cases}
+        \phi(y)\phi(x) \quad \text{if } x^0 < y^0 \\
+        \phi(x)\phi(y) \quad \text{if } x^0 > y^0 
+    \end{cases}
+\end{align}
+
+Since \(a_p^{(out)}\) is defined as \(y^0 \rightarrow \infty\), it goes always first in the time product. Similarly \(a^{(in)}\) goes always last. We notice than that 
+
+\begin{align}
+    \sqrt{2E_{p_1}}\bra{\vec{p}_2, \ldots, \vec{p}_n, T_f}T\left\{(a_{p_1}^{(out)}-a_{p_1}^{(in)})\phi(x)\right\}\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} = \\
+    = \sqrt{2E_{p_1}}\bra{\vec{p}_2, \ldots, \vec{p}_n, T_f}a_{p_1}^{(out)}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
+
+Here we see why we had to introduce the time ordering product: since \(T(a_p^{(in)}\phi(x)) = \phi(x)a_p^{(in)}\), the distruction operator can act on the initial state and annihilate it. As before we get 
+
+\begin{align}
+    \sqrt{2E_{p_1}}(a^{(out)}_{p_1} -a^{(in)}_{p_1}) = -iZ^{-1/2}\int d^4x e^{ip_1 y}(\square +m^2)\phi(y)
+\end{align}
+
+in the end, we get 
+
+\begin{align}
+    \bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} = iZ^{1/2}\int d^4y e^{ip_1y}(\square +m^2)\bra{\vec{p}_2, \ldots, \vec{p}_n, T_f}T\left\{\phi(y)\phi(x)\right\}\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
+\end{align}
 
 
 \end{document}
