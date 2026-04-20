@@ -400,10 +400,24 @@ D'altra parte, vale l'identità di Ward, che ci dice \(\partial_\mu M^\mu =0 \im
 
 \subsection{Un primo esempio di calcolo}
 
-
 Come primo esempio di calcolo di un processo realistico, consideriamo il caso di un fotone, con polarizzazione \(r\) e momento \(p\), che da origine ad una coppia particella - antiparticella, con momenti \(k_1, k_2\) e spin \(s_1, s_2\). \\
 
-Questo è il famoso (e importante) risultato che una coppia elettrone-positrone può formarsi a partire da un fotone incidente. 
+Questo è il famoso (e importante) risultato che una coppia elettrone-positrone può formarsi a partire da un fotone incidente. Il suo diagramma di Feynman è dato da 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [right = of a] (b); 
+            \vertex [above right = of b] (c) {\(r_1\)}; 
+            \vertex [below right = of b] (d) {\(r_2\)}; 
+            \diagram{
+                (a) -- [boson, edge label = $\gamma$, momentum' = $p$] (b); 
+                (d) -- [fermion] (b) -- [fermion] (c); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
 
 Calcolare l'elemento di matrice ci permetterà di scrivere la regola di Feyman per questo vertice. Il problema è il seguente, voglio calcolare 
 
