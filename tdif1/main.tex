@@ -1149,6 +1149,87 @@ scriveremo dunque in forma generale, che
     \Pi^{\mu\nu} = (p^2g^{\mu\nu}-p^\mu p^\nu)\Pi(p^2)
 \end{align}
 
+Ora effettuiamo la correzione al propagatore a tutti gli ordini perturbativi (detta anche somma di Dyson): avremmo 
+
+\begin{align}
+    -\frac{ig^{\mu\nu}}{p^2} - \frac{ig^{\mu\nu}}{p^2}(i(p^2g_{\rho\sigma} - p_\rho p_\sigma))\Pi(p^2)\frac{-ig^{\sigma\nu}}{p^2} + \ldots  
+\end{align}
+
+l'unica differenza col caso scalare è che ora dobbiamo prestare particolare attenzione agli indici. Se svolgiamo una per volta le contrazioni troviamo 
+
+\begin{align}
+    &-\frac{ig^{\mu\nu}}{p^2} - \frac{ig^{\mu\rho}}{p^2}\left(\delta^\nu_\rho - \frac{p_\rho p^\nu}{p^2} \right)(\Pi(p^2)+\Pi^2(p^2) + \ldots) \\
+    &= \frac{-i}{p^2(1-\Pi(p^2))}\left(g^{\mu\nu} - \frac{p^\mu p^\nu}{p^2} \right) - \frac{i}{p^2}\left(\frac{p^\mu p^\nu}{p^2} \right)
+\end{align}
+
+dove abbiamo usato la somma geometrica. Ora, almeno in QED, il fotone si accoppia con una corrente conservata (i.e. la lagrangiana di interazione è data da \(-iej^\mu A_\mu\), con \(\partial_\mu j^\mu = 0\)). L'ultimo termine dunque non compare mai nelle ampiezze fisiche, perché queste sono sempre trasverse. Concludiamo che in QED, il propagatore rinormalizzato del fotone è dato da 
+
+\begin{align}
+    \frac{-ig^{\mu\nu} - \frac{p^\mu p^\nu}{p^2}}{p^2(1-\Pi(p^2))}
+\end{align}
+
+Il risultato è di grande interesse: a meno di un fattore \(Z_A\) (costante della funzione d'onda), il propagatore ha la stessa forma che aveva al primo ordine in teoria delle perturbazioni. In particolare, non appaiono controtermini \(\delta m\) che permettano al fotone di acquistare massa. Un rapido calcolo mostra che questo avviene grazie all'identità di Ward. Concludiamo che grazie all'invarianza di gauge, il fotone rimane massless in tutti gli ordini in teoria delle perturbazioni. 
+
+Consideriamo ora il seguente processo, detto scattering di Thompson: 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [right = of a] (b); 
+            \vertex [above right = of a ] (c); 
+            \vertex [below left = of a] (d) {\(e^-\)}; 
+            \diagram{
+                (d) -- [fermion, momentum = \(p\)] (a) -- [fermion, momentum = \(p-q\)] (c); 
+                (a) -- [boson, edge label = \(\gamma\), momentum' = \(q\)] (b); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+Mettiamoci nel caso di zero impulso trasferito, ovvero  \(q^\mu = 0\). Questo immediatamente ci dice che \(q^2=0\), così che siamo sicuri che il fotone è on-shell. 
+
+Facciamo la seguente \emph{condizione di rinormalizzazione}: voglio che questo vertice sia dato dalla regola \(-ie\gamma^\mu\), con \(e\) la carica rinormalizzata, a tutti gli ordini in teoria delle perturbazioni, cioè 
+
+\begin{align}
+    \lim_{q^2 \rightarrow 0}\Gamma^\mu_{A, f, f}(p, p-q) = -ieA_\mu
+\end{align}
+
+la condizione si può applicare in modo a sua volta perturbativo. Si sviluppano i controtermini e le costanti di funzione d'onda: 
+
+\begin{align}
+    \frac{\delta e}{e} = \alpha \delta e^{(1)} + \alpha^2 \delta e^{(2)} + \ldots,   \quad \frac{\delta Z}{Z}  = \alpha \delta Z^{(1)} + \ldots
+\end{align}
+
+dove abbiamo scritto \(Z^{1/2} = (1+\delta Z)^{1/2}\). Si considerano poi i processi ordine per ordine, e si trova operativamente ordine per ordine una espressione per i controtermini. 
+
+Vediamo ora come possiamo effettuare il calcolo di un diagramma di Feynman che contiene un loop. Immediatamente ci rendiamo conto di un fatto singolare: le regole di Feynman ci dicono di imporre ad ogni vertice la conservazione del momento. D'altra parte, il diagramma dato da 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [right = of a] (b); 
+            \vertex [right = of b] (c); 
+            \vertex [right = of c] (d); 
+            \diagram{
+                (a) -- [boson, momentum = \(\vec{q}\)] (b); 
+                (b) -- [fermion, half left, momentum = \(\vec{k+q}\)] (c); 
+                (c) -- [fermion, half left, momentum = \(\vec{k}\)] (b); 
+                (c) -- [boson, momentum = \(\vec{q}\)] (d); 
+            }; 
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+conserva in ogni punto il momento, per \emph{qualunque} valore di \(\vec{k}\). L'impulso sul loop è dunque sottodeterminato, e dobbiamo in qualche modo tenere conto di tutte le possibili possibilità. Da questa necessità nasce la nuova regola di Feyman: 
+
+\begin{align}
+    \text{per ogni loop } \rightarrow \int \frac{d^4k}{(2\pi)^4}
+\end{align}
+
+con l'aggiunta di un segno \((-1)\) nel caso il loop sia un fermione. Qui nascono diverse difficoltà, che agli albori della QED fecero pensare che la teoria fosse in qualche modo incompleta. Il punto è che questi integrali sono molto spesso divergenti. Ad esempio, per il diagramma che abbiamo disegnato, avremmo: 
+
 \end{document}
 
  

@@ -1312,6 +1312,8 @@ so particles (created by \(a^\dagger\)) carry a positive charge, while antiparti
 
 \chapter{Interacting Fields and perturbation theory}
 
+\section{The S matrix}
+
 Since now, we've only considered non-interacting theories. Since we'd like to use this theory to make predictions about real events, we have to start to take into consideration what happens when we have interaction between fields. 
 
 The main problem when one introduces interaction, is that normally the equations of motion become non linear: thus we cannot expand the solutions in terms of plane waves anymore. To be more specific, we can pick a preferred time, and there expand via fourier analysis our fields: but then this will evolve in time through a non-linear Hamiltionian.
@@ -1496,6 +1498,41 @@ in the end, we get
     \bra{\vec{p}_1, \ldots, \vec{p}_n, T_f}\phi(x)\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i} = iZ^{1/2}\int d^4y e^{ip_1y}(\square +m^2)\bra{\vec{p}_2, \ldots, \vec{p}_n, T_f}T\left\{\phi(y)\phi(x)\right\}\ket{\vec{k}_2, \ldots, \vec{k}_m, T_i}
 \end{align}
 
+This procedure can now be easily iterated, and we find 
+
+\begin{align}
+    &\Braket{\vec{p}_1, \ldots, \vec{p}_n, T_f | \vec{k}_1, \ldots , \vec{k}_m, T_i} = \\
+    &= \int \prod_i^m d^4x^i \prod_j^n d^4y^j \exp{i\sum_j^n p_jy_j - i\sum_i^m k_i x_i}(\square_{x_1}+m^2)\ldots(\square_{y_1} + m^2)\ldots \bra{\Omega}T\left\{\phi(x_1)\ldots\phi(x_n) \right\}\ket{\Omega}
+\end{align}
+
+where with \(\ket{\Omega}\) we've labeled the vacuum of the interacting theory. In the Schroedinger's picture, the last equation tells us 
+
+\begin{align}
+    \bra{\vec{p}_1, \ldots, \vec{p}_n}iT\ket{\vec{k}_1, \ldots, \vec{k}_m}
+\end{align}
+
+since the states are supposed to be different from one another. We understand then that the quantity 
+
+\begin{align}
+    \bra{\Omega}T\left\{\phi(x_1)\ldots \phi(x_n) \right\}\ket{\Omega}
+\end{align}
+
+this objects are called \emph{green functions} (for reason that'll become apparent later on), or time-ordered correlation functions. Tipicalli one deals with this functions under fourier transform: this is the natural thing to do, as we've been labelling all the states by their momenta. Another reason why this is useful is that the action of the KG operators becomes straightforward: 
+
+\begin{align}
+    G(x_1, \ldots, x_n) = \int \prod_i^n \frac{d^4k^i}{(2\pi)^4}e^{-i\sum_i k_ix_i}\tilde{G}(k_1, \ldots k_n) \implies (\square_{x_j}+m^2)G = -\int \prod_i^n \frac{d^4k_i}{(2\pi)^4}(k_j^2-m^2)e^{-i\sum_ik_ix_i}\tilde{G}
+\end{align}
+
+Putting together what we've learned, we get the famous LSZ formula: 
+
+\begin{align}
+    \int \prod_i^m d^4x^i e^{-ik_ix_i}\int \prod_j^m d^4y^j e^{ip_jy_j} \bra{\Omega}T\left\{\phi(x_1)\ldots \phi(x_n) \right\}\ket{\Omega} = \\
+    \left(\prod_i^m \frac{i\sqrt{Z}}{k_i^2-m^2} \right)\left(\prod_j^n \frac{i\sqrt{Z}}{p_j^2-m^2} \right)\bra{\vec{p}_1, \ldots, \vec{p}_n}iT\ket{\vec{k}_1, \ldots \vec{k}_m}
+\end{align}
+
+Notice that the RHS is singular when the momenta are on-shell. Of course, this means that the green's functions (that appear on the LHS) are singular too. In practice, we can use the RHS to read the residues of the poles of the green functions .
+
+\section{Perturbative expansion of corelators}
 
 \end{document}
 
