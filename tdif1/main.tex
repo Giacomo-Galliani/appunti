@@ -1228,7 +1228,92 @@ conserva in ogni punto il momento, per \emph{qualunque} valore di \(\vec{k}\). L
     \text{per ogni loop } \rightarrow \int \frac{d^4k}{(2\pi)^4}
 \end{align}
 
-con l'aggiunta di un segno \((-1)\) nel caso il loop sia un fermione. Qui nascono diverse difficoltà, che agli albori della QED fecero pensare che la teoria fosse in qualche modo incompleta. Il punto è che questi integrali sono molto spesso divergenti. Ad esempio, per il diagramma che abbiamo disegnato, avremmo: 
+con l'aggiunta di un segno \((-1)\) nel caso il loop sia un fermione. Qui nascono diverse difficoltà, che agli albori della QED fecero pensare che la teoria fosse in qualche modo incompleta. Il punto è che questi integrali sono molto spesso divergenti. Ad esempio, per il diagramma che abbiamo disegnato, avremmo (siccome abbiamo due propagatori, due vertici e un loop): 
+
+\begin{align}
+    (-1)\int \frac{d^4k}{(2\pi)^4}\text{Tr}\left((-ie\gamma^\mu)\frac{i(\slashed{k}+m)}{k^2-m^2+i\eps}(-ie\gamma^\nu)\frac{i(\slashed{p+q}+m)}{(k+q)^2-m^2 + i\eps} \right)
+\end{align}
+
+vediamo quindi che il comportamento asindotico è \(\propto k^{-2}\), e dunque l'integrale diverge per grande \(k\). Abbiamo bisogno di un meccanismo (regolarizzazione), che permette di estrarre dei valori finiti da queste divergenze. Esistono vari di tipi di regolarizzazioni possibili. Forse la più elementare consiste nel prendere una scala massima, \(\Lambda_{cut}\), ed integrare gli impulsi fino a questa scala. Una tecnica più moderna, invece, prevede di prendere ridurre le dimensioni del supporto di integrazione, per rendere convergente l'integrale. Vediamo nel dettaglio come questa tecnica si applica:  
+
+Il passaggio in coordinate polari (o sferiche) i D dimensioni tipicamente si scrive 
+
+\begin{align}
+    d^D\vec{k} = d\Omega_d |\vec{k}|^{D-1}d|k|
+\end{align}
+
+possiamo pensare di estendere questa formula a \(D\) non intero, per esempio per \(D = 4 - 2\eps\). Naturalmente, bisogna ricordare che in un processo generico l'elemento di matrice non è un numero puro. Quindi, se integriamo su \(D-2\eps\) dovremo poi moltiplicare per una costante dalle dimensioni dell'energia alla 2-epsilon, ovvero \(\mu^{2\eps}\). Il fattore \(\mu\) è detto scala di regolarizzazione. 
+
+Calcoliamo dunque 
+
+\begin{align}
+    I_\alpha^D := \int \frac{d^D k}{(2\pi)^D}\frac{1}{[k^2 - M^2 +i\eps]^\alpha}, \quad M = M(m, p)
+\end{align}
+
+il numeratore è dato da \(k_0^2 - |\vec{k}|^2 - M^2 +i\eps\), e dunque l'integranda ha due poli per \(k_0 = \pm \sqrt{|k|^2+M^2 -i\eps}\). Immaginiamo di valutare questo integrale con il metodo dei residui: 
+
+\begin{center}
+    \begin{tikzpicture}
+         % Disegna gli assi
+        \draw[->] (-5,0) -- (5,0) node[right] {Re$(k_0)$};
+        \draw[->] (0,-4) -- (0,4) node[above] {Im$(k_0)$};
+
+        % Disegna i poli
+        \filldraw (-2,0.5) circle (2pt) node[below] {$k_{0,1}$};
+        \filldraw (2,-0.5) circle (2pt) node[above] {$k_{0,2}$};
+
+        % Disegna il cammino di integrazione
+        \draw [thick, ->] (3,0) arc[start angle = 0, end angle = 180, radius = 3];
+        \draw [dashed, doc , ->] (0,3) arc[start angle = 90, end angle = 270, radius = 3];
+    \end{tikzpicture}
+\end{center}
+
+se chiudo l'integrale nel semipiano superiore, il risultato è lo stesso se poi valuto l'integrale con la stessa curva, ruotata nel piano complesso di un fattore \(i\) (in figura, dalla curva nera alla curva blu tratteggiata). 
+
+Dunque, l'integrale rimane invariato se passo \(k_0 \rightarrow k_E = -ik_0\). La misura di integrazione diventa allora 
+
+\begin{align}
+    d^D k = dk_0d^{D-1}\vec{k} = idk_E d^{D-1}\vec{k}
+\end{align}
+
+e il nostro integrale 
+
+\begin{align}
+    I^D_\alpha &= i(-1)^\alpha \int \frac{d^Dk_E}{(2\pi)^D}\frac{1}{[k_E^2 + M^2 - i\eps]^{\alpha}} \\
+    &= i(-1)^\alpha \int d\Omega_D \int_0^{+\infty}dk_E \frac{|k_E|^{D-1}}{[k_E^2+M^2]}
+\end{align}
+
+dove abbiamo smesso di riportare il termine \(-i\eps\) perchè dopo la rotazione non serve più a nulla. Per valutare l'integrale è necessario valutare \(\int d\Omega_D\) i.e. il volume della sfera in D-dimensioni, anche se \(D\) non è intero. Per farlo usiamo un trucco: 
+
+\begin{align}
+    \int d^D\vec{x}e^{-\sum_i x_i^2} = (\sqrt{\pi})^2 = \left(\int d\Omega_d\right) \int_0^{+\infty}dx x^{D-1}e^{-|\vec{x}|^2} 
+\end{align}
+
+con un cambiamento di variabili, rendiamo l'ultimo integrale una Gamma di Eulero: 
+
+\begin{align}
+    \int_0^{+\infty}dx x^{D-1}e^{-|\vec{x}|^2} = \int_0^{+\infty}dx^2 \frac{1}{2}(x^2)^{D/2-1}e^{-x^2} = \frac{1}{2}\Gamma(D/2)
+\end{align}
+
+e concludiamo 
+
+\begin{align}
+    \int d\Omega_D = \frac{2(\sqrt{\pi})^D}{\Gamma(D/2)}
+\end{align}
+
+Abbiamo dunque 
+
+\begin{align}
+    I^D_\alpha = i(-1)^{\alpha}\frac{2(\sqrt{\pi})^D}{\Gamma(D/2)}\int_0^{+\infty}dk^2_E \frac{(k_E^2)^{D/2-1}}{2[k_E^2+M^2]^\alpha}
+\end{align}
+
+ancora una volta, facciamo un cambio di variabili \(x = \frac{M^2}{k_E^2 + M^2}\): 
+
+\begin{align}
+    I^D_\alpha &= i(-1)^{\alpha}\frac{2(\sqrt{\pi})^D}{\Gamma(D/2)}\frac{1}{2}\left(\frac{1}{M} \right)^{\alpha-D/2}\int_0^1 dx x^{\alpha-D/2-1}(1-x)^{D/2-1} \\
+    &= i(-1)^\alpha (M^2)^{D/2-\alpha}(\sqrt{\pi})^D \frac{\Gamma(\alpha-D/2)}{\Gamma(\alpha)}
+\end{align}
+
 
 \end{document}
 
