@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1776953068 "/home/giacomo_galliani/appunti/qft1/main.tex" "main.pdf" "main" 1776953069
+["pdflatex"] 1782405441 "/home/giacomo_galliani/appunti/qft1/main.tex" "main.pdf" "main" 1782405442
   "/etc/texmf/web2c/texmf.cnf" 1763917403 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/giacomo_galliani/appunti/qft1/main.tex" 1776953065 75143 4f59f3e9bc565159c216fd3179c0675c ""
+  "/home/giacomo_galliani/appunti/qft1/main.tex" 1782405436 87101 e9377d9926f68c3e727850edd9dcbc51 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -356,9 +356,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1763985202 2799529 aa51b4209c5317024e3e8cadfa5c1e89 ""
   "letterfonts.tex" 1776426847 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1776426847 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1776953069 13669 ee47880113b8a81c470fc1cab699aa69 "pdflatex"
-  "main.tex" 1776953065 75143 4f59f3e9bc565159c216fd3179c0675c ""
-  "main.toc" 1776953069 1915 112a2e56aa9a65c9ccc5515071755534 "pdflatex"
+  "main.aux" 1782405442 15858 77257c717670c09ef1e758db8fe80fe2 "pdflatex"
+  "main.tex" 1782405436 87101 e9377d9926f68c3e727850edd9dcbc51 ""
+  "main.toc" 1782405442 2253 8ec58d21db0f6e2f651654b954cf4c0a "pdflatex"
   "preamble.tex" 1776426847 20067 644084ebe6805daf52bcc90d5e356213 ""
   "settings/fncystyle.sty" 1776426847 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)

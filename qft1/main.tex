@@ -1530,9 +1530,282 @@ Putting together what we've learned, we get the famous LSZ formula:
     \left(\prod_i^m \frac{i\sqrt{Z}}{k_i^2-m^2} \right)\left(\prod_j^n \frac{i\sqrt{Z}}{p_j^2-m^2} \right)\bra{\vec{p}_1, \ldots, \vec{p}_n}iT\ket{\vec{k}_1, \ldots \vec{k}_m}
 \end{align}
 
-Notice that the RHS is singular when the momenta are on-shell. Of course, this means that the green's functions (that appear on the LHS) are singular too. In practice, we can use the RHS to read the residues of the poles of the green functions .
+Notice that the RHS is singular when the momenta are on-shell. Of course, this means that the green's functions (that appear on the LHS) are singular too. In practice, we can use the RHS to read the residues of the poles of the green functions. 
 
 \section{Perturbative expansion of corelators}
+
+
+The time product in the LSZ formula is expressed in terms of the interacting fields. This is not very useful in practice. Instead, we can switch to the interaction picture. Avoiding for the moment the details of the procedure, one finds in the end 
+
+\begin{align}
+    \bra{\Omega}T\left\{\phi(x_1)\ldots \phi(x_N)\right\}\ket{\Omega} = \frac{\bra{0}T\left\{\phi_I(x_1)\ldots \phi_I(x_N)e^{-i\int d^4x \mathcal{H}_I}\right\}\ket{0}}{\bra{0}T\left\{e^{-i\int d^4x \mathcal{H}_I}\right\}\ket{0}}
+\end{align}
+
+where \(\phi_I\) in this equations are the interaction picture fields. Still, we have to understand, or develop a procedure, to compute this time ordered products. 
+
+To get an idea on how we might tackle this problem, we look at a very meaningful example: 
+
+
+\ex{The Feynman propagator}{
+
+    Consider the vaccuum expectaction value of the time ordered product of two fields, 
+
+    \begin{align}
+        \bra{0}T\left\{\phi_I(x)\phi_I (y) \right\}\ket{0}
+    \end{align}
+
+    this is called a Feynman propagator, or sometimes two point function (Also the green function, as it turns out that it's also the green function of the KG equation). We are going to compute this for a real scalar field. 
+
+    Write 
+
+    \begin{align}
+        \phi = \phi^+ + \phi^-, \quad \begin{cases}
+            \phi^+ = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}}a_p e^{-ipx} \\
+            \phi^- = \int \frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2E_p}}a^\dagger_p e^{ipx}
+        \end{cases}
+    \end{align}
+
+    This is useful as \(\phi^+\ket{0} = \bra{0}\phi^- = 0\). 
+
+    For now, assume \(x^0 > y^0\): 
+
+    \begin{align}
+        T\left\{\phi(x)\phi(y) \right\} = \phi(x)\phi(y) = \phi^+(x)\phi^+(y) + \phi^+(x)\phi^-(y) + \phi^-(x)\phi^+(y) + \phi^-(x)\phi^-(y) 
+    \end{align}
+
+    It would be very useful if we maneged to write this in terms of a normal ordered term, plus some rest. This is because we are going look at the expectation value of this operator on the vaccum state. We see that the expression above is almost time ordered, except for 
+
+    \begin{align}
+        \phi^-(x)\phi^+(y) = \phi^+(y)\phi^-(x) + [\phi^-(x), \phi^+(y)] \implies T\left\{\phi(x)\phi(y)\right\} = :\phi(x)\phi(y): + [\phi^+(x), \phi^-(y)] 
+    \end{align}
+
+    A similar computation can be performed if \(x^0 < y^0\) (Just swap \(x \leftrightarrow y\)). In the end one finds that, in general, 
+
+    \begin{align}
+        T\left\{\phi(x)\phi(y)\right\} = :\phi(x)\phi(y): + \theta(x^0-y^0)[\phi^+(x), \phi^-(y)] + \theta(y^0-x^0)[\phi^+(y), \phi^-(x)]
+    \end{align}
+
+    So the Feynman propagator is given by 
+
+    \begin{align}
+        \bra{0}\theta(x^0-y^0)[\phi^+(x), \phi^-(y)] + \theta(y^0-x^0)[\phi^+(y), \phi^-(x)]\ket{0} = \\
+        = \theta(x^0-y^0)[\phi^+(x), \phi^-(y)] + \theta(y^0-x^0)[\phi^+(y), \phi^-(x)] = D(x-y)
+    \end{align}
+
+    As it's clear that the commutator of the two fields is a number (not an operator anymore), and we can assume the vaccum to be normalized. 
+
+    Writing explicitly the two fields, and using the commutation relation \([a_p, a^\dagger_{p'}] = (2\pi)^3\delta(p-p')\), we quickly find 
+
+    \begin{align}
+        D(x-y) = \int \frac{d^3 p}{(2\pi)^3}\frac{1}{2E_p}\left( \theta(x^0-y^0)e^{-ip(x-y)} + \theta(y^0-x^0)e^{ip(x-y)}\right)
+    \end{align}
+
+    The expression is more elegant if we put it in it's covariant form: 
+
+    \begin{align}
+        D(x-y) = \int \frac{d^4p}{(2\pi)^4}\frac{ie^{-ip(x-y)}}{p^2-m^2 +i\eps}
+    \end{align}
+
+    The equivalence of the two can be found starting from the last one, separating time and spatial components of the momentum, and than compute the time integral using the residue theorem. 
+}
+
+\subsection{Wick's theorem}
+
+We've seen that the computation of the 2-point function becomes straightforward if we convert the time ordered operator into a normal ordered expression plus a rest. How does this generalize when we want to compute the n-point functions? 
+
+The answer is given by Wick's theorem: 
+
+\begin{align}
+    T\left\{\phi(x_1)\ldots \phi(x_N) \right\} = :\phi(x_1)\ldots \phi(x_N): + \left(\text{All possible combinations of time ordering and contractions} \right) 
+\end{align}
+
+Where by contraction of two fields we mean the Feynman propagator between the two, \(D(x_i-x_j)\). 
+
+Wick's theorem can be proven by induction for every \(N\). Of course, we've already proved the base of induction, in computing the 2-point function. Since all of this might start to fell a bit abstract, we will now perform a simple computation, of the matrix element of a process using both the LSZ formula, and Wick's theorem. 
+
+
+\ex{2 -> 2 scattering amplitues in \(\phi^4\) theory}{
+
+    Consider a theory with lagrangian 
+
+    \begin{align}
+        \mathcal{L} = \frac{1}{2}(\partial_\mu\phi\partial^\mu\phi - m^2\phi^2) + \frac{\lambda}{4!}\phi^4
+    \end{align}
+
+    this describes an auto-interacting scalar field, with a 4-vertex. What does this mean? Let's consider the following process: 
+
+    \begin{align}
+        \phi(p_1) + \phi(p_2) \rightarrow \phi(k_1) + \phi(k_2)
+    \end{align}
+
+    write explicitly the LSZ formula: 
+
+    \begin{align}
+        \int d^4x_1 d^4x_2 d^4y_1 d^4y_2 e^{i(p_1x_1-p_2x_2-k_1y_1-k_2y_2)} \bra{\Omega}T\left\{\phi(x_1)\phi(x_2)\phi(y_1)\phi(y_2) \right\}\ket{\Omega}= \\
+        = \left(\frac{1}{p_1^2 - m^2} \right)\left(\frac{1}{p_2^2 - m^2} \right)\left(\frac{1}{k_1^2 - m^2} \right)\left(\frac{1}{k_2^2 - m^2} \right)\bra{p_1, p_2}iT\ket{k_1k_2}
+    \end{align}
+
+
+}
+
+
+\chapter{The path integral formulation of QFT}
+
+Until now, we've only worked in the canonical quantisation. We've also come pretty far with it, as we maneged to describe free theories, interacting theories (altough only perturbatively), computing also cross-sections. Why do we want to go back to the roots and introduce another quantisation procedure? There is more than one reason: 
+
+\begin{enumerate}
+    \item some theories have strong coupling (e.g. QCD at hadronic energies), and cannot be described using perturbation theory. In the path integral formalism, one can treat interacting fields exactly. 
+    \item we've seen that gauge invariance led to some problems when quantizing a gauge theory, even in the abelian case (electrodynamics). This gets worse if one considers a non-abelian gauge theory, and path integral formalism can avoid this problem. 
+    \item The formalism highlights a profund connection between QFT and statistical mechanics. 
+\end{enumerate}
+
+\section{Formalism in standard QM}
+
+In the Schroedinger picture, the amplitude of a state \(\ket{q_i}\) going into a state \(\ket{q_f}\) after a time \(\Delta T\) is given by 
+
+\begin{align}
+    A = \bra{q_f}e^{-iH\Delta T}\ket{q_i}
+\end{align}
+
+Instead, in the Heisenberg picture we have 
+
+\begin{align}
+    A = \Braket{q_f, T_f| q_i, T_i}
+\end{align}
+
+note that in the Heisenberg picture the states are time indipendent, and the operators are the objects that evolve with time. Still, we denote a state with a time label, to indicate that at that time, the state is known to be the eigenstate of a certain set of operators, with some eigenvalues. 
+
+At every time, the states \(\ket{q_j, T_j}\) form a complete set, so we could write 
+
+\begin{align}
+    A = \int dq_j \Braket{q_f, T_f | q_j T_j}\Braket{q_j T_j | q_i T_i}
+\end{align}
+
+But also 
+
+\begin{align}
+    A = \int dq_1\ldots dq_{N-1}\Braket{q_f, T_f | q_1 T_1}\ldots \Braket{q_{N-1} T_{N-1} | q_f T_f}
+\end{align}
+
+for notational purposes, write \(q_i = q_0\) and \(q_f = q_N\) and similarly for \(T\). We then have for the amplitude 
+
+\begin{align}
+    A = \int dq_1 \ldots dq_{N-1}\prod_{m=0}^{N-1} \Braket{q_m T_m | q_{m+1} T_{m+1}}
+\end{align}
+
+How do we write this is the Schroedinger picture? Recall the "conversion relation" between the two pictures: 
+
+\begin{align}
+    \Braket{q_m T_m  | q_{m+1} T_{m+1}} = \bra{q_m} e^{-iH (T_{m+1} - T_m)}\ket{q_{m+1}}
+\end{align}
+
+Suppose \(T_i\) are all evenly spaced, say of \(\eps\), than we write 
+
+\begin{align}
+    \bra{q_m}e^{-iH\eps}\ket{q_{m+1}} 
+\end{align}
+
+We can also introduce an integration over the momentum states: 
+
+\begin{align}
+    \Braket{q_{m+1} T_{m+1} | q_{m} T_{m}} = \int dp_m \Braket{q_{m+1} | p_m} \bra{p_m}e^{-iH\eps}\ket{q_{m}}
+\end{align}
+
+This is convenient because \(H = H(p, q)\) and we can either act on the position ket or on the momentum bra, and in both cases we work with eigenstates. This is "legal" as we're summing over all momentum. 
+
+If we normalize \(\Braket{q, p} = e^{ipq}\), then 
+
+\begin{align}
+    \Braket{q_{m+1} T_{m+1} | q_{m} T_{m}} = \int dp_m e^{iq_{m+1}p_m}\bra{p_m}e^{-iH(p_m, q_m)}\ket{q_m}
+\end{align}
+
+notice that now H is a function of the eigenvalue, not an operator anymore. 
+
+Finally, we write all as a big exponential:  
+
+\begin{align}
+    \Braket{q_{m+1} T_{m+1} | q_{m} T_{m}} = \int dp_m \exp\left\{-i\eps\left(H(p_m, q_m) - \frac{q_{m+1}-q_m}{\eps}p_m\right)\right\}
+\end{align}
+
+If we do this for every therm in the amplitude A, we get 
+
+\begin{align}
+    A = \int dq_1 dp_1\ldots dq_{N-1}dp_{N-1} \exp\left\{-i\eps\sum_{m=0}^N\left(H(p_m, q_m) - \frac{q_{m+1}-q_m}{\eps}p_m\right)\right\}
+\end{align}
+
+Now perform the limit when \(\eps \rightarrow 0\): this means we're integrating over all possibile paths \(q(t)\), with fixed boundary conditions, i.e. \(q(T_i) = q_i, q(T_f) = q_f\). Defining \([dpdq] = \lim_{\eps \rightarrow 0}dq_1dp_1 \ldots dq_{N-1}dp_{N-1}\), we get: 
+
+\begin{align}
+    A = \int_{q(T_i) = q_i}^{q(T_f) = q_f} [dpdq] \exp\left\{i\int_{T_i}^{T_f} dt (p\dot{q} - H) \right\}
+\end{align}
+
+Normally, the integral over p is gaussian (from the kinetic part of H), and can be performed, leaving just a normalization that we put in \([dq]\). We also recognize the lagrangian in the integrand, so the integral is actually the classical action: 
+
+\begin{align}
+    A = \int [dq]\exp\left\{\frac{i}{\hbar}S \right\}
+\end{align}
+
+The classical limit is easily checked as \(\hbar \rightarrow 0\): if we consider a small change in the trajectory, \(q(t)\rightarrow q(t) +\delta q(t)\), this give large oscillations in the integrand, that average to zero. So the only contribution comes from the particular path that leaves the action unchanged under small oscillations, i.e. we recover the minimal action principle of classical mechanics.  
+
+Consider now what happens if in the integrand of the path integral we insert a factor \(q(t)\), with \(t \in [T_i, T_f]\): 
+
+
+\begin{align}
+    \int [dq]q(t)e^{iS}
+\end{align}
+
+we can always write 
+
+\begin{align}
+    \int [dq]= \int d\bar{q} \int_{q(T_i) = q_i}^{q(t) = \bar{q}} [dq] \int_{q(t) = \bar{q}}^{q(T_f) = q_f} [dq]
+\end{align}
+
+Split also the action integral to split the integrals: 
+
+\begin{align}
+    \int d\bar{q} \left(\int_{q(T_i) = q_i}^{q(t) = \bar{q}} [dq] e^{i\int_{T_i}^t L}\right)\bar{q}\left(\int_{q(t) = \bar{q}}^{q(T_f) = q_f} [dq] e^{i\int_{t}^{T_f} L}\right)
+\end{align}
+
+we recognize the terms in the parenthesis to be just amplitudes, 
+
+\begin{align}
+    \int d\bar{q} \Braket{q_i T_i | \bar{q} t} \bar{q}(t)\Braket{\bar{q} t | q_f T_f} = \bra{q_i T_i} q(t) \ket{q_f T_f}
+\end{align}
+
+where we used the completness relation. 
+
+Importantly, the generalizations for this for an arbitrary number of functions is very useful for QFT. Consider 
+
+\begin{align}
+    \int [dq] q(t_1)\ldots q(t_N) e^{iS}
+\end{align}
+
+The N functions do not need to be put in a specific order, as they commute. However, when we repeat the steps above, we have to time order them to be able to split the integrals correctly. This means that 
+
+\begin{align}
+    \int [dq] q(t_1)\ldots q(t_N) e^{iS} = \bra{q_i T_i}T\left\{q(t_1)\ldots q(t_N) \right\}\ket{q_f T_f}
+\end{align}
+
+\section{From QM to QFT}
+
+the generalization, at least to a formal level, is quite straightforward: one writes 
+
+\begin{align}
+    \Braket{\phi_f T_f | \phi_i T_i} = \int_{\phi(x, T_i) = \phi_i(x)}^{\phi(x, T_f) = \phi_f(x)} \mathcal{D}\phi e^{i \int d^4x \mathcal{L}} 
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
 

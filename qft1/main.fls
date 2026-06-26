@@ -1982,6 +1982,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newpx/zplexx.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntxexx.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT main.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
