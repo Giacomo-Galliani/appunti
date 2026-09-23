@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1790149833.6233 "/home/marin/appunti/gs2/main.tex" "main.pdf" "main" 1790149835.55111 0
+["pdflatex"] 1790159736.806 "/home/marin/appunti/gs2/main.tex" "main.pdf" "main" 1790159738.50434 0
   "/etc/texmf/web2c/texmf.cnf" 1776007129.54043 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/marin/appunti/gs2/main.tex" 1790149833.40247 48329 25c14130153c13eafb0af0df66e830d8 ""
+  "/home/marin/appunti/gs2/main.tex" 1790159734.64176 55319 ac03b1fb441be7fab78c687333fdc075 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1698694482 3136 bbe665bd0bb471a2da1e8fd326cff9fa ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1698694482 2914 fdbc4a54b9bc76f4551b5303f2737d33 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -211,6 +211,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def" 1702241854 8818 aa5157b46368efebf023abff55611467 ""
   "/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty" 1702241854 18245 97e6be180cf07bb6f7008cfdaaecfce5 ""
   "/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty" 1579038678 6078 f1cb470c9199e7110a27851508ed7a5c ""
+  "/usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty" 1266794558 3601 193635d942bc4777a5acaaeeffdce692 ""
   "/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty" 1388445839 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty" 1696191071 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty" 1696191071 72619 ee90b6612147680fd73c3b1406a74245 ""
@@ -359,10 +360,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776008606 8213975 ea2ad71cf415a6caecaab02f57dd30c7 ""
   "letterfonts.tex" 1776429879.8495 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1776429879.8495 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1790149835.39818 8317 76245a0d6c2636978b621e5b363246ec "pdflatex"
-  "main.tex" 1790149833.40247 48329 25c14130153c13eafb0af0df66e830d8 ""
-  "main.toc" 1790149835.40221 1173 49472ab6237bb613cf15a3eb4d033624 "pdflatex"
-  "preamble.tex" 1776429879.8535 20122 c6f9826e5f0bd44606b5da79e7748fd4 ""
+  "main.aux" 1790159738.35831 9475 89f1b0dc22e7478c6ff5287f732c9220 "pdflatex"
+  "main.tex" 1790159734.64176 55319 ac03b1fb441be7fab78c687333fdc075 ""
+  "main.toc" 1790159738.35831 1312 4119306e520c42a0e3a8777922004cf9 "pdflatex"
+  "preamble.tex" 1790154234.22939 20142 5c1a186e45be99fc25e09f8b5b7d1551 ""
   "settings/fncystyle.sty" 1776429879.8535 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)
   "main.aux"

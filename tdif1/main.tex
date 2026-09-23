@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{report}
 
 \usepackage{amsmath}
 \usepackage[inlinechap]{settings/fncystyle}
@@ -2368,460 +2368,7 @@ Possiamo definire \(F = \sqrt{f_1^2+f_2^2}\), e applicare dei limiti a questo fa
 
 \newpage
 
-\section{Rinormalizzazione nella teoria di Yukawa}
-
-Si consideri una teoria di un campo fermionico e un campo scalare che interagiscono tramite Yukawa: 
-
-\begin{align}
-    \mathcal{L} = \bar{\psi}(i\slashed{\partial}-m_{f,0})\psi + \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - \frac{1}{2}M_0^2\phi^2 - \lambda_0\bar{\psi}\psi \phi
-\end{align}
-
-\subsection{Campo fermionico}
-
-Vogliamo determinare i controtermini di massa e di funzione d'onda per il campo fermionico. Per fare questo, consideriamo la correzione ad 1 loop al propagatore fermionico (figura \ref{fig:1loopfermion}), di cui indicheremo il diagramma amputato con \(-i\Sigma(p)\). 
-
-\begin{figure}
-    \caption{Contributo ad 1 loop della funzione a due punti del campo spinoriale}
-    \label{fig:1loopfermion}
-    \begin{center}
-        \begin{tikzpicture}
-            \begin{feynman}
-                \vertex (a); 
-                \vertex [right = of a] (b); 
-                \vertex [right = of b] (c); 
-                \vertex [right = of c] (d); 
-                \diagram{
-                    (a) -- [fermion, momentum' = \(p\)] (b); 
-                    (b) -- [fermion, half right, momentum' = \(p+q\)] (c); 
-                    (c) -- [scalar, half right, momentum' = \(q\)] (b); 
-                    (c) -- [fermion, momentum' = \(p\)] (d); 
-                }; 
-            \end{feynman}
-        \end{tikzpicture}
-    \end{center}
-\end{figure}
-
-Infatti, l'espressione del propagatore risommato è 
-
-\begin{align}
-    \frac{D(p)}{1-i\Sigma(p)D(p)} = \frac{i}{\slashed{p} - m_{f,0} + i\eps + \Sigma(p)}
-\end{align}
-
-Vediamo quindi che è necessario shiftare la massa bare nella massa rinormalizzata \(m_f = m_{f,0} - \Sigma(p)\). 
-
-Veniamo quindi al calcolo del controtermine: usando la semplice regola di feynman per il vertice a 3 che deriva dalla lagrangiana, troviamo che l'espressione è data da 
-
-\begin{align}
-    i\Sigma(p) = \frac{\lambda^2}{2}\int \frac{d^4q}{(2\pi)^4}\left[\frac{(\slashed{p}+\slashed{q}+m_f)}{(p+q)^2-m^2_f} \right]\left(\frac{1}{q^2-M^2} \right)
-\end{align}
-
-Separiamo il contributo scalare e tensoriale: 
-
-\begin{align}
-    i\Sigma(p) = i\Sigma_1(p) + i\Sigma_2(p), \quad &i\Sigma_1(p) = \frac{\lambda^2 m_{0,f}}{2}\int \frac{d^4q}{(2\pi)^4}\frac{1}{[(p+q)^2-m^2_{f,0}][q^2-M^2]} = m_{0,f}I_1\notag \\
-    &i\Sigma_2(p) = i \Sigma^\mu_2(p)\gamma_\mu = \frac{\lambda^2 \gamma_\mu}{2}\int \frac{d^4q}{(2\pi^4)}\frac{p^\mu + q^\mu}{[(p+q)^2-m^2_{f,0}][q^2-M^2]}
-\end{align}
-
-Il termine più complicato è certamente \(\Sigma^\mu_2\), che si può ulteriormente spezzare in due pezzi: 
-
-\begin{align}
-    &\Sigma^\mu_2(p) = \Sigma^\mu_{2,1}(p) + \Sigma^\mu_{2,2}(p), \quad \Sigma^\mu_{2,1} = p^\mu I_1 \notag \\
-    &\Sigma^\mu_{2,2}(p) = \frac{\lambda^2}{2}\int \frac{d^4q}{(2\pi^4)}\frac{q^\mu}{[(p+q)^2-m^2_{f,0}][q^2-M^2]} = p^\mu \Sigma(p)_{2,2}
-\end{align}
-
-dove l'ultima uguaglianza segue da considerazioni tensoriali. Lavoriamo ancora su \(\Sigma^\mu(p)_{2,2}\), introducendo i parametri di Feynman: 
-
-\begin{align}
-    \Sigma^\mu(p)_{2,2} &= \frac{\lambda^2}{2}\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{q^\mu}{[x((p+q)^2-m^2_{0,f}) + (1-x)(q^2 - M^2)]^2} \notag \\
-    &= \frac{\lambda^2}{2}\int_0^1 dx \int \frac{d^4 q}{(2\pi)^4}\frac{q^\mu}{(q+xp)^2 + \underbrace{x(1-x)p^2 + x(M^2-m^2_{0,f} - M^2}_{=: -\Delta (x)})}
-\end{align}
-
-Cambiamo allora la variabile di integrazione, \(q \to \ell = q+xp\). L'integrale diventa semplicemente 
-
-\begin{align}
-    \Sigma^\mu(p)_{2,2} = \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^\mu - xp^\mu}{[\ell^2+\Delta(x)]^2} = -\frac{p^\mu \lambda^2}{2}\int xdx \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2-\Delta(x)]^2} 
-\end{align}
-
-Dove abbiamo usato che per parità le parti dell'integrali \(\propto \ell^\mu\) sono nulle, perché il resto dell'espressione dipende solamente da \(\ell^2\). Possiamo quindi fare la rotazione di Wick e passare a \(d\) dimensioni: 
-
-\begin{align}
-    \Sigma^\mu(p)_{2,2} = -\frac{p^\mu\lambda^2}{2}\int_0^1xdx\int d\Omega_{d-1}\int \frac{d\ell_E \ell_E^{d-1}}{(2\pi)^d(\ell_E^2 + \Delta(x))^2}
-\end{align}
-
-A parte l'integrale rispetto ad \(x\), tutti gli altri pezzi sono dei risultati ben noti. In particolare vale: 
-
-\begin{align}
-    \int d\Omega_{d-1} = \frac{2\pi^{d/2}}{\Gamma(d/2)}, \quad \int \frac{d\ell_E \ell_E^{d-1}}{(2\pi)^d(\ell_E^2 + \Delta(x))^2} = \frac{1}{(4\pi)^{d/2}}\Delta(x)^{(d/2-2)}\frac{\Gamma(2-d/2)}{\Gamma(2)}
-\end{align}
-
-Quindi, troviamo 
-
-\begin{align}
-    \Sigma^\mu_{2,2}(p) = -\frac{p^\mu \lambda^2}{\Gamma(d/2)\Gamma(2)}\frac{\Gamma(2-d/2)}{(4^{d/2})}\int_0^1 x \Delta(x)^{(d/2 -2)}
-\end{align}
-
-\subsection{Campo scalare}
-
-Come nel caso del fermione, per prima cosa dobbiamo calcolare la self-energia dello scalare. Il diagramma rilevante è quello in figura \ref{fig:scalarselfenergy}. Le regole di Feynman sono quelle già citate, ricordando che in presenza di un loop fermionico, doppiamo moltiplicare per \(-1\). Si trova allora l'ampiezza del diagramma: 
-
-\begin{align}
-    i\Sigma(p) = (-i\lambda)^2\int \frac{d^4q}{(2\pi)^4}\text{Tr}\left[\frac{(\slashed{p} + \slashed{q} + m_e)}{(p+q)^2 - m_e^2}\frac{(\slashed{q} + m_e)}{q^2-m^2_e} \right]
-\end{align}
-
-Ricordando che Tr\((\gamma^\mu \gamma^\nu) = (1/2)\text{Tr}(\left\{\gamma^\mu, \gamma^\nu \right\}) = 4g^{\mu\nu}\), troviamo quindi 
-
-\begin{align}
-    i\Sigma(p) = -4\lambda^2\int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[(p+q)^2 - m_e^2][q^2-m_e^2]}
-\end{align}
-
-Come al solito, introduciamo i parametri di Feynman: 
-
-\begin{align}
-    i\Sigma(p) &= -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[xp^2 + 2xp\cdot q + q^2 - m_e^2 +x^2p^2 - x^2p^2]^2} \notag \\
-    &= -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[(q+xp)^2 - \Delta(x)]^2}, \quad \Delta(x) = m_e^2 - x(1-x)p^2
-\end{align}
-
-Faccio il solito cambio della variabile di integrazione \(q \to \ell = q+xp\): 
-
-\begin{align}
-    i\Sigma(p) = -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (\ell-xp)\cdot(\ell + (1-x)p)}{[\ell^2 - \Delta(x)]^2}
-\end{align}
-
-Per parità, contribuiscono all'integrale solo le potenze pari di \(\ell\), 
-
-\begin{align}
-    i\Sigma(p) &= -4\lambda^2\int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{m_e^2 + \ell^2 - x(1-x)p^2}{[\ell^2 - \Delta(x)]^2} \notag \\ 
-    &= -4\lambda^2 \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2 + \Delta(x)}{[\ell^2 - \Delta(x)]^2}
-\end{align}
-
-Per terminare il calcolo devo dunque calcolare due integrali, 
-
-\begin{align}
-    &i\Sigma(p) = -4\lambda^2\left[\int_0^1dx \Delta(x)I_1(x) + \int_0^1 dx I_2(x) \right], \notag \\
-    &I_1(x) = \int \frac{d^4\ell}{(2\pi)^4[\ell^2-\Delta(x)]^2}, \quad I_2(x) = \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta(x)]^2}
-\end{align}
-
-Ci occupiamo ora del calcolo di questi integrali. Innanzitutto eseguiamo la rotazione di Wick: 
-
-\begin{align}
-    I_1(x) = -i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell^2 + \Delta(x)]^2}
-\end{align}
-
-Passando ad uno spaziotempo di dimensione generica \(d\), 
-
-\begin{align}
-    I_1 = -i\int \left(\int d\Omega_d \right)\frac{d\ell_E}{(2\pi)^4}\frac{\ell_E^{d-1}}{[\ell_E^2 + \Delta(x)]^2}, \quad I_2 = i\int \left(\int d\Omega_d \right)\frac{d\ell_E}{(2\pi)^4}\frac{\ell_E^{d+1}}{[\ell_E^2 + \Delta(x)]^2}
-\end{align}
-
-Questi sono integrali di funzioni razionali, e la loro soluzione è ben nota. Basta effettuare la sostituzione
-
-\begin{align}
-    \ell \to y = \frac{\Delta}{\Delta + \ell_E^2}, \quad \ell_E^2 = \frac{\Delta}{y} - \Delta, \quad d(\ell_E^2) = -\frac{\Delta}{y^2}dy
-\end{align}
-
-Sostituendo, troviamo 
-
-\begin{align}
-    I_1 &= -\frac{i}{2}\int d\Omega_{d-1}\int_0^1 \frac{\Delta}{y^2}dy \left(\frac{y}{\Delta}\right)^2\Delta^{\frac{d-2}{2}}\left(\frac{1-y}{y} \right)^{\frac{d-2}{2}} \notag \\
-    &= -\frac{i\Delta^{\frac{d-4}{2}}}{2}\int d\Omega_{d-1}\int_0^1 dy y^{-\frac{d-2}{2}}(1-y)^{\frac{d-2}{2}}
-\end{align}
-
-Ricorda la formula integrale per la funzione \(\beta\) di Eulero, e la sua relazione con la \(\Gamma\) di Eulero, 
-
-\begin{align}
-    \beta(\alpha, \gamma) = \int_0^1 dx x^{\alpha-1}(1-x)^{\gamma-1} = \frac{\Gamma(\alpha)\Gamma(\gamma)}{\Gamma(\alpha + \gamma)}
-\end{align}
-
-Otteniamo quindi 
-
-\begin{align}
-    I_1 = -\frac{i\Delta^{\frac{d-4}{2}}}{2}\int d\Omega_{d-1}\Gamma(-d/2)\Gamma(d/2)
-\end{align}
-
-Ricordando la formula dell'aerea della sfera, 
-
-\begin{align}
-    \int d\Omega_{d-1} = \frac{2\pi^{d/2}}{\Gamma(d/2)}
-\end{align}
-
-Si trova infine 
-
-\begin{align}
-    I_1 = -i\frac{\Delta^{\frac{d-4}{2}}}{2^d\pi^{d/2}}\Gamma(-d/2)
-\end{align}
-
-Usando infine \(d = 4-2\epsilon\), troviamo 
-
-\begin{align}
-    I_1 = -\frac{i}{2^4\pi^2\Delta^\eps}\Gamma(\eps)
-\end{align}
-
-Come ci aspettavamo, questo ha una parte finita e una parte divergente, un polo semplice in \(\eps\), che è evidente se sviluppiamo la Gamma di eulero: \(\Gamma(\eps) = 1/\eps + \gamma_E + o(\eps)\). 
-
-Similmente si calcola \(I_2\): 
-
-\begin{align}
-    I_2(x) &= -\frac{i}{2}\frac{\Delta^{\frac{d-2}{2}}}{(2\pi)^d}\int d\Omega_{d-1}\int dy y^{-d/2}(1-y)^{d/2} \notag \\ 
-    &= -i\frac{\Delta^{\frac{d-2}{2}}}{2(2\pi)^d}\frac{2\pi^{d/2}}{\Gamma(d/2)}\frac{\Gamma(1-d/2)\Gamma(1+d/2)}{\Gamma(2)}
-\end{align}
-
-Usando \(\Gamma(n) = (n-1)!\), si trova infine  
-
-\begin{align}
-    I_2(x) = -\frac{i\Delta}{2^3\pi^2\Delta^\eps}\Gamma(-1+\eps)
-\end{align}
-
-La self energia completa è quindi data da 
-
-\begin{align}
-    -i\Sigma(p) &= 4i\lambda^2 (4\pi)^\eps\mu^{2\eps}\int_0^1 dx\left(\frac{\Delta\Gamma(-1+\eps)}{8\pi^2\Delta^\eps} + \frac{\Delta \Gamma(\eps)}{16\pi^2\Delta^\eps}\right) \notag \\ 
-    &= \frac{i\lambda^2}{2\pi^2} \int_0^1dx \left(\frac{(4\pi)\mu^2}{\Delta} \right)^\eps \Delta (\Gamma(-1+\eps) + \Gamma(\eps))
-\end{align}
-
-Sviluppiamo l'argomento dell'integrale per \(\eps \to 0\): abbiamo 
-
-\begin{align}
-    \left(\frac{4\pi \mu^2}{\Delta} \right)^\eps = 1 +\eps\ln(4\pi\mu^2/\Delta) + o(\eps^2), \quad \Gamma(-1+\eps) = -1/\eps + \gamma_E - 1, \quad \Gamma(\eps) = 1/\eps + \gamma_E 
-\end{align}
-
-Così da ottenere 
-
-\begin{align}
-    -i\Sigma(p) = -\frac{i\lambda^2}{2\pi^2}\int_0^1 dx \Delta \left[\frac{1}{2\epsilon} + 1 - \frac{\gamma_E}{2} +\frac{1}{2}\log(4\pi\mu^2/\Delta) \right]
-\end{align}
-
-La parte divergente è quindi data da 
-
-\begin{align}
-    \Sigma(p) &= \frac{\lambda^2}{4\pi^2\eps}\int_0^1 dx \Delta = \frac{\lambda^2}{4\pi^2\eps}\int_0^1 dx m^2_{0,f} - x(1-x)p^2 \notag \\ 
-    &= \frac{m^2_{f,0}\lambda^2}{4\pi^2\eps} - \frac{p^2\lambda^2}{24\pi^2\eps} 
-\end{align}
-
-Avendo l'espressione per la self energia, il calcolo dei controtermini per la massa e la funzione d'onda è immediato. Infatti, considera l'espressione per il propagatore risommato: (se si è scritto \(M_0^2\phi^2 = (M^2 + \delta M^2)\phi^2\))
-
-\begin{align}
-    &D(p) + D(p)(i\Sigma(p))D(p) + D(p)(i\Sigma(p))D(p)(-i\Sigma(p))D(p) + \ldots \notag \\ 
-    &= D(p)[(i\Sigma(p)D(p)) + (i\Sigma(p)D(p))^2 + \ldots] \notag \\ 
-    &= \frac{D(p)}{1-i\Sigma(p)D(p)} = \frac{i}{(p^2-M^2 -\delta M^2 +i\eps)(1 + \frac{\Sigma(p)}{p^2-M^2 - \delta M^2 +i\eps})} \notag \\
-    &= \frac{i}{p^2 - M^2 - \delta M^2 +\Sigma(p)}
-\end{align}
-
-Ora, ci interessa che il propagatore vicino a \(p^2 = M^2\) abbia un polo, con il residuo della teoria libera. Cioè richiediamo che 
-
-\begin{align}
-    \frac{i}{p^2 - M^2 - \delta M^2 +\Sigma(p)} \to \frac{i}{p^2 - M^2 + i\eps}, \quad p^2 \to M^2
-\end{align}
-
-Per farlo sviluppa in serie \(\Sigma\) vicino ad \(M^2\): \(\Sigma(p^2) = \Sigma(M^2) + (p^2-M^2)\Sigma'(p^2) + \frac{1}{2}(p^2-M^2)^2\Sigma''(p^2) + \ldots\). Il propagatore diventa 
-
-\begin{align}
-    \frac{i}{p^2-M^2 - \delta M^2 + \Sigma(m^2) + (p^2 - M^2)\Sigma'(p) + \frac{1}{2}(p^2-M^2)^2\Sigma''(p^2) + \ldots}
-\end{align}
-
-Scegli \(\delta M^2 = \Sigma(p^2)\), e ottieni 
-
-\begin{align}
-    \frac{i}{(p^2-M^2)(1+\Sigma'(p^2) + \frac{1}{2}(p^2-M^2)\Sigma''(p^2))} \to \frac{iZ_\varphi}{p^2 - M^2 + i\eps}, \quad p^2 \to m^2, \quad Z_\varphi = \frac{1}{1+\Sigma'(p^2)}
-\end{align}
-
-Dai nostri calcoli segue dunque 
-
-\begin{align}
-    \Sigma(M^2) = \frac{\lambda_0^2}{4\pi^2\eps}(M^2/6 - m^2_{0,f}), \quad \Sigma'(p^2) = \frac{\lambda_0^2}{24\pi^2\eps}
-\end{align}
-
-\subsection{Costante di accoppiamento}
-
-Considera le quattro correzioni ad un loop della funzione a 3 punti della teoria (figura \ref{fig:oneloopvertex}). Scriviamo la costante di accoppiamento "nuda" in termini di quella fisica e di un controtermine: \(\lambda_0 = \lambda + \delta \lambda\). Vogliamo ora calcolare il controtermine, usando la richiesta che in una particolare cinematica (dove tutte le particelle esterne sono on-shell) l'accoppiamento coincida con quello misurato.  
-
-\begin{figure}
-    \caption{I contribuiti al secondo ordine perturbativo al vertice \(\bar{\psi}\psi \phi\)}
-    \label{fig:oneloopvertex}
-    \begin{multicols}{3}
-        \begin{center}
-            \begin{tikzpicture}
-                \begin{feynman}
-                    \vertex (a); 
-                    \vertex [above left = of a] (b); 
-                    \vertex [below left = of a](c); 
-                    \vertex [right = of a] (d); 
-                    \vertex [right = of d] (e); 
-                    \vertex [right = of e] (f); 
-                    \diagram{
-                        (b) -- [fermion] (a); 
-                        (a) -- [fermion] (c); 
-                        (a) -- [scalar] (d); 
-                        (d) -- [fermion, half left] (e);
-                        (e) -- [fermion, half left] (d);
-                        (e) -- [scalar] (f);
-                    }; 
-                \end{feynman}
-            \end{tikzpicture}
-        \end{center}
-        \columnbreak
-        \begin{center}
-            \begin{tikzpicture}
-                \begin{feynman}
-                    \vertex (a); 
-                    \vertex [above left = of a] (b); 
-                    \vertex [below left = of a](c); 
-                    \vertex [right = of a] (d); 
-                    \vertex [above left = of b] (e); 
-                    \vertex [left = of e] (f); 
-                    \diagram{
-                        (b) -- [fermion] (a); 
-                        (a) -- [fermion] (c); 
-                        (a) -- [scalar] (d); 
-                        (b) -- [scalar, half left] (e);
-                        (e) -- [fermion, half left] (b);
-                        (f) -- [fermion] (e);
-                    }; 
-                \end{feynman}
-            \end{tikzpicture}
-        \end{center}
-        \columnbreak
-        \begin{center}
-            \begin{tikzpicture}
-                \begin{feynman}
-                    \vertex (a); 
-                    \vertex [above left = of a] (b); 
-                    \vertex [below left = of a](c); 
-                    \vertex [right = of a] (d); 
-                    \vertex [below left = of c] (e); 
-                    \vertex [left = of e] (f); 
-                    \diagram{
-                        (b) -- [fermion] (a); 
-                        (a) -- [fermion] (c); 
-                        (a) -- [scalar] (d); 
-                        (c) -- [scalar, half left] (e);
-                        (e) -- [fermion, half left] (c);
-                        (f) -- [fermion] (e);
-                    }; 
-                \end{feynman}
-            \end{tikzpicture}
-        \end{center}
-    \end{multicols}
-    \begin{multicols}{2}
-        \begin{center}
-            \begin{tikzpicture}
-                \begin{feynman}
-                    \vertex (a); 
-                    \vertex [above left = of a] (b); 
-                    \vertex [below left = of a](c); 
-                    \vertex [right = of a] (d); 
-                    \diagram{
-                        (b) -- [fermion] (a); 
-                        (a) -- [fermion] (c); 
-                        (a) -- [scalar] (d); 
-                    }; 
-                \end{feynman}
-            \end{tikzpicture}
-        \end{center}
-        \columnbreak
-        \begin{center}
-            \begin{tikzpicture}
-                \begin{feynman}
-                    \vertex (a); 
-                    \vertex [above left = of a] (b); 
-                    \vertex [below left = of a](c); 
-                    \vertex [right = of a] (d); 
-                    \vertex [left = of b] (e); 
-                    \vertex [left = of c] (f); 
-                    \diagram{
-                        (b) -- [fermion] (a); 
-                        (a) -- [fermion] (c); 
-                        (a) -- [scalar] (d); 
-                        (b) -- [scalar] (c); 
-                        (e) -- [fermion] (b); 
-                        (c) -- [fermion] (f); 
-                    }; 
-                \end{feynman}
-            \end{tikzpicture}
-        \end{center}
-    \end{multicols}
-\end{figure}
-
-In formule, la nostra \emph{condizione di rinormalizzazione} sarà 
-
-\begin{align}
-    \lim_{p_1^2, p_2^2, q^2 \to 0} \Gamma_{\bar{\psi}(p_1), \psi(p_2), \phi(q)} = -i\lambda
-\end{align}
-
-Non dobbiamo però tenere conto di tutti i diagrammi: i diagrammi che contengolo la self energia non sono 1PI. Chiamiamo quindi \(iA(p_1^2, q_1^2, p_2^2)\) l'ampiezza del diagramma ad un loop da calcolare. La condizione di rinormalizzazione si legge ora 
-
-\begin{align}
-    -i\lambda -i\delta \lambda +iA(p_1^2 = m^2, p_2^2 = m^2, q^2 = M^2) = -i\lambda \implies \delta\lambda = A(m^2, m^2, M^2)
-\end{align}
-
-Concentriamoci allora sulla determinazione di \(A\). Vale \footnote{Abbiamo scelto i momenti nel loop in modo tale che si semplificassero meglio i denominatori}. 
-
-\begin{align}
-    iA(p_1^2, p_2^2, q^2) &= (-i\lambda)^3 \int \frac{d^4k}{(2\pi)^4}\left[\frac{i(\slashed{k} + \slashed{p_1} +m)}{(k+p_1)^2-m^2} \right]\left[\frac{i(\slashed{k}-\slashed{p_2}+m)}{(k-p_2)^2-m^2} \right]\left[\frac{i}{k^2-M^2} \right] \notag \\ 
-    &= -\lambda^3 \int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k} + \slashed{p_1} + m)(\slashed{k} -\slashed{p_2} + m)}{[k^2 + 2k\cdot p_1][k^2 - 2k\cdot p_2][k^2-M^2]}
-\end{align}
-
-Notiamo che ho tre denominatori, quindi è necessario usare due parametri di Feynman. In particolare usiamo la formula
-
-\begin{align}
-    \frac{1}{ABC} = 2\int_0^1dx\int_0^1dy \frac{1}{[xA + yB + (1-x-y)C]^3}
-\end{align}
-
-Scegli \(C = k^2-M^2, \, A = k^2 + 2k\cdot p_1, \, B = k^2 - 2k\cdot p_2\). Il denominatore diventa: 
-
-\begin{align}
-    \text{Den} &= 2xk\cdot p_1 -2y k\cdot p_2 + k^2 - M^2 -xM^2 -yM^2 \notag \\
-    &= (k + xp_1 - yp_2)^2 - \underbrace{[(xp_1 - yp_2)^2 +(1-x-y)M^2]}_{=\Delta} 
-\end{align}
-
-L'ampiezza è quindi data da 
-
-\begin{align}
-    iA = -\lambda^3 \int_0^1 dx\int_0^1 dy\int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k}+ \slashed{p_1} +m)(\slashed{k}- \slashed{p_2} +m)}{[(k+xp_1 - yp_2)^2 - \Delta]^3}
-\end{align}
-
-Facciamo quindi la sostituzione \(k \to \ell = k+xp_1 - yp_2\), e otteniamo così 
-
-\begin{align}
-    iA = -\lambda^3 \int_0^1dx \int_0^1 dy \int \frac{d^4\ell}{(2\pi)^4}\frac{(\slashed{\ell} + (x+1)\slashed{p_1} - y\slashed{p_2} + m)(\slashed{\ell} + x\slashed{p_1} - (y+1)\slashed{p_2} + m)}{[\ell^2 - \Delta]^3}
-\end{align}
-
-Teniamo solo i contributi di ordine 0 e 2 in \(\ell\), che non si cancellano per parità: 
-
-\begin{align}
-    iA = -\lambda^3\int_0^1 dx \int_0^1 dy \int \frac{d^4\ell}{(2\pi)^4} &\frac{\ell^2 + x(x+1)m^2 -(x+1)(y+1)\slashed{p_1}\slashed{p_2} + m(x+1)\slashed{p_1}}{[\ell^2 - \Delta]^3} \notag \\ 
-    &+ \frac{-xy\slashed{p_2}\slashed{p_1} +y(y+1)m^2 -ym\slashed{p_2} + xm\slashed{p_1} - (y+1)m\slashed{p_2} +m^2}{[\ell^2 -\Delta]^3}
-\end{align}
-
-Che prende la forma 
-
-\begin{align}
-    iA = -\lambda^3 \int_0^1 dx \int_0^1 dy (&I_1 + (m^2(1 + x(x+1) + y(y+1)) + \notag \\ 
-    &m((2x+1)\slashed{p_1} - (2y+1)\slashed{p_2}) -((x+1)(y+1)\slashed{p_1}\slashed{p_2} + xy\slashed{p_2}\slashed{p_1}))I_2)
-\end{align}
-
-Se abbiamo definito
-
-\begin{align}
-    I_1 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta]^3} \notag \\ 
-    &= -i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{\ell_E^2}{[\ell_E^2+\Delta]^3} = -\frac{i\Gamma(\eps)}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \xrightarrow{\eps \to 0} -\frac{i}{16\pi^2}\left[\frac{1}{\eps} + \gamma_E + \log\left(\frac{4\pi\mu^2}{\Delta}\right) \right]
-\end{align}
-
-e similmente 
-
-\begin{align}
-    I_2 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2-\Delta]^3} = i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell_E^2 + \Delta]^3} \notag \\ 
-    &= \frac{i}{2\Delta(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \Gamma(1+\eps) \xrightarrow{\eps \to 0}  \frac{i}{32\pi^2\Delta}
-\end{align}
-
-Come ci si aspetta anche dal grado superficiale di divergenza, vediamo che \(I_1\) diverge logaritmicamente mentre \(I_2\) è UV finito. 
-
-Fortunatamente dobbiamo calcolare esplicitamente solamente la parte divergente dell'integrale, mentre possiamo lasciare indicata simbolicamente le parti finite. La parte divergente è quindi data da 
-
-\begin{align}
-    iA = \frac{i\lambda^3 }{16\pi^2 \eps} + o(1), \quad \eps \to 0 
-\end{align}
-
-\section{Rinormalizzazione teoria di Yukawa - seconda versione}
+\section{Rinormalizzazione teoria di Yukawa}
 
 Considera la seguente lagrangiana: 
 
@@ -3061,17 +2608,17 @@ dove con \(-i\Sigma(p^2)\) indichiamo la self energia dello scalare, corrisponde
 
 
 \begin{align}
-    -i\Sigma(p^2) &= (-i\lambda)^2\int \frac{d^4q}{(2\pi)^4}\text{Tr}\left[\frac{i(\slashed{q}-\slashed{p}+m_f)}{[(q-p)^2 - m_f^2]}\frac{i(\slashed{q}+m_f)}{q^2-m^2_f}\right] \notag \\ 
-    &= 4\lambda^2 \int \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot p}{[(q-p)^2 - m^2_f][q^2 - m^2_f]}
+    -i\Sigma(p^2) &= (-i\lambda)^2(-1)\int \frac{d^4q}{(2\pi)^4}\text{Tr}\left[\frac{i(\slashed{q}-\slashed{p}+m_f)}{[(q-p)^2 - m_f^2]}\frac{i(\slashed{q}+m_f)}{q^2-m^2_f}\right] \notag \\ 
+    &= -4\lambda^2 \int \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot p}{[(q-p)^2 - m^2_f][q^2 - m^2_f]}
 \end{align}
 
 Come al solito, uso i parametri du Feynman e cambio variabile di integrazione: 
 
 \begin{align}
-    -i\Sigma(p^2) &= 4\lambda^2 \int_0^1 dx \int  \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot q}{[xp^2 - 2xp\cdot q + q^2 - m^2_f]^2} \notag \\ 
-    &= 4\lambda^2 \int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m^2_f + (q-p)\cdot q}{[(q-xp)^2 - \Delta]^2}, \quad \Delta = m^2_f - (1-x)xp^2 \notag \\ 
-    &= 4\lambda^2 \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2 + \Delta}{[\ell^2 - \Delta]^2}, \quad \ell = q-xp \notag \\ 
-    &= 4\lambda^2 \int_0^1dx (I_1 + \Delta I_2)
+    -i\Sigma(p^2) &= -4\lambda^2 \int_0^1 dx \int  \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot q}{[xp^2 - 2xp\cdot q + q^2 - m^2_f]^2} \notag \\ 
+    &= -4\lambda^2 \int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m^2_f + (q-p)\cdot q}{[(q-xp)^2 - \Delta]^2}, \quad \Delta = m^2_f - (1-x)xp^2 \notag \\ 
+    &= -4\lambda^2 \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2 + \Delta}{[\ell^2 - \Delta]^2}, \quad \ell = q-xp \notag \\ 
+    &= -4\lambda^2 \int_0^1dx (I_1 + \Delta I_2)
 \end{align}
 
 Se definiamo 
@@ -3084,22 +2631,22 @@ Se definiamo
 Dove abbiamo usato le formule precedentemente usate. Quindi, troviamo 
 
 \begin{align}
-    -i\Sigma(p^2) &= 4i\lambda^2 \int_0^1 dx \left[\frac{2\Delta}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta}\right)^\eps\Gamma(-1+\eps) - \frac{\Delta}{(4\pi)^2}\left( \frac{4\pi\mu^2}{\Delta}\right)^\eps \Gamma(\eps) \right] \notag \\ 
-    &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(\frac{4\pi\mu^2}{\Delta} \right)^\eps(2\Gamma(-1+\eps) - \Gamma(\eps))
+    -i\Sigma(p^2) &= -4i\lambda^2 \int_0^1 dx \left[\frac{2\Delta}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta}\right)^\eps\Gamma(-1+\eps) - \frac{\Delta}{(4\pi)^2}\left( \frac{4\pi\mu^2}{\Delta}\right)^\eps \Gamma(\eps) \right] \notag \\ 
+    &= -\frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(\frac{4\pi\mu^2}{\Delta} \right)^\eps(2\Gamma(-1+\eps) - \Gamma(\eps))
 \end{align}
 
 Se ci fermiamo allo sviluppo di Laurent in \(\eps\) fino all'ordine zero, troviamo 
 
 \begin{align}
-    -i\Sigma(p^2) &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(1+\eps\log\left(\frac{4\pi\mu^2}{\Delta}\right) \right)\left(-\frac{2}{\eps} + 2\gamma_E - 2 - \frac{1}{\eps} - \gamma_E \right) \notag \\ 
-    &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left[-\frac{3}{\eps} - 2+\gamma_E -2\log\left(\frac{4\pi\mu^2}{\Delta} \right)\right]
+    -i\Sigma(p^2) &= -\frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(1+\eps\log\left(\frac{4\pi\mu^2}{\Delta}\right) \right)\left(-\frac{2}{\eps} + 2\gamma_E - 2 - \frac{1}{\eps} - \gamma_E \right) \notag \\ 
+    &= -\frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left[-\frac{3}{\eps} - 2+\gamma_E -2\log\left(\frac{4\pi\mu^2}{\Delta} \right)\right]
 \end{align}
 
 Se ci interessa solo la parte infinita dei controtermini, possiamo prendere 
 
 \begin{align}
-    -i\Sigma(p^2) &= -i\frac{\lambda^2}{4\pi^2}\frac{3}{\eps}\int_0^1 dx \Delta + 0(1) \notag \\ 
-    &= -i\frac{3\lambda^2}{4\pi^2\eps}\left(m_f^2 - \frac{p^2}{6}\right) + o(1)
+    -i\Sigma(p^2) &= i\frac{\lambda^2}{4\pi^2}\frac{3}{\eps}\int_0^1 dx \Delta + 0(1) \notag \\ 
+    &= i\frac{3\lambda^2}{4\pi^2\eps}\left(m_f^2 - \frac{p^2}{6}\right) + o(1)
 \end{align}
 
 Applicando quindi la condizione di rinormalizzazione \ref{eq:scalarpropagatorrenormalizationcondition}, otteniamo 

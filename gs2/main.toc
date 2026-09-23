@@ -9,5 +9,6 @@
 \contentsline {subsection}{\numberline {1.4.4}Correnti conservate sul WS}{14}{subsection.1.4.4}%
 \contentsline {subsection}{\numberline {1.4.5}Simmetrie di lorentz e correnti}{16}{subsection.1.4.5}%
 \contentsline {chapter}{\numberline {2}Le superalgebre di Lie}{18}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Motivazione allo studio della supersimmetria}{18}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{18}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Definizione di superalgebra di Lie e primi esempi}{21}{section.2.2}%
 \contentsfinish 

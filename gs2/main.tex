@@ -917,7 +917,7 @@ Ad esempio, se ho un boost, la carica è data da
 
 \chapter{Le superalgebre di Lie}
 
-\section{Motivazione allo studio della supersimmetria}
+\section{Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}
 
 Perché i fisici nello scorso secolo si sono interessati così tanto alla supersimmetria? Vi sono molte ragioni teoriche, anche di carattere molto pratico. Cominciamo con una di carattere più filosofico: il modello standard delle particelle elementari (SM) ha due simmetrie: una di spaziotempo, cioè la simmetria sotto il gruppo di Poincaré, ed un altra invece detta interna, cioè la simmetria di gauge sotto il gruppo \(SU(3)\times SU(2)\times U(1)\). Possiamo indicare l'algebra globale come \(\mathcal{P} + g\). Vorremmo unificare queste simmetrie, all'interno di una algebra \(\mathcal{A}\) più grande, che le contiene (\(\mathcal{P} \oplus g \subset A\)), in modo non banale.  
 
@@ -971,6 +971,89 @@ L'algebra totale è la somma diretta, \(\mathcal{P} \oplus \mathfrak{u}\)(1). Vo
         \phi_1 \\ \ldots \\ \ldots \\ \phi_N
     \end{pmatrix} \in \mathbb{C}^N, \quad \phi^\dagger = (\phi_1^*, \ldots, \phi_N^*)
 \end{align}
+
+La azione è allora simmetrica sotto la trasformazione dei campi \(\phi \to U\phi, \, \phi^\dagger \to \phi^\dagger U^\dagger\), a patto che valga \(UU^\dagger =1\), cioè \(U \in U(N)\). Quali sono adesso le cariche conservate? Se si definisce 
+
+\begin{align}
+    Q_a = i\int d^3x \phi^\dagger T_a \overleftrightarrow{\partial}_0 \phi
+\end{align}
+
+Se \(T_a\) è una base hermitiana dell'algebra (dunque una matrice \(N\times N\)). Si hanno quindi \(N^2\) cariche conservate. Le cariche soddisfano l'albegra di \(\mathfrak{u}\)(N), cioè vale \([Q_a, Q_b] = f_{abc}Q_c\). Ancora una volta come prima, vale 
+
+\begin{align}
+    &[Q_a, P^\mu] = 0 \notag \\ 
+    &[Q_a, J^{\mu\nu}] = 0 
+\end{align}
+
+Cioè l'algebra globale è sempre \(\mathcal{P}\oplus \mathfrak{u}(N)\). Se allargare il gruppo di simmetria interno è apparentemente semplice, vediamo che è più complicato introdurre una algebra di simmetria che sia diversa da un gruppo interno in somma diretta con Poincaré. Immaginare una teoria dove la carica non commuti con le traslazione è abbastanza difficile. Invece potremmo pensare ad na teoria dove vale \([Q_a, J^{\mu\nu} \neq 0]\). Questo vuol dire che la carica non è più uno scalare di spaziotempo. D'altra parte, questo vuol dire avere una carica vettoriale, o tensoriale, oltre a \(P^\mu, J^{\mu\nu}\). Questa simmetria dovrebbe anche collegare stati di spin diverso, perchè 
+
+\begin{align}
+    Q_\mu \ket{0} = \ket{1}
+\end{align}
+
+Se \(\ket{0}\) ha spin 0 e \(\ket{1}\) ha spin 1. 
+
+Coleman e Mandula, nel 1967, hanno dimostrato che, con eccezione di casi particolari e poco importanti, la risposta a questa domanda è no. 
+
+La dimostrazione del teorema è complicata. Facciamo comunque qualche commento: inanzitutto l'idea è che se esistessero cariche conservate di tipo tensoriale o vettoriale, queste vincolerebbero troppo la dinamica, e per forza di cose si andrebbe a cadere nella teoria libera, non interagente. Per vederlo facciamo un esempio: 
+
+\ex{Conseguenze alla dinamica di una carica conservata tensoriale}{
+
+    Supponiamo che in una data teoria \(Q_{\mu\nu}\), un tensore simmetrico e a traccia nulla, sia conservato. Considera anche uno stato ad una particella, con momento \(p^\mu\), che indichiamo con \(\ket{p}\). Considera il suo valore di aspettazione: deve avere una forma quadratica nei momenti, ed essere senza traccia, perciò varrà 
+
+    \begin{align}
+        \bra{p}Q_{\mu\nu}\ket{p} \propto (p_\mu p_\nu - \frac{1}{4}\eta_{\mu\nu}p^2)
+    \end{align}
+
+    Chiaramente \(p^2 = m^2\) è una quantità conservata. Segue quindi che si deve conservare anche \(p_\mu p_\nu\). Vediamo che conseguenze ha questo ad esempio in uno scattering \(2\to 2\). Se indichiamo con \(P_i\) i momenti entranti e \(P'_i\) i momenti esterni, questi devono soddisfare sia la conservazione del momento, sia la nuova legge: 
+
+    \begin{align}
+        \begin{cases}
+            p_1^\mu + p_2^\mu = p_1^{\mu} + p_2^{\mu'} \\
+            p_1^\mu p_1^\nu + p_2^\mu p_2^\nu = p_1^{\mu'} p_1^{\nu'} + p_2^{\mu'} p_2^{\nu'}
+        \end{cases} \implies \begin{cases}
+            p_1^\mu = p_1^{\mu'} \\ p_2^\mu = p_2^{\mu'} 
+        \end{cases}, \quad \text{oppure} \quad \begin{cases}
+            p_1^\mu = -p_1^{\mu'} \\ p_2^\mu = -p_2^{\mu'} 
+        \end{cases}
+    \end{align}
+
+    Chiaramente, entrambi i casi sono troppo banali. Per questo motivo, il teorema di Coleman Mandula richiede nelle ipotesi che le soluzioni della teoria siano smooth (cioè lisce) nei parametri come gli angoli di scattering. 
+}
+
+Quali sono le eccezioni del teorema di Coleman Mandula? Ne citiamo alcune: 
+
+\begin{enumerate}
+    \item La teoria \emph{libera}: in questo caso, è semplice costruire teorie con cariche vettoriali o tensoriali conservate. Consideriamo ad esempio la seguente azione: 
+    \begin{align}
+        S = S_0 + S_1, \quad S_0 = \int d^4x \frac{1}{2}[\partial_\mu\phi\partial^\mu\phi -m^2\phi^2], \, \phi \in \mathbb{R}, \quad S_1 = \int d^4x \left[-\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + \frac{1}{2}m^2 A_\mu A^\nu \right]
+    \end{align}
+
+    Dove, come al solito, \(F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu\). La teoria è una teoria libera di campo scalare + una teoria libera di un campo vettoriale massivo. Le equazioni del moto che seguono dall'azione sono
+    \begin{align}
+        (\square +m^2)\phi = 0, \quad (\square +m^2)A_\mu = 0 
+    \end{align}
+
+    Da queste è immediato verificare che la corrente \(j_{\mu\nu} = \phi \overleftrightarrow{\partial}_\mu A_\nu\) è conservata. Segue che esiste una carica vettoriale conservata, data da 
+
+    \begin{align}
+        Q_\nu = \int d^3x j_{o\nu} \implies \frac{d}{dt}Q_\nu = 0 
+    \end{align}
+
+    In effetti è facile mostrare che esistono \emph{infinite} correnti conservate, date da \(\phi \overleftrightarrow{\partial}_{\mu_1} \ldots \overleftrightarrow{\partial}_{\mu_N}A_\nu\). Nel caso della teoria interagente però le e.o.m. diventano più complicate, e il trucco non funziona più. 
+    \item Una teoria in sole \(d = 2\) dimensioni (una temporale e una spaziale). Il ragionamento per il quale le soluzioni devono essere smooth nei parametri non funziona più se la dimensione spaziale è solo una. Un esempio importante è il World-sheet in teoria delle stringhe: lì ci sono infinite cariche vettoriali/tensoriali conservate. 
+    \item La teoria non relativistica: ad esempio nel Weimberg si mostra come valga 
+    \begin{align}
+        SU(3) \otimes SU(2) \subset SU(6)
+    \end{align}
+    Dove \(SU(3)\) è il gruppo interno di simmetria di sapore di Gell-Mann, mentre \(SU(2)\) è il gruppo di spin, cioè la simmetria spaziotemporale non relativistica. 
+\end{enumerate}
+
+Un'altra osservazione riguarda le teorie \emph{conformi}: queste hanno una simmetria interna più grande di quella di Poincaré, cioè una invarianza di scala. Queste hanno una carica conservata vettoriale in più, solitamente denotata con \(k^\mu\). Anche in questo caso, vale il teorema di Coleman-Mandula, a patto di sostituire Poincarè con il gruppo Conforme. 
+
+Il teorema sembrerebbe spezzare le nostre speranze. D'altra parte, possiamo cercare una via d'uscita, una ipotesi del teorema alla quale possiamo rinuciare oppure modificare. In particolare ci poniamo la seguente domanda: se non esistono cariche vettoriali conservate, possiamo invece considerare cariche con indici \emph{spinoriali}? Questo significherebbe avere delle simmetrie che connetono stati di spin che differisce di \(1/2\), cioè tra bosoni e fermioni. Questo porta a modificare anche il concetto stesso di algebra: dovremmo considerare dei generatori fermionici anticommutanti. In effetti, si possono costruire queste teorie, e le algebre modificate in questo modo sono dette \emph{superalgebre di Lie}. Se queste contengono al loro interno l'algebra di Poincarè, si dicono algebre di \emph{supersimmetria} (oppure di superalgebre). 
+
+\section{Definizione di superalgebra di Lie e primi esempi}
 
 
 

@@ -463,6 +463,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+INPUT /usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tikzsymbols/tikzsymbols.sty
 INPUT /usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytrees.code.tex
