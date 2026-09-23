@@ -8,4 +8,5 @@
 \contentsline {subsection}{\numberline {1.4.3}Studio delle equazioni del moto}{12}{subsection.1.4.3}%
 \contentsline {subsection}{\numberline {1.4.4}Correnti conservate sul WS}{14}{subsection.1.4.4}%
 \contentsline {subsection}{\numberline {1.4.5}Simmetrie di lorentz e correnti}{16}{subsection.1.4.5}%
+\contentsline {chapter}{\numberline {2}Motivazioni allo studio della supersimmetria}{18}{chapter.2}%
 \contentsfinish 

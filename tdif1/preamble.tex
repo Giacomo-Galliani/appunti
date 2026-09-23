@@ -1,4 +1,4 @@
-\usepackage[tmargin=2cm,rmargin=1in,lmargin=1in,margin=0.85in,bmargin=2cm,footskip=.2in]{geometry}
+\usepackage[tmargin=2cm,rmargin=0.5cm,lmargin=0.5cm,margin=1.5cm,bmargin=2cm,footskip=.2in]{geometry}
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage{graphicx}
 
@@ -9,7 +9,8 @@
 %\usepackage{ebgaramond}
 %\usepackage[ebgaramond]{newtxmath}
 
-\usepackage{newtxtext,newtxmath}
+%\usepackage{newtxtext,newtxmath}
+\usepackage[italian]{babel}
 
 
 \usepackage{xfrac}
@@ -108,7 +109,7 @@
 % SELF MADE COLORS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\definecolor{doc}{RGB}{0,60,110}
+\definecolor{doc}{HTML}{2e6611}
 \definecolor{myg}{RGB}{56, 140, 70}
 \definecolor{myb}{RGB}{45, 111, 177}
 \definecolor{myr}{RGB}{199, 68, 64}
@@ -743,8 +744,8 @@
 \titlecontents{chapter}[3.7pc]
 {\addvspace{30pt}%
 	\begin{tikzpicture}[remember picture, overlay]%
-		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.9,.5);%
-		\pgftext[left,x=-3.7cm,y=0.2cm]{\color{white}\Large\sc\bfseries capitolo\ \thecontentslabel};
+		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (0,.5);%
+		\pgftext[left,x=-3.0cm,y=0.2cm]{\color{white}\Large\sc\bfseries capitolo\ \thecontentslabel};
 	\end{tikzpicture}\color{doc!60}\large\sc\bfseries}%
 {}
 {}

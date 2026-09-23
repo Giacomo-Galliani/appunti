@@ -1,10 +1,42 @@
-\contentsline {chapter}{\numberline {1}Il propagatore di Feyman}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Il propagatore del campo scalare}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Il propagatore fermionico}{5}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Il propagatore del fotone}{6}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Un primo esempio di calcolo}{9}{subsection.1.3.1}%
-\contentsline {chapter}{\numberline {2}La teoria dell'urto}{11}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Calcolo del processo \(e^+e^- \rightarrow \mu ^+\mu ^-\)}{12}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Urto compton}{20}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Rinormalizzazione e contributi a più loop}{21}{chapter.3}%
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Il propagatore di Feyman}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Il propagatore del campo scalare}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Il propagatore fermionico}{6}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Il propagatore del fotone}{8}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Un primo esempio di calcolo}{11}{subsection.1.3.1}%
+\contentsline {chapter}{\numberline {2}La teoria dell'urto}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Calcolo del processo \(e^+e^- \rightarrow \mu ^+\mu ^-\)}{15}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Urto compton}{23}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Rinormalizzazione e contributi a più loop}{25}{chapter.3}%
+\contentsline {subsection}{\numberline {3.0.1}I controtermini}{25}{subsection.3.0.1}%
+\contentsline {section}{\numberline {3.1}Esempio di calcolo: self energia del fotone}{29}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Fattori di forma elettromagnetici}{31}{subsection.3.1.1}%
+\contentsline {chapter}{\numberline {4}Interazioni elettrodeboli}{33}{chapter.4}%
+\contentsline {section}{\numberline {4.1}La teoria efficace di Fermi}{33}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Una teoria di gauge per le interazioni elettrodeboli}{35}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Applicazione: il decadimento del muone}{38}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Esercizi del primo modulo}{40}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Scattering Bhabha}{40}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Calcolo dell'ampiezza}{40}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Sezione d'urto}{42}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Analisi della singolarità per \(\theta \rightarrow 0\)}{43}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Analisi del contributo di \(Z_0\)}{44}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}Decadimento del muone}{46}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Scomposizione in termini di fattori di forma}{46}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Larghezza di decadimento}{47}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Limiti sui fattori di forma}{50}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Rinormalizzazione nella teoria di Yukawa}{51}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Campo fermionico}{51}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Campo scalare}{52}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Costante di accoppiamento}{56}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Rinormalizzazione teoria di Yukawa - seconda versione}{59}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Campo spinoriale}{60}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Campo scalare}{62}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Costante di accoppiamento}{64}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Controtermini in diversi schemi di rinormalizzazione}{66}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Nuova fisica nel decadimento del muone}{68}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Regole di Feynman della teoria}{68}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Contributo al fattore di forma}{69}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Calcolo esplicito degli integrali di loop}{72}{subsection.5.5.3}%
 \contentsfinish 

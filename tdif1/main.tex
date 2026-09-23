@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt]{report}
 
 \usepackage{amsmath}
 \usepackage[inlinechap]{settings/fncystyle}
@@ -1016,6 +1016,8 @@ queste sono solo 4 matrici, e le sappiamo tracciare.
 
 \chapter{Rinormalizzazione e contributi a più loop}
 
+\subsection{I controtermini}
+
 Torniamo alla lagrangiana della QED: 
 
 \begin{align}
@@ -1203,6 +1205,8 @@ la condizione si può applicare in modo a sua volta perturbativo. Si sviluppano 
 
 dove abbiamo scritto \(Z^{1/2} = (1+\delta Z)^{1/2}\). Si considerano poi i processi ordine per ordine, e si trova operativamente ordine per ordine una espressione per i controtermini. 
 
+\section{Esempio di calcolo: self energia del fotone}
+
 Vediamo ora come possiamo effettuare il calcolo di un diagramma di Feynman che contiene un loop. Immediatamente ci rendiamo conto di un fatto singolare: le regole di Feynman ci dicono di imporre ad ogni vertice la conservazione del momento. D'altra parte, il diagramma dato da 
 
 \begin{center}
@@ -1229,6 +1233,2329 @@ conserva in ogni punto il momento, per \emph{qualunque} valore di \(\vec{k}\). L
 \end{align}
 
 con l'aggiunta di un segno \((-1)\) nel caso il loop sia un fermione. Qui nascono diverse difficoltà, che agli albori della QED fecero pensare che la teoria fosse in qualche modo incompleta. Il punto è che questi integrali sono molto spesso divergenti. Ad esempio, per il diagramma che abbiamo disegnato, avremmo: 
+
+\begin{align}
+    i\Pi^{\mu\nu}(p) = (-1)e^2 \int \frac{d^4k}{(2\pi)^4}\text{Tr}\left[\frac{(\slashed{k}+\slashed{p} - m_e)\gamma^\mu (\slashed{k}-m_e)\gamma^\nu}{[(k+p)^2-m_e^2][k^2-m^2_e]} \right]
+\end{align}
+
+Possiamo valutare la traccia usando le solite identità: 
+
+\begin{align}
+    i\Pi^{\mu\nu}(p) = -4ie^2 \int \frac{d^4k}{(2\pi)^4}\frac{k^\mu (k+p)^\nu + k^\nu (k+p)^\mu - g^{\mu\nu}(k\cdot (k+p) - m_e^2)}{[(k+p)^2-m_e^2][k^2-m^2_e]}
+\end{align}
+
+Per combinare i denominatori introduciamo i parametri di Feynman: 
+
+\begin{align}
+    i\Pi^{\mu\nu}(p^2) &= -4ie^2 \int_0^1 dx \int \frac{d^4k}{(2\pi)^4}\frac{k^\mu (k+p)^\nu + k^\nu (k+p)^\mu - g^{\mu\nu}(k\cdot (k+p) - m_e^2)}{(xp^2 + 2xp\cdot k + k^2 - m_e^2 + x^2p^2 - x^2p^2)^2} \notag \\
+    &= -4ie^2 \int_0^1 dx \int \frac{d^4k}{(2\pi)^4}\frac{k^\mu (k+p)^\nu + k^\nu (k+p)^\mu - g^{\mu\nu}(k\cdot (k+p) - m_e^2)}{[(k+xp)^2 - \Delta(x)]^2}
+\end{align}
+
+Dove abbiamo indicato \(\Delta(x) = m_e^2 - x(1-x)p^2\). Conviene ora fare il cambio di variabile di integrazione \(k \to \ell = k+xp\). Inanzitutto, vediamo come diventa il numeratore: 
+
+\begin{align}
+    \text{Num} &= (\ell - xp)^\mu (\ell + (1-x)p)^\nu + (\ell - xp)^\nu (\ell + (1-x)p)^\mu -g^{\mu\nu}[(\ell-xp)\cdot(\ell + (1-x)p)-m_e^2] \notag \\
+    &= 2\ell^\mu \ell^\nu - 2x(1-x)p^\mu p^\nu - \ell^2g^{\mu\nu} + g^{\mu\nu}[x(1-x)p^2 + m_e^2]
+\end{align}
+
+Nell'ultimo passaggio, abbiamo tenuto solamente i termini al secondo ordine o all'ordine zero in \(\ell^\mu\), sapendo che chiaramente per parità vale 
+
+\begin{align}
+    \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^\mu}{f(\ell^2)} = 0
+\end{align}
+
+Similmente, è facile vedere che deve valere
+
+\begin{align}
+    \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^\mu \ell^\nu}{f(\ell^2)} = g^{\mu\nu}\int \frac{d^4\ell}{(2\pi)^4}\frac{\alpha \ell^2}{f(\ell^2)}
+\end{align}
+
+Perché sempre per parità, l'integrale è diverso da zero s.se \(\mu = \nu\). D'altra parter non è neanche difficile trovare la costante \(\alpha\): è sufficiente contrarre entrambi i lati con il tensore metrico: 
+
+\begin{align}
+    \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{f(\ell^2)} = 4\alpha\int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{f(\ell^2)} 
+\end{align}
+
+vediamo quindi che \(\alpha = 1/4\), o più in generale \(\alpha = 1/d\), con \(d\) la dimensione dello spaziotempo. 
+
+Di fatto, questa è una ricetta per calcolare gli integrali tensoriali che compaiono in questi calcoli: usare i parametri di feynman per combinare i denominatori, cambiare variabile di integrazione in modo tale che il denominatore dipenda solamente dal quadrato della variabile di integrazione: a questo punto, togliere gli elemento lineari nella variabile di integrazione, e trasformare in tensori metrici quelli quadratici. Successivamente si può procedere con rotazione di Wick e riduzione dimensionale. L'integrale in \(\ell\) può sempre essere eseguito (anche se non potrebbe essere semplice), perché si tratta semplicemente di un integrale di una funzione razionale. 
+
+\subsection{Fattori di forma elettromagnetici}
+
+Fino ad adesso, abbiamo considerato correzioni ai propagatori. Questi portavano ad un immediato effetto fisico: la necessità di controtermini infiniti per avere una massa finita della particelle. Consideriamo adesso (nel caso specifico della QED) le correzioni alla funzione a 3 termini, cioè al vertice. Un esempio di correzione ad un loop è quella data in figura \ref{fig:oneloopqedvertex}: Gli altri diagrammi che contribuiscono a questo livello sono le self energie che si attaccano alle gambe esterne.
+
+\begin{figure}
+    \caption{Diagrammi a "triangolo" che contribuisce alla funzione a 3 punti}
+    \label{fig:oneloopqedvertex}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [below right = of b] (c); 
+                \vertex [below left = of c] (d); 
+                \vertex [left = of d] (e); 
+                \vertex [right = of c] (f); 
+                \diagram{
+                    (a) -- [fermion] (b); 
+                    (b) -- [fermion] (c); 
+                    (c) -- [fermion] (d); 
+                    (d) -- [fermion] (e); 
+                    (b) -- [boson] (d); 
+                    (c) -- [boson] (f); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+La somma di tutti i diagrammi in tutti gli ordini in teoria delle perturbazioni è chiaramente impossibile: possiamo però dare dei limiti al risultato, perché sappiamo che deve rispettare le simmetrie della teoria: in particolare, la simmetria di lorentz, di gauge, e la parità. 
+
+Scriviamo dunque, in generale 
+
+\begin{align}
+    \bra{e^-}J^\mu \ket{e^-} = \bar{u}_e \Gamma^\mu u_e
+\end{align}
+
+cioè \(-ie\Gamma^\mu\) è il vertice contenendo tutti i contributi ad \(n\) loop, che indichiamo schematicamente come in figura \ref{fig:qedvertexfull}. E ci chiediamo come può essere fatta \(\Gamma^\mu\). Inanzitutto osserva che deve essere una matrice 4x4 di Dirac, perché deve agire sullo spazio degli spinori. Una possibile base è quindi 
+
+\begin{figure}
+    \caption{Il vertice \(ee\gamma\) considerando tutti i contributi}
+    \label{fig:qedvertexfull}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex [dot] (a) {}; 
+                \vertex [above left = of a] (b); 
+                \vertex [below left = of a] (c); 
+                \vertex [right = of a] (d);
+                \diagram{
+                    (b) -- [fermion] (a); 
+                    (a) -- [fermion] (c); 
+                    (a) -- [boson] (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+
+\begin{align}
+    \left\{\mathbb{I}, \gamma^5, \gamma^\mu, \gamma^5\gamma^\mu, \sigma^{\mu\nu}, \gamma^5 \sigma^{\mu\nu}\right\}
+\end{align}
+
+Siccome la QED conserva la parità, possiamo gettare via le matrici che coinvolgono la \(\gamma^5\). D'altra parte, \(\Gamma^\mu\) deve essere un vettore di loretnz: noi, oltre alle matrici \(\gamma^\mu\), abbiamo a disposizione due vettori indipendenti: \((p_1 + p_2)^\mu\), e l'impulso trasferito, \((p_1-p_2)^\mu =: q^\mu\). Inoltre, l'unico scalare indipendente da cui possono dipendere i coefficienti è \(q^2\), la virtualità del fotone (che non deve essere necessariamente on-shell, perché il vertice può essere semplicemente un pezzo di diagramma). 
+
+Si trova quindi che la parità e la simmetria di lorentz riducono le possibilità ad 
+
+\begin{align}
+    \bra{e^-}J^\mu \ket{e^-} = A_1(q)^2 q^\mu + A_2(q)^2(p_1+p_2)^\mu + B(q^2)\gamma^\mu + C_1(q^2)\sigma^{\mu\nu}(p_1+p_2)_\nu + C_2(q^2)\sigma^{\mu\nu}q_\nu
+\end{align}
+
+Infine, richiediamo che la corrente si conservi, cioè che valga l'identità di Ward: poiché \(q_\mu J^\mu = 0\), deve valere che ogni pezzo contratto con il momento trasferito si annulli sempre. Esaminiamo pezzo per pezzo: 
+
+\begin{align}
+    \begin{cases}
+        A_1(q^2) q^2 \neq 0 \implies A_1(q^2) = 0 \\
+        A_2(q^2)(p_1+p_2)^\mu(p_1-p_2)_\mu = A_2(q^2)(p_1^2-p_2^2) = 0 \\
+        B(q^2)\slashed{q} = 0, \quad \text{se valutato tra spinori} \\ 
+        C_1(q^2)\sigma^{\mu\nu}q_\mu (p_1+p_2)_\nu \neq 0 \implies C_1(q^2) = 0 \\
+        C_2(q^2)\sigma^{\mu\nu}q_\mu q_\nu = 0 
+    \end{cases}
+\end{align}
+
+Troviamo quindi 
+
+\begin{align}
+    \Gamma^\mu = A(q^2)(p_1+p_2)^\mu + B_1(q^2)\gamma^\mu + C_2(q^2)\sigma^{\mu\nu}q_\nu
+\end{align}
+
+Questi tre fattori possono essere ridotti a due usando l'identità di Gordon: tra due spinori, vale infatti 
+
+\begin{align}
+    (p_1+p_2)^\mu = (m_1+m_2)\gamma^\mu - i\sigma^{\mu\nu}q_\nu
+\end{align}
+
+Nel nostro caso le masse sono uguali, e troviamo 
+
+\begin{align}
+    \Gamma^\mu = f_1(q^2)\gamma^\mu + f_2(q^2)\sigma^{\mu\nu}q_\nu
+\end{align}
+
+Le due funzioni \(f_1, f_2\) sono detti fattori di forma elettrico e magnetico. Chiaramente, a livello d'albero vale \(f_1 = 1, f_2 = 0\). 
+
+\chapter{Interazioni elettrodeboli}
+
+\section{La teoria efficace di Fermi}
+
+Le prime osservazioni di processi mediati dalla forza debole sono stati il decadimento \(\beta\) e il decadimento del muone. La forza è detta debole per motivi storici: la vita media del muone è infatti dell'ordine dei minuti. Si consideri oppure i seguenti tempi di decadimento: 
+
+\begin{align}
+\begin{matrix}
+    \Pi^\pm \rightarrow \mu^\pm, \, \nu & \approx 10^8 s \\ 
+    \Pi^0 \rightarrow \gamma\gamma & \approx 10^{-17}s \\
+\end{matrix}
+\end{align}
+
+Le cose peggiorano ancora se confrontate con decadimenti mediati dalla forza forte, dove la vita media è tipicamente \(10^{-13}\) s. Esempi di decadimenti \(\beta\) sono 
+
+\begin{align}
+    n \rightarrow p + e^- + \nu_e \\ 
+    \mu^- \rightarrow e^- + \nu_\mu + \bar{\nu}_e \\ 
+    \Pi^\pm \rightarrow \mu^\pm + \nu_\mu^{(-)}
+\end{align}
+
+\nt{I processi sopra descritti \emph{non} sono possibili in QED. Infatti, non esistono nella lagrangiana termini di accoppiamento del tipo \(\bar{\psi}_\mu \gamma^\nu \psi_e\). Abbiamo bisogno di inventare una nuova lagrangiana per spiegare queste osservazioni. }
+
+Motivati da queste osservazioni, i fisici cominciarono a considerare lagrangiane del seguente tipo: 
+
+\begin{align}
+    \mathcal{L} = -\frac{G_F}{\sqrt{2}}\underbrace{\bar{\psi}_\mu \gamma^\rho (1-\gamma_5)\psi_{\nu_\mu}}_{J^\rho(\mu)} \underbrace{\bar{\psi}_{\nu_e}\gamma_\rho (1-\gamma_5)\psi_e}_{J_\rho (e)}
+\end{align}
+
+perché il termine \((1-\gamma_5)\)? Sperimentalmente (esperimento di Wu) si osservò che la partità non è conservata in un dai processi deboli, e successivamente venne mostrato che gli unici neutrini che si accopiano con la forza debole, e sono quindi creati nei decadimenti \(\beta\), sono left-handed. 
+
+Per i decadimenti barionici, invece, si può prendere una lagrangiana del tipo 
+
+\begin{align}
+    \mathcal{L} = -\frac{G_F}{\sqrt{2}}\bar{\psi}_\mu \gamma^\rho (1-\gamma_5)\psi_d J_\rho (e)
+\end{align}
+
+che ad esempio rende possibile il seguente vertice: 
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [above right = of a] (b) {\(e^+\)}; 
+            \vertex [below right = of a] (c) {\(\nu_e\)}; 
+            \vertex [above left = of a] (d) {\(\mu\)}; 
+            \vertex [below left = of a] (e) {\(\bar{d}\)};
+            \diagram{
+                (a) -- [fermion] (b); 
+                (a) -- [fermion] (c); 
+                (d) -- [fermion] (a); 
+                (e) -- [fermion] (a); 
+            };  
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+Questo tipo di teoria, che permette l'interazione a 4 fermioni, è detta teoria di fermi. Si tratta di una buona approssimazione (per questo detta \emph{teoria efficace}) della teoria elettrodebole, che si sviluppò storicamente solo decenni dopo. In effetti, ricordando che \([\psi] = m^{3/2}\), è immediato vedere che \([G_F] = m^{-2}\). Questo da due problemi: 
+
+\begin{enumerate}
+    \item Una costante di accoppiamento con dimensione in massa negativa indica che la teoria è non rinormalizzabile. 
+    \item L'unitarietà: consideriamo infatti \(\bra{f}S\ket{i}\). Se \(S = \mathbb{I} + iT\), questo implica \(TT^\dagger = i(T-T^\dagger)\). Questo vuol dire che \(T\) non può crescere troppo con l'energia, perché il lato sinistro scala come il quadrato mentre il lato destro scala linearmente. D'altra parte, sappiamo ad esempio che le ampiezze \(2\to 2\) devono essere adimensionali, e se la costante di accoppiamento ha dimensione in massa negativa, questo vuol dire che al numeratore devono sopravvivere fattori che sono illimitati al crescere dell'energia. 
+\end{enumerate}
+
+Il valore sperimentale della costante di Fermi è dato da \(G_F = 1.16 \cdot 10^{-5} \text{GeV}^{-2}\) . In particolare, \(\Lambda = (G_F)^{-1/2} = 300\) GeV, ovvero dell'ordine delle masse dei bosoni \(W, Z^\pm\).  
+
+In particolare, la teoria di fermi è una teoria che approssima a bassa energia una teoria di gauge con bosoni \emph{massivi}:\footnote{Il meccanismo che permette a dei bosoni di gauge di acquisire massa è noto come meccanismo di Higgs, e sarà descritto nel prossimo modulo. Si ricorda che non è possibile semplicemente aggiungere un termine \(-m^2A_\mu A^\mu\) alla lagrangiana perché inevitabilmente romperebbe l'invarianza di gauge.}
+
+\begin{figure}
+\caption{Decadimento nella teoria efficace vs con bosone \(W^+\)}
+\label{fig:fermivsWbeta}
+\begin{multicols}{2}
+    \begin{center}
+            \begin{tikzpicture}
+            \begin{feynman}
+            \vertex (a); 
+            \vertex [above right = of a] (b) {\(e^+\)}; 
+            \vertex [below right = of a] (c) {\(\nu_e\)}; 
+            \vertex [above left = of a] (d) {\(\mu\)}; 
+            \vertex [below left = of a] (e) {\(\nu_\mu\)};
+            \diagram{
+                (a) -- [fermion] (b); 
+                (a) -- [fermion] (c); 
+                (d) -- [fermion] (a); 
+                (e) -- [fermion] (a); 
+            };  
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak
+    \begin{center}
+            \begin{tikzpicture}
+            \begin{feynman}
+            \vertex (a); 
+            \vertex [right = of a] (f); 
+            \vertex [above right = of f] (b) {\(e^+\)}; 
+            \vertex [below right = of f] (c) {\(\nu_e\)}; 
+            \vertex [above left = of a] (d) {\(\mu\)}; 
+            \vertex [below left = of a] (e) {\(\nu_\mu\)};
+            \diagram{
+                (f) -- [fermion] (b); 
+                (f) -- [fermion] (c); 
+                (d) -- [fermion] (a); 
+                (e) -- [fermion] (a); 
+                (a) -- [boson, edge label = \(W^+\)](f); 
+            };  
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{multicols}
+\end{figure}
+
+Se pensiamo di calcolare le ampiezze per i diagrammi in figura \ref{fig:fermivsWbeta}, ci accorgiamo che sono abbastanza simili: le linee fermioniche sono le stesse, chiaramente nel secondo c'è un propagatore: questo contribuisce con un fattore a denominatore. Se \(k\) è l'impulso trasferito, 
+
+\begin{align}
+    \frac{g^2}{m^2_W - k^2} \approx \frac{g^2}{m_W^2}
+\end{align}
+
+con l'approssimazione valida per energie \(< m_W\). La teoria di Fermi è il primo esempio di una teoria di campo efficace. Queste sono oggigiorno usate per cercare della fisica oltre il modello standard. 
+
+\section{Una teoria di gauge per le interazioni elettrodeboli}
+
+Vorremo costruire una teoria di gauge che includa elettromagnetismo e interazioni deboli. Questa sarebbe un'operazione elegante che ci permetterebbe di risolvere anche i problemi di rinormalizzabililità e di unitarietà. Quale gruppo di gauge però dovremmo prendere? Sicuramente deve valere \(U(1) \subset G\), perché deve essere un estensione dell'elettromagnetismo. 
+
+Un indizio ce lo da direttamente la teoria di Fermi. Sappiamo che se le particelle si devono trasformare sotto trasformazioni di gauge, allora i campi che le descrivono devono appartenere ad una rappresentazione del gruppo. Un esempio di corrente che compare nella teoria di fermi è 
+
+\begin{align}
+    J^\rho(e) = \bar{\nu}_e \gamma^\rho (1-\gamma_5) e 
+\end{align}
+
+detta \emph{corrente carica} (per ragioni che saranno più chiare tra poco). Questo stesso termine può essere scritto introducendo il doppietto di campi, 
+
+\begin{align}
+    \psi_\ell = \begin{pmatrix}
+        v_e \\ e^-
+    \end{pmatrix} \implies J^\rho(e) = \bar{\psi}_\ell \gamma^\rho (1-\gamma_5)\tau^+ \psi_\ell, \quad \tau^+ = \begin{pmatrix}
+        0 & 1 \\ 0 & 0 
+    \end{pmatrix}
+\end{align}
+
+Una cosa simile può anche essere fatta con i quark, introducendo \(\psi_q = \begin{pmatrix}
+    u \\ d 
+\end{pmatrix}\). Questo è proprio il motivo dei nomi up e down. Questi doppietti di spinori sono detti \emph{doppietti di isospin}. 
+
+La hermitiana coniugata è data dalla corrente \(J^\rho(e)^\dagger = \bar{\psi}_\ell \gamma^\rho \tau^- \psi_\ell\) dove \(\tau^- = \begin{pmatrix}
+    0 & 0 \\
+    1 & 0 
+\end{pmatrix}\). In termini delle matrici di pauli \(\tau_i\), vale \(\tau^\pm = (\tau^1 \pm i \tau^2)\). Siccome le matrici di Pauli sono i generatori di \(\mathfrak{su}\)(2), immaginiamo che il gruppo di gauge per le interazioni deboli possa proprio essere \(SU(2)\), con i doppietti di isospin che trasformano nella fondamentale. Se questa fosse la corretta teoria, possiamo fare subito una predizione\footnote{In effetti, questo passaggio non è del tutto scontato. Si potrebbe pensare che la corrente neutra conservata sia proprio la corrente elettromagnetica, e provare a modificare la struttura dei dopietti per far tornare proprio questa corrente. Storicamente però questo approccio si è rivelato errato, e quindi non lo discutiamo}: oltre alle correnti già discusse, dovrebbe anche esserci una corrente conservata proporzionale a \(\tau^3\) (Teo. di Noether): questa sarebbe data da 
+
+\begin{align}
+    J^\rho &= \bar{\psi}_\ell \gamma^\rho (1-\gamma_5)\tau_3 \psi_\ell \notag \\
+    &= \frac{1}{2}(\bar{\nu}_e \gamma^\rho (1-\gamma_5)\nu_e - \bar{e}\gamma^\rho (1-\gamma_5)e)
+\end{align}
+
+e permetterebbe il vertice rappresentato in figura \ref{fig:eenunu}. 
+
+\begin{figure}
+    \caption{Vertice a 4 di corrente neutra}
+    \label{fig:eenunu}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [above left = of a] (b) {\(e^+\)};
+                \vertex [above right = of a] (c) {\(\nu^+\)};
+                \vertex [below left = of a] (d) {\(e^-\)};
+                \vertex [below right = of a] (e) {\(\nu^-\)}; 
+                \diagram{
+                    (b) -- [fermion] (a);
+                    (c) -- [fermion] (a);
+                    (d) -- [fermion] (a);
+                    (e) -- [fermion] (a); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+In effetti, questo è un processo che si osserva, anche se è molto più complicato da vedere sperimentalmente rispetto ad esempio ai decadimenti \(\beta\), e per questo motivo non era presente nella teoria di Fermi. Questa è una grande verifica che stiamo andando nella direzione giusta. Ora vorremmo unire questa teoria all'elettromagnetismo, in modo da descrivere in una teoria le 3 correnti conservate deboli + la corrente elettrica \(U(1)\). 
+
+Questo vuol dire costruire una teoria di campo di gauge non abeliana, con gruppo \(G = SU(2)_L \times U(1)\). 
+
+Similmente a quanto fatto nel caso abeliano, la derivata ordinaria diventa derivata covariante, per permettere alla lagrangiana di Dirac di essere invariante sotto trasformazioni locali. Nel nostro caso, avremmo quindi 
+
+\begin{align}
+    \partial_\mu \rightarrow D_\mu = \partial_\mu - \frac{g}{2}W^i_\mu \tau_i -ie A_\mu
+\end{align}
+
+Tralasciando per il momento \(A_\mu\), vediamo come è fatta la lagrangiana di interazione di questa teoria. Vale, assumendo i fermioni massless\footnote{In effetti, poiché le trasformazioni di \(SU(2)\) agiscono solo sulle componenti left-handed, un termine di massa \(-m(\bar{\psi}_L\psi_R + \bar{\psi}_R\psi_L)\) non sarebbe invariante. Conseguenza di ciò è che anche le masse dei fermioni devono essere recuperate tramite meccanismo di Higgs.}, 
+
+\begin{align}
+    \mathcal{L} = i\bar{\psi_\ell}\slashed{D}\psi_\ell = i\bar{\psi}_\ell\slashed{\partial}\psi_\ell + \mathcal{L}_{int}, \quad \mathcal{L}_{int} = -i\frac{g}{2}\bar{\psi}_\ell \gamma^\mu W^i_\mu \tau^i \psi_\ell
+\end{align}
+
+che può essere riscritta in termini di \(\tau^+, \tau^-, \tau^3\): basta usare 
+
+\begin{align}
+    W_1\tau_1 + W_2 \tau_2 = \frac{1}{2}\underbrace{(W_1+iW_2)}_{:= W^+/ \sqrt{2}}(\tau_1-i\tau_2) + \frac{1}{2}\underbrace{(W_1-iW_2)}_{:= W^-/ \sqrt{2}}(\tau_1+i\tau_2)
+\end{align}
+
+troviamo quindi, similmente a come ci aspettavamo, 
+
+\begin{align}
+    \label{eq:weakinteractionL}
+    \mathcal{L}_{int} = -i\frac{g}{\sqrt{2}}\underbrace{(\bar{\psi}_\ell \slashed{W}^+ \tau_+ \psi_\ell + \bar{\psi}_\ell \slashed{W}^- \tau_- \psi_\ell)}_{\text{correnti cariche}} + i\frac{g}{2}\underbrace{\bar{\psi}_\ell \slashed{W}^3 \tau_3 \psi_\ell}_{\text{corrente neutra}}
+\end{align}
+
+Sottoliniamo che il bosone vettore \(W^i_\mu\tau_i\) di \(SU(2)\) è più complicato rispetto al fotone \(U(1)\): in particolare, prende valore nello spazio dei generatori di \(\mathfrak{su}\)(2), cioè nell'aggiunta dell'algebra. 
+
+C'è però un punto importante, che segue da una semplice osservazione di teoria dei gruppi: poiché il gruppo di gauge è un prodotto \emph{diretto} fra \(SU(2)\) ed \(U(1)\), i doppietti che si trasformano sotto \(SU(2)\) (i doppietti di isospin come \(\psi_\ell, \, \psi_q\)) devono essere autostati dell'operatore di carica di \(U(1)\). Comprendiamo quindi che \(U(1)\) non è direttamente l'elettromagnetismo, e la sua carica conservata non è la carica elettrica. La chiameremo invece \emph{ipercarica}, indicheremo con \(Y\) e deve essere la stessa per ogni componente del doppietto di isospin. Inoltre chiameremo \(B_\mu\) il campo di gauge per distinguerlo dal fotone. 
+
+Dove è finito allora il fotone? Facciamo l'ipotesi che i campi fisici \emph{non} sono \(B_\mu, W_\mu^3\), ma una loro combinazione lineare: 
+
+\begin{align}
+    B_\mu, W_\mu^3 \rightarrow \begin{cases}
+        B^\mu = \cos\theta_W A^\mu - \sin\theta_W Z^\mu \\
+        W^3_\mu = \sin\theta_W A_\mu + \cos\theta_W Z_\mu
+    \end{cases}
+\end{align}
+
+l'angolo \(\theta_W\) è detto angolo di Weinberg. Si possono sostituire queste espressioni all'interno della lagrangiana di interazione per leggere gli opportuni accoppiamenti. Ad esempio, l'accoppiamento con il fotone è dato da: 
+
+\begin{align}
+    &\nu_L = \frac{g}{2}\sin\theta_W + Y_L \frac{g'}{2}\cos\theta_W \\
+    &e_L = -\frac{g}{2}\sin\theta_W  + Y_L\frac{g'}{2}\cos\theta_W \\
+    &\nu_R = Y_{\nu R}\frac{g'}{2}\cos\theta_W \\
+    &e_R = Y_{e R}\frac{g'}{2}\cos\theta_W
+\end{align}
+
+Possiamo mettere dei vincoli a questi accoppiamenti, perché sappiamo la carica elettrica di queste particelle. In particolare, l'op. di carica è dato da 
+
+\begin{align}
+    Q_e = \frac{\tau^3}{2}g\sin\theta_W + \frac{1}{2}Yg'\cos\theta_W
+\end{align}
+
+Poichè \(Y\) compare sempre in combinazione con \(g'\), possiamo scegliere di porre \(Y = -1\). Imponendo che i neutrini hanno carica nulla e che gli elettroni hanno carica \(-e\), troviamo: 
+
+\begin{align}
+    \begin{cases}
+        0 = \frac{1}{2}g\sin\theta_W - \frac{1}{2}g'\cos\theta_W \implies g\sin\theta_W = g'\cos\theta_W \\
+        -e = -\frac{1}{2}g\sin\theta_W - \frac{1}{2}g'\cos\theta_W \implies e = g\sin\theta_W
+    \end{cases}
+\end{align}
+
+Dalle misure sperimentali, si ha che \(\sin^2\theta_W \approx 0.23 \implies \sin\theta_W \approx 0.5 \implies e \approx g/2\). Dunque, l'accoppiamento della forza debole è in realtà più grande della forza elettromagnetica, ma i processi a bassa energia sono approssimati dalla teoria di Fermi, che ha una piccola costante di accoppiamento, perché le masse dei bosoni vettori sono più alte. 
+
+Infine, trattiamo brevemente della componente cinetica dei campi di gauge. Si può mostrare che la corretta generalizzazione della lagrangiana di Maxwell nel caso non abeliano è data da 
+
+\begin{align}
+    \mathcal{L}_{\text{gauge}} = -\frac{1}{4}W^a_{\mu\nu}W^{\mu\nu}_a - \frac{1}{4}B_{\mu\nu}B^{\mu\nu}
+\end{align}
+
+con \(B_{\mu\nu} = \partial_\mu B_\nu - \partial_\nu B_\mu\), e \(W_{\mu\nu}^a = \partial_\mu W^a_\nu - \partial_\nu W^a_\mu + f^{abc}W^b_\mu W^c_\nu\), dove \(f^{abc}\) sono le costanti di struttura dell'algebra, nel caso particolare di \(SU(2)\) sono date da \(\eps^{abc}\). Questo termine aggiuntivo fa in modo che già nella lagrangiana di puro gauge siano presenti dei termini di interazione, che permettono vertici tra bosoni vettori, come quelli illustrati in figura \ref{fig:bosonweakdiags}. 
+
+\begin{figure}
+    \caption{Esempi di possibili diagrammi di Feynman fra bosoni di gauge}
+    \label{fig:bosonweakdiags}
+    \begin{multicols}{4}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above right = of a] (b) {\(W^+\)}; 
+                    \vertex [below right = of a] (c) {\(W^-\)}; 
+                    \vertex [left = of a] (d) {\(A^\mu\)}; 
+                    \diagram{
+                        (b) -- [boson] (a);
+                        (c) -- [boson] (a); 
+                        (d) -- [boson] (a); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above right = of a] (b) {\(W^+\)}; 
+                    \vertex [below right = of a] (c) {\(W^-\)}; 
+                    \vertex [left = of a] (d) {\(Z\)}; 
+                    \diagram{
+                        (b) -- [boson] (a);
+                        (c) -- [boson] (a); 
+                        (d) -- [boson] (a); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above right = of a] (b) {\(W^+\)}; 
+                    \vertex [below right = of a] (c) {\(W^-\)}; 
+                    \vertex [above left = of a] (d) {\(Z\)}; 
+                    \vertex [below left = of a] (e) {\(Z\)}; 
+                    \diagram{
+                        (b) -- [boson] (a);
+                        (c) -- [boson] (a); 
+                        (d) -- [boson] (a); 
+                        (e) -- [boson] (a); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above right = of a] (b) {\(W^-\)}; 
+                    \vertex [below right = of a] (c) {\(Z\)}; 
+                    \vertex [above left = of a] (d) {\(W^-\)}; 
+                    \vertex [below left = of a] (e) {\(A\)}; 
+                    \diagram{
+                        (b) -- [boson] (a);
+                        (c) -- [boson] (a); 
+                        (d) -- [boson] (a); 
+                        (e) -- [boson] (a); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \end{multicols}
+\end{figure}
+
+Per completezza, riportiamo la forma dell'intera lagrangiana, scritta in termini dei campi fisici, ovvero \(W^\pm, Z, A\): 
+
+\begin{align}
+\mathcal{L}_{\text{YM}} = & -\frac{1}{4} F_{\mu\nu} F^{\mu\nu} - \frac{1}{4} Z_{\mu\nu} Z^{\mu\nu} - \frac{1}{2} W^+_{\mu\nu} W^{\mu\nu}_- \notag \\
+& + i g \sin\theta_W \left( W^+_{\mu\nu} W^\mu_- A^\nu - W^-_{\mu\nu} W^\mu_+ A^\nu + F_{\mu\nu} W^\mu_+ W^\nu_- \right) \notag \\
+& + i g \cos\theta_W \left( W^+_{\mu\nu} W^\mu_- Z^\nu - W^-_{\mu\nu} W^\mu_+ Z^\nu + Z_{\mu\nu} W^\mu_+ W^\nu_- \right) \notag \\
+& + \frac{g^2}{2} \left( 2 g^{\mu\nu} g^{\rho\sigma} - g^{\mu\rho} g^{\nu\sigma} - g^{\mu\sigma} g^{\nu\rho} \right) \left[ \frac{1}{2} W^+_\mu W^+_\nu W^-_\rho W^-_\sigma \right. \notag \\
+& \left. - W^+_\mu W^-_\nu \left( A_\rho A_\sigma \sin^2\theta_W + Z_\rho Z_\sigma \cos^2\theta_W + 2 A_\rho Z_\sigma \sin\theta_W \cos\theta_W \right) \right].
+\end{align}
+
+
+\section{Applicazione: il decadimento del muone}
+
+Consideriamo il seguente processo, di grande importanza fisica: 
+
+\begin{align}
+    \mu^-(p) \rightarrow e^-(p') + \nu_e(q) + \bar{\nu}_e(q')
+\end{align}
+
+L'unico diagramma di Feynman possibile è descritto in figura \ref{fig:betadecay}.
+
+\begin{figure}
+    \caption{Unico diagramma ad albero per il processo \(\mu^- \rightarrow e^- + \nu_\mu + \bar{\nu}_e\)}
+    \label{fig:betadecay}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [left = of a] (b) {\(\mu^-\)}; 
+                \vertex [above right = of a] (c) {\(\nu_\mu\)}; 
+                \vertex [below right = of a] (d); 
+                \vertex [above right = of d] (e) {\(e^-\)}; 
+                \vertex [below right = of d] (f) {\(\bar{\nu}_e\)}; 
+            \diagram{
+                (b) -- [fermion] (a); 
+                (a) -- [fermion] (c); 
+                (a) -- [boson, edge label = \(W^-\)] (d); 
+                (d) -- [fermion] (e);
+                (f) -- [fermion] (d); 
+            }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+Calcoliamo l'ampiezza: 
+
+\begin{align}
+    \mathcal{M} = \bar{\nu}_\mu (q)\left(-\frac{ig}{\sqrt{2}}\gamma^\rho \right)\left(\frac{1-\gamma^5}{2} \right)\mu^-(p) (-i)\left(\frac{g_{\rho\sigma} - \frac{k_\rho k_\sigma}{m_W^2}}{k^2-m^2_W} \right)\bar{e^-}(p')\left(-\frac{ig}{\sqrt{2}}\gamma^\sigma \right)\left(\frac{1-\gamma^5}{2} \right)\nu_e(q')
+\end{align}
+
+Le regole di Feynman sono le semplici derivate dall'eq. \ref{eq:weakinteractionL}. Il momento trasferito \(k = p-q\) è molto più piccolo della massa del bosone \(W^+\), perché al massimo può raggiungere la massa del muone. In questo caso l'ampiezza si può semplificare: 
+
+\begin{align}
+    \mathcal{M} = \frac{-ig^2}{2m_W^2}\left[\bar{\nu}_\mu(q)\gamma^\rho \left(\frac{1-\gamma^5}{2} \right)\mu^-(p)\right]\left[\bar{e}^-(p')\gamma_\rho \left(\frac{1-\gamma^5}{2} \right)\nu_e(q')\right]
+\end{align}
+
+ed il calcolo del modulo quadro procede come al solito: 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{g^4}{8m^4_W}\text{Tr}\left[\slashed{q}\gamma^\rho \left(\frac{1-\gamma^5}{2} \right) (\slashed{p} + m_\mu)\gamma^\sigma \left(\frac{1-\gamma^5}{2} \right)\right]\text{Tr}\left[\slashed{p'}\gamma_\rho \left(\frac{1-\gamma^5}{2} \right) \slashed{q'}\gamma_\sigma \left(\frac{1-\gamma^5}{2} \right)\right] 
+\end{align}
+
+Dove abbiamo trascurato la massa dell'elettrone e dei neutrini. Per procedere ricorda le proprietà della \(\gamma^5\): vale \(((1-\gamma_5)/2)^2 = (1-\gamma_5)/2\), ed inoltre \(\left\{\gamma^\mu, \gamma^5\right\} = 0\). In questo modo otteniamo 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{g^4}{8m_W^4}\text{Tr}\left[\slashed{q}\gamma^\rho \slashed{p}\gamma^\sigma \left(\frac{1-\gamma_5}{2}\right) \right]\text{Tr}\left[\slashed{p'}\gamma_\rho \slashed{q'}\gamma_\sigma \left(\frac{1-\gamma_5}{2}\right) \right]
+\end{align}
+
+cioè
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{2g^4}{m^4_W}(q^\rho p^\sigma + q^\sigma p^\rho - (p\cdot q)g^{\sigma\rho} -i\eps^{\sigma\rho\alpha\beta}q_\alpha p_\beta)(q'_\rho p'_\sigma + q'_\sigma p'_\rho - (p'\cdot q')g_{\sigma\rho} -i\eps_{\sigma\rho\delta\lambda}q^\delta p^\lambda)
+\end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Esercizi del primo modulo}
+
+\section{Scattering Bhabha}
+
+\subsection{Calcolo dell'ampiezza}
+
+Si consideri il seguente processo in QED: 
+
+\begin{align}
+    e^+(p_1) + e^-(p_2) \rightarrow e^+ (k_1) + e^- (k_2)
+\end{align}
+
+Per prima cosa calcoliamo il modulo quadro non polarizzato, nel limite \(m_e \rightarrow 0\). I diagrammi possibili sono due, il canale s ed il canale t. Calcoliamo le ampiezze: 
+
+\begin{figure}
+    
+\caption{I possibili diagrammi di feynman per lo scattering Bhabha (canale s e canale t)}
+
+\begin{multicols}{2}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [above left = of a] (b) {\(e^+\)}; 
+                \vertex [below left = of a] (c) {\(e^-\)}; 
+                \vertex [right = of a] (d); 
+                \vertex [above right = of d] (e) {\(e^+\)}; 
+                \vertex [below right = of d] (f) {\(e^-\)}; 
+            \diagram{
+                (c) -- [fermion] (a); 
+                (a) -- [fermion] (b); 
+                (a) -- [boson, edge label = \(\gamma\)] (d); 
+                (e) -- [fermion] (d); 
+                (d) -- [fermion] (f); 
+            }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak 
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [above left = of a] (b) {\(e^+\)}; 
+                \vertex [above right = of a] (c) {\(e^+\)}; 
+                \vertex [below = of a] (d); 
+                \vertex [below right = of d] (e) {\(e^-\)}; 
+                \vertex [below left = of d] (f) {\(e^-\)}; 
+            \diagram{
+                (c) -- [fermion] (a); 
+                (a) -- [fermion] (b); 
+                (a) -- [boson, edge label = \(\gamma\)] (d); 
+                (f) -- [fermion] (d); 
+                (d) -- [fermion] (e); 
+            }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{multicols}
+\end{figure}
+
+\begin{align}
+    \mathcal{M}_s &= \bar{u}(k_2)(-ie\gamma^\mu)v(k_1)\left(\frac{-ig_{\mu\nu}}{s} \right)\bar{v}(p_1)(-ie\gamma^\nu)u(p_2) \\
+    &= \frac{ie^2}{s}[\bar{u}(k_2)\gamma^\mu v(k_1)][\bar{v}(p_1)\gamma_\mu u(p_2)]
+\end{align}
+
+E similmente per il canale t, 
+
+\begin{align}
+    \mathcal{M}_t &= \bar{u}(k_2)(-ie\gamma^\mu)u(p_2)\left(\frac{-ig_{\mu\nu}}{t} \right)\bar{v}(p_1)(-ie\gamma^\nu)v(k_1) \\
+    &= \frac{ie^2}{t}[\bar{u}(k_2)\gamma^\mu u(p_1)][\bar{v}(p_1)\gamma_\mu v(k_1)]
+\end{align}
+
+Calcoliamo il modulo di ciascun diagramma, e successivamente l'interferenza: 
+
+\begin{align}
+    |\mathcal{\bar{M}}_s|^2 &= \frac{1}{4}\sum_{\text{pol}}\frac{e^4}{s^2}[\bar{u}(k_2)\gamma^\mu v(k_1) \bar{v}(k_1)\gamma^\nu u(k_2)][\bar{v}(p_1)\gamma_\mu u(p_2) \bar{u}(p_2) \gamma_\nu v(p_1)] \\
+    &= \frac{e^4}{4s^2}\text{Tr}(\slashed{k}_2 \gamma^\mu \slashed{k}_1 \gamma^\nu)\text{Tr}(\slashed{P}_1 \gamma_\mu \slashed{P}_2 \gamma_\nu) \\ 
+    &= \frac{8e^4}{s^2}((p_1\cdot k_2)(k_1 \cdot p_2) + (p_1\cdot k_1)(p_2\cdot k_2)) \\
+    &= \frac{2e^4}{s^2}(u^2 + t^2)
+\end{align}
+
+Usando simmetria di crossing, 
+
+\begin{align}
+    |\mathcal{M}_t|^2 = \frac{2e^4}{t^2}(u^2 + s^2)
+\end{align}
+
+Il termine di interferenza è leggermente più complicato. Infatti, 
+
+\begin{align}
+    \bar{\mathcal{M}_s \mathcal{M}^*_t} = \frac{e^4}{4st}\text{Tr}(\slashed{k}_2 \gamma^\mu \slashed{k}_1 \gamma^\nu \slashed{p}_1 \gamma_\mu \slashed{p}_2 \gamma_\nu)
+\end{align}
+
+Usando le proprietà delle matrici gamma di Dirac, possiamo semplificare la traccia: 
+
+\begin{align}
+    \bar{\mathcal{M}_s \mathcal{M}^*_t} &= -\frac{e^4}{2st}\text{Tr}(\slashed{k}_2\gamma^\mu \slashed{k}_1 \slashed{p}_2\gamma_\mu \slashed{p}_1) \\
+    &= -\frac{e^4}{2st}4(P_2\cdot k_1)\text{Tr}(\slashed{k}_2\slashed{p}_1) \\
+    &= -\frac{8e^4}{st}(p_2\cdot k_1)(k_2 \cdot p_1) = -\frac{2 e^4 u^2}{st}
+\end{align}
+
+Troviamo quindi l'espressione per il modulo quadro non polarizzato, 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = 2e^4 \left[\left(\frac{u^2 + t^2}{s^2} \right) + \left(\frac{u^2 + s^2}{t^2} \right) + \left(\frac{2u^2}{st} \right)\right]
+\end{align}
+
+dove l'interferenza è stata sottratta a causa della statistica di fermi. 
+
+\subsection{Sezione d'urto}
+
+Possiamo ora calcolare i pezzi rimanenti della sezione d'urto. Inanzitutto la vogliamo scrivere in termini di \(E\), l'energia di una delle particelle entranti, e di \(\theta\), l'angolo di scattering. 
+
+Ci mettiamo nel sistema di riferimento del centro di massa. Ricordando che le particelle sono tutte massless, i momenti possono essere presi nel modo seguente (si veda \ref{fig:22scattering} per una rappresentazione grafica): 
+
+\begin{align}
+    &p_1 = (E, 0, 0, E), \quad p_2 = (E, 0, 0, -E) \\
+    &k_1 = (E, E\sin\theta, 0, E\cos\theta), \quad k_2 = (E, -E\sin\theta, 0, -E\cos\theta)
+\end{align}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[
+        >=stealth,
+        thick,
+        every node/.style={font=\large}
+    ]
+
+        \coordinate (O) at (0,0);
+
+        % Momenti iniziali
+        \draw[->] (-4,0) -- (-1, 0)
+            node[midway, above] {$\mathbf{p_1}$};
+
+        \draw[->] (4,0) -- (1, 0)
+            node[midway, above] {$\mathbf{p_2}$};
+
+        % Momenti finali
+        \draw[->] (1, 0.74) -- (3,2.2)
+            node[midway, above left] {$\mathbf{k_1}$};
+
+        \draw[->] (-1, -0.74) -- (-3,-2.2)
+            node[midway, above] {$\mathbf{k_2}$};
+
+        % Angolo di scattering
+        \draw (1.2,0) arc (0:36:1.2)
+            node[midway, right] {$\theta$};
+
+        % Vertice
+        \fill (O) circle (4pt);
+
+    \end{tikzpicture}
+    \caption{Scattering $2\to2$ nel sistema del centro di massa.}
+    \label{fig:22scattering}
+\end{figure}
+
+Troviamo allora subito un espressione di \(s, t, u\) in termini di \(E, \theta\): 
+
+\begin{align}
+    &s = 2p_1\cdot p_2 = 4E^2 \\
+    &t = -2p_1\cdot k_1 = -2E^2(1-\cos\theta) \\
+    &u = -2p_1\cdot k_2 = -2E^2(1+\cos\theta)
+\end{align}
+
+Sostituiamo nel modulo quadro non polarizzato: 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = 2e^4\left[\frac{1+\cos^2\theta}{2} + \frac{4+ (1+\cos\theta)^2}{(1-\cos\theta)^2} - \frac{(1+\cos\theta)^2}{1-\cos\theta}\right]
+\end{align}
+
+Per assemblare la sezione d'urto, non restano che il fattore di flusso e lo spazio delle fasi. Il fattore di flusso è semplicemente 
+
+\begin{align}
+    \Phi = \frac{1}{8E^2}
+\end{align}
+
+Mentre lo spazio delle fasi essendo le particelle finali massless è piuttosto semplice: 
+\begin{align}
+    dPS^{(2)} = \frac{d^3k_1 d^3k_2}{(2\pi)^6 4E'_1 E'_2}(2\pi)^4\delta(k_1 + k_2 - p_{in})
+\end{align}
+
+Poiché siamo nel centro di massa, \(\vec{p}_{in} = 0\), posso integrare immediatamente in \(d^3k_2\) usando la delta e imponendo \(\vec{k}_2 = -\vec{k}_1\), che impone il vincolo \(E'_1 = E'_2 = E'\):
+
+\begin{align}
+    dPS^{(2)} = \frac{d^3k_1}{(2\pi)^2 4(E')^2}\delta(2E' - 2E) = \frac{|\vec{k}_1|^2 d|\vec{k}_1|d\Omega}{32\pi^2 (E')^2}\delta(E'-E)
+\end{align}
+
+Adesso posso usare l'ultima delta per eseguire l'integrazione in \(d|\vec{k}_1|\), 
+
+\begin{align}
+    dPS^{(2)} = \frac{d\varphi d\cos\theta}{32\pi^2} = \frac{d\cos\theta}{16\pi}
+\end{align}
+
+dove nell'ultimo passaggio ho direttamente integrato in \(d\varphi\), siccome il modulo quadro dipende solo da \(\cos\theta\). La sezione d'urto è quindi data da 
+
+\begin{align}
+    \frac{d\sigma}{d\cos\theta} &= \frac{1}{128\pi E^2}|\mathcal{\bar{M}}|^2 \\
+    \label{eq:bhabhacrosssection}
+    &= \frac{e^4}{64\pi E^2}\left[\frac{1+\cos^2\theta}{2} + \frac{4+ (1+\cos\theta)^2}{(1-\cos\theta)^2} - \frac{(1+\cos\theta)^2}{1-\cos\theta}\right]
+\end{align}
+
+\subsection{Analisi della singolarità per \(\theta \rightarrow 0\)}
+
+Chiaramente, la sezione d'urto \ref{eq:bhabhacrosssection} è singolare per \(\theta \rightarrow 0\). Infatti, usando lo sviluppo del coseno, si vede chiaramente che il termine che deriva dal diagramma di canale \(t\) diverge come \(\theta^4\): 
+
+\begin{align}
+    \frac{4+ (1+\cos\theta)^2}{(1-\cos\theta)^2} \approx \frac{8}{(\theta^2/2)^2} = \frac{32}{\theta^4}
+\end{align}
+
+Possiamo chiederci se la divergenza rimane o viene curata nel caso in cui si recuperano le masse degli elettroni come finite. La divergenza rimane, perché anche considerando il contributo della massa dell'elettrone continua a valere \(t(\theta =0) =0\). Infatti, sempre restando nel sistema di riferimento del centro di massa, gli impulsi possono essere presi nel modo seguente: (la cinematica resta sempre quella descritta in \ref{fig:22scattering})
+
+\begin{align}
+    &p_1 = (E, 0 , 0, \sqrt{E^2-m_e^2}), \quad p_2 = (E, 0, 0, -\sqrt{E^2-m_e^2}) \\
+    &k_1 = (E, \sqrt{E^2-m_e^2}\sin\theta, 0, \sqrt{E^2-m_e^2}\cos\theta), \quad k_2 = (E, -\sqrt{E^2-m_e^2}\sin\theta, 0, -\sqrt{E^2-m_e^2}\cos\theta)
+\end{align} 
+
+possiamo allora calcolare
+
+\begin{align}
+    t = (p_1 - k_1)^2 = 2m_e^2 - 2E^2 + 2(E^2-m_e^2)\cos\theta = (m_e^2 - E^2)(1-\cos\theta)
+\end{align}
+
+
+Per essere sicuri che non ci siano cancellazioni dal numeratore, eseguiamo nuovamente il calcolo del diagramma di canale t, mantenendo le masse. L'ampiezza del diagramma non cambia: 
+
+\begin{align}
+    |\mathcal{\bar{M}}_t|^2 &= \frac{e^4}{4t^2}\sum_{\text{pol}}[\bar{u}(k_2)\gamma^\mu u(k_1)\bar{u}(k_1)\gamma^\nu u(k_2)][\bar{v}(p_1)\gamma_\mu v(p_2)\bar{v}(p_2)\gamma_\nu v(p_1)] \notag \\
+    &= \frac{e^4}{4t^2}\text{Tr}((\slashed{k}_2 +m_e)\gamma^\mu (\slashed{k}_1 + m_e)\gamma^\nu)\text{Tr}((\slashed{p}_1 - m_e)\gamma_\mu (\slashed{p}_2 - m_e)\gamma_\nu) \notag \\
+    &= \frac{e^4}{4t^2}(m_e^2\text{Tr}(\gamma^\mu \gamma^\nu) + \text{Tr}(\slashed{k}_2 \gamma^\mu \slashed{k}_1 \gamma^\nu))(m_e^2\text{Tr}(\gamma_\mu \gamma_\nu) + \text{Tr}(\slashed{p}_1 \gamma_\mu \slashed{p}_2 \gamma_\nu))
+\end{align}
+
+In termini dei prodotti fra impulsi, si trova infine 
+
+\begin{align}
+    |\mathcal{\bar{M}}_t|^2 = \frac{8e^4}{t^2}[&(k_1\cdot p_1)(k_2\cdot p_2) + (k_1\cdot p_2)(p_1\cdot k_2) + (k_1\cdot k_2)(m_e^2 - p_1\cdot p_2) +  \notag \\ 
+    &(p_1\cdot p_2)(m_e^2 - k_1\cdot k_2) + 2(m_e^2 - k_1\cdot k_2)(m_e^2 - p_1\cdot p_2)]
+\end{align}
+
+Otteniamo quindi le seguenti formule per gli invarianti: 
+
+\begin{align}
+    &p_1\cdot p_2 = k_1\cdot k_2 = 2E^2 - m_e^2 \\
+    &p_1\cdot k_1 = p_2\cdot k_2 = E^2 - (E^2-m_e^2)\cos\theta \\
+    &p_1\cdot k_2 = p_2\cdot k_1 = E^2 + (E^2-m_e^2)\cos\theta \\
+    &
+\end{align}
+
+e possiamo sostituire nella formula del modulo quadro: 
+
+\begin{align}
+    |\mathcal{\bar{M}}_t|^2 = \frac{8e^4}{4(E^2-m_e^2)^2 (1-\cos\theta)^2}[(2E^2-m_e^2)^2 + (E^2 + (E^2-m_e^2)\cos\theta)^2 + 2m_e^4(1+\cos\theta)] 
+\end{align}
+
+E osserviamo che nessuna cancellazione cancella la divergenza per \(\theta \rightarrow 0\). 
+
+\subsection{Analisi del contributo di \(Z_0\)}
+
+Cosa succede se dalla QED passiamo alla teoria elettrodebole? La divergenza viene in qualche modo curata? La differenza è che in questo caso i diagrammi di Feynman diventano 4, perché oltre ai due canali s e t che scambiano un fotone, abbiamo anche i canali s e t che scambiamo un bosone \(Z\). Chiaramente, noi siamo interessati a cosa succede nei due diagrammi \(t\), perché lì sta la divergenza. L'ampiezza del primo grafo non cambia, posso semplicemente sostituire \(e = g\sin\theta_W\): 
+
+\begin{align}
+    \mathcal{M}_t^\gamma = \frac{ig^2\sin^2\theta_W}{t}[\bar{u}(k_2)\gamma^\mu u(p_1)][\bar{v}(p_1)\gamma_\mu v(k_1)]
+\end{align}
+
+Vorrei calcolare allora anche l'ampiezza \(\mathcal{M}_t^Z\). Le regole di Feynman sono, per il vertice 
+
+\begin{align}
+    \Gamma_{Zee} = \frac{-ig}{\cos\theta_W}\gamma^\mu \left[2\sin^2\theta_W - \left(\frac{1-\gamma_5}{2}\right)\right]
+\end{align}
+
+e per il propagatore 
+
+\begin{align}
+    D_{\mu\nu}(p) = -\frac{i}{t-m^2_Z}\left(g_{\mu\nu} + \frac{p_\mu p_\nu}{m^2_Z}\right) \approx \frac{ig_{\mu\nu}}{m^2_Z}
+\end{align}
+
+dove l'approssimazione vale perché siamo interessati al comportamento della sezione d'urto per \(\theta \to 0\), dove anche \(t \to 0\). Troviamo quindi che l'ampiezza è data da 
+
+\begin{align}
+    \mathcal{M}_t^Z &= \bar{v}(p_1)\frac{-ig}{\cos\theta_W}\gamma^\mu \left[2\sin^2\theta_W - \left(\frac{1-\gamma_5}{2}\right)\right]v(k_1)\left(\frac{ig_{\mu\nu}}{m^2_Z} \right)\bar{u}(k_2)\frac{-ig}{\cos\theta_W}\gamma^\nu \left[2\sin^2\theta_W - \left(\frac{1-\gamma_5}{2}\right)\right] u(p_2) \notag \\
+    &= \frac{-ig^2}{\cos^2\theta_W m^2_Z}\left[\bar{v}(p_1)\gamma^\mu \left(2\sin^2\theta_W - \left(\frac{1-\gamma_5}{2}\right)\right)v(k_1) \right]\left[\bar{u}(k_2)\gamma_\mu \left(2\sin^2\theta_W - \left(\frac{1-\gamma_5}{2}\right)\right)u(p_2) \right]
+\end{align}
+
+Un diagramma di questo tipo è diverso da quello mediato dal fotone, perché la massa del bosone \(Z\) fà in modo che rimanga finito per \(\theta \to 0\). Allo stesso tempo, rimanendo finito non può cancellare la divergenza discussa. 
+
+\newpage
+
+\section{Decadimento del muone}
+
+Il canale di decadimento \(\mu^- \to e^- + \gamma\) è proibito nel modello standard. Consideriamo una ipotetica estensione, dove vi è una interazione mediata dalla lagrangiana \(L = J^\mu A_\mu\), dove \(J^\mu\) è una corrente conservata.
+
+\subsection{Scomposizione in termini di fattori di forma}
+
+Inanzitutto, la forma dell'elemento di matrice 
+
+\begin{align}
+    \bra{e^-}J^\mu \ket{\mu^-}
+\end{align}
+
+è vincolata dalle simmetrie della teoria. Queste sono la simmetria di lorentz, e la conservazione della corrente \(J^\mu\). Non è necessario richiedere che la teoria conserva la parità, perché il modello standard non lo fa per cominciare. 
+
+Procediano quindi come abbiamo fatto per la QED. Sia \(\bra{e^-}J^\mu \ket{\mu^-} = \bar{u}_e(p_2) \Gamma^\mu u_\mu(p_1)\), così che la regola di feynman del vertice in figura \ref{fig:emugammavertex} sia proprio \(-i\Gamma^\mu\). La base di matrici 4x4 è data dalla solita 
+
+\begin{figure}
+    \caption{Funzione a 3 punti completa}
+    \label{fig:emugammavertex}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex[dot] (a) {}; 
+                \vertex [above right =  of a] (b); 
+                \vertex [below right = of a] (c) {\(e^-\)}; 
+                \vertex [left = of a] (d) {\(\mu^-\)}; 
+                \diagram{
+                    (d) -- [fermion, momentum = \(p_1\)] (a); 
+                    (a) -- [fermion, momentum = \(p_2\)] (c); 
+                    (a) -- [boson, edge label = \(\gamma\)] (b); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+
+
+\begin{align}
+    \left\{\mathbb{I}, \gamma^5, \gamma^\mu, \gamma^5\gamma^\mu, \sigma^{\mu\nu}, \gamma^5\sigma^{\mu\nu} \right\}
+\end{align}
+
+Come al solito, l'unico scalare da cui possono dipendere i coefficienti è \(q^2\) \footnote{Come in QED, gli scalari di Lorentz che possiamo costruire sono 3, \(q^2, p^2, p\cdot q\). D'altra parte, \(p\cdot q = (p_1^2 - p_2^2 = 0)\), e \(q^2\) e \(p^2\) sono dipendenti l'uno dall'altro, quindi possiamo scegliere \(q^2\) come variabile indipendente.}, e i vettori indipendenti sono \((p_1+p_2)^\mu, \, q^\mu\). Tutte le strutture possibili permesse da lorentz sono: 
+
+\begin{align}
+    &\mathbb{I} \to \quad A_1(q^2)q^\mu, \quad A_2(q^2)(p_1+p_2)^\mu \notag \\
+    &\gamma^5 \to \quad B_1(q^2)\gamma^5 q^\mu, \quad B_2(q^2)\gamma^5 (p_1+p_2)^\mu \notag \\
+    &\gamma^\mu  \to \quad C(q^2)\gamma^\mu \notag \\
+    &\gamma^5\gamma^\mu \to \quad D(q^2) \gamma^5\gamma^\mu \notag \\ 
+    &\sigma^{\mu\nu} \to \quad E_1(q^2)\sigma^{\mu\nu}q_\nu, \quad E_2(q^2)\sigma^{\mu\nu}(p_1+p_2)_\nu \notag \\
+    &\gamma^5\sigma^{\mu\nu} \to \quad G_1(q^2)\gamma^5\sigma^{\mu\nu}q_\nu, \quad G_2(q^2)\gamma^5\sigma^{\mu\nu}(p_1+p_2)_\nu 
+\end{align}
+
+L'identità di Gordon permette di scrivere \((p_1+p_2)^\mu\) in termini di \(\gamma^5, \sigma^{\mu\nu}\), quindi possiamo già prendere \(A_2(q^2) = B_2(q^2) = E_2(q^2) = G_2(q^2) = 0\). 
+
+
+La conservazione della corrente \(J^\mu\) richiede che l'elemento di matrice rispetti l'identità di Ward, \(q_\mu M^\mu = 0\). Vediamo quindi quali di queste si annullano automaticamente se contratte:   
+
+\begin{align}
+    &\mathbb{I} \to \quad q^\mu q_\mu \neq 0  \notag \\
+    &\gamma^\mu  \to \quad \bar{u}_e(\slashed{p}_1 - \slashed{p}_2) u_\mu = (m_\mu-m_e)\bar{u}_e u_\mu \neq 0 \notag \\
+    &\sigma^{\mu\nu} \to \quad \sigma^{\mu\nu}q_\mu q_\nu = 0
+\end{align}
+
+In particolare, quindi, la conservazione della corrente impone i seguenti legami tra i fattori di forma: 
+
+\begin{align}
+    &A_1(q^2) = \frac{(m_e-m_\mu)C(q^2)}{q^2} \notag \\
+    &B_1(q^2) = \frac{(m_e + m_\mu)D(q^2)}{q^2}
+\end{align}
+
+Ora, se ci interessa che il fotone sia on-shell, l'unico modo per cui nessuna dei due fattori di forma sia singolare è che siano entrambi nulli. Concludiamo, che se il fotone è on-shell \((q^2 = 0)\), allora la forma più generale del vertice è data da  
+
+\begin{align}
+    \Gamma^\mu = i(f_1(0) + f_2(0)\gamma^5)\sigma^{\mu\nu}q_\nu 
+\end{align}
+
+Il fattore \(i\) è stato estratto dai fattori di forma, in modo tale che le funzioni \(f_1, \, f_2\) siano funzioni reali. Possiamo anche velocemente ricavare la dimensione in massa di questi fattori di forma. Poichè la corrente entra nella lagrangiana dal termine di interazione \(J^\mu A_\mu\), troviamo che \([J^\mu] = m^3\). D'altra parte, sappiamo che \([u] = m^{3/2}\), da cui segue \([\Gamma^\mu] = m^0\), e quindi \([f] = m^{-1}\). 
+
+\subsection{Larghezza di decadimento}
+
+Ora che abbiamo la forma del vertice, possiamo scrivere la larghezza di decadimento in termine dei fattori di forma. Inanzitutto, devo calcolare l'ampiezza del processo: 
+
+\begin{align}
+    \mathcal{M}(\mu^- \to e^-\gamma) = \bar{u}^s_e(p_2)(-i\Gamma^\mu)u^{s'}_\mu(p_1)\eps^*_\mu(\lambda, q)
+\end{align}
+
+L'espressione per il modulo quadro non polarizzato è dunque 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 &= -\frac{1}{2}g_{\mu\nu}\sum_{s, s'} \left[\bar{u}_e^s (p_2)(f_1(0) + f_2(0)\gamma^5)\sigma^{\mu\rho}q_\rho u_\mu^{s'}(p_1) \right]\left[\bar{u}_\mu^{s'} (p_1) \sigma^{\nu\lambda} (f_1(0) - f_2(0)\gamma^5)q_\lambda u_\mu^{s'}(p_1) \right] \notag \\ 
+    &= -\frac{1}{2}\text{Tr}\left[\slashed{P_2}(f_1(0) + f_2(0)\gamma^5)\sigma^{\mu\rho}q_\rho(\slashed{P_1} +m_\mu)\sigma_{\mu\lambda} (f_1(0) - f_2(0)\gamma^5)q^\lambda\right]
+\end{align}
+
+Prima di calcolare la traccia, devo mostrare come ho calcolato il complesso coniugato della linea fermionica: così come vale \((\gamma^\mu)^\dagger = \gamma^0 \gamma^\mu \gamma^0\), non è difficile convincersi che vale \((\sigma^{\mu\nu})^\dagger = \gamma^0 \sigma^{\mu\nu}\gamma^0\). A questo punto la parte \(\propto f_1\) funziona come una linea fermionica standard:
+
+\begin{align}
+    [\bar{u}_e(p_2)\sigma^{\mu\rho}u_\mu(p_1)]^* &= [(u_\mu(p_1))^\dagger \gamma^0 \sigma^{\mu\rho} \gamma^0 (\bar{u}_e (p_2)^\dagger)] \notag \\ 
+    &= [\bar{u}_\mu(p_2)\sigma^{\mu\rho}u_e(p_1)]
+\end{align}
+
+Invece, per la parte \(\propto f_2\) si ottiene, ricordando che \((\gamma^5)^\dagger = \gamma^5\), 
+
+\begin{align}
+    u^\dagger_\mu(p_1)\gamma^0 \sigma^{\mu\nu}\gamma^0 \gamma^5 \gamma^0 u_e(p_1) = - \bar{u}_\mu(p_1)\sigma^{\mu\nu}\gamma^5 u_e(p_2) = -\bar{u}_\mu(p_1)\gamma^5\sigma^{\mu\nu} u_e(p_2) 
+\end{align}
+
+Dove abbiamo prima anticommutato \(\gamma^5, \gamma^0\), e poi commutato \(\gamma^5, \sigma^{\mu\nu}\). 
+
+Torniamo quindi al calcolo della traccia. Inanzittutto, la parte \(\propto m_\mu\) si annulla. Infatti: 
+
+\begin{enumerate}
+    \item I termini \(\propto f_1^2, \, f_2^2\) sono proporzionali alla traccia di 5 matrici di Dirac. 
+    \item Il termine \(\propto f_1 f_2\) sono proporzionali alla traccia di 5 matrici di Dirac volte una \(\gamma^5\). 
+\end{enumerate}
+
+Dobbiamo quindi calcolare 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = -\frac{q_\rho q^\lambda}{2}\text{Tr}[\slashed{p}_2(f_1+f_2\gamma^5)\sigma^{\mu\rho}\slashed{p}_1 \sigma_{\mu\lambda}(f_1-f_2\gamma^5) ]
+\end{align}
+
+Espando le matrici \(\sigma^{\mu\nu}\): 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{q_\rho q^\lambda}{8}[&\text{Tr}(\slashed{p}_2(f_1+f_2\gamma^5)\gamma^\mu \gamma^\rho \slashed{p}_1 \gamma_\mu \gamma_\lambda (f_1-f_2\gamma^5)) \notag \\ 
+    -&\text{Tr}(\slashed{p}_2(f_1+f_2\gamma^5)\gamma^\rho \gamma^\mu \slashed{p}_1 \gamma_\mu \gamma_\lambda (f_1-f_2\gamma^5)) \notag \\ 
+    -&\text{Tr}(\slashed{p}_2(f_1+f_2\gamma^5)\gamma^\mu \gamma^\rho \slashed{p}_1 \gamma_\lambda \gamma_\mu (f_1-f_2\gamma^5)) \notag \\  
+    +&\text{Tr}(\slashed{p}_2(f_1+f_2\gamma^5)\gamma^\rho \gamma^\mu \slashed{p}_1 \gamma_\lambda \gamma_\mu (f_1-f_2\gamma^5))]
+\end{align}
+
+Possiamo usare ora le formule 
+
+\begin{align}
+    &\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma_\mu = -2\gamma^\sigma \gamma^\rho \gamma^\nu \notag \\
+    &\gamma^\mu \gamma^\nu \gamma^\rho \gamma_\mu = 4g^{\nu\rho} \implies \gamma^\mu \gamma^\nu \slashed{k} \gamma_\mu = 4k^\nu
+\end{align}
+
+E otteniamo 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{q_\rho q^\lambda}{8}[&4\text{Tr}(P_1^\rho \slashed{p}_2 (f_1+f_2\gamma^5)\gamma_\lambda(f_1-f_2\gamma^5)) \notag \\
+    &+2\text{Tr}(\slashed{p}_2 (f_1+f_2\gamma^5)\gamma^\rho \slashed{p}_1 \gamma_\lambda(f_1-f_2\gamma^5)) \notag \\
+    &+2\text{Tr}(\slashed{p}_2 (f_1+f_2\gamma^5)\gamma_\lambda \slashed{p}_1 \gamma^\rho (f_1-f_2\gamma^5)) \notag \\
+    &+4\text{Tr}(P_{1\lambda} \slashed{p}_2 (f_1+f_2\gamma^5)\gamma^\rho(f_1-f_2\gamma^5))] 
+\end{align}
+
+I termini \(\propto f_1f_2\) si cancellano perché la traccia di due matrici di Dirac volte una \(\gamma^5\) è sempre zero. Usando invece che le \(\gamma^5\) anticommutano con le altre matrici di Dirac, si possono facilmente eliminare: 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = \frac{q_\rho q^\lambda}{4}(f_1^2+f_2^2)\text{Tr}[2p_1^\rho \slashed{p}_2\gamma_\lambda + \slashed{p}_2 \gamma^\rho \slashed{p}_1\gamma_\lambda + \slashed{p}_2\gamma_\lambda \slashed{p}_1 \gamma^\rho ]
+\end{align}
+
+Valutando le tracce con le solite formule si trova 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = 4q_\rho q^\lambda (f_1^2+f_2^2)[p_1^\rho p_{2\lambda} + p_1\lambda p_2^\rho] = 8(f_1^2+f_2^2)(m_\mu^2 - p_1\cdot p_2)(p_1\cdot p_2)
+\end{align}
+
+Usando \(q^2 = m_\mu^2 - 2p_1\cdot p_2 = 0\), si trova subito \(p_1\cdot p_2 = m_\mu^2/2\), da cui ricaviamo infine 
+
+\begin{align}
+    |\mathcal{\bar{M}}|^2 = 2(f_1^2+f_2^2)m^4_\mu
+\end{align}
+
+La stessa relazione può essere ottenuta anche con considerazioni cinematiche (figura \ref{fig:muongammadecay}). Mettendoci nel SR del CM, possiamo prendere i momenti come (essendo sia \(q\) sia \(p_2\) quadrivettori nulli)
+
+\begin{align}
+    p_1 = (m_\mu, 0, 0, 0), \quad q = (m_\mu/2, 0, 0, -m_\mu/2), \quad p_2 = (m_\mu/2, 0, 0, m_\mu/2)
+\end{align}
+
+Allora è chiaro che \(p_1\cdot p_2 = \frac{m_\mu^2}{2}\). 
+
+\begin{figure}
+    \caption{Cinematica del decadimento}
+    \label{fig:muongammadecay}
+    \begin{multicols}{2}
+    \begin{center}
+    \begin{tikzpicture}[
+        >=stealth,
+        thick,
+        every node/.style={font=\small}
+    ]
+
+        \coordinate (O) at (0,0);
+        \fill (O) circle (4pt)
+            node [above] {$\mathbf{p_1} = (m_\mu, 0, 0, 0)$}; 
+
+    \end{tikzpicture}
+    \end{center}
+
+    \columnbreak
+
+    \begin{center}
+    \begin{tikzpicture}[
+        >=stealth,
+        thick,
+        every node/.style={font=\small}
+    ]
+
+        \coordinate (O) at (0,0);
+
+        \draw[->] (-1,0) -- (-4, 0)
+            node[midway, above] {$\mathbf{q} = (m_\mu/2, 0, 0, -m_\mu/2)$};
+
+        \draw[->] (1,0) -- (4, 0)
+            node[midway, above] {$\mathbf{p_2} = (m_\mu/2, 0, 0, m_\mu/2)$};
+
+        % Vertice
+        \fill (O) circle (4pt);
+
+    \end{tikzpicture}
+    \end{center}
+    
+\end{multicols}
+\end{figure}
+
+Avendo il modulo quadro, possiamo assemblare la larghezza di decadimento differenziale. Questa è data da 
+
+\begin{align}
+    d\Gamma = \frac{1}{2m_\mu}|\mathcal{\bar{M}}|^2dPS^{(2)}
+\end{align}
+
+L'elemento differenziale di spazio delle fasi \(dPS^{(2)}\) è lo stesso calcolato per lo scattering Bhabha, perché anche in questo caso abbiamo due particelle massless nello stato finale. 
+
+\begin{align}
+    dPS^{(2)} = \frac{d\Omega}{32\pi^2}
+\end{align}
+
+Segue quindi 
+
+\begin{align}
+    \frac{d\Gamma}{d\Omega} = \frac{2(f_1^2+f_2^2)m_\mu^4}{(2m_\mu)(32\pi^2)} \implies \Gamma = \int \frac{d\Gamma}{d\Omega}d\Omega = \frac{m^3_\mu (f_1^2+f_2^2)}{8\pi}
+\end{align}
+
+\subsection{Limiti sui fattori di forma}
+
+Durante l'anno abbiamo calcolato la larghezza di decadimento \(\beta\) del muone, che ricordiamo: 
+
+\begin{align}
+    \Gamma(\mu^- \to e^- \nu_\mu \bar{\nu}_e) = \frac{G_F^2 m^5_\mu}{192\pi^2}
+\end{align}
+
+Da cui otteniamo una formula per il branching ratio: 
+
+\begin{align}
+    \text{BR}(\mu^-\to e^-\gamma) = \frac{\Gamma(\mu^-\to e^-\gamma)}{\Gamma(\mu^- \to e^- \nu_\mu \bar{\nu}_e)} = \left(\frac{(f_1^2+f_2^2)m_\mu^3}{8\pi} \right)\left(\frac{192\pi^2}{G_F^2 m_\mu ^5} \right) = \frac{24\pi (f_1^2+f_2^2)}{G_F^2 m_\mu^2} < 2.2 \cdot 10^{-13}
+\end{align}
+
+Possiamo definire \(F = \sqrt{f_1^2+f_2^2}\), e applicare dei limiti a questo fattore di forma, conoscendo \(G_F = 1.112 \cdot 10^{-5} \, \text{GeV}^{-2}\) e \(m_\mu = 106 \, \text{MeV} = 0.106\) GeV. Si ottiene così 
+
+\begin{align}
+    F = \frac{G_F m_\mu}{\pi}\sqrt{\frac{\text{BR}}{24}} < 3.59 \cdot 10^{-14} \, \text{GeV} 
+\end{align}
+
+\newpage
+
+\section{Rinormalizzazione nella teoria di Yukawa}
+
+Si consideri una teoria di un campo fermionico e un campo scalare che interagiscono tramite Yukawa: 
+
+\begin{align}
+    \mathcal{L} = \bar{\psi}(i\slashed{\partial}-m_{f,0})\psi + \frac{1}{2}(\partial_\mu \phi)(\partial^\mu \phi) - \frac{1}{2}M_0^2\phi^2 - \lambda_0\bar{\psi}\psi \phi
+\end{align}
+
+\subsection{Campo fermionico}
+
+Vogliamo determinare i controtermini di massa e di funzione d'onda per il campo fermionico. Per fare questo, consideriamo la correzione ad 1 loop al propagatore fermionico (figura \ref{fig:1loopfermion}), di cui indicheremo il diagramma amputato con \(-i\Sigma(p)\). 
+
+\begin{figure}
+    \caption{Contributo ad 1 loop della funzione a due punti del campo spinoriale}
+    \label{fig:1loopfermion}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- [fermion, momentum' = \(p\)] (b); 
+                    (b) -- [fermion, half right, momentum' = \(p+q\)] (c); 
+                    (c) -- [scalar, half right, momentum' = \(q\)] (b); 
+                    (c) -- [fermion, momentum' = \(p\)] (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+Infatti, l'espressione del propagatore risommato è 
+
+\begin{align}
+    \frac{D(p)}{1-i\Sigma(p)D(p)} = \frac{i}{\slashed{p} - m_{f,0} + i\eps + \Sigma(p)}
+\end{align}
+
+Vediamo quindi che è necessario shiftare la massa bare nella massa rinormalizzata \(m_f = m_{f,0} - \Sigma(p)\). 
+
+Veniamo quindi al calcolo del controtermine: usando la semplice regola di feynman per il vertice a 3 che deriva dalla lagrangiana, troviamo che l'espressione è data da 
+
+\begin{align}
+    i\Sigma(p) = \frac{\lambda^2}{2}\int \frac{d^4q}{(2\pi)^4}\left[\frac{(\slashed{p}+\slashed{q}+m_f)}{(p+q)^2-m^2_f} \right]\left(\frac{1}{q^2-M^2} \right)
+\end{align}
+
+Separiamo il contributo scalare e tensoriale: 
+
+\begin{align}
+    i\Sigma(p) = i\Sigma_1(p) + i\Sigma_2(p), \quad &i\Sigma_1(p) = \frac{\lambda^2 m_{0,f}}{2}\int \frac{d^4q}{(2\pi)^4}\frac{1}{[(p+q)^2-m^2_{f,0}][q^2-M^2]} = m_{0,f}I_1\notag \\
+    &i\Sigma_2(p) = i \Sigma^\mu_2(p)\gamma_\mu = \frac{\lambda^2 \gamma_\mu}{2}\int \frac{d^4q}{(2\pi^4)}\frac{p^\mu + q^\mu}{[(p+q)^2-m^2_{f,0}][q^2-M^2]}
+\end{align}
+
+Il termine più complicato è certamente \(\Sigma^\mu_2\), che si può ulteriormente spezzare in due pezzi: 
+
+\begin{align}
+    &\Sigma^\mu_2(p) = \Sigma^\mu_{2,1}(p) + \Sigma^\mu_{2,2}(p), \quad \Sigma^\mu_{2,1} = p^\mu I_1 \notag \\
+    &\Sigma^\mu_{2,2}(p) = \frac{\lambda^2}{2}\int \frac{d^4q}{(2\pi^4)}\frac{q^\mu}{[(p+q)^2-m^2_{f,0}][q^2-M^2]} = p^\mu \Sigma(p)_{2,2}
+\end{align}
+
+dove l'ultima uguaglianza segue da considerazioni tensoriali. Lavoriamo ancora su \(\Sigma^\mu(p)_{2,2}\), introducendo i parametri di Feynman: 
+
+\begin{align}
+    \Sigma^\mu(p)_{2,2} &= \frac{\lambda^2}{2}\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{q^\mu}{[x((p+q)^2-m^2_{0,f}) + (1-x)(q^2 - M^2)]^2} \notag \\
+    &= \frac{\lambda^2}{2}\int_0^1 dx \int \frac{d^4 q}{(2\pi)^4}\frac{q^\mu}{(q+xp)^2 + \underbrace{x(1-x)p^2 + x(M^2-m^2_{0,f} - M^2}_{=: -\Delta (x)})}
+\end{align}
+
+Cambiamo allora la variabile di integrazione, \(q \to \ell = q+xp\). L'integrale diventa semplicemente 
+
+\begin{align}
+    \Sigma^\mu(p)_{2,2} = \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^\mu - xp^\mu}{[\ell^2+\Delta(x)]^2} = -\frac{p^\mu \lambda^2}{2}\int xdx \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2-\Delta(x)]^2} 
+\end{align}
+
+Dove abbiamo usato che per parità le parti dell'integrali \(\propto \ell^\mu\) sono nulle, perché il resto dell'espressione dipende solamente da \(\ell^2\). Possiamo quindi fare la rotazione di Wick e passare a \(d\) dimensioni: 
+
+\begin{align}
+    \Sigma^\mu(p)_{2,2} = -\frac{p^\mu\lambda^2}{2}\int_0^1xdx\int d\Omega_{d-1}\int \frac{d\ell_E \ell_E^{d-1}}{(2\pi)^d(\ell_E^2 + \Delta(x))^2}
+\end{align}
+
+A parte l'integrale rispetto ad \(x\), tutti gli altri pezzi sono dei risultati ben noti. In particolare vale: 
+
+\begin{align}
+    \int d\Omega_{d-1} = \frac{2\pi^{d/2}}{\Gamma(d/2)}, \quad \int \frac{d\ell_E \ell_E^{d-1}}{(2\pi)^d(\ell_E^2 + \Delta(x))^2} = \frac{1}{(4\pi)^{d/2}}\Delta(x)^{(d/2-2)}\frac{\Gamma(2-d/2)}{\Gamma(2)}
+\end{align}
+
+Quindi, troviamo 
+
+\begin{align}
+    \Sigma^\mu_{2,2}(p) = -\frac{p^\mu \lambda^2}{\Gamma(d/2)\Gamma(2)}\frac{\Gamma(2-d/2)}{(4^{d/2})}\int_0^1 x \Delta(x)^{(d/2 -2)}
+\end{align}
+
+\subsection{Campo scalare}
+
+Come nel caso del fermione, per prima cosa dobbiamo calcolare la self-energia dello scalare. Il diagramma rilevante è quello in figura \ref{fig:scalarselfenergy}. Le regole di Feynman sono quelle già citate, ricordando che in presenza di un loop fermionico, doppiamo moltiplicare per \(-1\). Si trova allora l'ampiezza del diagramma: 
+
+\begin{align}
+    i\Sigma(p) = (-i\lambda)^2\int \frac{d^4q}{(2\pi)^4}\text{Tr}\left[\frac{(\slashed{p} + \slashed{q} + m_e)}{(p+q)^2 - m_e^2}\frac{(\slashed{q} + m_e)}{q^2-m^2_e} \right]
+\end{align}
+
+Ricordando che Tr\((\gamma^\mu \gamma^\nu) = (1/2)\text{Tr}(\left\{\gamma^\mu, \gamma^\nu \right\}) = 4g^{\mu\nu}\), troviamo quindi 
+
+\begin{align}
+    i\Sigma(p) = -4\lambda^2\int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[(p+q)^2 - m_e^2][q^2-m_e^2]}
+\end{align}
+
+Come al solito, introduciamo i parametri di Feynman: 
+
+\begin{align}
+    i\Sigma(p) &= -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[xp^2 + 2xp\cdot q + q^2 - m_e^2 +x^2p^2 - x^2p^2]^2} \notag \\
+    &= -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (p+q)\cdot q}{[(q+xp)^2 - \Delta(x)]^2}, \quad \Delta(x) = m_e^2 - x(1-x)p^2
+\end{align}
+
+Faccio il solito cambio della variabile di integrazione \(q \to \ell = q+xp\): 
+
+\begin{align}
+    i\Sigma(p) = -4\lambda^2\int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m_e^2 + (\ell-xp)\cdot(\ell + (1-x)p)}{[\ell^2 - \Delta(x)]^2}
+\end{align}
+
+Per parità, contribuiscono all'integrale solo le potenze pari di \(\ell\), 
+
+\begin{align}
+    i\Sigma(p) &= -4\lambda^2\int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{m_e^2 + \ell^2 - x(1-x)p^2}{[\ell^2 - \Delta(x)]^2} \notag \\ 
+    &= -4\lambda^2 \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2 + \Delta(x)}{[\ell^2 - \Delta(x)]^2}
+\end{align}
+
+Per terminare il calcolo devo dunque calcolare due integrali, 
+
+\begin{align}
+    &i\Sigma(p) = -4\lambda^2\left[\int_0^1dx \Delta(x)I_1(x) + \int_0^1 dx I_2(x) \right], \notag \\
+    &I_1(x) = \int \frac{d^4\ell}{(2\pi)^4[\ell^2-\Delta(x)]^2}, \quad I_2(x) = \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta(x)]^2}
+\end{align}
+
+Ci occupiamo ora del calcolo di questi integrali. Innanzitutto eseguiamo la rotazione di Wick: 
+
+\begin{align}
+    I_1(x) = -i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell^2 + \Delta(x)]^2}
+\end{align}
+
+Passando ad uno spaziotempo di dimensione generica \(d\), 
+
+\begin{align}
+    I_1 = -i\int \left(\int d\Omega_d \right)\frac{d\ell_E}{(2\pi)^4}\frac{\ell_E^{d-1}}{[\ell_E^2 + \Delta(x)]^2}, \quad I_2 = i\int \left(\int d\Omega_d \right)\frac{d\ell_E}{(2\pi)^4}\frac{\ell_E^{d+1}}{[\ell_E^2 + \Delta(x)]^2}
+\end{align}
+
+Questi sono integrali di funzioni razionali, e la loro soluzione è ben nota. Basta effettuare la sostituzione
+
+\begin{align}
+    \ell \to y = \frac{\Delta}{\Delta + \ell_E^2}, \quad \ell_E^2 = \frac{\Delta}{y} - \Delta, \quad d(\ell_E^2) = -\frac{\Delta}{y^2}dy
+\end{align}
+
+Sostituendo, troviamo 
+
+\begin{align}
+    I_1 &= -\frac{i}{2}\int d\Omega_{d-1}\int_0^1 \frac{\Delta}{y^2}dy \left(\frac{y}{\Delta}\right)^2\Delta^{\frac{d-2}{2}}\left(\frac{1-y}{y} \right)^{\frac{d-2}{2}} \notag \\
+    &= -\frac{i\Delta^{\frac{d-4}{2}}}{2}\int d\Omega_{d-1}\int_0^1 dy y^{-\frac{d-2}{2}}(1-y)^{\frac{d-2}{2}}
+\end{align}
+
+Ricorda la formula integrale per la funzione \(\beta\) di Eulero, e la sua relazione con la \(\Gamma\) di Eulero, 
+
+\begin{align}
+    \beta(\alpha, \gamma) = \int_0^1 dx x^{\alpha-1}(1-x)^{\gamma-1} = \frac{\Gamma(\alpha)\Gamma(\gamma)}{\Gamma(\alpha + \gamma)}
+\end{align}
+
+Otteniamo quindi 
+
+\begin{align}
+    I_1 = -\frac{i\Delta^{\frac{d-4}{2}}}{2}\int d\Omega_{d-1}\Gamma(-d/2)\Gamma(d/2)
+\end{align}
+
+Ricordando la formula dell'aerea della sfera, 
+
+\begin{align}
+    \int d\Omega_{d-1} = \frac{2\pi^{d/2}}{\Gamma(d/2)}
+\end{align}
+
+Si trova infine 
+
+\begin{align}
+    I_1 = -i\frac{\Delta^{\frac{d-4}{2}}}{2^d\pi^{d/2}}\Gamma(-d/2)
+\end{align}
+
+Usando infine \(d = 4-2\epsilon\), troviamo 
+
+\begin{align}
+    I_1 = -\frac{i}{2^4\pi^2\Delta^\eps}\Gamma(\eps)
+\end{align}
+
+Come ci aspettavamo, questo ha una parte finita e una parte divergente, un polo semplice in \(\eps\), che è evidente se sviluppiamo la Gamma di eulero: \(\Gamma(\eps) = 1/\eps + \gamma_E + o(\eps)\). 
+
+Similmente si calcola \(I_2\): 
+
+\begin{align}
+    I_2(x) &= -\frac{i}{2}\frac{\Delta^{\frac{d-2}{2}}}{(2\pi)^d}\int d\Omega_{d-1}\int dy y^{-d/2}(1-y)^{d/2} \notag \\ 
+    &= -i\frac{\Delta^{\frac{d-2}{2}}}{2(2\pi)^d}\frac{2\pi^{d/2}}{\Gamma(d/2)}\frac{\Gamma(1-d/2)\Gamma(1+d/2)}{\Gamma(2)}
+\end{align}
+
+Usando \(\Gamma(n) = (n-1)!\), si trova infine  
+
+\begin{align}
+    I_2(x) = -\frac{i\Delta}{2^3\pi^2\Delta^\eps}\Gamma(-1+\eps)
+\end{align}
+
+La self energia completa è quindi data da 
+
+\begin{align}
+    -i\Sigma(p) &= 4i\lambda^2 (4\pi)^\eps\mu^{2\eps}\int_0^1 dx\left(\frac{\Delta\Gamma(-1+\eps)}{8\pi^2\Delta^\eps} + \frac{\Delta \Gamma(\eps)}{16\pi^2\Delta^\eps}\right) \notag \\ 
+    &= \frac{i\lambda^2}{2\pi^2} \int_0^1dx \left(\frac{(4\pi)\mu^2}{\Delta} \right)^\eps \Delta (\Gamma(-1+\eps) + \Gamma(\eps))
+\end{align}
+
+Sviluppiamo l'argomento dell'integrale per \(\eps \to 0\): abbiamo 
+
+\begin{align}
+    \left(\frac{4\pi \mu^2}{\Delta} \right)^\eps = 1 +\eps\ln(4\pi\mu^2/\Delta) + o(\eps^2), \quad \Gamma(-1+\eps) = -1/\eps + \gamma_E - 1, \quad \Gamma(\eps) = 1/\eps + \gamma_E 
+\end{align}
+
+Così da ottenere 
+
+\begin{align}
+    -i\Sigma(p) = -\frac{i\lambda^2}{2\pi^2}\int_0^1 dx \Delta \left[\frac{1}{2\epsilon} + 1 - \frac{\gamma_E}{2} +\frac{1}{2}\log(4\pi\mu^2/\Delta) \right]
+\end{align}
+
+La parte divergente è quindi data da 
+
+\begin{align}
+    \Sigma(p) &= \frac{\lambda^2}{4\pi^2\eps}\int_0^1 dx \Delta = \frac{\lambda^2}{4\pi^2\eps}\int_0^1 dx m^2_{0,f} - x(1-x)p^2 \notag \\ 
+    &= \frac{m^2_{f,0}\lambda^2}{4\pi^2\eps} - \frac{p^2\lambda^2}{24\pi^2\eps} 
+\end{align}
+
+Avendo l'espressione per la self energia, il calcolo dei controtermini per la massa e la funzione d'onda è immediato. Infatti, considera l'espressione per il propagatore risommato: (se si è scritto \(M_0^2\phi^2 = (M^2 + \delta M^2)\phi^2\))
+
+\begin{align}
+    &D(p) + D(p)(i\Sigma(p))D(p) + D(p)(i\Sigma(p))D(p)(-i\Sigma(p))D(p) + \ldots \notag \\ 
+    &= D(p)[(i\Sigma(p)D(p)) + (i\Sigma(p)D(p))^2 + \ldots] \notag \\ 
+    &= \frac{D(p)}{1-i\Sigma(p)D(p)} = \frac{i}{(p^2-M^2 -\delta M^2 +i\eps)(1 + \frac{\Sigma(p)}{p^2-M^2 - \delta M^2 +i\eps})} \notag \\
+    &= \frac{i}{p^2 - M^2 - \delta M^2 +\Sigma(p)}
+\end{align}
+
+Ora, ci interessa che il propagatore vicino a \(p^2 = M^2\) abbia un polo, con il residuo della teoria libera. Cioè richiediamo che 
+
+\begin{align}
+    \frac{i}{p^2 - M^2 - \delta M^2 +\Sigma(p)} \to \frac{i}{p^2 - M^2 + i\eps}, \quad p^2 \to M^2
+\end{align}
+
+Per farlo sviluppa in serie \(\Sigma\) vicino ad \(M^2\): \(\Sigma(p^2) = \Sigma(M^2) + (p^2-M^2)\Sigma'(p^2) + \frac{1}{2}(p^2-M^2)^2\Sigma''(p^2) + \ldots\). Il propagatore diventa 
+
+\begin{align}
+    \frac{i}{p^2-M^2 - \delta M^2 + \Sigma(m^2) + (p^2 - M^2)\Sigma'(p) + \frac{1}{2}(p^2-M^2)^2\Sigma''(p^2) + \ldots}
+\end{align}
+
+Scegli \(\delta M^2 = \Sigma(p^2)\), e ottieni 
+
+\begin{align}
+    \frac{i}{(p^2-M^2)(1+\Sigma'(p^2) + \frac{1}{2}(p^2-M^2)\Sigma''(p^2))} \to \frac{iZ_\varphi}{p^2 - M^2 + i\eps}, \quad p^2 \to m^2, \quad Z_\varphi = \frac{1}{1+\Sigma'(p^2)}
+\end{align}
+
+Dai nostri calcoli segue dunque 
+
+\begin{align}
+    \Sigma(M^2) = \frac{\lambda_0^2}{4\pi^2\eps}(M^2/6 - m^2_{0,f}), \quad \Sigma'(p^2) = \frac{\lambda_0^2}{24\pi^2\eps}
+\end{align}
+
+\subsection{Costante di accoppiamento}
+
+Considera le quattro correzioni ad un loop della funzione a 3 punti della teoria (figura \ref{fig:oneloopvertex}). Scriviamo la costante di accoppiamento "nuda" in termini di quella fisica e di un controtermine: \(\lambda_0 = \lambda + \delta \lambda\). Vogliamo ora calcolare il controtermine, usando la richiesta che in una particolare cinematica (dove tutte le particelle esterne sono on-shell) l'accoppiamento coincida con quello misurato.  
+
+\begin{figure}
+    \caption{I contribuiti al secondo ordine perturbativo al vertice \(\bar{\psi}\psi \phi\)}
+    \label{fig:oneloopvertex}
+    \begin{multicols}{3}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \vertex [right = of d] (e); 
+                    \vertex [right = of e] (f); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                        (d) -- [fermion, half left] (e);
+                        (e) -- [fermion, half left] (d);
+                        (e) -- [scalar] (f);
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \vertex [above left = of b] (e); 
+                    \vertex [left = of e] (f); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                        (b) -- [scalar, half left] (e);
+                        (e) -- [fermion, half left] (b);
+                        (f) -- [fermion] (e);
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \vertex [below left = of c] (e); 
+                    \vertex [left = of e] (f); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                        (c) -- [scalar, half left] (e);
+                        (e) -- [fermion, half left] (c);
+                        (f) -- [fermion] (e);
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \end{multicols}
+    \begin{multicols}{2}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+        \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \vertex [left = of b] (e); 
+                    \vertex [left = of c] (f); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                        (b) -- [scalar] (c); 
+                        (e) -- [fermion] (b); 
+                        (c) -- [fermion] (f); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \end{multicols}
+\end{figure}
+
+In formule, la nostra \emph{condizione di rinormalizzazione} sarà 
+
+\begin{align}
+    \lim_{p_1^2, p_2^2, q^2 \to 0} \Gamma_{\bar{\psi}(p_1), \psi(p_2), \phi(q)} = -i\lambda
+\end{align}
+
+Non dobbiamo però tenere conto di tutti i diagrammi: i diagrammi che contengolo la self energia non sono 1PI. Chiamiamo quindi \(iA(p_1^2, q_1^2, p_2^2)\) l'ampiezza del diagramma ad un loop da calcolare. La condizione di rinormalizzazione si legge ora 
+
+\begin{align}
+    -i\lambda -i\delta \lambda +iA(p_1^2 = m^2, p_2^2 = m^2, q^2 = M^2) = -i\lambda \implies \delta\lambda = A(m^2, m^2, M^2)
+\end{align}
+
+Concentriamoci allora sulla determinazione di \(A\). Vale \footnote{Abbiamo scelto i momenti nel loop in modo tale che si semplificassero meglio i denominatori}. 
+
+\begin{align}
+    iA(p_1^2, p_2^2, q^2) &= (-i\lambda)^3 \int \frac{d^4k}{(2\pi)^4}\left[\frac{i(\slashed{k} + \slashed{p_1} +m)}{(k+p_1)^2-m^2} \right]\left[\frac{i(\slashed{k}-\slashed{p_2}+m)}{(k-p_2)^2-m^2} \right]\left[\frac{i}{k^2-M^2} \right] \notag \\ 
+    &= -\lambda^3 \int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k} + \slashed{p_1} + m)(\slashed{k} -\slashed{p_2} + m)}{[k^2 + 2k\cdot p_1][k^2 - 2k\cdot p_2][k^2-M^2]}
+\end{align}
+
+Notiamo che ho tre denominatori, quindi è necessario usare due parametri di Feynman. In particolare usiamo la formula
+
+\begin{align}
+    \frac{1}{ABC} = 2\int_0^1dx\int_0^1dy \frac{1}{[xA + yB + (1-x-y)C]^3}
+\end{align}
+
+Scegli \(C = k^2-M^2, \, A = k^2 + 2k\cdot p_1, \, B = k^2 - 2k\cdot p_2\). Il denominatore diventa: 
+
+\begin{align}
+    \text{Den} &= 2xk\cdot p_1 -2y k\cdot p_2 + k^2 - M^2 -xM^2 -yM^2 \notag \\
+    &= (k + xp_1 - yp_2)^2 - \underbrace{[(xp_1 - yp_2)^2 +(1-x-y)M^2]}_{=\Delta} 
+\end{align}
+
+L'ampiezza è quindi data da 
+
+\begin{align}
+    iA = -\lambda^3 \int_0^1 dx\int_0^1 dy\int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k}+ \slashed{p_1} +m)(\slashed{k}- \slashed{p_2} +m)}{[(k+xp_1 - yp_2)^2 - \Delta]^3}
+\end{align}
+
+Facciamo quindi la sostituzione \(k \to \ell = k+xp_1 - yp_2\), e otteniamo così 
+
+\begin{align}
+    iA = -\lambda^3 \int_0^1dx \int_0^1 dy \int \frac{d^4\ell}{(2\pi)^4}\frac{(\slashed{\ell} + (x+1)\slashed{p_1} - y\slashed{p_2} + m)(\slashed{\ell} + x\slashed{p_1} - (y+1)\slashed{p_2} + m)}{[\ell^2 - \Delta]^3}
+\end{align}
+
+Teniamo solo i contributi di ordine 0 e 2 in \(\ell\), che non si cancellano per parità: 
+
+\begin{align}
+    iA = -\lambda^3\int_0^1 dx \int_0^1 dy \int \frac{d^4\ell}{(2\pi)^4} &\frac{\ell^2 + x(x+1)m^2 -(x+1)(y+1)\slashed{p_1}\slashed{p_2} + m(x+1)\slashed{p_1}}{[\ell^2 - \Delta]^3} \notag \\ 
+    &+ \frac{-xy\slashed{p_2}\slashed{p_1} +y(y+1)m^2 -ym\slashed{p_2} + xm\slashed{p_1} - (y+1)m\slashed{p_2} +m^2}{[\ell^2 -\Delta]^3}
+\end{align}
+
+Che prende la forma 
+
+\begin{align}
+    iA = -\lambda^3 \int_0^1 dx \int_0^1 dy (&I_1 + (m^2(1 + x(x+1) + y(y+1)) + \notag \\ 
+    &m((2x+1)\slashed{p_1} - (2y+1)\slashed{p_2}) -((x+1)(y+1)\slashed{p_1}\slashed{p_2} + xy\slashed{p_2}\slashed{p_1}))I_2)
+\end{align}
+
+Se abbiamo definito
+
+\begin{align}
+    I_1 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta]^3} \notag \\ 
+    &= -i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{\ell_E^2}{[\ell_E^2+\Delta]^3} = -\frac{i\Gamma(\eps)}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \xrightarrow{\eps \to 0} -\frac{i}{16\pi^2}\left[\frac{1}{\eps} + \gamma_E + \log\left(\frac{4\pi\mu^2}{\Delta}\right) \right]
+\end{align}
+
+e similmente 
+
+\begin{align}
+    I_2 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2-\Delta]^3} = i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell_E^2 + \Delta]^3} \notag \\ 
+    &= \frac{i}{2\Delta(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \Gamma(1+\eps) \xrightarrow{\eps \to 0}  \frac{i}{32\pi^2\Delta}
+\end{align}
+
+Come ci si aspetta anche dal grado superficiale di divergenza, vediamo che \(I_1\) diverge logaritmicamente mentre \(I_2\) è UV finito. 
+
+Fortunatamente dobbiamo calcolare esplicitamente solamente la parte divergente dell'integrale, mentre possiamo lasciare indicata simbolicamente le parti finite. La parte divergente è quindi data da 
+
+\begin{align}
+    iA = \frac{i\lambda^3 }{16\pi^2 \eps} + o(1), \quad \eps \to 0 
+\end{align}
+
+\section{Rinormalizzazione teoria di Yukawa - seconda versione}
+
+Considera la seguente lagrangiana: 
+
+\begin{align}
+    \mathcal{L} = \bar{\psi}_0 (i\slashed{\partial} - m_{f0})\psi_0 + \frac{1}{2}(\partial\phi_0)^2 - \frac{1}{2}M_0^2\phi_0^2 - \lambda_0\bar{\psi_0}\psi_0 \phi_0
+\end{align}
+
+Come evidenziato dai pedici 0, la lagrangiana è scritta in termini di parametri "bare", non fisici. Risulta allora convieniente scriverla in termini di parametri fisici + dei controtermini, nel modo seguente: 
+
+\begin{align}
+    \mathcal{L} = &\bar{\psi}(i\slashed{\partial}-m_f)\psi + \frac{1}{2}(\partial\phi)^2 - \frac{M^2}{2}\phi^2 - \lambda \bar{\psi}\psi \phi \notag \\
+    &+i\delta Z_\psi\bar{\psi}\slashed{\partial}\psi -i\delta m_f \bar{\psi}\psi + \frac{1}{2}\delta Z_\phi(\partial\phi)^2 - \frac{\delta M^2\phi^2}{2} - \delta \lambda \bar{\psi}\psi \phi 
+\end{align}
+
+Le regole di Feynman che risultano da questa lagrangiana sono le seguenti: 
+
+\begin{multicols}{2}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \diagram{
+                    (a) -- [fermion, momentum = \(p\)] (b); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak
+    \begin{align}
+        D_\psi(p) = \frac{i}{\slashed{p} - m_f + i\eps} 
+    \end{align}
+\end{multicols}
+
+\begin{multicols}{2}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \diagram{
+                    (a) -- [scalar, momentum = \(p\)] (b); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak
+    \begin{align}
+        D_\phi(p) = \frac{i}{p^2 - M^2 + i\eps} 
+    \end{align}
+\end{multicols}
+
+\begin{multicols}{2}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [above left = of a] (c); 
+                \vertex [below left = of a] (d); 
+                \diagram{
+                    (a) -- [scalar] (b); 
+                    (c) -- [fermion] (a); 
+                    (a) -- [fermion] (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak
+    \begin{align}
+        -i\lambda
+    \end{align}
+\end{multicols}
+
+Usando queste, si calcolano i controtermini ordine per ordine in teoria delle perturbazioni, in modo tale che si verifichino le cosiddette \emph{condizioni di rinormalizzazione}. Nel nostro caso, vogliamo che valga: 
+
+\begin{enumerate}
+    \item La funzione a due punti della teoria deve sempre essere della forma 
+    \begin{align}
+        \frac{i}{p^2 - M^2 + i\eps}, \quad \frac{i}{\slashed{p} - m_f +i\eps}
+    \end{align}
+    A tutti gli ordini in teoria delle perturbazioni. 
+    \item Nel limite in cui le tre particelle esterne sono on-shell, voglio che il vertice sia della forma 
+    \begin{align}
+        \Gamma_{\bar{\psi}\psi\phi} = -i\lambda
+    \end{align}
+\end{enumerate}
+
+Al primo ordine in teoria delle perturbazioni, vediamo che le condizioni sono soddisfatte se i controtermini sono nulli. Il primo ordine non banale è quindi quello ad un loop. Indaghiamo nel dettaglio. 
+
+\subsection{Campo spinoriale}
+
+Considero i diagrammi di Feynman che contribuiscono alla funzione a due punti dello spinore, al livello di un loop. Un punto fondamentale è la determinazione della self energia, che corrisponde al diagramma in figura \ref{fig:selfenergyfermion}. Dalla condizione di rinormalizzazione già citata, oltre al propagatore standard, questa deve cancellare il contributo dei controtermini. Comincio allora il calcolo:   
+
+\begin{figure}
+    \caption{Contributo ad 1 loop della funzione a due punti del campo spinoriale}
+    \label{fig:selfenergyfermion}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- [fermion, momentum' = \(p\)] (b); 
+                    (b) -- [fermion, half right, momentum' = \(p+q\)] (c); 
+                    (c) -- [scalar, half right, momentum' = \(q\)] (b); 
+                    (c) -- [fermion, momentum' = \(p\)] (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+
+\begin{align}
+    -i\Sigma(p) &= (-i\lambda)^2 \int \frac{d^4k}{(2\pi)^4}\int \frac{d^4k}{(2\pi)^4}\frac{i(\slashed{k}+m_f)}{k^2 - m_f^2}\frac{i}{(k-p)^2 - M^2} \notag \\ 
+    &= \lambda^2\int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k} + m_f}{(k^2-m^2_f)[(k-p)^2-M^2]}
+\end{align}
+
+Usiamo i parametri di Feynman per combinare i denominatori: 
+
+\begin{align}
+    -i\Sigma(p) &= \int_0^1 dx \int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k}+m_f}{[-2xk\cdot p + xp^2 -xM^2 +k^2 -m^2_f +xm^2f]^2} \notag \\ 
+    &= \lambda^2 \int_0^1 dx \int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k} + m_f)}{[(k-xp)^2 - \Delta]^2}
+\end{align}
+
+Cambio la variabile di integrazione, \(k \to \ell = k-xp\), 
+
+\begin{align}
+    -i\Sigma(p) &= \lambda^2\int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4} \frac{x\slashed{p} + m_f}{[\ell^2 - \Delta]^2} \notag \\ 
+    &= -i\lambda^2 \int_0^1 dx (x\slashed{p} + m_f)\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell_E^2 + \Delta]^2}
+\end{align}
+
+Nell'ultimo passaggio abbiamo eseguito la rotazione di Wick. Per continuare con il conto usiamo la seguente formula: 
+
+\begin{align}
+    \int \frac{d^d\ell_E}{(2\pi)^d}\frac{1}{(\ell_E^2 + \Delta)^n} = \frac{\Delta^{d/2-n}}{(4\pi)^{d/2}}\frac{\Gamma(n-d/2)}{\Gamma(d/2)}
+\end{align}
+
+La formula si prova in modo diretto, calcolando l'integrale usando un paio di sostituzioni. 
+
+\begin{align}
+    \int \frac{d\Omega_{d-1}}{(2\pi)^d}\int \frac{d\ell_E \ell_E^{d-1}}{[\ell_E^2 + \Delta]^n} = \frac{1}{2}\int \frac{d\Omega_{d-1}}{(2\pi)^d}\int \frac{d(\ell_E^2)(\ell_E^2)^{\frac{d-2}{2}}}{[\ell_E^2 + \Delta]^n} 
+\end{align}
+
+Ora cambia la variabile \(\ell_E^2 \to y = \frac{\Delta}{\ell_E^2 + \Delta}\), così che \(\ell_E^2 = \frac{\Delta}{y} - \Delta\), \(d(\ell_E^2) = -\frac{\Delta}{y^2}dy\), e si ottiene 
+
+\begin{align}
+    &\int \frac{d\Omega_{d-1}}{(2\pi)^d}\int \frac{\Delta}{y^2}dy\left(\frac{y}{\Delta} \right)^n\Delta^{\frac{d-2}{2}}\left(\frac{1-y}{y} \right)^{\frac{d-2}{2}} =  \notag \\ 
+    &\frac{\Delta^{\frac{d}{2}-n}}{2}\frac{2\pi^{d/2}}{\Gamma(d/2)}\int dy y^{n-1-d/2}(1-y)^{d/2-1}
+\end{align}
+
+L'ultimo integrale in \(dy\) ricorda la definizione integrale della funzione \(\beta\) di Eulero: 
+
+\begin{align}
+    \beta(\alpha, \gamma) = \int_0^1 dx x^{\alpha-1}(1-x)^{\gamma-1} = \frac{\Gamma(\alpha)\Gamma(\gamma)}{\Gamma(\alpha+\gamma)}
+\end{align}
+
+Sostituendo, troviamo la formula citata. Usando gli stessi passaggi si può anche dimostrare un altra formula che ci tornerà utile, 
+
+\begin{align}
+    \int \frac{d^d\ell_E}{(2\pi)^d}\frac{\ell_E^2}{(\ell_E^2 + \Delta)^n} = \frac{d}{2}\frac{\Delta^{d/2+1-n}}{(4\pi)^{d/2}}\frac{\Gamma(n-d/2-1)}{\Gamma(n)}
+\end{align}
+
+Tornando a noi, il diagramma \(-i\Sigma(p)\) è (logaritmicamente) divergente per \(d=4\). Adottiamo allora il sistema di regolarizzazione di riduzione dimensionale, e prendiamo \(d = 4-2\eps\) nel limite \(\eps \to 0\). La self energia dello spinore diventa quindi 
+
+\begin{align}
+    -i\Sigma(p) = -i\frac{\lambda^2}{(4\pi)^2}\int_0^1 dx [x\slashed{p} + m_f]\left(\frac{4pi\mu^2}{\Delta} \right)^\eps \Gamma(\eps)
+\end{align}
+
+Dove abbiamo riscalato \(\lambda \to \lambda\mu^\eps\) per tenerla adimensionale. Nel limite \(\eps \to 0\), otteniamo 
+
+\begin{align}
+    \left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \Gamma(\eps) \xrightarrow{\eps \to 0} \left(1+\eps\log\left(\frac{4\pi\mu^2}{\Delta} \right) \right)\left(\frac{1}{\eps} + \gamma_E \right) = \frac{1}{\eps} + \gamma_E + \log\left(\frac{4\pi\mu^2}{\Delta} \right) + o(\eps)
+\end{align}
+
+Ovvero 
+
+\begin{align}
+    -i\Sigma(p) = -i\frac{\lambda^2}{(4\pi^2)}\int_0^1(x\slashed{p} +m_f)\left(\frac{1}{\eps} + \gamma_E + \log\left(\frac{4\pi\mu^2}{\Delta} \right) \right)
+\end{align}
+
+Se ci interessa solo la parte divergente, calcoliamo immediatamente 
+
+\begin{align}
+    -i\Sigma(p) = -i\frac{\lambda^2}{16\pi^2\eps}\left(\frac{\slashed{p}}{2} + m_f \right)
+\end{align}
+
+La condizione di rinormalizzazione chiede che questo contributo sia cancellato dai controtermini, cioè deve valere
+
+\begin{align}
+    -i\Sigma(p) = -i(\delta Z_\psi^2\slashed{p} - \delta m_f)
+\end{align}
+
+Possiamo calcolare quindi le parti infinite dei contotermini, uguagliando al lato destro e sinistro le potenze di \(\slashed{p}\): si ottiene 
+
+\begin{align}
+    \begin{cases}
+        \delta Z_\psi = \frac{\lambda^2}{32\pi^2\eps} \\ 
+        \delta m_f = -\frac{\lambda^2 m_f}{16\pi^2\eps}
+    \end{cases}
+\end{align}
+
+\subsection{Campo scalare}
+
+La stessa logica si applica al campo scalare. Richiediamo che valga 
+
+\begin{align}
+    \label{eq:scalarpropagatorrenormalizationcondition}
+    -i\Sigma(p^2) = -i(\delta Z_\phi p^2 - \delta M)
+\end{align}
+
+dove con \(-i\Sigma(p^2)\) indichiamo la self energia dello scalare, corrispondente al diagramma di Feynman in figura \ref{fig:scalarselfenergy}. Calcoliamo l'ampiezza: 
+
+\begin{figure}
+    \caption{Self energia del campo scalare}
+    \label{fig:scalarselfenergy}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- [scalar, momentum' = p] (b); 
+                    (b) -- [fermion, half right, momentum' = p+q] (c);
+                    (c) -- [fermion, half right, momentum' = q] (b); 
+                    (c) -- [scalar, momentum' = p] (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+
+\begin{align}
+    -i\Sigma(p^2) &= (-i\lambda)^2\int \frac{d^4q}{(2\pi)^4}\text{Tr}\left[\frac{i(\slashed{q}-\slashed{p}+m_f)}{[(q-p)^2 - m_f^2]}\frac{i(\slashed{q}+m_f)}{q^2-m^2_f}\right] \notag \\ 
+    &= 4\lambda^2 \int \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot p}{[(q-p)^2 - m^2_f][q^2 - m^2_f]}
+\end{align}
+
+Come al solito, uso i parametri du Feynman e cambio variabile di integrazione: 
+
+\begin{align}
+    -i\Sigma(p^2) &= 4\lambda^2 \int_0^1 dx \int  \frac{d^4q}{(2\pi)^4}\frac{m_f^2 + (q-p)\cdot q}{[xp^2 - 2xp\cdot q + q^2 - m^2_f]^2} \notag \\ 
+    &= 4\lambda^2 \int_0^1 dx \int \frac{d^4q}{(2\pi)^4}\frac{m^2_f + (q-p)\cdot q}{[(q-xp)^2 - \Delta]^2}, \quad \Delta = m^2_f - (1-x)xp^2 \notag \\ 
+    &= 4\lambda^2 \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2 + \Delta}{[\ell^2 - \Delta]^2}, \quad \ell = q-xp \notag \\ 
+    &= 4\lambda^2 \int_0^1dx (I_1 + \Delta I_2)
+\end{align}
+
+Se definiamo 
+
+\begin{align}
+    &I_1 = \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 - \Delta]^2} = \frac{2i\Delta}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps\Gamma(-1+\eps) \notag \\ 
+    &I_2 = \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2 - \Delta]^2} = \frac{-i}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \Gamma(\eps)
+\end{align}
+
+Dove abbiamo usato le formule precedentemente usate. Quindi, troviamo 
+
+\begin{align}
+    -i\Sigma(p^2) &= 4i\lambda^2 \int_0^1 dx \left[\frac{2\Delta}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta}\right)^\eps\Gamma(-1+\eps) - \frac{\Delta}{(4\pi)^2}\left( \frac{4\pi\mu^2}{\Delta}\right)^\eps \Gamma(\eps) \right] \notag \\ 
+    &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(\frac{4\pi\mu^2}{\Delta} \right)^\eps(2\Gamma(-1+\eps) - \Gamma(\eps))
+\end{align}
+
+Se ci fermiamo allo sviluppo di Laurent in \(\eps\) fino all'ordine zero, troviamo 
+
+\begin{align}
+    -i\Sigma(p^2) &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left(1+\eps\log\left(\frac{4\pi\mu^2}{\Delta}\right) \right)\left(-\frac{2}{\eps} + 2\gamma_E - 2 - \frac{1}{\eps} - \gamma_E \right) \notag \\ 
+    &= \frac{i\lambda^2}{4\pi^2}\int_0^1 dx \Delta \left[-\frac{3}{\eps} - 2+\gamma_E -2\log\left(\frac{4\pi\mu^2}{\Delta} \right)\right]
+\end{align}
+
+Se ci interessa solo la parte infinita dei controtermini, possiamo prendere 
+
+\begin{align}
+    -i\Sigma(p^2) &= -i\frac{\lambda^2}{4\pi^2}\frac{3}{\eps}\int_0^1 dx \Delta + 0(1) \notag \\ 
+    &= -i\frac{3\lambda^2}{4\pi^2\eps}\left(m_f^2 - \frac{p^2}{6}\right) + o(1)
+\end{align}
+
+Applicando quindi la condizione di rinormalizzazione \ref{eq:scalarpropagatorrenormalizationcondition}, otteniamo 
+
+\begin{align}
+    \begin{cases}
+        \delta Z_\phi = -\frac{\lambda^2}{8\pi^2\eps} \\
+        \delta m = -\frac{3\lambda^2}{4\pi^2\eps}
+    \end{cases}
+\end{align}
+
+\subsection{Costante di accoppiamento}
+
+L'ultimo passaggio del calcolo dei controtermini al primo ordine perturbativo è il calcolo del controtermine di carica \(\delta \lambda\). La condizione di rinormalizzazione che scegliamo è la seguente: il vertice deve essere quello misurato \(-i\lambda\) nel limite in cui tutte le particelle esterne sono on-shell. Chiramente a livello d'albero la condizione è soddisfatta se \(\delta \lambda^{(0)} = 0\). Invece, a livello di 1 loop, le correzioni al vertice sono molteplici: ci sono i contributi di self energia, che vengono però perfettamente cancellati dai controtermini di massa e di funzione d'onda. I 3 contributi che rimangono sono dunque vertice ad albero, vertice del controtermine e vertice "triangolo", dato dal diagramma di Feynman in figura \ref{fig:trianglediagram}. Se indichiamo con \(iA\) l'ampiezza di quest'ultimo, si ottiene che la condizione di rinormalizzazione è data da 
+
+\begin{align}
+    -i\lambda -i\delta \lambda^{(1)} +iA(m_f^2, m_f^2, M^2) = -i\lambda \implies \delta \lambda^{(1)} = A(m_f^2, m_f^2, M^2)
+\end{align}
+
+Calcolo dunque l'ampiezza \(iA\) del diagramma a triangolo: \footnote{Abbiamo scelto i momenti in modo tale che semplicassero il più possibile le masse nel calcolare l'ampiezza on-shell}
+
+\begin{figure}
+    \caption{Diagramma a triangolo che contribuisce a \(\Gamma_{\bar{\psi}\psi \phi}\) al secondo ordine perturbativo}
+    \label{fig:trianglediagram}
+    \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b); 
+                    \vertex [below left = of a](c); 
+                    \vertex [right = of a] (d); 
+                    \vertex [left = of b] (e); 
+                    \vertex [left = of c] (f); 
+                    \diagram{
+                        (b) -- [fermion] (a); 
+                        (a) -- [fermion] (c); 
+                        (a) -- [scalar] (d); 
+                        (b) -- [scalar] (c); 
+                        (e) -- [fermion] (b); 
+                        (c) -- [fermion] (f); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+\end{figure}
+
+\begin{align}
+    iA(m^2, m^2, M^2) &= (-i\lambda)^3 \int \frac{d^4k}{(2\pi)^4}\left[\frac{i(\slashed{k} + \slashed{p_1} +m)}{(k+p_1)^2-m^2} \right]\left[\frac{i(\slashed{k}-\slashed{p_2}+m)}{(k-p_2)^2-m^2} \right]\left[\frac{i}{k^2-M^2} \right] \notag \\ 
+    &= -\lambda^3 \int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k} + \slashed{p_1} + m)(\slashed{k} -\slashed{p_2} + m)}{[k^2 + 2k\cdot p_1][k^2 - 2k\cdot p_2][k^2-M^2]}
+\end{align}
+
+Notiamo che ho tre denominatori, quindi è necessario usare due parametri di Feynman. In particolare usiamo la formula
+
+\begin{align}
+    \frac{1}{ABC} = 2\int_0^1dx\int_0^{1-x}dy \frac{1}{[xA + yB + (1-x-y)C]^3}
+\end{align}
+
+Scegli \(C = k^2-M^2, \, A = k^2 + 2k\cdot p_1, \, B = k^2 - 2k\cdot p_2\). Il denominatore diventa: 
+
+\begin{align}
+    \text{Den} &= 2xk\cdot p_1 -2y k\cdot p_2 + k^2 - M^2 -xM^2 -yM^2 \notag \\
+    &= (k + xp_1 - yp_2)^2 - \underbrace{[(xp_1 - yp_2)^2 +(1-x-y)M^2]}_{=\Delta} 
+\end{align}
+
+L'ampiezza è quindi data da 
+
+\begin{align}
+    iA = -2\lambda^3 \int_0^1 dx\int_0^{1-x} dy\int \frac{d^4k}{(2\pi)^4}\frac{(\slashed{k}+ \slashed{p_1} +m)(\slashed{k}- \slashed{p_2} +m)}{[(k+xp_1 - yp_2)^2 - \Delta]^3}
+\end{align}
+
+Facciamo quindi la sostituzione \(k \to \ell = k+xp_1 - yp_2\), e otteniamo così 
+
+\begin{align}
+    iA = -2\lambda^3 \int_0^1dx \int_0^{1-x} dy \int \frac{d^4\ell}{(2\pi)^4}\frac{(\slashed{\ell} + (x+1)\slashed{p_1} - y\slashed{p_2} + m)(\slashed{\ell} + x\slashed{p_1} - (y+1)\slashed{p_2} + m)}{[\ell^2 - \Delta]^3}
+\end{align}
+
+Teniamo solo i contributi di ordine 0 e 2 in \(\ell\), che non si cancellano per parità: 
+
+\begin{align}
+    iA = -2\lambda^3\int_0^1 dx \int_0^{1-x} dy \int \frac{d^4\ell}{(2\pi)^4} &\frac{\ell^2 + x(x+1)m^2 -(x+1)(y+1)\slashed{p_1}\slashed{p_2} + m(x+1)\slashed{p_1}}{[\ell^2 - \Delta]^3} \notag \\ 
+    &+ \frac{-xy\slashed{p_2}\slashed{p_1} +y(y+1)m^2 -ym\slashed{p_2} + xm\slashed{p_1} - (y+1)m\slashed{p_2} +m^2}{[\ell^2 -\Delta]^3}
+\end{align}
+
+Che prende la forma 
+
+\begin{align}
+    iA = -2\lambda^3 \int_0^1 dx \int_0^{1-x} dy (&I_1 + (m^2(1 + x(x+1) + y(y+1)) + \notag \\ 
+    &m((2x+1)\slashed{p_1} - (2y+1)\slashed{p_2}) -((x+1)(y+1)\slashed{p_1}\slashed{p_2} + xy\slashed{p_2}\slashed{p_1}))I_2)
+\end{align}
+
+Se abbiamo definito
+
+\begin{align}
+    I_1 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta]^3} = -i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{\ell_E^2}{[\ell_E^2+\Delta]^3} \notag \\ &= -\frac{i\Gamma(\eps)}{(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \xrightarrow{\eps \to 0} -\frac{i}{16\pi^2}\left[\frac{1}{\eps} + \gamma_E + \log\left(\frac{4\pi\mu^2}{\Delta}\right) \right]
+\end{align}
+
+e similmente 
+
+\begin{align}
+    I_2 &= \int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2-\Delta]^3} = i\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell_E^2 + \Delta]^3} \notag \\ 
+    &= \frac{i}{2\Delta(4\pi)^2}\left(\frac{4\pi\mu^2}{\Delta} \right)^\eps \Gamma(1+\eps) \xrightarrow{\eps \to 0}  \frac{i}{32\pi^2\Delta}
+\end{align}
+
+Come ci si aspetta anche dal grado superficiale di divergenza, vediamo che \(I_1\) diverge logaritmicamente mentre \(I_2\) è UV finito. 
+
+Fortunatamente dobbiamo calcolare esplicitamente solamente la parte divergente dell'integrale, mentre possiamo lasciare indicata simbolicamente le parti finite. La parte divergente è quindi data da 
+
+\begin{align}
+    iA = 2\int_0^1 dx \int_0^{1-x}dy \frac{i\lambda^3 }{16\pi^2 \eps} + o(1) =  \frac{i\lambda^3 }{16\pi^2 \eps} + o(1) \quad \eps \to 0 
+\end{align}
+
+Concludiamo quindi che 
+
+\begin{align}
+    \delta \lambda^{(1)} = A = \frac{\lambda^3}{16\pi^2 \eps}
+\end{align}
+
+\subsection{Controtermini in diversi schemi di rinormalizzazione}
+
+Nel caso in cui volessi usare diverse schemi di rinormalizzazione, i controtermini sono leggermente diversi. Ad esempio mettiamo io voglia calcolare i controtermini usando lo schema on-shell: è facile vedere che con le nostre convenzioni, deve valere 
+
+\begin{align}
+    &\delta M^2 = -\Sigma_\phi(M^2) \notag \\ 
+    &Z_\phi = \frac{1}{1-\Sigma_\phi'(p^2 = M^2)} \simeq \Sigma'(p^2 = M^2)\notag \\
+    &\delta m_f = \Sigma_\psi (m_f) \notag \\ 
+    &Z_\psi = \frac{1}{1-\Sigma'(p = m_f)} \simeq \Sigma'(p = m_f)
+\end{align}
+
+Date le espressioni già calcolate, è facile vedere che 
+
+\begin{align}
+    &\Sigma_\phi (M^2) = \frac{3\lambda^2}{4\pi^2\eps}[m_{f,0}^2 - \frac{M^2}{6}] \notag \\ 
+    &\Sigma'_\phi(p^2 = M^2) = \frac{\lambda^2}{8\pi^2\eps} \notag \\ 
+    &\Sigma_\psi(\slashed{p} = m_f) = \frac{3m_f\lambda^2}{32\pi^2\eps}
+\end{align}
+
+Per la self energia del fermione, ricorda che vale 
+
+\begin{align}
+    \Sigma_\psi (\slashed{p}) = A(p^2, m)\mathbb{I} + B(p^2, m)\slashed{p} \implies \frac{\partial \Sigma_\psi}{\partial \slashed{p}} = 2\slashed{p}\frac{\partial A}{\partial p^2} + B + 2p^2\frac{\partial B}{\partial p^2}
+\end{align}
+
+
+Nel nostro caso, \(B = A/2 = \frac{\lambda^2}{32\pi^2\eps}\). Si trova quindi 
+
+\begin{align}
+    \Sigma'_\psi = \frac{\lambda^2}{32\pi^2\eps}
+\end{align}
+
+\newpage 
+
+\section{Nuova fisica nel decadimento del muone}
+
+Consideriamo adesso un'estensione del Modello Standard, in cui è possibile il decadimento del muone 
+
+\begin{align}
+    \mu^- \to e^- \, \gamma
+\end{align}
+
+Consiste nell'aggiunta di un campo scalare carico \(\phi^+\), e di un fermione \(\Psi\), con massa rispettivamente \(M_\phi, M_\Psi\). La lagrangiana di interazione con il campo del fotone, elettrone e muone è data da 
+
+\begin{align}
+    \mathcal{L}_{\text{int}} = (D_\nu \phi^+)(D^\nu \phi^+)^* + y_e (\bar{\Psi}\psi_e \phi^+ + \, \text{h.c.}) + y_\mu (\bar{\Psi}\psi_\mu \phi^+ + \, \text{h.c.})
+\end{align}
+
+se \(D_\nu = \partial_\nu + ieA_\nu\), cioè la derivata covariante rispetto alle trasformazioni di gauge \(U(1)\) dell'elettromagnetismo. 
+
+\subsection{Regole di Feynman della teoria}
+
+Questa lagrangiana di interazione permette l'aggiunta di 4 vertici al modello standard. I diagrammi di Feynman corrispondenti sono in figura \ref{fig:newvertexes}. 
+
+\begin{figure}
+    \caption{Nuovi vertici aggiunti dall'estensione}
+    \label{fig:newvertexes}
+    \begin{multicols}{4}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b) {\(\bar{\Psi}\)}; 
+                    \vertex [below left = of a] (c) {\(e^-\)}; 
+                    \vertex [right = of a] (d) {\(\phi^+\)}; 
+                    \diagram{
+                        (c) -- [fermion] (a); 
+                        (a) -- [fermion] (b); 
+                        (a) -- [scalar] (d); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b) {\(\bar{\Psi}\)}; 
+                    \vertex [below left = of a] (c) {\(\mu^-\)}; 
+                    \vertex [right = of a] (d) {\(\phi^+\)}; 
+                    \diagram{
+                        (c) -- [fermion] (a); 
+                        (a) -- [fermion] (b); 
+                        (a) -- [scalar] (d); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b) {\(\phi^{+*}\)}; 
+                    \vertex [below left = of a] (c) {\(\phi^+\)}; 
+                    \vertex [right = of a] (d) {\(A_\mu\)}; 
+                    \diagram{
+                        (c) -- [scalar] (a); 
+                        (a) -- [scalar] (b); 
+                        (a) -- [boson] (d); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [above left = of a] (b) {\(\phi^{+*}\)}; 
+                    \vertex [below left = of a] (c) {\(\phi^+\)}; 
+                    \vertex [above right = of a] (d) {\(A_\mu\)}; 
+                    \vertex [below right = of a] (e) {\(A_\nu\)}; 
+                    \diagram{
+                        (c) -- [scalar] (a); 
+                        (a) -- [scalar] (b); 
+                        (a) -- [boson] (d); 
+                        (a) -- [boson] (e); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \end{multicols}
+\end{figure}
+
+Sempre dalla lagrangiana leggiamo le regole di Feynman: in particolare, troviamo: 
+
+\begin{align}
+    \Gamma_{\bar{\psi}\psi_e \phi^+} = -iy_e, \quad \Gamma_{\bar{\psi}\psi_\mu \phi^+} = -iy_\mu
+\end{align}
+
+Per ricavare quelle per l'interazione fra il campo scalare e il campo elettromagnetico, sviluppo la derivata covariante: 
+
+\begin{align}
+    (D_\nu \phi^+)(D^\nu \phi^+)^* &= (\partial_\nu \phi^+ +ieA_\nu \phi^+)(\partial^\nu \phi^{+*} -ieA^\nu \phi^{+*}) \notag \\
+    &= (\partial_\nu \phi^+)(\partial^\nu \phi^+)^* +ieA_\nu (\phi^+(\partial_\nu \phi^+)^* - \phi^{+*}(\partial_\nu\phi^+)) + e^2 A_\nu A^\nu |\phi^+|^2
+\end{align}
+
+Ricordando quindi che siamo nello spazio dei momenti e possiamo sostituire \(\partial_\mu \to ip_\mu\), e che nel vertice a 4 dobbiamo moltiplicare per un fattore 2, data la simmetria dei bosoni vettori esterni, si trova 
+
+\begin{align}
+    \Gamma_{\phi^+ \phi^{+*} A_\mu} = ie(p_2-p_1)^\mu, \quad \Gamma_{\phi^+ \phi^{+*} A_\mu A_\nu} = 2ie^2 g^{\mu\nu}
+\end{align}
+
+\subsection{Contributo al fattore di forma}
+
+Consideriamo ancora il decadimento \(\mu^- \to e^- \gamma\). Esistono 3 diagrammi ad un loop nella nostra teoria che rendono possibile il processo, illustrati in figura \ref{fig:muongammadecayfeynman}. Poichè la teoria conserva la parità, è chiaro, dalle considerazioni dell'esercizio sul decadimento del muone, che la struttura totale della ampiezza dovrà essere della forma \(\mathcal{M}^\mu = \bar{u}_e(p_2)[if_1 \sigma^{\mu\nu}q_\nu] u_\mu (p_1)\). Tra questi, i due diagrammi di self energia sono \(\propto \gamma^\mu\), e divergenti. Non contribuiscono dunque ad \(f_1\), ma solo il diagramma "a triangolo" lo fa. Vediamo dunque di esprimere il fattore di forma \(f_1\) proprio in termini di integrali di loop.    
+
+\begin{figure}
+    \caption{Diagrammi di Feynman per il decadimento \(\mu^- \to e^- \gamma\)}
+    \label{fig:muongammadecayfeynman}
+    \begin{center}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\mu^-\)}; 
+                \vertex [right = of a] (b); 
+                \vertex [above right = of b] (c); 
+                \vertex [right = of c] (d) {\(e^-\)};  
+                \vertex [below right = of c] (e); 
+                \vertex [right = of e] (f) {\(A_\mu\)}; 
+                \diagram{
+                    (a) -- [fermion] (b); 
+                    (b) -- [fermion, edge label = \(\Psi\)] (c); 
+                    (c) -- [fermion] (d); 
+                    (c) -- [scalar, edge label = \(\phi^+\)] (e); 
+                    (b) -- [scalar, edge label = \(\phi^{+*}\), half right] (e); 
+                    (e) -- [boson] (f); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\mu^-\)}; 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \vertex [above right = of d] (e) {\(e^-\)}; 
+                \vertex [below right = of d] (f) {\(A_\mu\)}; 
+                \diagram{
+                    (a) -- [fermion] (b); 
+                    (b) -- [fermion, half left, edge label = \(\Psi\)] (c);
+                    (b) -- [scalar, half right, edge label' = \((\phi^+)^*\)] (c); 
+                    (c) -- [fermion] (d); 
+                    (d) -- [fermion] (e); 
+                    (d)  -- [boson] (f); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a) {\(\mu^-\)}; 
+                \vertex [right = of a] (b); 
+                \vertex [above right = of b] (c); 
+                \vertex [below right = of b] (d) {\(A_\mu\)}; 
+                \vertex [right = of c] (e); 
+                \vertex [right = of e] (f) {\(e^-\)}; 
+                \diagram{
+                    (a) -- [fermion] (b); 
+                    (b) -- [fermion, edge label = \(\mu^-\)] (c);
+                    (b) -- [boson] (d); 
+                    (c) -- [fermion, half left, edge label = \(\Psi\)] (e); 
+                    (c) -- [scalar, half right, edge label' = \((\phi^+)^*\)] (e); 
+                    (e) -- [fermion] (f); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+Chiamiamo la ampiezza totale \(\mathcal{M}^\mu = \mathcal{M}^\mu_1 +\mathcal{M}^\mu_2 + \mathcal{M}^\mu_3\). Usando le regole di Feynman troviamo (supponendo che valga \(M = M_\Psi = M_\phi\))
+
+\begin{align}
+    &\mathcal{M}^\mu_1 = \bar{u}_e(p_2)(y_ey_\mu e) \left(\int \frac{d^4k}{(2\pi)^4}\frac{(-2k + p_1 + p_2)^\mu (\slashed{k}+M)}{[(k-p_1)^2 - M^2][(k-p_2)^2 - M^2][k^2 - M^2]}\right) u_\mu (p_1) \notag \\
+    &\mathcal{M}^\mu_2 = \bar{u}_e(p_2)(y_e y_\mu e)\gamma^\mu \frac{\slashed{p}_1}{m^2_\mu}\left(\int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k}+M}{[k^2-M^2][(k-p_1)^2 - M^2]} \right)u_\mu (p_1) \notag \\
+    &\mathcal{M}^\mu_3 = -\bar{u}_e(p_2)(ey_e y_\mu)\left(\int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k} + M}{[k^2 - M^2][(k-p_2)^2 - M^2]} \right)\frac{\slashed{p}_2 + m_\mu}{m_\mu^2}\gamma^\mu u_\mu (p_1)
+\end{align}
+
+Cominciamo il calcolo manipolando la ampiezza del diagramma a triangolo, cioè \(\mathcal{M}_1^\mu\). In particolare, vogliamo scriverlo nella base che abbiamo indicato di matrici di Dirac (cioè \(\gamma^\mu, q^\mu, \sigma^{\mu\nu}q_\nu\)). Dopodiché, le parti \(\propto q^\mu\) si cancellano perché si contraggono con il vettore di polarizzazione del fotone esterno, \(\eps^*(q)\). La parte invece \(\propto \gamma^\mu\) deve cancellare il contributo delle self energie, in modo che rimanga solamente la struttura \(\propto \sigma^{\mu\nu}q_\nu\), che è proprio il fattore di forma \(f_1\) da noi cercato. 
+
+Per prima cosa, mostrerò come scrivere \(\mathcal{M}_1^\mu\) in termini di \(\gamma^\mu, \sigma^{\mu\nu}q_\nu\). Poi per completezza mostrerò che le parti \emph{UV divergenti} dell'ampiezza si cancellano, così che la ampiezza sia finita. Questo è un test non banale sulla scrittura corretta della ampiezza. Per le parti finite invece ci fideremo dell'identità di Ward. Successivamente, potremo isolare il fattore di forma \(f_1\), in termini di integrali sui parametri di Feynman su funzioni razionali. 
+
+Chiamiamo \(I\) l'integrale di loop in \(\mathcal{M}_1\). Introduciamo i parametri di Feynman: 
+
+\begin{align}
+    I &= 2\int_0^1 dx \int_0^{1-x}dy \int \frac{d^4k}{(2\pi)^4}\frac{(-2k + p_1 + p_2)^\mu (\slashed{k}+M)}{[-2xk\cdot p_1 +xm_\mu^2 -2k\cdot p_2 +k^2 -M^2]^3} \notag \\
+    &= 2\int_0^1 dx \int_0^{1-x}dy \int \frac{d^4k}{(2\pi)^4}\frac{(-2k + p_1 + p_2)^\mu (\slashed{k}+M)}{(k-xp_1 -yp_2)^2 -M^2 -xym_\mu^2 -x(1-x)m^2_\mu} \notag \\ 
+    &= 2 \int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{(-2k + (1-2x)p_1 + (1-2y)p_2)^\mu (\slashed{\ell} + xm_\mu + M)}{[\ell^2 - \Delta]^3}
+\end{align}
+
+Nell'ultimo passaggio abbiamo cambiato variabile di integrazione \(k \to \ell = k - xp_1 - yp_2\), definito \(\Delta = M^2 + xym_\mu^2 + x(1-x)m_\mu^2\), ed usato l'eq. di Dirac, \(\bar{u}_\mu(p_1)\slashed{p_1} = \bar{u}_\mu (p_1)m_\mu\), ed \(\slashed{P_1}u_e(p_1) = 0\). Per parità soppravvivono nell'integrale solo le componenti \(\propto \ell^2, \, \ell^0\): 
+
+\begin{align}
+    I = 2\int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{-2\ell^\mu \slashed{\ell} + ((1-2x)p_1 + (1-2y)p_2)^\mu(xm_\mu +M)}{[\ell^2 - \Delta]^3}
+\end{align}
+
+Immediatamente vediamo che il diagramma ha una parte logaritmicamente divergente, ed una parte convergente. La parte divergente è \(\propto \gamma^\mu\), e serve per cancellare le divergenze dei diagrammi con le self-energie. Vediamolo esplicitamente: 
+
+\begin{align}
+    \label{eq:infinitetriangle}
+    I' &= -4 \gamma_\nu \int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^\mu \ell^\nu}{[\ell^2 -\Delta]^3} = -\frac{4}{d} \gamma^\mu \int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell^2}{[\ell^2 -\Delta]^3} \notag \\ 
+    &= \frac{4i}{d}\int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{\ell_E^2}{[\ell_E^2 + \Delta]^3} = \frac{2i}{d}\gamma^\mu \frac{d}{2}\frac{\Gamma(\eps)}{2(4\pi)^2} = \frac{i\gamma^\mu}{32\pi^2\eps} + o(1)
+\end{align}
+
+Per calcolare le ampiezze degli altri due diagrammi, comincio con il sottodiagramma della self energia: 
+
+\begin{align}
+    -i\Sigma(p) &= (y_e y_\mu) \int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k}+M}{(k^2 -M^2)((k-p)^2 - M^2)} \notag \\ 
+    &= (y_e y_\mu) \int_0^1 dx \int \frac{d^4k}{(2\pi)^4}\frac{\slashed{k}+M}{[xp^2 -2xp\cdot k + k^2 - M^2]^2} \notag \\ 
+    &= (y_e y_\mu) \int_0^1 dx \int \frac{d^4\ell}{(2\pi)^4}\frac{x\slashed{p} + M}{[\ell^2 - \Delta]^2}
+\end{align}
+
+Dove abbiamo cambiato variabile di integrazione \(k \to \ell = k-xp\), chiamato \(\Delta = M^2 -x(1-x)p^2\). Proseguendo con il calcolo, otteniamo 
+
+\begin{align}
+    -i\Sigma(p) &= (y_e y_\mu)\int_0^1 dx (x\slashed{p} + M)\int \frac{d^4\ell}{(2\pi)^4}\frac{1}{[\ell^2 - \Delta]^2} = -i(y_e y_\mu) \int_0^1 dx (x\slashed{p} + M)\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{[\ell_E^2 + \Delta]^2} \notag \\ 
+    &= \frac{-iy_e y_\mu}{(4\pi)^2\eps}\left(\frac{\slashed{p}}{2} +M \right) +o(1)
+\end{align}
+
+Possiamo allora facilmente calcolare la parte infinita dell'ampiezza dei diagrammi di self energia: 
+
+\begin{align}
+    \mathcal{M}_2^\mu = \bar{u}_e (-ie\gamma^\mu)\frac{i\slashed{p_1}}{m^2_\mu}(-i\Sigma(p_1))u_\mu (p_1)
+\end{align}
+
+Usando l'eq. di Dirac e semplificando, si ottiene facilmente 
+
+\begin{align}
+    \mathcal{M}_2^\mu = -i\frac{ey_e y_\mu}{(4\pi)^2\eps}\left(\frac{1}{2} + \frac{M}{m_\mu} \right)\bar{u}_e(p_2)
+\end{align}
+
+Svolgiamo gli stessi passaggi per il terzo diagramma: 
+
+\begin{align}
+    \mathcal{M}_3^\mu &= \bar{u}_e(p_2)(-i\Sigma(p_2))\frac{i(\slashed{p_2}+m_\mu)}{-m_\mu^2}(-ie\gamma^\mu)u_\mu(p_1) \notag \\
+    &= i\frac{e y_e y_\mu}{(4\pi)^2\eps}\left(\frac{\slashed{p}_2}{2}+M \right)\left(\frac{\slashed{p}_2 + m_\mu}{m_\mu^2} \right)\gamma^\mu u_\mu (p_1) \notag \\ 
+    &= i\frac{e y_e y_\mu}{(4\pi)^2\eps}\left(\frac{M}{m_\mu} \right)\bar{u}_e(p_2)\gamma^\mu u_\mu(p_1)
+\end{align}
+
+Troviamo quindi 
+
+\begin{align}
+    \mathcal{M}_2^\mu + \mathcal{M}_3^\mu = -i\frac{e y_e y_\mu}{32\pi^2\eps}\bar{u}_e(p_2)\gamma^\mu u_\mu (p_1) + o(1)
+\end{align}
+
+che è esattamente l'opposto del termine infinito calcolato da \(\mathcal{M}_1^\mu\) (eq. \ref{eq:infinitetriangle}). 
+
+Avendo verificato che l'identità di Ward funziona per i termini \(\propto \eps^{-1}\), ci fidiamo che cancelli anche i termini finiti, proprizionali a \(\gamma^\mu\). Torniamo quindi a considerare la parte convergente rimasta dell'integrale: 
+
+\begin{align}
+    I'' = 2\int_0^1 dx \int_0^{1-x}dy \int \frac{d^4\ell}{(2\pi)^4}\frac{(xm_\mu +M)((1-2x)p_1^\mu + (1-2y)p_2^\mu)}{[\ell^2 -\Delta]^3}
+\end{align}
+
+Si calcola subito l'integrale in \(\ell\): 
+
+\begin{align}
+    I'' = \frac{i}{(4\pi)^2}\int_0^1 dx \int_0^{1-x}dy \frac{(M+xm_\mu)((1-2x)p_1^\mu + (1-2y)p_2^\mu)}{\Delta}
+\end{align}
+
+Scrivo \(p_1, p_2\) in termini di \(p = p_1+p_2\), \(q = p_1-p_2\) (cioè usando \(p_1 = (p+q)/2\) ed \(p_2 = (p-q)/2\)). Questo è conveniente perchè i pezzi \(\propto q^\mu\) si contraggono e si cancellano con il vettore di polarizzazione del fotone esterno, \(\eps_\mu(q)\). Si ottiene così 
+
+\begin{align}
+    I'' = i\frac{p_1^\mu + p_2^\mu}{16\pi^2}\int_0^1 dx \int_0^{1-x}dy \frac{(M+xm_\mu)(1-x-y)}{\Delta}
+\end{align}
+
+Posso ora usare l'identità di Gordon, e scartare il termine \(\propto \gamma^\mu\). Si ottiene allora una espressione per la ampiezza totale: 
+
+\begin{align}
+    i\mathcal{M}^\mu = i \bar{u}_e(p_2)\left[\frac{-i(ey_ey_\mu)\sigma^{\mu\nu}q_\nu}{16\pi^2}\int_0^1 dx \int_0^{1-x}dy \frac{(M+xm_\mu)(1-x-y)}{\Delta}\right]u_\mu (p_1)
+\end{align}
+
+Confrontando l'espressione con \(\mathcal{M}^\mu = i\bar{u}_e(p_2)f_1\sigma^{\mu\nu}q_\nu u_\mu(p_1)\), si legge immediatamente 
+
+\begin{align}
+    f_1 = -\frac{(ey_e y_\mu)}{16\pi^2}\int_0^1 dx \int_0^{1-x}dy \frac{(M+xm_\mu)(1-x-y)}{\Delta}
+\end{align}
+
+\subsection{Calcolo esplicito degli integrali di loop}
+
+Per determinare \(f_1\), devo calcolare il doppio integrale in \(x, y\). L'integranda è una funzione razionale, del primo grado in \(y\) e del secondo grado in \(x\). L'integrazione è certamente possibile quindi ma anche poco gradevole. Esplicitando \(\Delta\), l'integrale da risolvere è dato da 
+
+\begin{align}
+    \int_0^1 dx \int_0^{1-x}dy \frac{(M+xm_\mu)(1-x-y)}{M^2 +xym^2_\mu - x(1-x)m^2_\mu}
+\end{align}
+
+L'integrale in \(y\) è la somma di due integrali elementari: 
+
+\begin{align}
+    \int_0^{1-x}dy \left(\frac{a}{b+cy}\right) = \frac{a}{c}\log\left(\frac{b +c(1-x)}{b} \right), \quad \int_0^{1-x}dy \left(\frac{ay}{b+cy}\right) = \frac{a}{c}\left[1-x-\frac{b}{c}\log\left(\frac{b+c(1-x)}{b} \right) \right]
+\end{align}
+
+Usando queste formule, otteniamo
+
+\begin{align}
+    \int_0^1 dx \left(\frac{M+xm_\mu}{x^2 m_\mu^4} \right)\left[xm_\mu^2(x-1) + M^2\log\left(\frac{M^2-x(1-x)m_\mu^2}{M^2} \right)\right]
+\end{align}
+
+
+
 
 \end{document}
 

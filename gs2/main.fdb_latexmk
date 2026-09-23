@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1776327265 "/home/giacomo_galliani/documents/gs2/main.tex" "main.pdf" "main" 1776327266
+["pdflatex"] 1790090578 "/home/giacomo_galliani/appunti/gs2/main.tex" "main.pdf" "main" 1790090580
   "/etc/texmf/web2c/texmf.cnf" 1763917403 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/giacomo_galliani/documents/gs2/main.tex" 1776327264 42747 6f8c4a9bc4536e643327a9fb253ef347 ""
+  "/home/giacomo_galliani/appunti/gs2/main.tex" 1790090578 47988 969350deb179f2e0ab52c48ac5998d1f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1640468671 3136 aac2e2476de8af6c827239df395814ee ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1640468671 2914 8283dfc24eaf1964346f843d7605c2b0 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -55,6 +55,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb" 1640468671 242844 272316029410f80b74af52f845ebe348 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb" 1640468671 269694 aaa4ec66041f739d25146321feddb50c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb" 1640468671 230451 72745fed20f6a7d3da4ddd8a9b788e85 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb" 1136849748 18865 ebb26de41fddbc82c044d680eec38cec ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb" 1136849748 24244 ffc0312cbd155e940e16287bb7cbb16c ""
   "/usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntx-Regular-tlf-ot1.vf" 1583272976 956 44be8e0aea9c6d145fc21c9948a6b4b5 ""
   "/usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxexa.vf" 1487028062 576 6ffe6b42c20f7fbf4391e66fec9eda3f ""
@@ -363,9 +364,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1763985202 2799529 aa51b4209c5317024e3e8cadfa5c1e89 ""
   "letterfonts.tex" 1763992645 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1763992645 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1776327266 7434 646f6755ecfda1a54e3bf88c2c3b172b "pdflatex"
-  "main.tex" 1776327264 42747 6f8c4a9bc4536e643327a9fb253ef347 ""
-  "main.toc" 1776327266 989 27723859021e5aa126e77c7c5e5105b9 "pdflatex"
+  "main.aux" 1790090580 8348 1f97e97d3a1a8779f1146ace77d8ba4f "pdflatex"
+  "main.tex" 1790090578 47988 969350deb179f2e0ab52c48ac5998d1f ""
+  "main.toc" 1790090580 1090 1baa84ee2b9348ca99ad9e5ee49ef3ae "pdflatex"
   "preamble.tex" 1774795854 20122 c6f9826e5f0bd44606b5da79e7748fd4 ""
   "settings/fncystyle.sty" 1765982971 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)

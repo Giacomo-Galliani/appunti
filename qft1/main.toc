@@ -24,4 +24,11 @@
 \contentsline {chapter}{\numberline {6}The path integral formulation of QFT}{37}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Formalism in standard QM}{37}{section.6.1}%
 \contentsline {section}{\numberline {6.2}From QM to QFT}{40}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Functional quantisation of fermion fields}{42}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Grassman numbers}{42}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}The fermion propagator}{44}{subsection.6.3.2}%
+\contentsline {chapter}{\numberline {7}UV divergences}{45}{chapter.7}%
+\contentsline {section}{\numberline {7.1}1 Loop corrections in \(\phi ^4\) theory}{45}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Counting the infinites}{47}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Renormalization}{48}{section.7.3}%
 \contentsfinish 

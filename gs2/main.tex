@@ -13,7 +13,7 @@
 \renewcommand{\contentsname}{Indice}
 
 \title{\Huge{\textbf{Appunti di Gravità e Superstringhe 2}}}
-\author{Giacomo Galliani, corso del prof. A. Amariti}
+\author{Giacomo Galliani, corso del prof. A. Amariti,  A. Santambriogio}
 \date{Anno accademico 2025-2026}
 
 \begin{document}
@@ -25,7 +25,7 @@
 \tableofcontents
 \pagebreak
 
-
+%\part{Introduzione alla teoria delle stringhe}
 
 \chapter{La stringa classica}
 
@@ -863,5 +863,105 @@ Ad esempio, se ho un boost, la carica è data da
 \begin{align}
     M^{0i} = \int d\sigma (c\tau P^{\tau i} - X^i P^{\tau 0}) = ctP^i - \int d\sigma X^i P^{\tau 0}
 \end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%\part{Introduzione alla Supersimmetria}
+
+\chapter{Motivazioni allo studio della supersimmetria}
+
+Perché i fisici nello scorso secolo si sono interessati così tanto alla supersimmetria? Vi sono molte ragioni teoriche, anche di carattere molto pratico. Cominciamo con una di carattere più filosofico: il modello standard delle particelle elementari (SM) ha due simmetrie: una di spaziotempo, cioè la simmetria sotto il gruppo di Poincaré, ed un altra invece detta interna, cioè la simmetria di gauge sotto il gruppo \(SU(3)\times SU(2)\times U(1)\). Possiamo indicare l'algebra globale come \(\mathcal{P} + g\). Vorremmo unificare queste simmetrie, all'interno di una algebra \(\mathcal{A}\) più grande, che le contiene (\(\mathcal{P} \oplus g \subset A\)), in modo non banale.  
+
+Inoltre, lo SM ha due tipi di particelle: fermioni e bosoni. Se si trovasse una simmetria che connettesse questi due tipi di particelle così diverse, sarebbe un grande progresso teorico. Un ultima motivazione sono le divergenze quadratiche del SM. Ad esempio, se uno calcola i controtermini alla massa di Higgs, \(\delta M_H\), diciamo introducendo come tecnica di regolazione un cut-off, allora si trova che \(\delta M_H \propto \Lambda^2\). In teoria dei campi si dice che la teoria ha delle divergenze quadratiche. Per lo SM, \(\Lambda \approx 10^{14/15}\) GeV. Si ha quindi che la sottrazione di due termini enormi, dia luogo ad una massa \(M_H \approx 100\) GeV. Questo non è impossibile, ma poco probabile: si tratta del cosiddetto \emph{problema della gerarchia}. Il problema non si pone in SUSY perché le divergenze sono al massimo logaritmiche. Infine, nello SM si pensa che le tre costanti \(e, g_W, g_s\) tendano, con l'aumento dell'energia, allo stesso valore \(g'\). Sembra che la convergenza sia più semplice se si assume che la teoria è supersimmetrica. 
+
+Come possiamo allargare la simmetria di una teoria, nel modo non banale descritto all'inizio? Cominciamo a studiare una teoria di uno scalare autointeragente, con la seguente azione: 
+
+\begin{align}
+    S = \int d^4 x (\partial_\mu \phi)(\partial^\mu \phi)^\dagger - m^2 \phi \phi^\dagger - \lambda^2(\phi\phi^\dagger)^2
+\end{align}
+
+Quali sono le simmetrie della teoria? Certamente abbiamo la simmetria di Poincaré, \(\mathcal{P}\). Inoltre, considera la trasformazione \(\phi \to e^{i\alpha}\phi\). Si tratta di una trasformazione globale di fase, cioè del gruppo \(U(1)\), ed è immediato vedere che realizza una simmetria della lagrangiana. 
+
+Queste simmetrie portano (teo. di Noether) delle cariche conservate. Osserviamole: 
+
+\begin{enumerate}
+    \item Simmetrie di spaziotempo \(\mathcal{P}\): Abbiamo invarianza sotto traslazioni spaziotemporali, che porta il tensore di energia momento ad avere divergenza nulla, \(\partial_\mu T^{\mu\nu} = 0\). Definendo poi \(P^\nu = \int d^3x T^{0\nu}\), si ottiene che \(\frac{d}{dt}P^\nu = 0\). Invece, la simmetria rispetto alle trasformazioni di Loretnz porta alla conservazione del momento angolare: vale \(\partial_\mu J^{\mu, \nu \rho} = 0\), definendo \(J^{\nu\rho} = \int d^3x J^{0, \nu\rho}\), si ottiene allora \(\frac{d}{dt}J^{\nu\rho} = 0\).
+    \item Dalla simmetria interna, la corrente conservata è data da \(j^\mu = i(\phi(\partial^\mu\phi^\dagger) - (\partial^\mu\phi)\phi^\dagger)\). Infatti, si calcola immediatamente la sua divergenza, 
+    \begin{align}
+        \partial_\mu j^\mu = i(\phi \square \phi^\dagger - (\square \phi)\phi^\dagger)
+    \end{align}
+    Per sapere come è fatto \(\square \phi\), calcola le equazioni del moto: 
+    \begin{align}
+        \frac{\partial \mathcal{L}}{\partial \phi} = \partial_\mu \frac{\partial \mathcal{L}}{\partial (\partial_\mu\phi)} \implies -m^2\phi^\dagger -2\lambda\phi(\phi\phi^\dagger) = \square \phi^\dagger \implies \begin{cases}
+            \phi\square\phi^\dagger = -m^2\phi\phi^\dagger - 2\lambda(\phi\phi)^\dagger \\
+            \phi^\dagger\square\phi = -m^2\phi\phi^\dagger - 2\lambda(\phi\phi)^\dagger
+        \end{cases}
+    \end{align}
+    Immediatamente vediamo che la corrente è conservata. Come solito definiamo allora \(Q = \int d^3x j^0\), così che \(\frac{d}{dt}Q = 0\). 
+\end{enumerate}
+
+Come è fatta quindi l'algebra di simmetria? L'algebra di Poincaré è la solita, 
+
+\begin{align}
+    &[P_\mu, P_\nu] = 0 \notag \\
+    &[P_\mu, J_{\nu\rho}] = \eta_{\mu\nu}P_\rho - \eta_{\mu\rho}P_\nu \notag \\ 
+    &[J_{\mu\nu}, J_{\rho\sigma}] = \eta_{\mu\nu}J_{\rho\sigma} +\eta_{\nu\rho}J_{\mu\sigma} - \eta_{\mu\rho}J_{\nu\sigma} -\eta_{\nu\sigma}J_{\mu\rho}
+\end{align}
+
+Invece la carica \(Q\) realizza l'algebra di \(\mathfrak{u}\)(1), poiché semplicemente \([Q, Q] =0\). Inoltre, poiché vale 
+
+\begin{align}
+    &[Q, P_\mu] = 0 \notag \\ 
+    &[Q, J_{\mu\nu}] = 0 
+\end{align}
+
+L'algebra totale è la somma diretta, \(\mathcal{P} \oplus \mathfrak{u}\)(1). Vorremmo allargare questa algebra di simmetria. Come facciamo? Osserviamo che è molto semplice allargare la simemtria interna, ad esempio ampliando \(\mathfrak{u}(1) \to \mathfrak{u}(N)\). Basta scrivere la lagrangiana in termini di un multipletto di \(N\) campi: 
 
 \end{document}

@@ -25,6 +25,432 @@
 \tableofcontents
 \pagebreak
 
+\chapter{Argomenti di relatività generale avanzata}
+
+
+\section{Equazioni di struttura di Maurer-Cartan}
+
+Consideriamo il formalismo delle connessioni e della curvatura. Introdurremo ora una base ortogonale nello spazio tangente, che non è necessariamente ottenuta da un sistema di coordinate. In questo modo, il legame con le teorie di gauge diventerà più trasparente. 
+
+
+Definisco la base delle coordinate come 
+
+\begin{align}
+    \hat{e}_{(\mu)} = \partial_\mu \quad \text{in} \, T_x(X)
+\end{align}
+
+e la sua base duale 
+
+\begin{align}
+    \hat{\theta}^{(\mu)} = dx^\mu
+\end{align}
+
+Invece, indicheremo con \(\hat{e}_{(a)}\) una base ortonormale, e usiamo gli indici latini. Questi indici sono anche detti indici piatti o di Lorentz, mentre quelli greci sono detti anche curvi. Il fatto che sia una base ortogonale, assicura che valga 
+
+\begin{align}
+    g(\hat{e}_a, \hat{e}_b) = \eta_{ab}
+\end{align}
+
+dove \(\eta_{ab}\) è la metrica di Minkowski. In 4 dimensioni, \(hat{e}_a\) è detta tetrade, oppure "vierbein", cioè quattrogambe, mentre in dimensione arbitraria è detta "vielbein", cioè molte gambe. 
+
+
+Possiamo sviluppare \(\hat{e}_a\) nella base di \(\hat{e}_{(\mu)}\), cioè scrivere \(\hat{e}_a = e^\mu_a \hat{e}_\mu\), con \(e^\mu_a\) una matrice \(N \times N\) invertibile, cioè \(e^\mu_a \in GL(N, \mathbb{R})\). Allora esiste la matrice inversa, che è data da \(e^a_\mu\), e che soddisfa 
+
+\begin{align}
+    e^a_\mu e^\mu_b = \delta^a_b \\
+    e^\mu_a e^a_\nu = \delta^\mu_\nu
+\end{align}
+
+Inserendo questo sviluppo nella condizione di ortogonalità, si ottiene 
+
+\begin{align}
+    g_{\mu\nu} = \eta_{ab}e^a_\mu e^b_\nu, \quad \eta_{ab} = g_{\mu\nu}e^\mu_a e^\nu_b
+\end{align}
+
+per questa relazione la matrice \(e^a_\mu\) è talvolta detta "radice della metrica". Una base o.n. nello spazio cotangente \(T^*_x(X)\), invece rispetta 
+
+\begin{align}
+    \hat{\theta}^{(a)}(\hat{e}_{(b)}) = \delta^a_b
+\end{align}
+
+\ex{Metrica simile a Swartschild}{
+
+    Considera la metrica data da 
+
+    \begin{align}
+        ds^2 = -V(r)dt^2 + \frac{dr^2}{V(r)} + r^2(d\theta^2 + \sin^2\theta d\varphi^2)
+    \end{align}
+
+    Allora una possibile base ortonormale è data da 
+
+    \begin{align}
+        \hat{\theta}^0 = \sqrt{V(r)}dt, \quad \hat{\theta}^1 = \frac{dr}{\sqrt{V(r)}}, \quad \hat{\theta}^2 = rd\theta, \quad \hat{\theta}^3 = r\sin\theta d\varphi,
+    \end{align}
+
+    da questi leggiamo gli elementi di matrice \(e^a_\mu\) non nulli, che sono dati da 
+
+    \begin{align}
+        e^0_t = \sqrt{V(r)}, e^1_r = \frac{1}{\sqrt{V(r)}}, e^2_\theta = r, e^3_\varphi = r\sin\theta
+    \end{align}
+
+}
+
+In generale, dato un vettore \(V\), posso scegliere se scriverlo come \(V^\mu \hat{e}_\mu\), oppure come \(V^a \hat{e}_a\). Da questo leggo 
+
+\begin{align}
+    V^a = e^a_\mu V^\mu
+\end{align}
+
+cioè gli elementi di matrice \(e^a_\mu\) mandano indici greci in indici latini e viceversa. 
+
+Un'osservazione importante è che posso cambiare la base ortonormale, anche senza cambiare le coordinate. Infatti posso considerare una trasformazione della base 
+
+\begin{align}
+    \hat{e}_a \rightarrow \Lambda_a^b (x)\hat{e}_b
+\end{align}
+
+la condizione che questa trasformazione deve soddisfare è che alla fine, la condizione di orto-normalità deve essere rispettata anche dalla nuova base, cioè 
+
+
+\begin{align}
+    g(\hat{e}'_a, \hat{e}'_b) = \eta_{ab} \implies \Lambda_a^c\Lambda_b^d\eta_{cd} = \eta_{ab}
+\end{align}
+
+il gruppo che lascia invariato il prodotto scalare rispetto Minkowski è il gruppo di Lorentz, dunque \(\Lambda \in SO(n-1, 1)\). 
+
+Poichè la trasformazione dipende dal punto \(\Lambda = \Lambda(x)\), le trasformazioni sono trasformazioni locali, cioè di gauge. Oltre a questa libertà di gauge, ho ancora la libertà di cambiare le coordinate, cioè la libertà di diffeomorfismo. 
+
+Consideriamo un tensore con indici sia greci sia latini: questo sotto una generale trasformazione trasforma come
+
+\begin{align}
+    T ^{' c\rho}_{d\lambda} = (\Lambda^{-1})_a^c \frac{\partial x^{' \rho}}{\partial x^\mu}\Lambda_d^b\frac{\partial x^\nu}{\partial x^{' \lambda}}T^{a\mu}_{b\nu}
+\end{align}
+
+
+che segue dalla legge di trasformazione della base. 
+
+
+Ora, per un indice greco, si definisce la derivata covariante come la derivata ordinaria, più una correzione (i simboli di Christoffel), che sono necessarie se vogliamo che la derivata covariante a sua volta trasformi come un tensore. 
+
+Lo stesso procedimento si può svolgere nel caso di una base o.n. : a questo punto i simboli di Christoffel sono sostituiti dalla connesione di spin, così che 
+
+\begin{align}
+    \nabla_\mu X^a_b = \partial_\mu(X^a_b) + \omega^a_{\mu c}X^{c_b} - \omega^c_{\mu b}X^a_c
+\end{align}
+
+Perchè è detta connessione di spin? Perchè viene usata per costruire derivate covarianti di spinori, ad esempio se uno considera l'eq. di Dirac in spaziotempo curvo: 
+
+\begin{align}
+    i\hbar e^\mu_a \gamma^a D_\mu \psi = m \psi, \quad D_\mu = \partial_\mu + \frac{1}{4}\omega_\mu^{ab}\gamma_{ab}
+\end{align}
+
+dove \(\gamma^a\) sono le matrici di Dirac, mentre le \(\gamma^ab = [\gamma_a, \gamma_b]\) sono i generatori di spin. 
+
+Come determino operativamente i coefficienti della connessione di spin? Posso calcolare la derivata covariante di un vettore, usando sia la base o.n. sia la base con gli indici greci. Alla fine, ottengo la formula 
+
+\begin{align}
+    \omega^a_{\mu b} = e^a_\nu e^\lambda _b \Gamma^\nu_{\mu\lambda} - e^\lambda_b \partial_\mu e^a_\lambda
+\end{align}
+
+Osserva ora che la uno forma \(X^a_\mu dx^\mu\), ha come derivata esterna 
+
+\begin{align}
+    (dX)^a_{\mu\nu}dx^\mu \wedge dx^\nu = (\partial_\mu X^a_\nu) - (\partial_\nu X^a_\mu) 
+\end{align}
+
+che non trasforma come un tensore, sotto trasformazioni di lorentz locali. Si definisce allora la derivata \emph{lorentz-covariante}, data da 
+
+\begin{align}
+    DX^a = (dX)^a + (\omega \wedge X)^a
+\end{align}
+
+come applicazione di questo formalismo, possiamo scrivere delle espressioni per la curvatura e la torsione. 
+
+\begin{enumerate}
+    \item Torsione: 
+    
+    La torsione è il tensore definito a partire dai simboli di Christoffel, nel modo seguente: 
+    \begin{align}
+        T^\lambda_{\mu\nu} = \Gamma^\lambda_{\mu\nu} - \Gamma^\lambda_{\nu\mu}
+    \end{align}
+    Per costruzione, dunque, è assimetrico. Questo significa che posso associargli una 2-forma (similmente a come faccio con \(F_{\mu\nu}\)). Questa assume valori nello spazio vettoriale: 
+
+    \begin{align}
+        T^a_{\mu\nu} = e^a_\lambda T^\lambda_{\mu\nu}
+    \end{align}
+
+    Si dimostra allora che la relazione che definisce il tensore è data da 
+
+    \begin{align}
+        T^a = de^a + \omega^a_b \wedge e^b 
+    \end{align}
+
+    Per vedere questo, si calcola \(T^\lambda_{\mu\nu}\), e si sostituisce l'espressione di \(\omega^a_{\mu b}\) in termini dei simboli di Christoffel. 
+    \item Curvatura: 
+    
+    Il Riemann è antisimmetrico negli ultimi due indici. Posso allora definire una 2-forma che assume valori in uno spazio tensoriale del tipo \(\begin{pmatrix}
+        1 \\ 1
+    \end{pmatrix}\), dato da 
+
+    \begin{align}
+        R^a_{b\mu\nu} = e^a_\lambda e^\rho_b R^\lambda_{\rho\mu\nu}
+    \end{align}
+
+    Si può verificare che l'equazione che definisce il riemann è quindi 
+    \begin{align}
+        R^a_b = d\omega^a_b + \omega^a_c \wedge \omega^c_b 
+    \end{align}
+\end{enumerate}
+
+Le due equazioni sono note come equazioni di struttura di Maurer-Cartan, e si può mostrare che implicano le identità di Bianchi. 
+
+\section{Spazi di de-Sitter / Anti-de-Sitter}
+
+Similmente a come si può immergere una n-sfera in \(\mathbb{R}^{n+1}\), è possibile immergere uno spazio di de-Sitter (dS), nello spaziotempo di Minkowski (d+1)-dimensionale, che indicheremo con \(\mathbb{R}^{d+1}_1\). 
+
+Sia un set di coordinate \(X^A\), \(A = 0, \ldots, d\) e metrica \(\eta_{AB} = \text{diag}(-, +, \ldots, +)\). Lo spazio d dimensionale dS è l'iperspazio che soddisfa 
+
+\begin{align}
+    \eta_{AB}X^A X^B = \ell^2
+\end{align}
+
+Data la somiglianza con la definizione della n-sfera, dS è anche detto \emph{pseudo-sfera}. Non solo, ma anche le sezioni di dS con \(X^0 = cost.\) sono delle \(S^{d-1}\). Infatti, questo è lo spazio che soddisfa 
+
+\begin{align}
+    (X^1)^2 + \ldots (X^d)^2 = \ell^2 + (X^0)^2
+\end{align}
+
+Questa espressione fornisce anche una rappresentazione "visiva" di dS: è una sfera che si restringe fino a \(X^0 = 0\), e poi si riallarga con raggio \(\sqrt{\ell^2 + (X^0)^2}\). 
+
+Come metrica, posso usare la metrica indotta dallo spazio ambiente \(\mathbb{R}^{d+1}\). Si trova allora che \(dS_d\) è uno spazio a curvatura \emph{costante positiva}, con 
+
+\begin{align}
+    R_{\mu\nu\rho\sigma} = \frac{1}{\ell^2}(g_{\nu\sigma}g_{\mu\rho} - g_{\nu\rho}g_{\mu\sigma})
+\end{align}
+
+questo significa in particolare che si tratta di uno spazio di Einstein, cioè soddisfa 
+
+\begin{align}
+    G_{\mu\nu} + \Lambda g_{\mu\nu} = 0 
+\end{align}
+
+i.e. le equazioni di Einstein nel vuoto, naturalmente con costante cosmologica positiva. Svolgendo i conti dettagliati, si trova che 
+
+\begin{align}
+    \Lambda = \frac{(d-2)(d-1)}{2\ell^2}
+\end{align}
+
+(svolgere i conti dettagliati vuol dire semplicemente determinare il tensore di Einstein a partire dalla forma della metrica). 
+
+Il gruppo di trasformazioni che lascia invariata la condizione di \(dS\) è manifestamente \(O(d, 1)\). Il numero di generatori di questo gruppo è dato da \(d(d+1)/2\), esattamente come il gruppo di Poincaré in \(d\) dimensioni. 
+
+
+Similmente, uno può definire gli spazi di Anti-de-Sitter (\(AdS\)). Sono spazi simili, ma con curvatura negativa. Consideriamo come spazio di immersione \(\mathbb{R}^{d+1}_2\), cioè lo spazio piatto con metrica \(\eta_{AB} = \text{diag}(-, +, \ldots, +, -)\). Allora \(AdS\) è lo spazio che soddisfa 
+
+\begin{align}
+    \eta_{AB}X^A X^B = -\ell^2
+\end{align}
+
+il gruppo delle isometrie è dato da quindi \(O(d-2, 2)\). Ancora una volta il numero dei generatori è massimo, cioè \(\frac{d(d+1)}{2}\) e quindi è uno spazio a curvatura costante. 
+
+\ex{\(AdS\) in \(d=2\)}{
+
+    L'eq. per l'iperspazio è data da 
+
+    \begin{align}
+        -(X^0)^2 + (X^1)^2 - (X^2)^2 = -\ell^2 
+    \end{align}
+
+    Quindi, se fisso \(X_1^2\), allora vale 
+
+    \begin{align}
+        (X^0)^2  + (X^2)^2 = \ell^2 + (X^1)^2 
+    \end{align}
+
+    Cioè la varietà è un cerchio che si restinge in \(X^1 = 0\), e poi aumenta. 
+
+}
+
+Il Riemann in questo caso è 
+
+    \begin{align}
+        R_{\mu\nu\rho\sigma} = -\frac{1}{\ell^2}(g_{\mu\nu}g_{\rho\sigma} - g_{\nu\rho}g_{\mu\sigma})
+    \end{align}
+
+e si tratta di uno spazio di Einstein con constante cosmologica pari a 
+
+\begin{align}
+    \Lambda = -\frac{(d-2)(d-1)}{2\ell^2}
+\end{align}
+
+Un'importante di \(AdS_d\) è la possibilità di immergere dei buchi neri al suo interno. Considera infatti la generalizzazione della soluzione di Swartschild in \(d\) dimensioni: 
+
+
+\begin{align}
+    ds^2 = -\left(1-\frac{\mu}{r^{n-3}} \right)dt^2 + \frac{dr^2}{\left(1-\frac{\mu}{r^{n-3}} \right)} + r^2 d\Omega^2_{n-2}
+\end{align}
+
+che è anche nota come soluzione di Swartschild-Tangherlini. \(\mu\) è una costante legata alla massa, mentre \(d\Omega^2_{d-2}\) è la metrica sulla \(S^{d-2}\) di raggio unitario. Uno puà immergere la soluzione in \(AdS\) ed ottenere la metrica 
+
+\begin{align}
+    ds^2 = -\left(1-\frac{\mu}{r^{n-3}} + \frac{r^2}{\ell^2}\right)dt^2 + \frac{dr^2}{\left(1-\frac{\mu}{r^{n-3}} + \frac{r^2}{\ell^2}\right)} + r^2 d\Omega^2_{n-2}
+\end{align}
+
+Si osserva che: 
+
+\begin{enumerate}
+    \item Se prendo \(\mu = 0\) ritorno alla metrica standard di \(AdS\)
+    \item Se invece prendo \(\ell \rightarrow \infty\) torno a Swartschild-Tangherlini. 
+    \item La soluzione ha un orizzonte nella radice \(r_+\) di \(\left(1-\frac{\mu}{r^{n-3}} + \frac{r^2}{\ell^2}\right)\)
+\end{enumerate}
+
+In effetti, è possibile generalizzare ulteriormente la soluzione in 
+
+\begin{align}
+    ds^2 = -\left(\kappa-\frac{\mu}{r^{n-3}} + \frac{r^2}{\ell^2}\right)dt^2 + \frac{dr^2}{\left(\kappa-\frac{\mu}{r^{n-3}} + \frac{r^2}{\ell^2}\right)} + r^2d\Sigma^2_{\kappa, n-2}
+\end{align}
+
+
+Dove \(\kappa = 0, \pm 1\) e in particolare \(d\Sigma^2_{\kappa, n-2}\) e la metrica standard su \(S^{n-2}, E^{n-2}, H^{n-2}\) se \(\kappa = 1, 0, -1\). 
+
+In effetti, i casi \(\kappa = 0,1\) sono particolarmente interessanti perché l'orizzonte degli eventi è non compatto. Si può comunque compattificare passando allo spazio quoziente \(E^{n-2}/ \Gamma\) (o \(H^{n-2}\Gamma\)) se \(\Gamma\) è un sottogruppo discreto del gruppo delle isometrie, cioè \(ISO(n-2)\) oppure \(O(n-2)\). 
+
+Per vedere questo punto, consideriamo la metrica per \(\kappa = 0, \, n=4\). Allora abbiamo: 
+
+\begin{align}
+    ds^2 = -\left(-\frac{\mu}{r} + \frac{r^2}{\ell^2}\right) + \frac{dr^2}{\left(-\frac{\mu}{r} + \frac{r^2}{\ell^2}\right)} + r^2(dx^2+dy^2)
+\end{align}
+
+L'orizzonte in questo caso si trova in \(r = (\mu\ell^2)^{1/3}\). L'orizzonte è non compatto perchè \(x, y \in (-\infty, +\infty)\). Posso però compattificarlo se faccio le indentificazioni 
+
+\begin{align}
+    x \simeq x + k \\ 
+    y \simeq y + n 
+\end{align}
+
+con \(k, n \in \mathbb{Z} \times \mathbb{Z}\). In questo caso, si dice che \(\Gamma\) è il \emph{reticolo} \(\mathbb{Z} \times \mathbb{Z}\). Ora l'orizzonte degli eventi è una superficie chiusa, che topologicamente è un toro, ma è piatto perché eredita la metrica euclidea. Per questo è detto toro di Clifford, ed è uno dei rari esempi di varietà bidimensionale che non si può immergere in \(\mathbb{E}^3\). Si può invece immergere in \(S^3\). 
+
+Poiché la topologia dell'orizzonte è non banale, questo tipo di buchi neri sono detti buchi neri topologici. In ogni caso, solo l'orizzonte degli eventi è un toro, mentre lo spaziotempo è un fogliato di tori di Clifford. 
+
+\section{L'azione di Hilbert}
+
+La meccanica classica e l'elettromagnetismo sono entrambe teorie che si possono ottenere da un principio variazionale. Ci chiediamo se possa valere lo stesso per le equazioni di Einstein. La riposta è affermativa, e in effetti storicamente le equazioni furono derivate per primo da Hilbert, che usò un approccio variazionale. L'azione che Hilbert prese era data da 
+
+\begin{align}
+    I_H = \frac{1}{16\pi G}\int d^n \sqrt{-g}R
+\end{align}
+
+dove \(G\) è la costante di Newton in \(d\) dimensioni. Deve esserci affinché l'intera azione sia adimensionale. Invece il motivo del fattore \(16\pi\) a numeratore verrà chiaro dopo. 
+
+L'azione ha una forma molto semplice. In particolare, \(-\sqrt{g}d^n x\) e una misura di integrazione invariante sotto cambi di coordinate, mentre \(R\) è l'unico scalare che si può costruire dal tensore di Riemann che porti ad equazioni di campo del secondo ordine. Per ottenere le equazioni di Einstein, scrivi 
+
+\begin{align}
+    R = R_{\mu\nu}g^{\mu\nu} \implies \delta I_H = \frac{1}{16\pi G}\int d^n x \left[\sqrt{-g}g^{\mu\nu}\delta(R_{\mu\nu}) + \sqrt{-g}R_{\mu\nu}\delta g^{\mu\nu} + R \delta(\sqrt{-g})\right]
+\end{align}
+
+L'eq. ha la forma \(\delta (I_1) + \delta (I_2) + \delta (I_3)\). Vogliamo esprimere tutti i tre contributi come il secondo, cioè rispetto ad una variazione della metrica \(\delta g^{\mu\nu}\). Se svolgiamo il conto, allora ci accorgiamo che \(\delta(I_1)\) da solo un contributo di bordo, che possiamo porre a zero scegliendo opportunamente le condizioni al bordo. Invece, l'ultimo pezzo si può riscrivere come 
+
+\begin{align}
+    \delta (\sqrt{-g}) = \frac{1}{2}\sqrt{g}g_{\mu\nu}\delta g^{\mu\nu}
+\end{align}
+
+
+Cosi possiamo scrivere 
+
+\begin{align}
+    \delta(I_H) = \frac{1}{16\pi G}\int d^n x \sqrt{-g}\left[R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}\right]\delta g^{\mu\nu} = 0 
+\end{align}
+
+che implica chiaramente le equazioni di Einstein nel vuoto, con energia del vuoto (costante cosmologica) nulla. 
+
+Se voglio inserire la materia, allora devo considerare \(I = I_H + I_M\). 
+
+Chiaramente allora troverei 
+
+\begin{align}
+    \delta(I_H) = -\delta(I_M) \implies \frac{1}{16\pi G}\int d^n x \sqrt{-g}\left[R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu}\right]\delta g^{\mu\nu} = \int d^n x \left(\frac{\delta I_M}{\delta g^{\mu\nu}} \right)\delta g^{\mu\nu}
+\end{align}
+
+Recuperiamo quindi le equazioni di Einstein in presenza di materia se definiamo 
+
+\begin{align}
+    T_{\mu\nu} = -\frac{2}{\sqrt{-g}}\left(\frac{\delta I_M}{\delta g^{\mu\nu}} \right)
+\end{align}
+
+\ex{Tensore di energia momento del campo elettromagnetico}{
+
+    Considera l'azione del campo elettromagnetico: 
+
+    \begin{align}
+        I_M = -\frac{1}{4}\int d^n x \sqrt{-g}F_{\alpha\beta}F^{\alpha\beta} = -\frac{1}{4}\int d^n x \sqrt{-g}F_{\alpha\beta}g^{\alpha\mu}g^{\beta\nu}F_{\mu\nu}
+    \end{align}
+
+    La variazione rispetto alla metrica si calcola velocemente, usando la formula citata prima per calcolare \(\delta(\sqrt{-g})\). Si ottiene quindi 
+
+    \begin{align}
+        T_{\mu\nu} = F_{\mu\alpha}F_\nu^\alpha - \frac{1}{4}g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}
+    \end{align}
+
+
+}
+
+\section{Equazioni di struttura stellare relativistiche}
+
+Ci chiediamo se è possibile risolvere le equazioni di Einstein all'interno di una stella non rotante, statica, e sfericamente simmetrica. 
+
+Chiaramente all'esterno la metrica è data dalla soluzione di Swartschild. Invece, per trovare all'interno, parto dalla più generale metrica statica e sfericamente simmetrica: 
+
+\begin{align}
+    ds^2 = -e^{2a(r)}dt^2 + e^{2b(r)}dr^2 + r^2(d\theta^2 + \sin^2\theta d\varphi^2)
+\end{align}
+
+scelgo una base o.n., data ad esempio da 
+
+\begin{align}
+    \theta^0 = e^{a(r)}dt, \quad \theta^1 = e^{b(r)}dr, \quad \theta^2 = rd\theta, \quad \theta^3 = r\sin\theta d\varphi
+\end{align}
+
+Come tensore di energia impulso scegliamo quello di un fluido ideale, cioè 
+
+\begin{align}
+    T_{\mu\nu} = \text{diag}(\rho, P, P, P)
+\end{align}
+
+Chiaramente, la densità \(\rho\) e la pressione \(P\) hanno una dipendenza radiale, da determinarsi. Calcolando quindi il tensore di Einstein, si ottiene l'eq. di \emph{Toloman-Oppenheimer-Volkov}, data da 
+
+\begin{align}
+    -p' = \frac{G(\rho+p)(M(r) + 4\pi r^3p)}{r^2 \left(1-\frac{2GM(r)}{r}\right)}
+\end{align}
+
+Dove 
+
+\begin{align}
+    M(r) = \int_0^r 4\pi \rho(r')dr', \quad M = M(R)
+\end{align}
+
+se \(R\) è il raggio della sfera. In questo punto, la pressione è nulla, e la metrica diventa di Swartschild. 
+
+L'eq. è la versione relativistica dell'eq. dell'equilibrio idrostatico della teoria Newtoniana, che era invece data da 
+
+\begin{align}
+    -p' = \frac{G\rho M(r)}{r^2}
+\end{align}
+
+vale al pensa quindi confrontare le due espressioni. Concludiamo che in relatività generale il risultato cambia perché: 
+
+\begin{enumerate}
+    \item Anche la pressione agisce come sorgente per il campo gravitazionale \(M(r) \rightarrow M(r) + 4\pi r^3p\)
+    \item Siccome la gravità agisce anche su \(P\), devo sostituire \(\rho \rightarrow \rho + P\)
+    \item La forza di gravità cresce più velocemente di \(r^{-2}\). Emerge quindi un termine di correzione moltiplicativo alla fine. 
+\end{enumerate}
+
+
+Concludiamo la discussione ricordando che per costruire un opportuno modello stellare è necessario conoscere anche l'eq. di stato, ovvero conoscere la dipendenza \(P = P (\rho)\). A questo punto, il profilo di densità è interamente determinato dalla densità centrale della stella, data da \(\rho_c\). 
+
+
+
+
+
 \chapter{Buchi neri e la loro termodinamica}
 
 \section{Introduzione}
@@ -241,8 +667,14 @@ Una comodità di questo spaziotempo è che la singolarità delle coordinate (in 
     r_* = \int \frac{dr}{1-2m/r} = r +2m\ln\biggr|\frac{2m}{r}-1 \biggr|
 \end{align}
 
-e successivamente 
+In questo modo, \(\frac{dr}{dr_*} = 1 - \frac{2m}{r}\), e quindi se passo da \(r \rightarrow r_*\) la metrica diventa 
 
+\begin{align}
+    ds^2 = \left(1-\frac{2m}{r} \right)(-dt^2 + dr_*^2)
+\end{align}
+
+trascurando per il momento la parte angolare. Allora, posso poi considerare un altro cambio di coordinate, 
+ 
 \begin{align}
     \begin{cases}
         u = t -r_* \\ v = t+ r_*
@@ -448,7 +880,7 @@ La gravità superficiale ha molte proprietà utili. Scopriremo più avanti che �
         \nabla_\xi \mathcal{H}^2 = - (\nabla^\mu\xi^\nu)R_{\mu\nu\rho\sigma}\xi^\rho\xi^\sigma = 0 
     \end{align}
 
-    perché ricorda che il Riemann è antisimmetrico nello scambio \(\mu \leftrightarrow \nu\). 
+    perché ricorda che il Riemann è antisimmetrico nello scambio \(\rho \leftrightarrow \sigma\). 
 }
 
 Ora, sia \(\mathcal{H} \neq 0\) su un orbita di \(\xi\), in \(N\). Questa orbita coincide con solo una parte di un generatore nullo di \(N\). Per vedere questo, scegli delle coordinate su \(N\), t.c. \(\xi = \partial_\alpha\). Se \(\alpha(\lambda)\) è un'orbita di \(\xi\), con parametro affine \(\lambda\), si ha che 
@@ -529,6 +961,104 @@ dunque, per \(\alpha \in (-\infty, +\infty)\), copriamo le parti \(\lambda > 0\)
             -\frac{V}{4m}\partial_V \ln \abs{V} = -\frac{1}{4m}
         \end{cases}
     \end{align}
+}
+
+\ex{Ipersuperfici nulle e orizzonti di Killing in Kruskal}{
+
+    Ricordiamo la metrica di Kruskal: 
+
+    \begin{align}
+        ds^2 = \frac{32m^2}{r}e^{2m/r}dU dV
+    \end{align}
+
+    Sappiamo (spaziotempo statico), che \(\xi = \partial_t\) è Killing. Nelle coordinate di Kruskal, vale \(\xi = \frac{1}{4m}(U\partial_U - V\partial_V)\). Ora, cominciamo a considerare la ipersuperficie \(\mathcal{N}_1\) def. da \(U = 0\). Si ha allora che \(\xi|_{\mathcal{N}_1} = -\frac{V}{4m}\partial_V\). Calcolo la normale alla ipersuperficie: 
+
+    \begin{align}
+        \ell|_{\mathcal{N}_1} = \tilde{f}g^{\mu\nu}(\partial_\nu U)\partial_\mu
+    \end{align}
+
+    Chiaramente, \(\partial_\nu U \neq 0\) s.se \(\nu = U\), quindi 
+
+    \begin{align}
+        \ell|_{\mathcal{N}_1} = \tilde{f}g^{\mu V}\partial_\mu = \tilde{f}g^{U V}\partial_V
+    \end{align}
+
+    Dove l'ultimo passaggio segue dalla forma della metrica. Posso scegliere allora \(\tilde{f}\) in modo tale che valga \(\ell_{\mathcal{N}_1} = \partial_V\). Questa scelta corrisponde alla parametrizzazione affine. Infatti, calcolo 
+
+    \begin{align}
+        \nabla_\ell \ell^\mu = \ell^\rho (\partial_\rho \ell^\mu + \Gamma^\mu_{\alpha \rho}\ell^{\alpha})
+    \end{align}
+
+    L'unica componente non nulla di \(\ell\) è \(\ell^V = 1\) che è chiaramente costante. Si ha allora 
+
+    \begin{align}
+        \nabla_\ell \ell^\mu = \Gamma^\mu_{VV}
+    \end{align}
+
+    Poiché però \(g_{VV} =0\), e su \(\mathcal{N}_1\) \(\partial_V\) è Killing, segue che \(\nabla_\ell \ell^\mu = 0\). 
+    
+    Segue allora che \(\mathcal{N}_1\) è un orizzonte di Killing. Se voglio poi trovare la gravità superficiale, scrivo 
+
+    \begin{align}
+        \xi = f\ell \implies f = -\frac{1}{4m}
+    \end{align}
+
+    A questo punto vale la formula 
+
+    \begin{align}
+        \kappa = \xi^\rho \partial_\rho \ln f = -\frac{V}{4m}\partial_V \ln(V) = -\frac{1}{4m}
+    \end{align}
+}
+
+\ex{Calcolo della gravità superficiale con formula alternativa}{
+
+    Possiamo controllare che la formula che abbiamo trovato per la gravità superficiale, 
+
+    \begin{align}
+        \kappa^ 2 = -\frac{1}{2}(\nabla_\mu \xi_\nu)(\nabla^\mu \xi^\nu)|_{\mathcal{N}}
+    \end{align}
+
+    Dia lo stesso risultato della formula "diretta", \(\kappa = \ell^\rho \partial_\rho f\). In questo caso la prima era immediata e la seconda impiega un po di lavoro, ma il calcolo èì istruttivo ed è un semplice risultato di applicazione delle regole delle derivate covarianti. Considera \(\xi\) non per forza in \(\mathcal{N}\): allora vale 
+
+    \begin{align}
+        \xi^U = \frac{U}{4m}, \quad \xi^V = -\frac{V}{4m}
+    \end{align}
+
+    per comodità future, calcoliamo il vettore contravariante. Abbassando gli indici con la metrica troviamo 
+
+    \begin{align}
+        \xi_U = g_{UV}\xi^V = \frac{4m^2 V}{r}e^{-r/2m}, \quad \xi_V = g_{VU}\xi^U = -\frac{4m^2 U}{r}e^{-r/2m}
+    \end{align}
+
+    Devo calcolare le componenti del tensore \(2 \times 2\) \(\nabla_\mu \xi_\nu\). Essendo antisimmetrico, ha solo un parametro libero, dato da 
+
+    \begin{align}
+        \nabla_U \xi_V = \partial_U \xi_V - \Gamma_{\rho U V}\xi^\rho = \partial_U \xi_V - \Gamma_{VUV}\xi^V - \Gamma_{UUV}\xi^U
+    \end{align}
+
+    Ma i simboli di Christoffel \(\Gamma_{VUV}, \, \Gamma_{UUV}\) sono identicamente nulli ovunque, data la forma della metrica. Segue che 
+
+    \begin{align}
+        \nabla_U \xi_V = -\frac{4m^2}{r}e^{-r/2m} + \frac{4m^2 U}{r^2}e^{-r/2m} + \frac{2m U}{r^2}e^{-r/2m} \implies \nabla_U \xi_V |_{\mathcal{N}} = -\frac{2m}{e}
+    \end{align}
+
+    Calcoliamo allora 
+
+    \begin{align}
+        (\nabla_\nu \xi_\mu)(\nabla_\alpha \xi_\beta)g^{\nu\alpha}g^{\mu\beta} &= 2(\nabla_V \xi_U)(g^{UV})^2(\nabla_V \xi_U) \\
+        &= -\frac{8m^2}{e^2}(g^{UV})^2 \\
+        &= -\frac{1}{8m^2}
+    \end{align}
+
+    Cioè si ottiene 
+
+    \begin{align}
+        \kappa^2 = \frac{1}{16m^2}
+    \end{align}
+
+    come ci aspettavamo. 
+
+
 }
 
 In precedenza, abbiamo detto che la gravità superficiale è legata alla temperatura del buco nero. Indaghiamo insieme ora questa relazione. In particolare, è possibile studiare teorie di campi nello spaziotempo di buconero, usando gli integrali di cammino euclideo. In Minkowski, questo vuol dire fare la continuazione analitica (anche detta \emph{rotazione di Wick}) \(t \rightarrow -i\tau\). Ad esempio, possiamo vedere come è fatta la metrica euclidea di Swartschild: 
@@ -757,6 +1287,9 @@ In particolare, possiamo scrivere \(\Delta = (r-r_-)(r+r_+)\), con \(r_\pm = m \
     \item \(m^2 = a^2\): questo caso è anche detto buco nero di kerr \emph{estremo}. I due orizzonti conindono. In un certo senso è il ground state, perché \(\mathcal{H}_+ = \mathcal{H}_- = 0\), e la temperatura di Hawking è nulla. In questi casi si parla di orizzonte di Killing \emph{degenere}, con \(\xi = \partial_t +\Omega_H\partial_\varphi\) e \(\Omega_H = \frac{a}{2m}\). L'orizzonte gira alla velocità della luce. Il diagramma di Penrose è dato da: 
 \end{enumerate}
 
+\subsection{Il processo di Penrose}
+
+
 Dato un buco nero di Kerr, è sempre possibile estrarre dell'energia, con un processo noto come \emph{processo di Penrose}. Per capire l'idea di questo meccanismo, dobbiamo introdurre il concetto di \emph{ergosfera}: 
 
 Consideriamo 
@@ -773,66 +1306,157 @@ Questo processo però ha dei limiti: se la particella uscente porta del momento 
 
 Allora è importante chiedersi come è fatto il momento angolare delle particelle uscenti dal buco nero. 
 
-\newpage
+Considera il vettore di Killing \(\xi = \partial_t + \Omega_h \partial_\varphi\). Poiché \(\xi\) è un vettore nullo, e future-directed, e anche \(p_1\) è future-directed e di tipo spazio, allora 
+
+\begin{align}
+    -p_1 \cdot \xi \leq 0 \implies E_1 - \Omega_H L_1 \leq 0 
+\end{align}
+
+dove abbiamo chiamato \(L_1 := <p_1, \partial_\varphi>\) similmente a come avevamo definito l'energia. 
+
+Dunque, 
+
+\begin{align}
+    L_1 \leq \frac{E_1}{\Omega_H} < 0 
+\end{align}
+
+cioè oltre a togliere energia al buco nero, stiamo anche togliendo momento angolare. Dopo un processo di Penrose, dunque, avremo un buco nero con massa \(m + \delta m\), momento angolare \(J + \delta J\), con \(\delta m = E_1\), \(\delta J = L_1\). Dunque vale: 
+
+\begin{align}
+    \delta J \leq \frac{\delta m }{\Omega_H} = \frac{\delta m}{\frac{a}{r_+^2+a^2}}
+\end{align}
+
+Esprimiamo tutte le grandezze in termini di \(m, J = ma\). Ricordando che \(r_+ = m + \sqrt{m^2-a^2} = m + \sqrt{m^2 - J^2/m^2}\), vale che 
+
+\begin{align}
+    r_+^2 +a^2 &= m^2 + m^2 - a^2 + 2m\sqrt{m^2 - J^2/m^2} + a^2 \\ 
+    &= 2m(m + \sqrt{m^2 - J^2/m^2})
+\end{align}
+
+dunque la condizione precedente si scrive 
+
+\begin{align}
+    \delta J \leq \frac{\delta m (2m(m + \sqrt{m^2 - J^2/m^2}))}{J/m} = \frac{\delta m (2m(m^2 + \sqrt{m^4 - J^2}))}{J} 
+\end{align}
+
+Si può mostrare che questo è equivalente a richiedere che 
+
+\begin{align}
+    \delta (m^2 + \sqrt{m^4 - J^2}) \geq 0 
+\end{align}
+
+\clm{}{}{
+
+    La richiesta 
+
+    \begin{align}
+        \delta (m^2 + \sqrt{m^4 - J^2}) \geq 0 
+    \end{align}
+
+    è equivalente a chiedere che l'area dell'orizzonte degli eventi non diminuisca. 
+
+}
+
+\pf{}{
+
+    La metrica angolare indotta per \(r = r_+\) è data da, nelle coordinate di Kerr, 
+
+    \begin{align}
+        ds^2 = \frac{(r^2_+ + a^2)^2}{r_+^2 + a^2\cos^2\theta}\sin^2\theta d^2\chi + (r_+^2 + a^2\cos^2\theta)d\theta^2 = \gamma_{IJ}dx^I dx^J
+    \end{align}
+
+    Concludiamo quindi 
+
+    \begin{align}
+        \sqrt{\gamma} = (r_+^2 + a^2)\sin\theta \implies A &= \int_0^{2\pi}d\chi \int_0^\pi d\theta \sqrt{\gamma} \\
+        &= (r_+^2+a^2)2\pi \int_0^\pi \sin\theta d\theta = 4\pi(r_+^2+a^2) 
+    \end{align}
+
+    Ricordando come avevamo precedentemente scritto \(r_+^2 + a^2\), otteniamo 
+
+    \begin{align}
+        A = 8\pi (m^2 + \sqrt{m^4 - J^2})
+    \end{align}
+
+}
 
 
+Dunque, nel processo di Penrose, l'estrazione di energia è limitata dalla richiesta che \(\delta A \geq 0 \). Questo è un caso particolare dove emerge una delle fondamentali leggi della meccanica dei buchi neri. 
 
+\clm{}{}{
 
+    Nel processo di Penrose, l'energia sottratta al buco nero è l'energia \emph{rotazionale}
 
+}
 
+\pf{}{
+    Si definisce la massa irriducibile come 
 
+    \begin{align}
+        m^2_{irr} = \frac{1}{2}(m^2 + \sqrt{m^4 - J^2})
+    \end{align}
 
+    che è equivalente ad
 
+    \begin{align}
+        m^2 = m_{irr}^2 + \frac{J^2}{4m^2_{irr}} \geq m_{irr}^2
+    \end{align}
 
+    Dopo il processo di penrose, la massa irriducibile non può diminuire. Allora vale 
 
+    \begin{align}
+        m \geq m_{irr} \geq m_{irr, 0} \implies m_0 - m \leq m_0-m_{irr} \leq m_0 - m_{irr, 0}
+    \end{align}
 
+    \(m_0 - m\) è l'energia estratta dal buco nero, e l'eq. ci dice che al massimo possiamo estrarre \(m_0 - m_{irr, 0}\), ed in tal caso, dopo il processo avremmo \(J=0\). Perciò interpretiamo \(m_0 - m_{irr, 0}\) come l'energia rotazionale del buco nero.
 
+}
 
+Oltre ad essere fondamentale per il processo di Penrose, l'ergoregione ha altre proprietà interessanti. Ad esempio, abbiamo visto che rispetto ad un osservatore statico all'infinito, l'orizzonte degli eventi ruota con velocità angolare \(\Omega_H\). Per poter rimanere allineati al buco nero nonostante la rotazione, l'osservatore deve ruotare in direzione opposta e crescente, man mano che si avvicina. Arrivato all'ergosfera, dovrebbe muoversi alla velocità della luce per seguire il buco nero. Più in avanti, vale che: 
 
+\clm{}{}{
+    Un osservatore all'interno dell'ergoregione \emph{non} può stare a \(\phi = const.\)
+}
 
+\pf{}{
 
+    La quadrivelocità associata all'osservatore deve essere un vettore di tipo tempo, cioè 
 
+    \begin{align}
+        u^2 < 0 \implies g_{tt}u^t u^t + g_{\varphi\varphi}u^\varphi u^\varphi + g_{\theta\theta}u^\theta u^\theta + g_{rr}u^r u^r + 2g_{t\varphi}u^t u^\varphi < 0 
+    \end{align}
 
+    I primi quattro termini, nell'ergoregione, sono positivi, come si può facilmente vedere dalla forma della metrica. Questo quindi impone che valga 
 
+    \begin{align}
+        g_{t\varphi}u^t u^\varphi < 0 
+    \end{align}
 
+    Sempre dalla forma della metrica, \(g_{t\varphi} <0\). Se mostriamo allora che \(u^t > 0\) abbiamo finito, perché questo imporrebbe 
 
+    \begin{align}
+        u^\varphi = \frac{d\varphi}{d\tau} > 0 
+    \end{align}
 
+    Vediamo allora di capire come è fatto \(u^t\). Parto dal vettore di Killing \(\xi = \partial_t + \Omega_H \partial_\varphi\). Vale \(<\xi, \xi> = N^2 < 0\) fuori dall'orizzonte, e inoltre \(\xi\) è future directed, come si vede per \(r \rightarrow \infty\). Siccome \(u\) è timelike e future directed, allora 
 
+    \begin{align}
+        <\xi, u> < 0 \implies \xi^t g_{tt} u^t + u^\varphi g_{\varphi t}\xi^t + u^tg_{t\varphi}\xi^\varphi + u^\varphi g_{\varphi \varphi}\xi^\varphi < 0 
+    \end{align}
 
+    Valendo \(\xi^t = 1, \, \xi^\varphi = \Omega_H\), si ottiene 
 
+    \begin{align}
+        g_{tt}u^t + g_{\varphi t}(u^\varphi + \Omega_H u^t) + \Omega_H g_{\varphi\varphi}u^\varphi
+    \end{align}
 
+    Nella forma canonica della metrica di Kerr, questa si scrive 
 
+    \begin{align}
+        -N^2 u^t < 0 \implies u^t > 0 
+    \end{align}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -906,35 +1530,110 @@ ora, ricorda che vale  \(\nabla_\nu \xi_\mu = -\nabla_\mu \xi_\mu\), quindi è u
 
 Ma ricorda che \(\xi = \xi^\mu \partial_\mu = \frac{\partial}{\partial \alpha}\). Ma se \(\xi\) è killing, allora la metrica è indipendente da \(\alpha\), e dunque la corrente è conservata. Questo vuol dire che anche la carica è conservata. \\
 
-\ex{L'energia}{
 
-    Se prendiamo \(\xi = \partial_t\) come killing, allora se calcoliamo il suo integrale di Komar dovremmo ritrovare l'energia. Per l'energia, si trova che la costante adatta per come scriviamo tipicamente l'energia conservata è \(c = -2\). Proviamo allora a calcolare
+Ogni carica conservata può essere definita a meno di una costante, perché se \(Q\) è conservata, allora lo è anche \(Q' = cQ\). D'altra parte, per molte quantità conservate abbiamo delle forme standard. Ad esempio, vorremmo che l'energia abbia la forma 
+
+\begin{align}
+    E(V) = \int dV T^{00}
+\end{align}
+
+In questo caso, come devo fissare la \(c\) che compare nell'integrale di Komar? Per rispondere, considera il seguente esempio: prendi una metrica che all'infinito è simile a Minkowski, cioè \(h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu} = o(r^{-1})\). Prendiamo come tensore di energia impulso quello di un fluido a pressione nulla (polvere), così che  \(T^{\mu\nu} = \text{diag}(\rho, 0, 0, 0)\). Seguendo la strada della dimostrazione precedente, scriviamo allora l'integrale di Komar come 
+
+\begin{align}
+    Q_V(\xi) = c\int_V dS_\mu (T^{\mu}_\nu \xi^\nu - \frac{1}{2}T \xi^\mu)
+\end{align}
+
+Usando la forma del tensore di energia impulso, e anche il fatto che \(\xi^t = 1\), \(\xi^a = 0, \, a \neq t\), scriviamo immediatamente 
+
+\begin{align}
+    Q_V(\xi) = x \int_V dS_0 (T^0_0 - \frac{1}{2}T)
+\end{align}
+
+usando la metrica, è chiaro che \(T^0_0 = -\rho = T\). Inoltre, \(dS_0= dV\). Avremo allora 
+
+\begin{align}
+    Q_V(\xi) = -\frac{c}{2}\int_V dV \rho \implies c = -2
+\end{align}
+
+
+
+\ex{L'energia nello spaziotempo di Swartschild}{
+
+    Prendiamo la metrica di Swartschild, 
 
     \begin{align}
-        E(V) = -\frac{1}{8\pi G}\oint_{\partial V} dS_{\mu\nu} \nabla^\mu \xi^\nu
+        ds^2 = -\left(1-\frac{2m}{r}\right)dt^2 + \frac{dr^2}{\left(1-\frac{2m}{r}\right)} + r^2d\Omega^2
     \end{align}
 
-
-    Prendiamo una metrica che sia circa Minkowski all'infinito, ovvero \(h_{\mu\nu} = g_{\mu\nu} - \eta_{\mu\nu} = o(r^{-1})\), e una sorgente di polvere \(p=0\), e statica. Allora il tensore di energia momento si scrive semplicemente 
+    Voglio calcolare la carica conservata usando la formula diretta, cioè 
 
     \begin{align}
-        T^{\mu\nu} = \text{diag}(\rho, 0, 0, 0)
+        Q_V(\xi) = -\frac{1}{8\pi G}\int dS_{\mu\nu}(\nabla^\mu \xi^\nu)
     \end{align}
 
-    Ottengo allora 
+    Per prima cosa, devo scegliere un volume \(V\), e poi determinare la binormale \(dS_{\mu\nu}\) del bordo \(\partial V\). \(V\) deve essere una ipersuperficie di tipo spazio, quindi scelgo \(V = \Sigma_t\), ovvero una sezione dello spaziotempo con \(t = \text{const.}\), fino ad \(r > 2m\), cioè fuori dall'orizzonte. Dunque, la normale a \(V\) è data da \(\partial_t\), e se voglio normalizzarla scelgo 
 
     \begin{align}
-        E = c\int_V dS_\mu (T^\mu_\nu \xi^\nu - \frac{1}{2}T\xi^\mu) = c\int_V dS_0 (T^0_0 -\frac{1}{2}T) = c\int_{\text{t const.}} dV \left(-\frac{1}{2}T_{00}\right)
+        u = N^{-1} \partial_t, \quad N = \sqrt{1-\frac{2m}{r}}
     \end{align}
 
-    che è esattamente il risultato che ci aspettavamo, se poniamo \(c = -2\). 
+    Infatti, \(<\partial_t, \partial_t> = N^2\), e quindi \(<u, u> = -1\). Similmente, l'altra normale se considero \(\partial_V\) è data da \(v = N\partial_r\), che è invece normalizzata \(<v, v> = 1\). 
 
-    Uno potrebbe anche calcolare \(E(V)\) per lo Swartschild, e il risultato sarebbe \(E(V) = \frac{m}{G}\), indipendentemente dal volume, se questo include la singolarità all'origine. Questo ha una chiara interpretazione fisica: tutto lo spazio è vuoto all'esterno della singolarità, e non contribusce all'energia del buco nero. 
+    Ora, la misura su \(\partial V\) è data da 
+
+    \begin{align}
+        dS^{\mu\nu} = (u^\mu v^\nu - u^\nu v^\mu)\sqrt{\sigma}d\theta d\sigma 
+    \end{align}
+
+    se
+
+    \begin{align}
+        d\sigma^2 = r^2(d\theta^2 + \sin^2\theta d\varphi^2) \implies \sqrt{\sigma} = r^2\sin\theta
+    \end{align}
+
+    Le uniche due componenti non nulle della misura sono quindi date da 
+
+    \begin{align}
+        dS^{tr} = -dS^{rt} = r^2\sin\theta d\theta d\varphi
+    \end{align}
+
+    e l'integrale per l'energia si scrive esplicitamente come 
+
+    \begin{align}
+        E(V) &= -\frac{1}{8\pi G}\int dS^{rt}(\nabla^r \xi^t) - dS^{tr}(\nabla^t \xi^r) \\
+        &= -\frac{r^2}{4\pi G} \int d\Omega (\nabla_r \xi_t)
+    \end{align}
+    
+    dove abbiamo usato il fatto che \(\xi\) è killing. Ora non resta che calcolare esplicitamente 
+
+    \begin{align}
+        \nabla_r \xi_t = \partial_r \xi_t - \Gamma_{\mu rt}\xi^\mu
+    \end{align}
+
+    Ora, da una parte 
+
+    \begin{align}
+        \partial_r \xi_t = \partial_r g_{tt} = -\frac{2m}{r^2}
+    \end{align}
+
+    e dall'altra 
+
+    \begin{align}
+        \Gamma_{\mu rt}\xi^\mu = \Gamma_{trt} = \frac{1}{2}(g_{tt, r} - g_{tr, t} - g_{rt, t}) = -\frac{m}{r^2}
+    \end{align}
+
+    quindi troviamo 
+
+    \begin{align}
+        E(V) = \frac{1}{4\pi G} \int d\Omega \, m = \frac{m}{G}
+    \end{align}
+
+    Notiamo che il risultato è indipendentemente dal volume. Questo ha una chiara interpretazione fisica: tutto lo spazio è vuoto all'esterno della singolarità, e non contribusce all'energia del buco nero. 
 }
 
-\ex{Momento angolare}{
 
-    Ci aspettiamo lo stesso per il momento angolare se prendiamo \(\xi = \partial_\phi\). In questo caso, la costante opportuna è \(c=1\), dunque calcoleremo
+
+Quale costante devo usare invece per il momento angolare? Prendiamo \(\xi = \partial_\phi\). In questo caso, bisogna prendere \(c=1\). Infatti,
 
     \begin{align}
         J(V) = \frac{1}{16\pi G}\int_{\partial V}dS_{\mu\nu}\nabla^\mu \xi^\nu = \frac{1}{8\pi G}\int_V dS_\mu (T^\mu_\nu - \frac{1}{2}T\delta^\mu_\nu)\xi^\nu
@@ -955,7 +1654,6 @@ Ma ricorda che \(\xi = \xi^\mu \partial_\mu = \frac{\partial}{\partial \alpha}\)
     \begin{align}
         J = \frac{ma}{G}
     \end{align}
-}
 
 
 \section{Le soluzioni di Reisser-Nordstrom e Majamuda-Paparatu}
@@ -1036,20 +1734,384 @@ Osserviamo che questo spazio è \(AdS_2 \times S^2\). Vicino all'orizzonte, il g
 
 perché \(SO(2,1)\) è il gruppo delle isometrie di \(AdS_2\), che allarga le semplici traslazioni temporali dell'universo statico di partenza. Il fatto che lo spazio vicino all'orizzonte assomigli ad \(AdS\) è legato alla famosa congettura \(AdS/CFT\) di Maldacena. 
 
+\section{Termodinamica dei buchi neri}
 
+Nella fisica dei buchi neri, vale il cosiddetto "teorema dell'area", che si dimostra usando solamente argomenti di geometria differenziale. Questo teorema, dovuto ad Hawking, dice che in qualsiasi processo fisico (come il processo di Penrose, oppure la fusione di due buchi neri), vale sempre 
 
+\begin{align}
+    \delta A \geq 0 
+\end{align}
 
+Questo sembra essere in analogia con la seconda legge della termodinamica, \(\delta S \geq 0\). Effettivamente, l'analogia si estende a tutti i principi della termodinamica, secondo la seguente tabella: 
 
+\begin{table}[h]
+\centering 
+\begin{tabular}{|l|c|r|}
+\hline
+\textbf{Legge numero} & \textbf{Termodinamica} & \textbf{Buchi neri} \\ \hline
+0   & \(T\) costante all'equilibrio termico           & \(\mathcal{H}\) costante sull'orizzonte    \\ \hline
+1  & \(dE = TdS + \) lavoro           & \(dM = \frac{\mathcal{H}}{8m}dA + \Omega_H dJ\)      \\ \hline
+2 & \(\delta S \geq 0 \) & \(\delta A \geq 0 \) \\ \hline 
+3 & \(T=0\) non raggiungibile con numero finito di trasformazioni fisiche & \(\mathcal{H}\) non raggiungibile in un processo fisico \\ \hline
+\end{tabular}
+\caption{Confronto leggi della termodinamica / della meccanica dei buchi neri}
+\end{table}
 
+L'analogia è quasi perfetta. Si tratta solo di un caso o c'è qualcosa di più profondo? 
 
+Classicamente, da un buco nero non può uscire niente. Per questo motivo, \(T=0\). Questo è consistente col fatto che \(T \propto \hbar\). Lo stesso Hawking, inizialmente, credeva che l'analogia fosse puramente formale. D'altra parte, nel '74, scoprì che i buchi neri irradiavano, con spettro di corpo nero, a causa di effetti quantistici, alla temperatura di Hawking
 
+\begin{align}
+    T_H  = \frac{\hbar\mathcal{H}}{2\pi}
+\end{align}
 
+In questo modo, si è capito che la corrispondenza non era solamente una somiglianza formale: le leggi della meccanica dei buchi neri sono le leggi della termodinamica \emph{applicate} ai buchi neri. 
 
+Come esempio esplicito del comportamento termodinamico dei buchi neri, consideriamo il buco nero di Kerr. Le grandezze fisiche che caratterizzano il buco nero sono date da 
 
+\begin{align}
+    &m = E \quad (\text{massa}) \\
+    &J = ma \quad (\text{momento angolare}) \\
+    &T = \frac{\mathcal{H}}{2\pi} = \frac{r_+^2-a^2}{4\pi r_+(r_+^2 +a^2)} \quad (\text{temperatura}) \\
+    &S = \frac{A}{4} = \pi(r^2_+ + a^2) \quad (\text{entropia}) \\
+    &\Omega_H = \frac{a}{r^2_+ + a^2} \quad (\text{velocità dell'orizzonte})
+\end{align}
 
+Sapevamo già che dovesse valere \(S \propto A\), ma perchè il fattore \(1/4\)? Partiamo dalla prima legge, 
 
+\begin{align}
+    dM = \frac{\mathcal{H}}{8\pi}dA + \ldots = TdS = \frac{\hbar \mathcal{H}}{2\pi}dS \implies S = \frac{A}{4\hbar}
+\end{align}
 
+La relazione fondamentale è data da
 
+\begin{align}
+    E(S, J) = \sqrt{\frac{S}{4\pi} + \frac{\pi J^2}{S}} 
+\end{align}
+
+che lega l'energia del sistema alle variabili estensive. Derivando questa, si ottengono le espressioni per i parametri intensivi: 
+
+\begin{align}
+    \left(\frac{\partial E}{\partial S} \right)_J = E^{-1}\left(\frac{1}{8\pi} - \frac{\pi J^2}{2S^2} \right) = \frac{r^2_+ - a^2}{4\pi r_+ (r_+^2 + a^2)} = T
+\end{align}
+
+come ci aspettavamo, e similmente 
+
+\begin{align}
+    \left(\frac{\partial E}{\partial J} \right)_S = \frac{\pi J}{SE} = \frac{a}{r^2_+ + a^2} = \Omega_H
+\end{align}
+
+in effetti, in questo modo recuperiamo la prima legge: 
+
+\begin{align}
+    dE = \left(\frac{\partial E}{\partial S}\right)_J dS + \left(\frac{\partial E}{\partial J}\right)_S dJ = TdS + \Omega_H dJ 
+\end{align}
+
+Mi chiedo ora cosa succede se faccio un riscalamento, cioè prendo \(E(\lambda S, \lambda J)\)? Dalla espressione esplicita, è chiaro che \(E(\lambda S, \lambda J) = \lambda^{1/2}E(S, J)\). Allora si può usare un trucchetto (relazione di Eulero): 
+
+\begin{align}
+    \frac{\partial E(\lambda S, \lambda J)}{\partial \lambda} &= \frac{\partial E}{\partial (\lambda J)}\frac{\partial \lambda J}{\partial \lambda} + \frac{\partial E}{\partial (\lambda S)}\frac{\partial \lambda S}{\partial \lambda} \\
+    &= \frac{1}{\lambda}\frac{\partial E}{\partial S} S + \frac{1}{\lambda}\frac{\partial E}{\partial J} J = \frac{1}{\lambda}(TS + \Omega_H J)
+\end{align}
+
+d'altra parte, è anche vero che 
+
+\begin{align}
+    \frac{\partial E(\lambda S, \lambda J)}{\partial \lambda} = \frac{\partial }{\partial \lambda} (\lambda^{1/2}E) = \frac{1}{2}\frac{E}{\lambda^{1/2}}
+\end{align}
+
+scegliendo \(\lambda = 1\), si trova immediatamente la relazione (detta di \emph{Smarr})
+
+\begin{align}
+    \frac{1}{2}E = TS + \Omega_H J
+\end{align}
+
+Da questa possiamo calcolare il calore specifico, che è uno strumento utile per capire se un sistema è stabile. Questo è dato da
+
+\begin{align}
+    C_J = T \left(\frac{\partial S}{\partial T}\right)_J
+\end{align}
+
+cioè è necessario conoscere \(S = S(T, J)\). Noi invece consciamo solamente 
+
+\begin{align}
+    T(S, J) = \left(\frac{\partial E}{\partial S}\right)_J 
+\end{align}
+
+Possiamo però eseguire il seguente trucco: differenziamo 
+
+\begin{align}
+    dT = \left(\frac{\partial T}{\partial S}\right)_J dS + \left(\frac{\partial T}{\partial J}\right)_S dJ
+\end{align}
+
+Poiché siamo interessati ad \(S(J, T)\), espandiamo: 
+
+\begin{align}
+    dT = \left(\frac{\partial T}{\partial S}\right)_J \left[\left(\frac{\partial S}{\partial T}\right)_J dT + \left(\frac{\partial S}{\partial J}\right)_T dJ \right] + \left(\frac{\partial T}{\partial J}\right)_S dJ
+\end{align}
+
+ora confronta i coefficienti di \(dT\) al lato destro e al lato sinistro dell'equazione: troviamo subito che deve valere 
+
+\begin{align}
+    1 = \left(\frac{\partial T}{\partial S} \right)_J \left(\frac{\partial S}{\partial T} \right)_J
+\end{align}
+
+Da cui troviamo finalmente 
+
+\begin{align}
+    C_J = \frac{T}{\left(\frac{\partial T}{\partial S} \right)_J}
+\end{align}
+
+Non ci resta che usare 
+
+\begin{align}
+    T &= E^{-1}\left(\frac{1}{8\pi} - \frac{\pi J^2}{2S^2} \right) \implies \left(\frac{\partial T}{\partial S}\right)_J = E^{-1}\left(\frac{\pi J^2}{S^3}\right) - \underbrace{\left(\frac{1}{8\pi} - \frac{\pi J^2}{2S^2}\right)}_{TE}E^{-2}\underbrace{\left(\frac{\partial E}{\partial S}\right)_J}_{=T} \\
+    &= \frac{\pi J^2}{ES^3} - \frac{T^2S^3}{ES^3}
+\end{align}
+
+Cioè 
+
+\begin{align}
+    C_J = \frac{ETS^3}{\pi J^2 -T^2S^3}
+\end{align}
+
+Osserviamo che per lo Swartschild, cioè quando vale \(J=0\), vale 
+
+\begin{align}
+    C = -\frac{E}{T}
+\end{align}
+
+Poiché inoltre 
+
+\begin{align}
+    E = \sqrt{\frac{S}{4\pi}} \implies T = \frac{\partial E}{\partial S} = \sqrt{\frac{1}{16\pi S}} \implies T^2 = \frac{1}{16\pi S} = \frac{1}{64\pi^2 E^2}
+\end{align}
+
+cioè 
+
+\begin{align}
+    \frac{T^2}{E^2} = \frac{1}{64\pi^2 E^4} \implies \frac{E}{T} = 8\pi E^2 
+\end{align}
+
+O se preferisco esprimerlo in termini di \(T\), avremmo 
+
+\begin{align}
+    \frac{E}{T} = \frac{1}{8\pi T^2}
+\end{align}
+
+dunque, 
+
+\begin{align}
+    C = -\frac{1}{8\pi T^2}
+\end{align}
+
+ed in particolare è negativo, cioè Swartschild divenda più caldo quando irradia. 
+
+Invece il Kerr ha una dipendenza più interessante, anche perché il denominatore può annullarsi: \(C_J\) diverge se vale \(\pi J^2 = T^2S^3\). Se tengo l'energia fissa e studio \(C_J\) all'aumentare di J, si verifica che \(C_J\) è una funzione sempre decrescente, negativa per \(J < 0.681 E^2\) (coincide con Swartschild per \(J=0\)), e positiva dopo la divergenza. Va a zero per un buco nero estremo, cioè per \(J^2 = E^2\). 
+
+Talvolta, si usa l'energia libera di Gibbs come potenziale termodinamico, soprattutto per descrivere le transizioni di fase. I gradienti sono dati da 
+
+\begin{align}
+    \frac{\partial G}{\partial T} = S \quad \frac{\partial G}{\partial \Omega_H} = J 
+\end{align}
+
+e dove \(C_J\) diverge, sono continui. Una transizione di fase con \(G\) e i gradienti continui, ma le derivate seconde (\(C_J\)) discontinue, è detta transizione di fase di \emph{2° specie}. Dunque il processo che abbiamo osservato era una transizione di fase di 2° specie. 
+
+\section{Geometria della soluzione di Kerr in \(d > 4\)}
+
+Se \(R_{\mu\nu} = 0\) e \(d \geq 4\), il generatore delle rotazioni è \(SO(d-1)\), che ha \(\frac{d-1}{2}\) casimir distinti. Ad esempio, se \(d=4\) ne ho uno, se \(d=5\) ne ho due. Questi corrispondono al numero di assi di rotazioni indipendenti. Queste considerazioni portano ai buchi neri di Myers-Perry, di cui diamo la forma della metrica nel caso "single-spinning": 
+
+\begin{align}
+    ds^2 = -dt^2 + \frac{\mu}{r^{D-5}\rho^2}(dt+a\sin^2\theta d\varphi)^2 + \frac{\rho^2}{\Delta}dr^2 + \rho^2d\theta^2 + (r^2 + a^2)\sin^2\theta d\varphi^2 + r^2\cos^2\theta d\Omega^2_{D-4}
+\end{align}
+
+Per \(d=4\) ritroviamo Kerr, mentre per \(a =0\) ritroviamo Swartschild-Tangherlini, la generalizzazione dello Swartschild in d dimensioni. Nonostante la somiglianza generale con la soluzione di Kerr, la fisica a dimensioni alte è molto diversa. Considera ad esempio l'orizzonte, che è situato in 
+
+\begin{align}
+    \Delta = r^2 + a^2 - \frac{\mu}{r^{D-5}} = 0 
+\end{align}
+
+Per \(d=5\), deve valere che \(\mu > a^2\), affinché non si abbia una singolarità nuda. Invece, per \(d \geq 6\), non c'è nessun limite di questo tipo. C'è una ragione fisica perché vale questo? 
+
+Possiamo fare un argomento euristico: considera il bilancio fra la attrazione gravitazionale e la forza centrifuga: 
+
+\begin{align}
+    \frac{\Delta}{r^2}-1 = -\frac{\mu}{r^{D-3}} + \frac{a^2}{r^2}
+\end{align}
+
+la prima è l'attrazione gravitazionale, che scala come \(r^{d-3}\) (e.g. \(\simeq r^{-1}\) in \(d=4\)). Invece il potenziale centrifugo va sempre come \(r^{-2}\), indipendentemente dalla dimensione, perché la rotazione avviene sempre in un piano. Per \(d=4\), dunque, il potenziale gravitazionale domina a grandi distanze, e questo porta al limite di Kerr. Invece, per \(d > 5\), il potenziale gravitazionale decresce più rapidamente di quello centrifugo. Possiamo quindi prendere un parametro di rotazione \(a\) arbitrario, incluso il limite di "ultra-spinning", cioè \(a >> 1\). Questi buchi neri sono molto schiacciati sull'asse di rotazione, assumendo la forma di un panckake schiacciato. 
+
+\section{Il buco nero BTZ}
+
+Abbiamo visto che le soluzioni delle equazioni di Einstein possono assumere proprietà interessanti per dimensioni alte. Cosa succede se invece considero la gravità in 3d? Partiamo dall'azione: se consideriamo una teoria di pura gravità + costante cosmologica negativa, avremmo 
+
+\begin{align}
+    I = \frac{1}{16\pi G}\int d^3x \sqrt{-g}(R-2\Lambda)
+\end{align}
+
+Con, ad esempio, \(\Lambda = -1/\ell^2\). Una soluzione è uno spazio di Einstein (le equazioni del moto che seguono sono \(G_{\mu\nu} + \Lambda g_{\mu\nu} = 0\)), che in particolare è uno spazio a curvatura costante! Non ci sono molti spazi a curvatura costante negativa in \(d=3\): l'unica opzione è \(AdS_3\), e dunque lo spazio è \emph{localmente} \(AdS_3\). Nonostante questo, ci sono alcune sorprese. 
+
+La soluzione BTZ è descritta dalla metrica 
+
+\begin{align}
+    ds^2 = -N^2dt^2 + \frac{dr^2}{N^2} + r^2(d\varphi + N^\varphi dt)^2
+\end{align}
+
+dove \(N\), la \emph{lapse function}, è data da 
+
+\begin{align}
+    N = \left(-8GM + \frac{r^2}{\ell^2} + \frac{16 G^2 J^2}{r^2} \right)^{1/2}
+\end{align}
+
+con 
+
+\begin{align}
+    N^\varphi = -\frac{4G J}{r}
+\end{align}
+
+richiediamo che \(|J| < M\ell\). Allora la lapse function ha due radici reali, in 
+
+\begin{align}
+    r_{\pm} = 4GM \ell^2\pm \ell^2\sqrt{16G^2M^2 - 16 G^2 J^2/\ell^2} = 4GM\ell^2\left(1 \pm \sqrt{1 - \frac{J^2}{M^2\ell^2}}\right)
+\end{align}
+
+che corrispondono a due singolarità delle coordinate. Non possono essere singolarità di curvatura, perché altrimenti lo spazio non sarebbe più localmente \(AdS_3\). 
+
+Ma allora quale è lo spazio globale? Considera \(AdS_3\), come immerso in \(\mathbb{R}^{2, 2}\): è la varietà che soddisfa 
+
+\begin{align}
+    (X_1)^2 + (X_2)^2 - (T_1)^2 - (T_2)^2 = -\ell^2 
+\end{align}
+
+\(\mathbb{R}^{2,2}\) è lo spazio piatto, con metrica pseudo-riemanniana data da \(ds^2 = -dT_1^2 - dT_2^2 + dX_1^2 + dX_2^2\). Un modo equivalente per descrivere l'iperspazio è richiedere che la matrice 
+
+\begin{align}
+    X = \frac{1}{\ell}\begin{pmatrix}
+        T_1 + X_1 && T_2 + X_2 \\
+        -T_2 + X_2 && T_1 - X_1
+    \end{pmatrix}
+\end{align}
+
+abbia determinante uno, cioè \(X \in SL(2, \mathbb{R})\). La condizione è invariata se moltiplico a destra (o a sinistra) per un altra matrice del gruppo \(SL(2, \mathbb{R})\) (appunto perché \(SL(2, \mathbb{R})\) forma un gruppo sotto la solita moltiplicazione matriciale, grazie al teorema di Binet). Chiaramente, se moltiplico a destra per \(-A\) e a sinistra per \(-B\) è la stessa cosa se avessi moltiplicato per \(A\) e \(B\), così che il gruppo delle isometrie dello spazio è dato da 
+
+\begin{align}
+    \frac{SL(2, \mathbb{R}) \times SL(2, \mathbb{R})}{\mathbb{Z}_2}
+\end{align}
+
+Posso allora parametrizzare la ipersuperficie, utilizzando le seguenti coordinate: (supponendo che \(r > r_+ > r_-\))
+
+\begin{align}
+    &X_1 = \ell\sqrt{\alpha}\sinh\left(\frac{r_+}{\ell}\varphi - \frac{r_-}{\ell^2}t \right) \\
+    &T_1 = \ell\sqrt{\alpha}\cosh\left(\frac{r_+}{\ell}\varphi - \frac{r_-}{\ell^2}t \right) \\
+    &X_2 = \ell\sqrt{1-\alpha}\cosh\left(\frac{r_+}{\ell^2}t - \frac{r_-}{\ell}\varphi \right) \\
+    &T_2 = \ell\sqrt{1-\alpha}\sinh\left(\frac{r_+}{\ell^2}t - \frac{r_-}{\ell}\varphi \right)
+\end{align}
+
+con \(\alpha = \frac{r^2 - r^2_-}{r^2_+ + r^2_-}\), \(\varphi, t \in \mathbb{R}\). 
+
+Se uno calcola la metrica indotta da \(\mathbb{R}^{2, 2}\), trova esattamente la forma della metrica BTZ! C'è però una fondamentale differenza: nel caso BTZ \(\varphi\) è una coordinata angolare, con periodo \(2\pi\). Dobbiamo quindi quozientare rispetto a questa identificazione. La trasformazione \(\varphi \rightarrow \varphi + 2\pi\) è realizzata da un elemento del gruppo di isometria, dato da \((\rho_L, \rho_R)\), se 
+
+\begin{align}
+    \rho_L = \begin{pmatrix}
+        e^{\pi(r_+-r_-)/\ell} && 0 \\ 
+        0 && e^{-\pi(r_+-r_-)/\ell}
+    \end{pmatrix}, \quad
+    \rho_L = \begin{pmatrix}
+        e^{\pi(r_++r_-)/\ell} && 0 \\ 
+        0 && e^{-\pi(r_++r_-)/\ell}
+    \end{pmatrix}
+\end{align}
+
+Dunque, la geometria globale del buco nero BTZ può essere visto come lo spazio quoziente \(AdS_3/<(\rho_L, \rho_R)>\), dove il gruppo (discreto) \(<(\rho_L, \rho_R)>\) è il gruppo generato da \((\rho_L, \rho_R)\). Questo fatto è stazionario, perché \(AdS_3\) è uno spazio estremante semplice, ma con le corrette identificazioni può essere reso un buco nero, che assomiglia ad esempio al buco nero di Kerr. 
+
+\ex{Termodinamica e proprietà del buco nero BTZ}{
+
+    Possiamo calcolare la temperatura del buco nero come già fatto per lo Swartschild e il Kerr, passando alla metrica euclidea tramite rotazione di Wick, e richiedendo che non ci siano singolarità coniche. In questo caso, la metrica euclidea è data da 
+
+    \begin{align}
+        ds^2 = N^2 d\tau^2 +\frac{dr^2}{N^2} + r^2(d\varphi -iN^\varphi d\tau)^2
+    \end{align}
+
+    sviluppo la metrica vicino all'orizzonte: 
+
+    \begin{align}
+        N^2 = \underbrace{N^2(r = r_+)}_{=0} + \frac{\partial N^2}{\partial r}\biggr|_{r=r_+}(r-r_+) + o(r-r_+)^2
+    \end{align}
+
+    Chiama inoltre \(\rho^2 = 2(r-r_+)\). Allora \(dr = \rho d\rho\). La metrica è quindi approssimata da 
+
+    \begin{align}
+        ds^2 \simeq \left(\frac{\partial N^2}{\partial r}\biggr|_{r_+}\right)\frac{\rho^2}{2} d\tau^2 + \frac{\rho^2d\rho^2}{\left(\frac{\partial N^2}{\partial r}\biggr|_{r_+}\right)} + r^2_+(d\varphi -iN^\varphi d\tau)^2
+    \end{align}
+
+    Scriviamo allora 
+
+    \begin{align}
+        &N^2 = \frac{1}{r^2\ell^2}(r^2 - r^2_+)(r^2 - r^2_-) \implies \frac{\partial N^2}{\partial r} = \frac{2r}{r^2\ell^2}(r^2 - r^2_- + r^2 - r^2_+) \\
+        &\frac{\partial N^2}{\partial r}\biggr|_{r_+} = \frac{2}{r_+\ell^2}(r^2_+ - r^2_-)
+    \end{align}
+
+    affinché la metrica non presenti singolarità coniche, richiediamo che 
+
+    \begin{align}
+        \tau \simeq \tau + \frac{2\pi r_+\ell^2}{(r^2_+ - r^2_-)}
+    \end{align}
+
+    Avendo identificato il periodo \(\beta\) della metrica euclidea, la temperatura del buco nero è data da 
+
+    \begin{align}
+        T = \frac{(r^2_+ - r^2_-)}{2\pi K_B r_+ \ell^2}
+    \end{align}
+
+    Avremmo ottenuto lo stesso risultato se avessimo accettato la formula di Hawking per la temperatura, 
+
+    \begin{align}
+        T = \frac{\mathcal{H}}{2 \pi K_B}
+    \end{align}
+
+    e avessimo calcolato la gravità superficiale. 
+}
+
+\clm{}{}{
+    Nonostante non contenga una singolarità di curvatura, lo spazio BTZ descrive un buco nero. In particolare, la ipersuperficie \(r = r_+\) è un orizzonte di Killing, e le geodetiche che entrano nell'orrizonte, non escono. 
+}
+
+\pf{}{
+    Per cominciare, dobbiamo dimostrare che \(r = r_+\) è una ipersuperficie nulla. 
+
+    Per farlo passiamo in un altro sistema di coordinate: 
+
+    \begin{align}
+        v = t + \frac{r}{N^2}, \quad \varphi' = \varphi - \frac{N^\varphi}{N}r
+    \end{align}
+
+    La metrica si vede facilmente che diventa: 
+
+    \begin{align}
+        ds^2 = (-N^2)dv^2 + 2dv dr + r^2(d\varphi' + N^\phi dv)^2
+    \end{align}
+
+    Allora si ottiene che le ipersuperfici \(r = cost\) hanno vettore normale con componenti 
+
+    \begin{align}
+        \ell^\mu = (1, N^2, -N^\varphi) \implies \ell^2 = N^2
+    \end{align}
+
+    dunque alle radici \(r = r_{\pm}\) della lapse function, sono delle ipersuperfici nulle. Ora, le geodetiche nulle rispettano 
+    
+    \begin{align}
+        g_{\mu\nu}\frac{dx^\mu(\lambda)}{d\lambda}\frac{dx^\nu(\lambda)}{d\lambda} = 0 
+    \end{align}
+
+    In \(r = r_+\), dove la lapse function si annulla, l'eq. delle geodetiche nulle diventa 
+
+    \begin{align}
+        0 = 2v'r' + r^2_+(\phi' + N^\phi v')^2 \implies v'r' = -\frac{r_+^2}{2}(\phi' + N^\phi v')^2 \leq 0 
+    \end{align}
+
+    Cioè se \(v\) aumenta, \(r\) non può che diminuire. 
+
+}
 
 
 
@@ -1130,7 +2192,7 @@ Vediamo allora come la gravità in 3-dimensioni può essere formulata come teori
     SL(2, \mathbb{R}) \times SL(2, \mathbb{R}) 
 \end{align}
 
-In un formalismo del primo ordine, le variabili fondamentali sono la tetrade \(e^a = e^a_\mu dx^\mu\), e la connessione di spin \(\omega^{ab} = \omega^{ab}_\mu dx^\mu\). 
+In un formalismo del primo ordine, le variabili fondamentali sono la tetrade \(e^a = e^a_\mu dx^\mu\), e la connessione di spin \(\omega^{ab} = \omega^{ab}_\mu dx^\mu\). Queste sono trattate come separate, e si ottengono le equazioni per entrambe (einstein per le prime, spazio a torsione nulla per le seconde)
 
 Definiamo allora 
 
@@ -1138,7 +2200,7 @@ Definiamo allora
     \omega^a := \frac{1}{2}\eps^{abc}\omega_{bc}, \quad A^{(\pm)a} := \omega^a \pm \frac{e^a}{\ell}
 \end{align}
 
-I generatori del gruppo \(SL(2, \mathbb{R})\) sono le matrici 
+I generatori del gruppo \(SL(2, \mathbb{R})\) sono le matrici \footnote{Come al solito, per studiare l'algebra (i generatori del gruppo) studia il comportamento del gruppo vicino all'identità. Chiaramente \(\mathbb{I} \in SL(2, \mathbb{R})\), ma sotto quale condizione \(\mathbb{I} + \delta X \in SL(2, \mathbb{R})\)? Deve valere per forza \(\delta a = -\delta b\), cioè l'algebra di \(SL(2, \mathbb{R})\) sono le matrici \(2\times 2\) senza traccia. Si tratta di uno spazio vettoriale 3-dimensionale (4 delle matrici \(2\times 2\) -1 della condizione di traccia nulla) ed una possibile base è quella descritta. La somiglianza della base con le matrici di Pauli è giustificata dal fatto che le matrici di Pauli sono una base dell'algebra di \(SU(2)\), il cui ricoprimento universale è \(SL(2, \mathbb{C})\).}
 
 \begin{align}
     \tau_0 = \frac{1}{2}\begin{pmatrix}
@@ -1193,11 +2255,125 @@ Dunque l'azione si scrive
     I_{CS} = \frac{\kappa}{2}\left(\int A^{+a}\wedge dA^+_a + \frac{1}{3}\eps_{abc}A^{+a}\wedge A^{+b}\wedge A^{+c} - \int A^{-a}\wedge dA^-_a + \frac{1}{3}\eps_{abc}A^{-a}\wedge A^{-b}\wedge A^{-c}\right)
 \end{align}
 
-Ora devo esprimere i coefficienti della connessione \(A^a\) in termini della tetrade e della connessione di spin. 
+Ora devo esprimere i coefficienti della connessione \(A^a\) in termini della tetrade e della connessione di spin: 
 
+\begin{align}
+    I_{CS} = \frac{\kappa}{2}\int \left( \omega^a + \frac{e^a}{\ell}\right) \wedge d\left( \omega_a + \frac{e_a}{\ell}\right) + \frac{1}{3}\eps^{abc} \left( \omega_a + \frac{e_a}{\ell}\right) \wedge \left( \omega_b + \frac{e_b}{\ell}\right) \wedge \left( \omega_c + \frac{e_c}{\ell}\right) - \frac{\kappa}{2} \ldots 
+\end{align}
 
+Usando l'antisimmetria del prodotto wedge, si vede immediatamente che \(\alpha \wedge \alpha = 0 \implies d(\alpha \wedge \alpha) = \alpha \wedge d\alpha - d\alpha \wedge \alpha = 2\alpha \wedge d\alpha = 0\). Dunque scriviamo che 
 
+\begin{align}
+    \left( \omega^a + \frac{e^a}{\ell}\right) \wedge d\left( \omega_a + \frac{e_a}{\ell}\right) = \omega^a \wedge \frac{d e_a}{\ell} + \frac{e^a}{\ell} \wedge d\omega_a = -\left( \omega^a + \frac{e^a}{\ell}\right) \wedge d\left( \omega_a - \frac{e_a}{\ell}\right)
+\end{align}
 
+e l'intera azione, dopo avere opportunamente semplificato i termini, diventa 
+
+\begin{align}
+    I_{CS} = \frac{\kappa}{2}\int 2\omega^a \wedge \frac{de_a}{\ell} + \frac{2e^a}{\ell}\wedge d\omega_a + \frac{1}{3}\eps^{abc}\left[2\omega_a \wedge \omega_b \wedge \frac{e_c}{\ell} + 2\omega_a \wedge \frac{e_b}{\ell} \wedge \omega_c + 2\frac{e^a}{\ell} \wedge \omega_b \wedge \omega_c + 2\frac{e_a}{\ell} \wedge \frac{e_b}{\ell} \wedge \frac{e_c}{\ell}\right]
+\end{align}
+
+Ora, consideriamo 
+
+\begin{align}
+    \eps^{abc}\left(\frac{e_a}{\ell} \wedge \omega_b \wedge \omega_c \right) \xrightarrow{a \leftrightarrow b}  &\eps^{bac}\left(\frac{e_b}{\ell} \wedge \omega_a \wedge \omega_c \right) \\
+    &= -\eps^{abc}\left(\frac{e_b}{\ell} \wedge \omega_a \wedge \omega_c \right) \\
+    &= \eps^{abc}\left(\omega_a \wedge \frac{e_b}{\ell}  \wedge \omega_c \right) = \eps^{abc}\left(\omega_a \wedge \omega_b  \wedge \frac{e_c}{\ell} \right)
+\end{align}
+
+Inoltre, considero 
+
+\begin{align}
+    \omega^a \wedge \frac{de_a}{\ell} = d\left(\omega^a \wedge \frac{de_a}{\ell} \right) + d\omega^a \wedge \frac{e_a}{\ell}
+\end{align}
+
+Il primo termine è una derivata totale e posso trascurarlo se uso opportune condizioni al contorno. L'espressione quindi si semplifica notevolmente in 
+
+\begin{align}
+    I_{CS} &= \kappa\int 2\omega^a \wedge \frac{de_a}{\ell} + \frac{\eps^{abc}}{3}\left[\frac{3}{\ell}\omega_a \wedge \omega_b \wedge e_c + \frac{1}{\ell^3}e_a \wedge e_b \wedge e_c \right] \\ 
+    &= \frac{\kappa}{\ell} \int e^a \wedge \left(2d\omega_a + \eps_{abc}\left[\omega^b \wedge \omega^c + \frac{1}{3\ell^2} e^b \wedge e^c \right] \right)
+\end{align}
+
+Per trovare l'azione di Einstein-Hilbert, devo far "saltare fuori" due cose: lo scalare di Ricci, che posso ottenere tracciando il tensore di Ricci, che posso scrivere in termini della connessione di spin e delle sue derivate, e la forma di volume \(d^3x\). Partiamo dal Ricci: 
+
+\begin{align}
+    \eps_{abc}R^{bc} = \eps_{abc}(d\omega^{bc} + \omega^b_d \wedge \omega^{dc})
+\end{align}
+
+d'altra parte, noi abbiamo sempre scritto \(\omega^a = \frac{1}{2}\eps^{abc}\omega_{bc}\). Dunque, vale 
+
+\begin{align}
+    \eps_{dea}\omega^a &= \frac{1}{2}\eps_{dea}\eps^{abc}\omega_{bc} \\
+    &= \frac{1}{2}(\delta^c_d \delta^b_c - \delta^b_d \delta^c_e)\omega_{bc} \\
+    &= \frac{1}{2}\omega_{ed} - \frac{1}{2}\omega_{de} = -\omega_{de}
+\end{align}
+
+In questo modo, so come esprimere le \(\omega\) con due indici in termini di \(\omega\) con uno. Tornando al Ricci, posso scrivere 
+
+\begin{align}
+    \eps_{abc}R^{bc} = \eps_{abc}(-\eps^{bc}_d d\omega^d + \eps^{b}_{de} \eps^{dc}_f\omega^e \wedge \omega^f)
+\end{align}
+
+Usando ancora una volta la formula della contrazione di due levi-civita, ottengo 
+
+\begin{align}
+    \eps_{abc}R^{bc} &= 2\eta_{ad}d\omega^d + \underbrace{\eps_{abc}(\eta^{bc}}_{=0}\eta_{ef} - \delta^b_f \delta^c_e)\omega^e \wedge \omega ^f  \\
+    &= 2 d\omega_a + \eps_{abc} \omega^b \wedge \omega^c
+\end{align}
+
+che è proprio il primo termine della lagrangiana! L'azione quindi si scrive 
+
+\begin{align}
+    I_{CS} = \frac{\kappa}{\ell}\int e^a \wedge \left[\eps_{abc}R^{bc} + \frac{1}{3\ell^2} \eps_{abc}e^b \wedge e^c\right]
+\end{align}
+
+Ora veniamo alla forma di volume. Ricorda che vale 
+
+\begin{align}
+    -\eps^{\mu\nu\rho}d^3x = dx^\mu \wedge dx^\nu \wedge dx^\rho 
+\end{align}
+
+quindi, 
+
+\begin{align}
+    \eps_{abc} e^a \wedge e^b \wedge e^c = \eps_{abc}\eps^{\mu\nu\rho}e^a_\mu e^b_\nu e^c_\rho d^3x 
+\end{align}
+
+La contrazione in \(\mu, \nu, \rho\) è una somma di \(3! = 6\) termini. Sono antisimmetrici nello scambio degli indici greci, ma poiché ciascun indice greco è accompagnato da un indice latino, e moltiplichiamo tutto per \(\eps_{abc}\), tutti i 6 contributi sono uguali. Si ottiene quindi 
+
+\begin{align}
+    \eps_{abc}e^a \wedge e^b \wedge e^c = 3! \eps_{abc}e^a_t a^b_x e^c_y d^3x = 3! \sqrt{-g}d^3x 
+\end{align}
+
+Se guardiamo l'azione, il secondo pezzo è gia evidentemente proporzionale alla forma di volume. Invece, per la prima parte serve ancora del lavoro: 
+
+\begin{align}
+    \eps_{abc}e^a \wedge R^{bc} &= \eps_{abc}e^a \wedge \frac{1}{2}R^{bc}_{de} e^d \wedge d^e \\
+    &= \frac{1}{2}\eps_{abc}R^{bc}_{de}e^a \wedge e^d \wedge e^e 
+\end{align}
+
+Ora, esamino ancora da vicino 
+
+\begin{align}
+    e^a \wedge e^d \wedge e^e = -\eps^{ade}e^0 \wedge e^1 \wedge e^2 = -\eps^{ade}\frac{1}{3!}\eps_{fgh}e^f \wedge e^g \wedge e^h = -\eps^{ade}\sqrt{-g}d^3x
+\end{align}
+
+Finalmente allora possiamo scrivere 
+
+\begin{align}
+    \eps_{abc}e^a \wedge R^{bc} &= -\frac{1}{2}\eps_{abc}\eps^{ade}R^{bc}_{de}\sqrt{-g}d^3x \\
+    &= -\frac{1}{2}(\delta^d_b\delta^e_c - \delta^e_b \delta^d_c)R^{bc}_{de}\sqrt{-g}d^3x \\ 
+    &= -\frac{1}{2}(R^{bc}_{bc} - R^{bc}_{cb})\sqrt{-g}d^3x \\
+    &= R\sqrt{-g}d^3x
+\end{align}
+
+abbiamo quindi trovato 
+
+\begin{align}
+    I_{CS} = \frac{\kappa}{\ell}\int \left(R + \frac{3!}{3\ell^2} \right)\sqrt{-g}d^3x
+\end{align}
+
+che è proprio l'azione di Hilbert-Einstein, se sostituiamo \(\Lambda = -1/\ell^2\), e scegliendo opportunamente l'accoppiamento \(\kappa\).  
 
 \section{Il meccanismo di Kaluza-Klein}
 
@@ -1248,10 +2424,10 @@ d'altra parte, questa non è una parametrizzazione particolarmente furba, perch�
     d\hat{s}^2 = e^{2\alpha \phi}ds^2 + e^{2\beta\phi}(dz + A)^2
 \end{align}
 
-con \(\alpha, \beta\) due costanti che sceglieremo in modo opportuno, mentre \(A = A_\mu dx^\mu\) è una 1-forma. Questa parametrizzazione è detta anstatz di Kaluza-Klein. In termini della metrica, vale 
+con \(\alpha, \beta\) due costanti che sceglieremo in modo opportuno, mentre \(A = A_\mu dx^\mu\) è una 1-forma. Questa parametrizzazione è detta anstatz di Kaluza-Klein. In termini della metrica, vale (espandi \((dz+A)^2 = (dz^2 + A_\mu dz dx^\mu + A_\mu A_\nu dx^\mu dx^\nu)\), e poi leggi i coeff. di \(dx^\mu dx^\nu, \, dzdx^\mu, \, dz^2\)) 
 
 \begin{align}
-    &\hat{g}_{\mu\nu} = e^{2\alpha\phi}g_{\mu\nu} + e^{2\beta\phi}A_\mu dx^\mu \\
+    &\hat{g}_{\mu\nu} = e^{2\alpha\phi}g_{\mu\nu} + e^{2\beta\phi}A_\mu A_\nu \\
     &\hat{g}_{\mu z} = e^{2\beta\phi}A_{\mu} \\
     &\hat{g}_{zz} = e^{2\beta\phi}
 \end{align}
@@ -1331,22 +2507,29 @@ se pongo \(c=0\), come cambiano i campi d-dimensionali sotto queste trasformazio
 ricordando il legame fra \(\hat{g}_{zz}, \phi\), avremmo che 
 
 \begin{align}
-    \delta\phi = \xi^\rho \partial_\rho \phi
+    &\delta(e^{2\beta\phi}) = \xi^\rho \partial_\rho e^{2\beta \phi} \\
+    &2\beta\delta\phi e^{2\beta\phi} = 2\beta e^{2\beta\phi}\xi^\rho\partial_\rho \phi \implies \delta\phi = \xi^\rho\partial_\rho \phi
 \end{align}
 
 cioè, \(\phi\) trasforma come uno scalare. Invece, poiché vale 
 
 \begin{align}
-    \delta\hat{g}_{\mu z} = \xi^\rho \partial_\rho \hat{g}_{\mu z} + g_{\rho z}\partial_\mu \xi^\rho 
+    \delta\hat{g}_{\mu z} = \xi^\rho \partial_\rho \hat{g}_{\mu z} + \hat{g}_{M z}\partial_\mu \xi^M = \xi^\rho \partial_\rho \hat{g}_{\mu z} + \hat{g}_{\mu z}\partial_\mu \xi^\mu + \hat{g}_{zz}\partial_\mu \lambda  
 \end{align}
 
-Si trova che 
+Sostituendo \(\hat{g}_{zz} = e^{2\beta\phi}\), \(\hat{g}_{z\mu} = e^{2\beta\phi}A_\mu\), e calcolando la variazione 
 
 \begin{align}
-    \delta A_\mu = \underbrace{\xi^\rho \partial_\rho A_\mu + A_\rho \partial_\mu \xi^\rho}_{\text{Trans. di 1-forma sotto diffeomorfismi}} + \underbrace{\partial_\mu\lambda}_{\text{Trasf. di gauge}}
+    \delta \hat{g}_{\mu z} = 2\beta\delta\phi e^{2\beta\phi}A_\mu + e^{2\beta\phi}\delta A_\mu
 \end{align}
 
-Infine, si trova che la metrica in d dimensioni si trasforma correttamente sotto diffeomorfismi. In particolare dunque, dall'invarianza sotto diffeomorfismi in (d+1) dimensioni, abbiamo ottenuto invarianza sotto diffeomorfismi e trasformazioni di gauge \(U(1)\) in d dimensioni. 
+Si trova
+
+\begin{align}
+    \delta A_\mu = \underbrace{\xi^\rho \partial_\rho A_\mu + A_\rho \partial_\mu \xi^\rho}_{\text{Trasf. di 1-forma sotto diffeomorfismi}} + \underbrace{\partial_\mu\lambda}_{\text{Trasf. di gauge}}
+\end{align}
+
+Con passaggi simili, si trova che la metrica in d dimensioni si trasforma correttamente sotto diffeomorfismi. In particolare dunque, dall'invarianza sotto diffeomorfismi in (d+1) dimensioni, abbiamo ottenuto invarianza sotto diffeomorfismi e trasformazioni di gauge \(U(1)\) in d dimensioni. 
 
 \section{Buco nero di Kaluza-Klein}
 
@@ -1419,6 +2602,18 @@ vale anche che
     \left(1 - \frac{2m}{r} -\frac{2m}{r}\sinh^2\gamma\right) - \frac{m^2}{r^2\Delta}\sinh^2(2\gamma) = -\frac{1}{\Delta}\left(\-\frac{2m}{r} \right)
 \end{align}
 
+Che si nota raccogliendo un fattore \(\Lambda^{-1}\): 
+
+\begin{align}
+    -\frac{1}{\Delta}\left(-\Delta - \frac{\Delta 2m}{r}(1+\sinh^2\gamma) - \frac{m^2}{r^2}\sinh^2(2\gamma) \right)
+\end{align}
+
+ed esplicitando \(\Delta = 1 + \frac{2m}{r}\sinh^2 \gamma\): 
+
+\begin{align}
+    -\frac{1}{\Delta}\left(1 - \frac{2m}{r} - \frac{4m^2}{r^2}\sinh^2\gamma(1+\sinh^2\gamma)^2 + \frac{m^2}{r^2}\sinh^2(2\gamma)\right) = -\frac{1}{\Delta}\left(1-\frac{2m}{r} \right)
+\end{align}
+
 quindi, troviamo 
 
 \begin{align}
@@ -1442,6 +2637,56 @@ Assieme alle forme di \(A, \phi\) la soluzione è detta "KK blackhole", oppure "
 \begin{align}
     M = m\left(1 + \frac{1}{2}\sinh^2\gamma \right)
 \end{align}
+
+\ex{Calcolo esplicito della massa}{
+
+    Il calcolo esplicito della massa è simile al calcolo usato per calcolare la massa dello Swartschild, almeno nell'impostazione. Ricorda che l'energia si ottiene da 
+
+    \begin{align}
+        Q_V(\xi) = -\frac{1}{8\pi G}\oint_{\partial V}dS^{\mu\nu}(\nabla_\mu \xi_\nu)
+    \end{align}
+
+    Dove \(\xi = \partial_t\). Dalla forma della metrica, è evidente che \(\partial_t g_{\mu\nu} =0\), dunque \(\xi\) è killing e la massa è conservata. Se si sceglie \(V \subset \Sigma_t\), con bordo ad \(r = const. > 2m\), allora i vettori normali sono \(u = \partial_t\), \(v = \partial_r\) e le uniche componenti non nulle della binormale sono 
+
+    \begin{align}
+        dS^{rt} = -dS^{tr} = \sqrt{\sigma}(u^r v^t - v^r u^t) = \Delta^{1/2}r^2\sin\theta d\theta d\varphi
+    \end{align}
+
+    Perché la metrica indotta sul bordo della superficie è chiaramente \(d\sigma^2 = \Delta^{1/2}r^2(d\theta^2 + \sin^2\theta d\varphi^2)\). La massa è quindi 
+
+    \begin{align}
+        M(V) = -\frac{1}{4\pi G}\int \Delta^{1/2}r^2\sin\theta d\theta d\varphi (\nabla_r \xi_t)
+    \end{align}
+
+    dove abbiamo aggiunto un fattore \(2\) a numeratore perché vale \(dS^{rt}(\nabla_r \xi_t) = dS^{tr}(\nabla_t \xi_r)\), essendo \(\xi\) killing. Non resta che calcolare \(\nabla_r \xi_t\): poiché \(\xi^t = 1\) è l'unica componente non nulla, si trova
+
+    \begin{align}
+        \nabla_r \xi_t = \partial_r g_{tt} - \Gamma_{\mu rt}\xi^\mu = \partial_r g_{tt} - \Gamma_{trt} = \frac{1}{2}\partial_r(g_{tt})
+    \end{align}
+
+    Ora, ricorda che il buco nero KK \emph{non} è una soluzione delle equazioni di Einstein nel vuoto. In particolare, dunque \(R_{\mu\nu} \neq 0 \implies T_{\mu\nu} \neq 0\), e la massa non è collocata tutta nella singolarità! Questo perché alla massa contribuiscono anche la densità di energia immagazzinate dai campi \(\phi, A_\mu\) (inflatone ed elettromagnetico). Se voglio tutta la massa, devo prendere il limite \(r \rightarrow \infty\). Conviene allora calcolare la forma asintotica di \(g_{tt}\): 
+
+    \begin{align}
+        g_{tt} &= -\left(1+\frac{2m}{r}\sinh^2\gamma \right)^{-1/2}\left(1-\frac{2m}{r} \right) \\
+        &= -\left(1-\frac{m}{r}\sinh^2\gamma \right)\left(1-\frac{2m}{r} \right) + o(r^{-2}) = -\left(1-\frac{m}{r}(2 + \sinh^2\gamma) \right) + o(r^{-2})
+    \end{align}
+
+    Dunque all'infinito spaziale, 
+
+    \begin{align}
+        \partial_r g_{tt} \simeq -\frac{m}{r^2}(2+\sinh^2\gamma)
+    \end{align}
+
+    e la massa è infine 
+
+    \begin{align}
+        M &= -\frac{1}{4\pi G}\int r^2\sin\theta d\theta d\varphi \frac{1}{2}\left(-\frac{m}{r^2}(2+\sinh^2\gamma)\right) \\
+        &= \frac{m}{G}\left(1+\frac{1}{2}\sinh^2\gamma \right)
+    \end{align}
+
+
+}
+
 
 La carica invece, poiché l'eq. del moto è \(\nabla_\mu (e^{-\sqrt{3}\phi}F^{\mu\nu}) =0\), è data da 
 

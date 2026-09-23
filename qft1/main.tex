@@ -1788,20 +1788,503 @@ The N functions do not need to be put in a specific order, as they commute. Howe
 
 \section{From QM to QFT}
 
-the generalization, at least to a formal level, is quite straightforward: one writes 
+The generalization to QFT , at least to a formal level, is quite straightforward: one writes 
 
 \begin{align}
     \Braket{\phi_f T_f | \phi_i T_i} = \int_{\phi(x, T_i) = \phi_i(x)}^{\phi(x, T_f) = \phi_f(x)} \mathcal{D}\phi e^{i \int d^4x \mathcal{L}} 
 \end{align}
 
+Of course, what one is really interested in QFT is using the LSZ formula to compute amplitudes, and in the LSZ formula appears the time ordered product 
+
+\begin{align}
+    \bra{\Omega}T\left\{\phi(x_1)\ldots \phi(x_n) \right\}\ket{\Omega}
+\end{align}
+
+now in the path integral, we can write 
+
+\begin{align}
+    \bra{\Omega}T\left\{\phi(x_1)\ldots \phi(x_n) \right\}\ket{\Omega} = \frac{\int \mathcal{D}\phi \phi(x_1)\ldots \phi(x_n)e^{iS}}{\int \mathcal{D}\phi e^{iS}}
+\end{align}
+
+We expect that if we make a perturbative expansion of the lagrangian in the exponential, we can recover the the Feynman rules as we did in the canonical quantisation. Moreover, we can also not expand the exponential, and treat the theory exactly, at least in principle. 
+
+It is useful to introduce the \emph{generating functions}, that are useful tools to make this type of computations. To start, consider a scalar field theory and write
+
+\begin{align}
+    Z[J] = \int \mathcal{D}\phi \exp\left\{i(\mathcal{L} + \phi J )\right\}
+\end{align}
+
+
+Then, define the \emph{functional derivative} as the following: 
+
+\begin{align}
+    \frac{\delta}{\delta J(y)}J(x) = \delta(x-y)
+\end{align}
+
+The usual rules for derivatives hold, and we can also bring the derivative under the integral sign. For example, then, 
+
+\begin{align}
+    \frac{\delta}{\delta J(x_1)} \int d^4x \phi(x)J(x) = \phi(x_1)
+\end{align}
+
+So when we apply this to the generation functional, we see that 
+
+\begin{align}
+    \frac{\delta}{\delta J(x_1)}\int \mathcal{D}\phi e^{i\int d^4x (\mathcal{L} + J\phi)} = \int \mathcal{D}\phi (i\phi(x_1)) e^{i\int d^4x (\mathcal{L} + J\phi)}
+\end{align}
+
+From this simple rule, we derive 
+
+\begin{align}
+    \left(\frac{-i\delta}{\delta J(x_1)} \right)\ldots\left(\frac{-i\delta}{\delta J(x_N)} \right)Z[J]|_{J=0} = \int \mathcal{D}\phi \phi(x_1)\ldots \phi(x_N)e^{iS}
+\end{align}
+
+\ex{The scalar free theory case, Feynman propagator from path integral}{
+
+    Consider a free real scalar theory, with lagrangian 
+
+    \begin{align}
+        \mathcal{L} = \frac{1}{2}(\partial_\mu\phi \partial^\mu\phi -(m^2-i\eps)\phi^2)
+    \end{align}
+
+    we inserted a little imaginary shift in the mass, to be sure that the integrals converge if \(\phi\) gets big. 
+
+    To begin, we need to compute the generator: 
+
+    \begin{align}
+        Z[J] &= \int \mathcal{D}\phi e^{i\int d^4x (\mathcal{L} + \phi J)} \\
+        &= \int \mathcal{D}\phi e^{(i/2)\int d^4x (\partial_\mu\phi \partial^\mu\phi -(m^2+i\eps)\phi^2 + 2\phi J)}
+    \end{align}
+
+    If we integrate by parts, we find the explicit form of the KG operator: 
+
+    \begin{align}
+        Z[J] = \int \mathcal{D}\phi e^{(i/2)\int d^4x (\phi(-\square -m^2+i\eps)\phi + 2\phi J)}
+    \end{align}
+
+    Now shift the fields \(\phi \rightarrow \phi' = \phi + i \int d^4y D(x-y)J(y)\), where \(D(x-y)\) is the green function of the KG equation. 
+
+    Look closely at the first term in the exponential: it transforms as 
+    
+    \begin{align}
+        \phi'(-\square - m^2)\phi' + i \int d^4y \phi' (-\square -m^2)D(x-y)J(y) + i \int d^4y D(x-y)J(y)(-\square -m^2)\phi'  \\ - \int d^4yd^4y' D(x-y)J(y)(-\square-m^2)D(x-y')J(y')
+    \end{align}
+
+    Now, we act with the KG operator on the green function. In the third term to do this we IBP two times, and drop the boundary terms. In the end, the second and third term exactly cancel out the \(2\phi J\) factor, so we're left with 
+
+
+    \begin{align}
+        Z[J] = \int \mathcal{D}\phi e^{id^4x \mathcal{L}}e^{(-1/2)\int d^4x d^4y J(x)D(x-y)J(y)} = Z[J=0]e^{i\int d^4x d^4y J(x)D(x-y)J(y)} 
+    \end{align}
+
+    Now the generating functional is in a much nicer form, and we can apply the derivatives. Recall that 
+
+    \begin{align}
+        \bra{\Omega}T\left\{\phi(x_1)\phi(x_2) \right\}\ket{\Omega} =  -\frac{\delta}{\delta J(x_1)}\frac{\delta}{\delta J(x_2)}\frac{Z[J]}{Z[J=0]}
+    \end{align}
+
+    Now it's time to apply the derivatives. From the first one, 
+
+    \begin{align}
+        \frac{\delta}{\delta J(x_2)}\exp\left\{-\frac{1}{2}\int d^4xd^4y J(x)D(x-y)J(y) \right\} = \\ =  -\frac{1}{2}\left(\int d^4y D(x_2-y)J(y) + \int d^4x J(x)D(x-x_2) \right)\exp\left\{-\frac{1}{2}\int d^4xd^4y J(x)D(x-y)J(y) \right\}
+    \end{align}
+
+    Now we apply the second one. If we act again on the exponential, that's going to give as terms proportional to \(J\), that we will put to zero in the step after. So we only really need to worry about the terms in the parenthesis, that can be also rewritten as 
+
+    \begin{align}
+       \frac{\delta}{\delta J(x_1)} \left(-\int d^4y D(x_2-y)J(y)\right) = -D(x_1-x_2)
+    \end{align}
+
+    So in the end, 
+
+    \begin{align}
+        \bra{\Omega}T\left\{\phi(x_1)\phi(x_2) \right\}\ket{\Omega} = D(x_1-x_2)
+    \end{align}
+
+    as we expected. 
+
+}
+
+
+\section{Functional quantisation of fermion fields}
+
+We saw also in the canonical quantisation that fermions are different from bosons. There, to quantize them, we used anticommutation relations, and not commutation relations as we did for example for scalar theories, or the electromagnetic field. 
+
+For this reason, we have to introduce a set of \emph{anti-commuting} numbers. 
+
+
+\subsection{Grassman numbers}
+
+Consider a set of numbers \(\left\{\psi_i \right\}, \, i \in 1, \ldots, N\), that obey 
+
+\begin{align}
+    \left\{\psi_i, \psi_j \right\} = 0 
+\end{align}
+
+For example, if \(N=1\), we simply have \(\psi^2 = 0\).
+Things get interesting when we consider an arbitrary smooth function of \(\psi\). As \(\psi^2 = 0\), the Taylor expansion of the function is exact in every point, and it's just \(f(\psi) = a+b\psi\). \\
+
+We'd like to impose that \(f\) commutes with itself. What does this impose for \(b\)? Is it a commuting or anticommuting number? To find out, write \(bb' = \lambda bb'\), as well as \(\psi b = \lambda b \psi\), with \(\lambda\) either \(1\) or \(-1\). Then, 
+
+\begin{align}
+    (\psi' b')(\psi b) = \lambda^2 \psi' \psi b b' = -\lambda^2 \psi \psi' b b' = -\lambda^3 \psi b \psi' b' 
+\end{align}
+
+so in order to get \(\psi' b' \psi b = \psi b \psi ' b'\), \(\lambda\) must be \(-1\). So b itself is also a Grassman number. 
+
+We now want to define calculus on these numbers. Let's start with derivatives. There are two types of derivatives: 
+
+\begin{align}
+    \partial_\psi (a+ \psi b) = b 
+\end{align}
+
+
+on the other end, we can also define 
+
+\begin{align}
+    (a+ \psi b)\partial^\leftarrow_\psi = (a-  b \psi)\partial^\leftarrow_\psi = -b
+\end{align}
+
+Now, let's define integration. This means we'd want to give a meaning to the symbol 
+
+\begin{align}
+    \int_{-\infty}^{+\infty} d\psi f(\psi)
+\end{align}
+
+Let's start with some basic assumptions that every type of integral should follow: we impose that's linear, and invariant under translations. In formulas, we impose: 
+
+\begin{align}
+    \begin{cases}
+        \int d\psi cf(\psi) = c\int d\psi f(\psi) \\
+        \int d\psi f(\psi +\eta) = \int d\psi f(\psi)
+    \end{cases}
+\end{align}
+
+Of course, the integral should also be a function of both \(a, b\). Under a translation, though, we have 
+
+\begin{align}
+    f(\psi) = a +b\psi \rightarrow f(\psi +\eta) = a + \eta b + b\psi = a' + b\psi
+\end{align}
+
+with \(a' = (a+b\eta)\). So the integral can be a function of b alone. Choosing the normalization to be \(1\), we simply define 
+
+\begin{align}
+    \int d\psi f(\psi) = b
+\end{align}
+
+What happens if we have more than one Grassman variable? Then the Taylor expansion can involve the product of different Grassman numbers, as 
+
+\begin{align}
+    f(\psi) = a + \psi_i b_i + \frac{1}{2}\psi_{i_1}\psi_{i_2}C_{i_1, i_2} + \ldots + \frac{1}{n!}D_{i_1, \ldots i_n}\psi_{i_1}\ldots\psi_{i_n}
+\end{align}
+
+but it's still exact and finite, and of order \(N\). Differentiation now works as 
+
+\begin{align}
+    \frac{\partial}{\partial \psi_j}f(\psi) = b_j + \psi_i C_{ij} + \ldots + \frac{1}{(n-1)!}\psi_{i_1}\ldots\psi_{i_{j-1}}\psi_{i_{j+1}}\ldots \psi_{i_n}D_{i_1, \ldots, i_n}
+\end{align}
+
+The only integral that follows our rules is given by 
+
+\begin{align}
+    \int d^n \psi f(\psi) = d, \quad \text{as} \quad d_{i_1, \ldots, d_n} = d\eps_{i_1, \ldots i_n}
+\end{align}
+
+Before going back to fermions, we list a series of known results for integrals that will be useful when we'll have to compute the actual path integrals. 
+
+First consider a linear transformation 
+
+\begin{align}
+    \psi_i = J_{ij}\psi'_j 
+\end{align}
+
+where \(J\) is a matrix made up of commuting numbers. Then, 
+
+\begin{align}
+    \int d\psi' f(\psi') = \det(J)\int d^n \psi f(\psi)
+\end{align}
+
+notice that is the other way around respect to standard numbers. Similarly, the gaussian integral is given by
+
+\begin{align}
+    \int d^n \psi \exp\left[\frac{1}{2}\psi^T M \psi\right] = \sqrt{\det(M)}
+\end{align}
+
+Finally, we can pair two Grassman numbers to get a Grassman complex number, simply as 
+
+\begin{align}
+    \chi = \frac{1}{\sqrt{2}}(\psi_1 + i\psi_2), \quad \bar{\chi} = \frac{1}{\sqrt{2}}(\psi_1 - i\psi_2)
+\end{align}
+
+And in this case, we get 
+
+\begin{align}
+    \int d^n \chi d^n \bar{\chi} e^{\chi^\dagger M \chi} = \det M \\
+    \int d^n \chi d^n \bar{\chi} e^{\chi^\dagger M \chi + \eta^\dagger \chi + \chi^\dagger \eta} = \det M e^{-\eta^\dagger M^{-1}\eta} \\
+    \int d^n d^n \bar{\chi} \chi \bar{\chi} e^{\chi^\dagger M \chi} = \det M (M)^{-1}
+\end{align}
+
+\subsection{The fermion propagator}
+
+In the path integral formalism, if we want to compute the feynman propagator for a Dirac field, with free lagrangian given by 
+
+\begin{align}
+    \mathcal{L} = \bar{\psi}(i\slashed{\partial}-m)\psi 
+\end{align}
+
+we have to compute 
+
+\begin{align}
+    \bra{0}T\left\{\psi(x_1)\bar{\psi}(x_2) \right\}\ket{0} = \frac{\int \mathcal{D}\bar{\psi}\mathcal{D}\psi \bar{\psi}\psi e^{i\int d^4x \bar{\psi}(i\slashed{\partial} - m)\psi}}{\int \mathcal{D}\bar{\psi}\mathcal{D}\psi e^{i\int d^4x \bar{\psi}(i\slashed{\partial} - m)\psi}}
+\end{align}
+
+in the lhs, the Dirac fields are written as 
+
+\begin{align}
+    \psi = \sum_i \psi_i \phi(x)
+\end{align}
+
+so that if we invert the time ordering, both sides of the equation pick up a minus sign. (Remember that \(T\left\{\psi_1 \bar{\psi}_2 \right\} = -\bar{\psi}_2 \psi_1\), if \(x_2^0 > x_1^0\)). 
+
+Then the equation is well defined, and we compute it using the formulas that we listed previously: 
+
+\begin{align}
+    \bra{0}T\left\{\psi(x_1)\bar{\psi}(x_2) \right\}\ket{0} = \frac{\det (i\slashed{\partial}-m) (i\slashed{\partial}-m)^{-1}}{\det (i\slashed{\partial}-m)}  = (i\slashed{\partial}-m)^{-1}
+\end{align}
+
+Now recall that \(S_f(x_1-x_2)\) is the green function of Dirac's equation, meaning that 
+
+\begin{align}
+    (i\slashed{\partial}-m)S_f(x_1-x_2) = i\delta(x_1-x_2) \implies (i\slashed{\partial}-m)^-1 = S_f(x_1-x_2) \implies  \bra{0}T\left\{\psi(x_1)\bar{\psi}(x_2) \right\}\ket{0} = S_f(x_1-x_2)
+\end{align}
+
+as we expected. 
+
+\chapter{UV divergences}
+
+\section{1 Loop corrections in \(\phi^4\) theory}
+
+Let's go back to the canonical quantisation, and recall that we evaluated the amplitude of the process \(\phi\phi \rightarrow \phi\phi\) up to order 1 in \(\lambda\). What happens if we want to compute higher order corrections? The LSZ formula then requires us to compute 
+
+\begin{align}
+    \frac{(i\lambda)^2}{2(4!)} \bra{\Omega}T\left\{\phi(x_1)\phi(x_2)\phi(y_1)\phi(y_2) \int d^4z \phi^4(z) \int d^4z' \phi^4(z')\right\}\ket{\Omega}
+\end{align}
+
+Performing the computation with Wick's theorem is possibile, but not very practical. Instead, we can think at this with Feyman diagrams: then we find that the order 2 corrections all contain a loop in the diagram. In those loops, the momentum is underdetermined, meaning that the conservation of the momentum at every vertex + the conservation of external momenta is not sufficient to completely determine the momenta inside the loops. For this reason, we must integrate over all undetermined momentum. This is the new Feynman rule that appears when we consider diagrams that contain loops. 
+
+As all Feynman rules, this comes directly from the LSZ formula. To see this, consider for example the possibile contraction 
+
+\begin{align}
+    -\frac{\lambda}{2 (4!)}\int d^4z d^4z' D(x_1-z)D(x_2-z)D(z-z')D(z-z')D(y_1-z')D(y_2-z')
+\end{align}
+
+As we always do, we translate the variables and perform the first integrals, to get 
+
+\begin{align}
+    \tilde{D}(p_1)\tilde{D}(p_2)\tilde{D}(k_1)\tilde{D}(k_2)\int d^4z d^4z' e^{iz(p_1+p_2)}e^{-iz'(k_1+k_2)}D(z-z')D(z-z')
+\end{align}
+
+Switch to the fourier transform in the integrals: 
+
+\begin{align}
+    \tilde{D}(p_1)\tilde{D}(p_2)\tilde{D}(k_1)\tilde{D}(k_2)\int d^4z d^4z' \frac{d^4\ell_1}{(2\pi)^4}\frac{d^4\ell_2}{(2\pi)^4}e^{iz(p_1+p_2)}e^{-iz'(k_1+k_2)}\tilde{D}(\ell_1)D(\ell_2)e^{i\ell_1(z-z')}e^{i\ell_2(z-z')}
+\end{align}
+
+Now reorder the arguments in the exponentials, to get two Dirac deltas: 
+
+\begin{align}
+    \tilde{D}(p_1)\tilde{D}(p_2)\tilde{D}(k_1)\tilde{D}(k_2)\int \frac{d^4\ell_1}{(2\pi)^4}\frac{d^4\ell_2}{(2\pi)^4}\tilde{D}(\ell_1)\tilde{D}(\ell_2)(2\pi)^8\delta(p_1+p_2-\ell_1-\ell_2)\delta(k_1+k_2+\ell_1+\ell_2)
+\end{align}
+
+Finally, use the first one to get 
+
+\begin{align}
+    (2\pi)^4\delta(p_1+p_2-k_1-k_2)\tilde{D}(p_1)\tilde{D}(p_2)\tilde{D}(k_1)\tilde{D}(k_2)\int \frac{d^4\ell}{(2\pi)^4}\tilde{D}(\ell)\tilde{D}(p_1+p_2-\ell)
+\end{align}
+
+So we verified that we indeed have to integrate over the underdetermined momentum in this case. 
+
+Now use the rules to write the amplitude, relative to the same diagram:
+
+\begin{align}
+    A(p_1+p_2) \propto \frac{i\lambda}{2}\int \frac{d^4\ell}{(2\pi)^4}\frac{i}{(p_1+p_2-\ell)^2-m^2}\frac{i}{\ell^2-m^2}
+\end{align}
+
+This is divergent in the UV limit. (that is, when momentum goes to infinity). This divergence though is not trivial. This is because \(\ell\) is a four vector living in Minkoswki spacetime. To proceed, then, first consider \(A(0)\): 
+
+\begin{align}
+    A(0) = \frac{(i\lambda)^2}{2}\int \frac{d^4\ell}{(2\pi)^4}\left(\frac{i}{\ell^2-m^2+i\eps} \right)^2 = \frac{\lambda^2}{2}\int \frac{d^3\ell}{(2\pi)^3}\int \frac{d\ell_0}{(2\pi)}\frac{1}{(\ell_0^2 - (\vec{\ell})^2 -m^2 + i\eps)^2}
+\end{align}
+
+consider computing the last integral with the residue theorem. Remember that the Feynman prescription displaces slightly the two poles from the real axis, the positive pole below, the negative one above. So it is clear that the last integral is the same as another integral, the one of the same function, on the \emph{imaginary} axis, from \(-i\infty\) to \(i\infty\)
+
+Thus, the residue theorem tells us that we can safely write 
+
+\begin{align}
+    A(0) = \frac{\lambda^2}{2}\int \frac{d^3\ell}{(2\pi)^3}\int_{-i\infty}^{i\infty} \frac{d\ell_0}{(2\pi)}\frac{1}{(\ell_0^2 - (\vec{\ell})^2 -m^2 + i\eps)^2}
+\end{align}
+
+It is now useful to change the integration variable. Use \(\ell_E^0 = -i\ell_0\). Then we get (writing \(\vec{\ell}_E = \vec{\ell}\)): 
+
+\begin{align}
+    A(0) = \frac{-i\lambda^2}{2}\int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{(\ell_E^2 +m^2)^2} = \frac{-\lambda^2}{2}\int_0^\Lambda \frac{d\Omega_3 d\ell_E}{(2\pi)^4}\frac{\ell_E^3}{(\ell_E^2+m^2)^2} \propto \log(\Lambda)
+\end{align}
+
+where we insterted a cut-off scale \(\Lambda\). Thus, we say that the diagram diverges logarithmically. 
+
+This is not the only type of one-loop correction that appears in the theory. There are also the corrections to the propagatore, the so called "tadpole" diagrams, that have amplitude 
+
+\begin{align}
+    D(p)(-iB)D(p)
+\end{align}
+
+if 
+
+\begin{align}
+    -iB = \frac{-i\lambda}{2} \int \frac{d^4\ell}{(2\pi)^4}\frac{i}{\ell^2-m^2+i\eps} = \frac{-i\lambda}{2} \int \frac{d^4\ell_E}{(2\pi)^4}\frac{1}{\ell_E^2+m^2} = \frac{-i\lambda}{4(2\pi)^2}\int d\ell_E \frac{\ell_E^3}{\ell_E^2+m^2}
+\end{align}
+
+change integration variable from \(\ell_E\) to \(\ell_E^2+m^2\), and introducing again a cut-off scale \(\Lambda\) we find 
+
+\begin{align}
+    -iB = \frac{-i\lambda}{2(2\pi)^2}\int_{m^2}^{\lambda^2+m^2} dx \frac{x-m^2}{x} = \frac{-i\lambda}{2(2\pi)^2}\left[\Lambda^2 - m^2\log\left(\frac{\Lambda^2+m^2}{m^2} \right) \right]
+\end{align}
+
+Actually, it's possible to compute all tadpole contributions, at all orders in \(\lambda\), to the two point function. Consider 
+
+\begin{align}
+    D(p) + D(p)(-iB)D(p) + D(p)(-iB)D(p)(-iB)D(p) + \ldots &= D(p)(1 + (-iB)D(p) + ((-iB)D(p))^2 + \ldots)  \\ &= \frac{D(p)}{1+iBD(p)} = \frac{i}{p^2-m^2}\frac{1}{1 - \frac{B}{p^2-m^2}} = \frac{1}{p^2 - m^2 - B}
+\end{align}
+
+so we see that the effect of introducing this contributions is shiting the mass in the propagator from \(m^2 \rightarrow m^2 + B\), with \(B\) being infinite! We'll see how we deal with this when we will talk about renormalization. 
+
+\section{Counting the infinites}
+
+Is there a way of determining with what degree is a diagram going to diverge, without having to write the full amplitude of a feynman diagram? the answer is yes, and this trick is useful also for being able to predict if at a given order you're going to have UV divergences or not. 
+
+Consider again \(\phi^n\) theory. Since the vertex rules don't involve momentum, the degree of divergence of a diagram is given by the numer of: 
+
+\begin{enumerate}
+    \item Loops: with every loop comes an integration over the \(d\)-dimensional spacetime. 
+    \item Propagators: each propagator has \(p^{-2}\) dependence, at least in the UV limit where masses don't count. 
+\end{enumerate}
+
+So we can define the degree of divergence to be \(D = dL-2P\). Can we say something else? 
+
+Well, in three level diagrams, you always have \(V = P+1\), if \(V\) is the number of vertices. From a tree level diagram, you have two options: 
+
+\begin{enumerate}
+    \item add another vertex and propagator, and this gives again a tree level diagram 
+    \item add two vertexes and one internal line (propagator)
+\end{enumerate}
+
+From this two choices, we get the rule for the number of loops in the graph: 
+
+\begin{align}
+    L = P- V+1
+\end{align}
+
+now, every vertex is joined by n-lines in this theory. External lines are linked only ones, internal (the propagators) two, so we get 
+
+\begin{align}
+    nV = N_e +2P \implies P = \frac{1}{2}(nV - N_e)
+\end{align}
+
+We can then write the degree of divergence to be: 
+
+\begin{align}
+    D &= d(P-V+1) - 2P = P(d-2) -dV +d \\
+    &= \frac{(d-2)}{2}(nV-N_e) -dV + d \\
+    &= V\left(n\frac{d-2}{2} -d \right) -\frac{d-2}{2}N_e + d
+\end{align}
+
+Notice that in perturbation theory, you get higher in order by adding vertexes. So the sign of the coefficient 
+
+\begin{align}
+    \left(n\frac{d-2}{2} -d \right)
+\end{align}
+
+is very important. If it's positive, the orders of divergence gets bigger in all orders, and those theories are called "non-renormalizable". Instead, if the coefficient is zero, than the number of diverge diagrams is finite at avery order in perturbation theory, and the theory is called renormalizable. Instead, if it's negative, than after some order, there are not divergences anymore. Those are called super-renormalizable theories. 
+
+Notice that the coefficient is exactly minus the mass dimension of the coupling costant \(\lambda\). This is true for every theory, the mass dimension of the theory already gives information on the number of divergences that will appear in high orders of perturbation theory.  
+
+\section{Renormalization}
+
+Consider again the problem that we encountered considering tad-pole diagrams: the re-summed propagator was given by 
+
+\begin{align}
+    \frac{i}{p^2-m_0^2-B +i\eps}
+\end{align}
+
+if we write the lagrangian as 
+
+\begin{align}
+    \frac{1}{2}(\partial_\mu\phi_0 \partial^\mu \phi_0 - m_0^2\phi_0^2) + \frac{\lambda_0}{4!}\phi_0^4 
+\end{align}
+
+now, \(m_0^2\) is just a parameter in the lagrangian (sometimes called the "bare" mass). What really interests us, is the pole of the propagator, because that enters in amplitudes and can be measured. So we can choose the parameter to be such that \(m_0\) cancels the divergence of \(B\) and gives the physical mass \(m = \sqrt{m^2+B}\) that we actually measure.  
+
+The situation gets slightly more difficult if we consider two loops correction to the propagator. This time, the re-summed propagator becomes 
+
+\begin{align}
+    \frac{i}{A(p^2, m_0^2)p^2-m_0^2-B+i\eps}
+\end{align}
+
+We still want the propagator to have a pole in \(p^2 =m^2\). So we require that
+
+\begin{align}
+    (A(p^2, m_0^2)p^2-m_0^2-B)|_{p^2 =m^2} = 0 
+\end{align}
+
+now, i want to see how the propagator looks like near the pole, so I expand: 
+
+\begin{align}
+    \frac{i}{A(p^2, m_0^2)p^2-m_0^2-B} \simeq \frac{i}{(\frac{d}{dp^2}A(p^2, m_0^2)p^2)(p^2-m^2)} + \ldots = \frac{iZ}{p^2-m^2} + \ldots
+\end{align}
+
+where \(Z\) is called the wave function renormalization constant. This is because if we define the normalized fields as 
+
+\begin{align}
+    \phi = Z^{1/2}\phi_0 
+\end{align}
+
+then this normalization factors cancel out in the LSZ formula.
 
 
 
+By scaling the mass and renormalizing the fields, we have thus cured the divergence of the 2 point function. What about the other divergence, the logartmic one that appeared when we had to compute the second order corrections for \(\phi\phi \rightarrow \phi\phi\)? Up to second order, we had 
 
+\begin{align}
+    i\mathcal{M}(p_1p_2 \rightarrow k_1k_2) = -i\lambda_0 + (i\lambda_0)^2(\beta \log(\Lambda) + \ldots)
+\end{align}
 
+We'd like to impose 
 
+\begin{align}
+    i\mathcal{M}(p_1p_2 \rightarrow k_1k_2) = i\lambda
+\end{align}
 
+but we must choose a particular configuration, for example 
 
+\begin{align}
+    p_1 = p_2 = k_1 = k_2 = (m, \vec{0})
+\end{align}
+
+now the only scales are \(\Lambda\) and \(m\), so 
+
+\begin{align}
+    -i\lambda = -i\lambda_0(1-\lambda_0(\Lambda)(\beta\log(\Lambda^2/m^2)) + o(\lambda^3))
+\end{align}
+
+Even if this is fixed only for a particular configuration, the matrix element is finite for every sale. Consider for example if \((p_1+p_2)^2 >> m^2 \), then that is the only scale and 
+
+\begin{align}
+    iM(q^2) &= -i\lambda_0(1-\lambda_0(\beta\log(\Lambda^2/q^2))) \\
+    &= -i\lambda_0(1-\lambda_0(\beta(\log(\Lambda^2/m^2) - \log(m^2/q^2))) \\
+    &= -i\lambda - i\lambda_0(1-i\lambda_0\beta\log(m^2/q^2))
+\end{align}
+
+so we say that after renormalization, the coupling constants become running. 
 
 
 
