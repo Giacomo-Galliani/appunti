@@ -1055,7 +1055,228 @@ Il teorema sembrerebbe spezzare le nostre speranze. D'altra parte, possiamo cerc
 
 \section{Definizione di superalgebra di Lie e primi esempi}
 
+Cominciamo ricordando la definizione di algebra di Lie, \(\mathfrak{g}\): 
 
+\begin{enumerate}
+    \item \(\mathfrak{g}\) è uno spazio vettoriale su \(\mathbb{R}\) o \(\mathbb{C}\)
+    \item Su questo spazio esiste una legge di composizione interna, bilineare e anticommutativa \([,]\) cioè 
+    \begin{align}
+        [, ] : \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}, \quad [\alpha A +\beta B, C] = \alpha [A, C] + \beta [B, C], \quad \alpha, \beta \in \mathbb{R}/\mathbb{C}, \quad [A, B] = -[B, A]
+    \end{align}
+    \item La legge soddisfa l'identità di Jacobi, cioè 
+    \begin{align}
+        [[A, B], C] + [[B, C], A] + [[C, A], B] = 0 
+    \end{align}
+\end{enumerate}
+
+In particolare, se prendiamo \([A, B] = A\cdot B - B\cdot A\), le ultime due condizioni sono automaticamente verificate. 
+
+Vogliamo ora generalizzare questa definizione. Siccome l'algebra al suo interno dovrà contenere sia bosoni sia fermioni, stabiliamo che i bosoni hanno grado 0 (mod. 2), e i fermioni hanno grado 1 (mod. 2). In questo modo possiamo richiedere che una superalgebra \(\mathfrak{S}\) sarà uno spazio vettoriale \emph{gradato}. In particolare uno spazio vettoriale \(V\) si dice gradato se \(V = V^0 \cup V^1\), e allo stesso tempo \(V = V^0 \cap V^1 = \left\{0\right\}\). Diamo quindi la definizione completa: 
+
+\dfn{Superalgebra di Lie}{
+    \(\mathfrak{S}\) si dice superalgebra di Lie se 
+    \begin{enumerate}
+        \item \(\mathfrak{S}\) è uno spazio vettoriale gradato, su \(\mathbb{R}\)/\(\mathbb{C}\). 
+        \item Se \(\exists\) legge di composizione interna, bilineare e \emph{superanticommutativa}, cioè 
+        \begin{align}
+            [A, B] = (-1)^{1+gr(A)gr(B)}[B, A]
+        \end{align}
+        ovvero in particolare: 
+        \begin{align}
+            \begin{cases}
+                \text{due bosoni} \implies gr(A) = gr(B) = 0 \implies [A, B] = -[B, A] \\
+                \text{fermione e bosone} \implies gr(A)gr(B) = 0 \implies [A, B] = -[B, A] \\
+                \text{due fermioni} \implies gr(A)gr(B) = 1 \implies [A, B] = [B, A]
+            \end{cases}
+        \end{align}
+        chiediamo inoltre che la legge sia additiva rispetto al grado, cioè che valga \(C = [A, B] \implies gr(C) = gr(A) + gr(B)\). 
+        \item Valga super-Jacobi, cioè 
+        \begin{align}
+            (-)^{gr(A)gr(C)}[[A, B], C] + (-)^{gr(B)gr(A)}[[B, C], A] + (-)^{gr(C)gr(B)}[[C, A], B] = 0  
+        \end{align}
+    \end{enumerate}
+}
+
+Osserviamo che se prendiamo \([A, B] = A\cdot B - B\cdot A\) se almeno uno fra \(A, B\) è un bosone, e \([A, B] = A\cdot B + B\cdot A\) se entrambi sono fermioni, allora le ultime due condizioni sono automaticamente soddisfatte.  
+
+Proprio come le algebre, il modo più semplice per descrivere una superalgebra è pensarla come matrici, oppure supermatrici, che agiscono su spazi vettoriali di rappresentazione gradati. 
+
+Introduciamo uno spazio vettoriale \(V(m/n)\) gradato, su \(\mathbb{R}\) o \(\mathbb{C}\). I suoi elementi sono dati da 
+
+\begin{align}
+    \begin{pmatrix}
+        x_1 \\ \ldots \\ x_m \\ y_1 \\ \ldots \\ y_n
+    \end{pmatrix}, \quad \text{bosoni} = \begin{pmatrix}
+        x_1 \\ \ldots \\ x_m \\ 0 \\ \ldots \\ 0
+    \end{pmatrix}, \quad \text{fermioni} = \begin{pmatrix}
+        0 \\ \ldots \\ 0 \\ y_1 \\ \ldots \\ y_m 
+    \end{pmatrix}
+\end{align}
+
+Le trasformazioni di \(V\) in sè stesso, cioè gli endomorfismi, ereditano anche loro una struttura gradata: in particolare le trasformazioni bosoniche devono mandare bosoni in bosoni e fermioni in fermioni, mentre le trasformazioni fermioniche devono mandare bosoni in fermioni, e fermioni in bosoni. Segue che le trasformazioni bosoniche sono rappresentate da matrici diagonali a blocchi, mentre le trasformazioni fermioniche l'ooposto. 
+
+Con la struttura di commutatore e anticommutatore ordinari, si definisce allora la superalgebra generale lineare, e si indica con \(\mathfrak{gl}(m/n)\)
+
+Chiaramente a parte \(\mathfrak{gl}(n/m)\) si possono definire altri tipi di superalgebre, che sono sotto-algebre di \(\mathfrak{gl}(m/n)\) 
+
+\ex{La superalgebra speciale lineare}{
+
+    Si può definire ad esempio la superalgebra speciale lineare, che si indica con \(\mathfrak{sl}(m/n)\). Nel caso ordinario, si definiva 
+    \begin{align}
+        \mathfrak{sl}(m) = \left\{A \in \mathfrak{gl}(m) : \text{Tr}(A) = 0 \right\}
+    \end{align}
+
+    Nel caso delle superalgebre però, non basta imporre che la traccia si annulli. Ad esempio, considera le due trasformazioni bosoniche 
+
+    \begin{align}
+        M = \begin{pmatrix}
+            A & 0 \\ 0 & D
+        \end{pmatrix}, \quad N = \begin{pmatrix}
+            A' & 0 \\ 
+            = & D' 
+        \end{pmatrix}
+    \end{align}
+
+    Si ottiene semplicemente
+
+    \begin{align}
+        \text{Tr}([M, N]) = \text{Tr}\begin{pmatrix}
+            [A, A'] & 0 \\ 
+            0 & [D, D']
+        \end{pmatrix} = 0
+    \end{align}
+
+    Siccome la traccia del commutatore di due matrici è sempre nullo. La cosa funziona anche se \(M\) è un bosone ed \(N\) è un fermione: 
+    \begin{align}
+        M = \begin{pmatrix}
+            A & 0 \\ 0 & D
+        \end{pmatrix}, \quad N = \begin{pmatrix}
+            0 & B \\ C & 0
+        \end{pmatrix} \implies \text{Tr}([M, N]) = \text{Tr}\begin{pmatrix}
+            0 & AB \\ DC & 0 
+        \end{pmatrix} - \text{Tr}\begin{pmatrix}
+            0 & BD \\ CA & 0 
+        \end{pmatrix} = 0
+    \end{align}
+
+    I problemi si hanno quando ho due fermioni: 
+
+    \begin{align}
+        M = \begin{pmatrix}
+            0 & B \\ C & 0 
+        \end{pmatrix}, \quad N = \begin{pmatrix}
+            0 & B' \\ C' & 0 
+        \end{pmatrix} \implies \text{Tr}(\left\{M, N\right\}) \neq 0 
+    \end{align}
+
+    La via di uscita da questo problema è la definzione della supertraccia: 
+
+    \begin{align}
+        \text{Str}\begin{pmatrix}
+            A & B \\ C & D 
+        \end{pmatrix} = \text{Tr}(A) - \text{Tr}(D)
+    \end{align}
+
+    Definiamo così quindi l'algebra speciale lineare, 
+    \begin{align}
+        \mathfrak{sl}(m/n) = \left\{M \in \mathfrak{gl}(m/n) : \text{Str}(M) = 0 \right\}
+    \end{align}
+
+    Ora, una supertraccia contiene sempre un settore bosonico, che indichiamo con \({}^0\mathfrak{S}\), ed un settore fermionico, che chiamiamo \({}^1\mathfrak{S}\). Come è fatto il settore bosonico? le matrici in generale si possono scrivere in termini di una base \(M, N, I\), se 
+
+    \begin{align}
+        A = \begin{pmatrix}
+            A & 0 \\ 0 & 0 
+        \end{pmatrix}, \, \text{Tr}(A) = 0, \,  \quad B = \begin{pmatrix}
+            0 & 0 \\ 0 & D
+        \end{pmatrix}, \, \text{Tr}(B) = 0, \, \quad C = \begin{pmatrix}
+            \alpha \mathbb{I} & 0 \\ 
+            0 & -\frac{m}{n}\alpha \mathbb{I}
+        \end{pmatrix}
+    \end{align}
+
+    Concludiamo che \({}^0 \mathfrak{sl}(m/n) = \mathfrak{sl}(m)\oplus \mathfrak{sl}(n)\oplus \mathfrak{u}(1)\), e quindi \(\dim({}^0 \mathfrak{sl}(m/n)) = m^2 -1 + n^2 -1 +1 = m^2 +n^2 -1\). 
+
+    Con ragionamenti simili, si mostra che \({}^1\mathfrak{sl}(m/n)\) è la somma dei due blocchi off-diagonal, cioè \(\dim({}^1 \mathfrak{sl}(m/n)) = 2mn\). 
+}
+
+\ex{Superalgebra ortosimplettica \(\mathfrak{osp}(m/n)\)}{
+
+    Possiamo dotare lo spazio \(V(m/n)\) con una forma bilineare, \((x, y) = x^T G y\), con 
+
+    \begin{align}
+        G = \begin{pmatrix}
+            \mathbb{I} & 0 \\ 
+            0 & \mathbb{J}
+        \end{pmatrix}
+    \end{align}
+
+    Se \(\mathbb{J}\) è la matrice simplettica. Si definisce allora la sottoalgebra ortosimplettica dell'algebra generale lineare nel seguente modo: 
+
+    \begin{align}
+        \mathfrak{osp}(m/n) = \left\{M \in \mathfrak{gl}(m/n) : (x, My) + (-1)^{gr(x)gr(y)}(Mx, y) = 0, \, \forall (x, y) \right\}
+    \end{align}
+
+    per studiare quindi la struttura della superalgebra partiamo dal suo settore bosonico. Quale è una base del settore bosonico? Separo i blocchi e indago: 
+
+    \begin{enumerate}
+        \item Blocco \(m\times m\): scrivo 
+        \begin{align}
+            M = \begin{pmatrix}
+                A & 0 \\ 0 & 0 
+            \end{pmatrix}
+        \end{align}
+        Quale deve essere la condizione affinché \(M \in \mathfrak{osp}(m/n)\)? siccome agisce su bosoni, deve rispettare \(x^T A y + (AX)^T y =0 \implies A + A^T = 0\), ovvero \(A \in \mathfrak{o}(m)\). 
+        \item Blocco \(n\times n\): similmente, sia 
+        \begin{align}
+            N = \begin{pmatrix}
+                0 & 0 \\
+                0 & D 
+            \end{pmatrix}
+        \end{align}
+        La condizione per cui \(N\) appartiene alla superalgebra è che valga \(\mathbb{J}D + D^T \mathbb{J} = 0\), ovvero \(D \in \mathfrak{sp}(n)\). 
+    \end{enumerate}
+    troviamo quindi che \({}^0 \mathfrak{osp}(m/n) = \mathfrak{o}(m) \oplus \mathfrak{sp}(n)\)
+}
+
+\section{L'algebra di supersimmetria}
+
+Osserviamo che il settore bosonico \({}^0\mathfrak{S}\) di una superalgebra è sempre del tipo \(\mathfrak{g}_1 \oplus \mathfrak{g}_2\), con queste due algebre ordinarie. Questo è utile perché noi vogliamo scrivere delle algebre che contengano \(\mathcal{P} \oplus \mathfrak{g}\). La parte "nuova" quindi sarà tutta nel settore fermionico. 
+
+In generale, indichiamo con \(B_i\) i generatori bosonici, e con \(Q_I\) i generatori fermionici. Capire come è fatto il settore fermionico vuol dire anche capire quali sono le relazioni di commutazione \(B_i, Q_I\). Dalla regola di additività del grado, si vede subito che sono dei generatori fermionici, e quindi dovrò espanderli in una base di generatori fermionici. In formule, scriveremo 
+
+\begin{align}
+    [Q_I, B_i] = (M_i)_{IJ}Q_J 
+\end{align}
+
+La matrice di coefficienti \((M_i)_{IJ}\) è vincolata dalla identità di Jacobi: 
+
+\begin{align}
+    0 = &[[Q_I, B_i], B_j] + [[B_j, Q_I], B_i] + [[B_i, B_j], Q_I] \notag \\
+    &(M_i)_{IJ}[Q_J, B_j] - (M_j)_{IJ}[Q_J, B_i] + f_{ijk}[B_k, Q_I] = \notag \\
+    &(M_i)_{IJ}(M_k){JK}Q_K - (M_j)_{IJ}(M_i)_{JK}Q_K + f_{ijk}(M_k)_{IK}Q_K 
+\end{align}
+
+Posso riscrivere l'eq. come 
+
+\begin{align}
+    [M_i, M_j]_{IK}Q_K = f_{ijk}(M_k)_{IK}Q_K
+\end{align}
+
+Che è un equazione interessante, perché mostra che le matrici \(M_i\) stanno in una rappresentazione della parte bosonica della superalgebra, con le \(Q_I\) che appartengono allo spazio di rappresentazione. Come già discusso, la parte bosonica per un'algebra di supersimmetria è \(\mathcal{P} \oplus \mathfrak{g}\): i generatori fermionici devono stare in una rappresentazione, cioè portare un doppio indice: uno della simmetria interna, e un'indice di lorentz (e.g. \(Q^i_\alpha\)). L'indice di lorentz sarà un indice di spin semi-intero, nel caso più semplice di spin 1/2. Poniamoci quindi proprio in questo caso (si dimostra che il caso generale è perfettamente analogo). Per quanto riguarda l'indice che corre sulla simmetria interna, per il momento lasciamolo libero di correre, \(i \in 1, \ldots, N\), così da non fare ipotesi sulla simmetria interna.  
+
+Il nostro obbiettivo è quello di conoscere l'algebra di supersimmetria, cioè le seguenti parentesi: 
+
+\begin{align}
+    &[Q^i_\alpha, P_\mu] = ? \notag \\
+    &[Q^i_\alpha, J^{\mu\nu}] = ? \notag \\ 
+    &[Q^i_\alpha, T_r] = ? \notag \\ 
+    &\left\{Q^i_\alpha, Q^j_\beta\right\} = ? 
+\end{align}
+
+Si può mostrare che, senza perdere generalità, gli spinori \(Q_\alpha^i\) possono essere presi come spinori di Majorana, cioè che soddisfano \(Q_\alpha^i = C_{\alpha \beta}\bar{Q}^i_\beta\), con \(C\) la matrice di coniugazione della carica. 
+
+Apriamo adesso una parentesi sulle convezioni che usiamo con gli spinori: 
 
 
 \end{document}

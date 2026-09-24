@@ -106,7 +106,8 @@
 % SELF MADE COLORS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\definecolor{doc}{RGB}{0,60,110}
+\definecolor{doc}{HTML}{004059}
+\definecolor{doc2}{HTML}{827518}
 \definecolor{myg}{RGB}{56, 140, 70}
 \definecolor{myb}{RGB}{45, 111, 177}
 \definecolor{myr}{RGB}{199, 68, 64}
@@ -402,9 +403,9 @@
 
 \newtcbtheorem[number within=section]{Example}{Esempio}
 {%
-	colback = doc!15
+	colback = doc2!15
 	,breakable
-	,colframe = doc!80
+	,colframe = doc2!80
 	,coltitle = doc!90
 	,boxrule = 1pt
 	,sharp corners
@@ -439,7 +440,7 @@
 %================================
 
 \newtcbtheorem[number within=section]{Definition}{Definizione}{enhanced,
-	before skip=2mm,after skip=2mm, colback=red!5,colframe=red!80!black,boxrule=0.5mm,
+	before skip=2mm,after skip=2mm, colback=doc2!5,colframe=doc2!80!black,boxrule=0.5mm,
 	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
 	boxed title style={frame code={
 					\path[fill=tcbcolback]
@@ -459,7 +460,7 @@
 	fonttitle=\bfseries,
 	title={#2},#1}{def}
 \newtcbtheorem[number within=chapter]{definition}{Definizione}{enhanced,
-	before skip=2mm,after skip=2mm, colback=red!5,colframe=red!80!black,boxrule=0.5mm,
+	before skip=2mm,after skip=2mm, colback=doc2!5,colframe=doc2!80!black,boxrule=0.5mm,
 	attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight}, varwidth boxed title*=-3cm,
 	boxed title style={frame code={
 					\path[fill=tcbcolback]
@@ -646,8 +647,8 @@
 \newcommand{\wc}[2]{\begin{wconc}{#1}{}\setlength{\parindent}{1cm}#2\end{wconc}}
 \newcommand{\thmcon}[1]{\begin{Theoremcon}{#1}\end{Theoremcon}}
 \newcommand{\ex}[2]{\begin{Example}{#1}{}#2\end{Example}}
-\newcommand{\dfn}[2]{\begin{Definition}[colbacktitle=red!75!black]{#1}{}#2\end{Definition}}
-\newcommand{\dfnc}[2]{\begin{definition}[colbacktitle=red!75!black]{#1}{}#2\end{definition}}
+\newcommand{\dfn}[2]{\begin{Definition}[colbacktitle=doc!80]{#1}{}#2\end{Definition}}
+\newcommand{\dfnc}[2]{\begin{definition}[colbacktitle=doc!80]{#1}{}#2\end{definition}}
 \newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
 \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
 \newcommand{\nt}[1]{\begin{note}#1\end{note}}

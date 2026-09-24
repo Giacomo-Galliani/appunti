@@ -11,4 +11,5 @@
 \contentsline {chapter}{\numberline {2}Le superalgebre di Lie}{18}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{18}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Definizione di superalgebra di Lie e primi esempi}{21}{section.2.2}%
+\contentsline {section}{\numberline {2.3}L'algebra di supersimmetria}{23}{section.2.3}%
 \contentsfinish 
