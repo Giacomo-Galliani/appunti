@@ -1979,6 +1979,38 @@ Ricordiamo il caso di Poincarè: le rappresentazioni sono caratterizzate dalla m
 
 Vediamo che, a differenza del caso massless, \emph{tutte} le cariche \(Q\) sono coinvolte nella costruzione della rappresentazione. Come nel caso massless, però, posso partire da uno stato \(\ket{\psi}\), t.c. \(Q_A^i \ket{\psi} = 0\), \(A=1, 2\) ed \(i=1, \ldots, \mathcal{N}\). 
 
+Agendo come prima, si crea una torre a \(2\mathcal{N}\) livelli di stati, con \(\begin{pmatrix}
+    2\mathcal{N} \\ k
+\end{pmatrix}\) stati al livello k-esimo. In tutto si hanno quindi \(2^{2\mathcal{N}}\) stati. Una complicazione rispetto al caso massless è che gli spin sono mescolati, secondo la legge di composizione degli spin. 
+
+Per capirlo, prendi il caso più semplice con \(\mathcal{N} = 1\). Allora gli stati sono 4, e sono organizzati in 
+
+\begin{align}
+    4 = \left[ \frac{1}{2}, 1 \right] + \left[ 0, 2 \right]
+\end{align}
+
+che descrivono due scalari, e uno spin 1/2: è il modello di Wess-Zumino massivo. 
+
+\chapter{Superspazio e supercampi}
+
+Ogni volta che ho una simmetria, vale la pena costruire un formalismo adatto. Ad esempio, in meccanica classica c'è come simmetria \(SO(3)\): si introducono allora i vettori \(\vec{A}\), da cui si possono scrivere velocemente gli invarianti, come \(\vec{A}\cdot \vec{B}\). 
+
+Similmente, passando poi in relatività speciale, \(SO(3) \to SO(3, 1)\) e si introducono i quadrivettori, \(W^\mu\). Per il gruppo di Poincarè, generalmente gli invarianti si scrivono \(\int d^4x v^\mu W_\mu\). 
+
+In SUSY, gli invarianti saranno invece dati da strutture come 
+
+\begin{align}
+    \int d^4x d^4 \theta \underbrace{\psi(x, \theta)}_{\text{supercampo}}
+\end{align}
+
+Accanto alle coordinate spaziotemporali \(x^\mu\) introdurremo coordinate fermioniche, \(\theta^\alpha\), spinoriali cioè anticommutanti: 
+
+\begin{align}
+    \theta_\alpha \theta_\beta + \theta_\beta \theta_\alpha = 0 
+\end{align}
+
+e di Majorana (\(\theta_\alpha = C_{\alpha\beta}\bar{\theta}^\beta\)). Questa è l'idea per \(\mathcal{N} = 1\). Invece nel caso generale si prende \(\theta_\alpha^i\), \(i = 1, \ldots, \mathcal{N}\). 
+
 \end{document}
 
 
