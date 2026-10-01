@@ -12,4 +12,11 @@
 \contentsline {section}{\numberline {2.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{18}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Definizione di superalgebra di Lie e primi esempi}{21}{section.2.2}%
 \contentsline {section}{\numberline {2.3}L'algebra di supersimmetria}{23}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Modelli supersimmetrici con \(\mathcal {N} = 1\)}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Modello di Wess-Zumino}{29}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Elettrodinamica susy con \(\mathcal {N}=1\)}{33}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Rappresentazioni di supersimmetria}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Gruppo di Poincarè}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Supersimmetria, caso massless}{36}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Supersimmetria, caso massivo}{38}{section.4.3}%
 \contentsfinish 

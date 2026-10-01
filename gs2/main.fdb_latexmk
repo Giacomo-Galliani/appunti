@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1790265540 "/home/giacomo_galliani/appunti/gs2/main.tex" "main.pdf" "main" 1790265543
+["pdflatex"] 1790864765 "/home/giacomo_galliani/appunti/gs2/main.tex" "main.pdf" "main" 1790864768
   "/etc/texmf/web2c/texmf.cnf" 1763917403 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/giacomo_galliani/appunti/gs2/main.tex" 1790265540 66896 31fe7f2e0ad2e63e6e0f65747424eb7a ""
+  "/home/giacomo_galliani/appunti/gs2/main.tex" 1790864765 107303 976e2b996c6b7b4e2798f34e339edb3c ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1640468671 3136 aac2e2476de8af6c827239df395814ee ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1640468671 2914 8283dfc24eaf1964346f843d7605c2b0 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -225,6 +225,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty" 1603745920 67929 d50ae850e1d9604065e8337a75a41029 ""
   "/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty" 1603745920 6133 46bea384e36e9b74bd53a238fc2d0654 ""
   "/usr/share/texlive/texmf-dist/tex/latex/carlisle/scalefnt.sty" 1137109962 1360 df2086bf924b14b72d6121fe9502fcdb ""
+  "/usr/share/texlive/texmf-dist/tex/latex/carlisle/slashed.sty" 1137109962 5327 8b3c95b5f71136add36a4a0bb1507594 ""
   "/usr/share/texlive/texmf-dist/tex/latex/chngcntr/chngcntr.sty" 1525297854 4336 84bc4a8edb126e69abec1a67dc0c36cf ""
   "/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty" 1472166125 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
@@ -365,10 +366,10 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1763985202 2799529 aa51b4209c5317024e3e8cadfa5c1e89 ""
   "letterfonts.tex" 1763992645 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1763992645 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1790265543 10542 64ca8ae1575f465c820c3b2345fd85c9 "pdflatex"
-  "main.tex" 1790265540 66896 31fe7f2e0ad2e63e6e0f65747424eb7a ""
-  "main.toc" 1790265543 1400 55ac08baaabce32f85c301839fdfb019 "pdflatex"
-  "preamble.tex" 1790262775 20168 42968355ff1ec813c40073e077e928cc ""
+  "main.aux" 1790864768 14785 755d6404ecc33ac83f595fe25689a8d6 "pdflatex"
+  "main.tex" 1790864765 107303 976e2b996c6b7b4e2798f34e339edb3c ""
+  "main.toc" 1790864768 2042 8cc6813679f7840692eb66a402023e80 "pdflatex"
+  "preamble.tex" 1790435428 20179 7e0d156d34d50be73daa1ab996c3b873 ""
   "settings/fncystyle.sty" 1765982971 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)
   "main.aux"

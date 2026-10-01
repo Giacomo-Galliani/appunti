@@ -1278,5 +1278,708 @@ Si può mostrare che, senza perdere generalità, gli spinori \(Q_\alpha^i\) poss
 
 Apriamo adesso una parentesi sulle convezioni che usiamo con gli spinori: 
 
+\begin{align}
+    &\eta_{\mu\nu} = \text{diag}(-1, 1, 1, 1), \quad \gamma_\mu \gamma_\nu + \gamma_\nu \gamma_\mu = 2\eta_{\mu\nu} \notag \\
+    &\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3, \quad \gamma_{\mu\nu} := \frac{1}{2}(\gamma_\mu\gamma_\nu - \gamma_\nu\gamma_\mu)
+\end{align}
+
+Sia \(\Psi\) uno spinore di Dirac. Allora, 
+
+\begin{align}
+    &\bar{\Psi}_D = \psi^\dagger (i\gamma^0), \quad \text{coniugato di Dirac} \notag \\
+    &C\gamma^\mu C^{-1} = -(\gamma^\mu)^T, \quad \text{matrice di coniugazione di carica}
+\end{align}
+
+Alcune proprietà utili della matrice \(C\) sono: 
+
+\begin{align}
+    C \in \mathbb{R}, \quad C^T = -C, \quad C^2 = \mathbb{I}, \quad C\gamma_5C^{-1} = \gamma_5^T
+\end{align}
+
+Inoltre,  \(C\gamma^\mu, C\gamma^{\mu\nu}\) sono simmetriche, mentre \(C\gamma_5, C\gamma_\mu\gamma_5\) sono antisimmetriche. 
+
+Definiamo poi il coniugato di Majorana, \(\bar{\psi}_M = \psi^T C\).  La condizione di Majorana può quindi essere scritta come \(\bar{\psi}_D = \bar{\psi}_M\), che è una relazione che lega \(\Psi_L, \Psi_R\). Nello specifico, si ha 
+
+\begin{align}
+    &\Psi^\dagger i \gamma^0 = \Psi^\dagger C \implies (\Psi^\dagger i \gamma^0)^T = (\Psi^T C)^T \implies C^T \Psi = i(\gamma^0)^T \Psi^* \notag \\ 
+    &\implies -C\psi = i(\gamma^0)^T \psi^* \implies \psi = -C^{-1}(\gamma^0)^T \Psi^* = C i (\gamma^0)^T \Psi^* =:\Psi_C
+\end{align}
+
+Torniamo a parlare dei commutatori che vogliamo scrivere. Molti di questi sono fissati dall'identità di Jacobi. Ad esempio, proviamo ad immaginare che valga 
+
+\begin{align}
+    [Q_\alpha^i, P_\mu] = a (\gamma_\mu)^\beta_\alpha Q^i_\beta
+\end{align}
+
+Allora l'identità di Jacobi mi dice subito che deve valere \(2a^2(\gamma_{\mu\nu})_\alpha^\beta Q_\beta^i = 0 \implies a = 0\), cioè \([Q_\alpha^i, P_\mu] = 0\). 
+Per il momento angolare si ottiene invece che 
+
+\begin{align}
+    [Q_\alpha^i, J_{\mu\nu}] = a(\gamma_{\mu\nu})^\beta_\alpha Q_\beta^i \implies a = 1/2
+\end{align}
+
+perché \(Q\) sta nella rappresentazione dell'algebra di Lorentz. 
+
+Proviamo invece a calcolare \([Q_\alpha^i, T_r]\). La più generale forma che può assumere questo commutatore è data da 
+
+\begin{align}
+    [Q_\alpha^i, T_r] = (l_r)^i_j A_\alpha^j + (i\gamma^5)^\beta_\alpha (t_r)^i_j Q_\beta^j
+\end{align}
+
+Per il momento non possiamo fare di meglio. Calcolo invece l'anticommutatore fra i generatori fermionici: 
+
+\begin{align}
+    \left\{Q_\alpha^i, A_\beta^j\right\} = ? 
+\end{align}
+
+Il risultato deve essere naturalmente simmetrico negli scambi \(\alpha, \beta\) ed \(i, j\). Il risultato più generale è 
+
+\begin{align}
+    \left\{Q_\alpha^i, A_\beta^j\right\} = r((\gamma^\mu C)_{\alpha\beta}P_\mu \delta^{ij}) + s(\gamma^{\mu\nu}C)_{\alpha\beta}J_{\mu\nu}\delta^{ij} + (\gamma^\mu \gamma_5 C)_{\alpha\beta}L^{ij}_\mu + C_{\alpha\beta}U^{ij} + (\gamma_5 C)_{\alpha\beta}V^{ij}
+\end{align}
+
+Possiamo immediatamente riconoscere che il termine \(\propto L^\mu_{ij}\) deve essere nullo. Se così non fosse avremmo una carica vettoriale conservata, che viola il teorema di Coleman-Mandula. Lo stesso risultato si ottiene anche con l'id. di Jacobi. 
+
+Sempre con l'identità di Jacobi si scopre che \(U, V\) stanno nel centro dell'algebra, cioè commutano con ogni generatore. Per determinare i coefficienti \(r, s\), ci mettiamo momentaneamente nel caso \(N=1\). Il commutatore si riduce a 
+
+\begin{align}
+     \left\{Q_\alpha, Q_\beta\right\} =  r(\gamma^\mu C)_{\alpha\beta}P_\mu  + s(\gamma^{\mu\nu}C)_{\alpha\beta}J_{\mu\nu}
+\end{align}
+
+Siccome sappiamo che il commutatore di \(Q^i_\alpha\) con i generatori delle traslazioni è nullo, l'id. di Jacobi ci dice che 
+
+\begin{align}
+    \left[\left\{Q_\alpha^i, Q_\beta^j \right\}, P^\mu \right] = 0 \implies s(\gamma^{\mu\nu}C)_{\alpha\beta}\underbrace{[J_{\mu\nu}, P_\rho]}_{\neq 0} = 0 \implies s = 0
+\end{align}
+
+Per convenzione, si pone \(s=2\) (abbiamo semplicemente fissato la normalizzazione di \(Q\)). Per \(N=1\), dunque, si ha che 
+
+\begin{align}
+    \left\{Q_\alpha^i, Q_\beta^j \right\} = 2 (\gamma^\mu C)_{\alpha\beta}P_\mu
+\end{align}
+
+Nel caso generale, invece, si trova ancora che deve valere \(s=0\), e che si può porre ancora \(r = 2\). Si scrive quindi 
+
+\begin{align}
+    \left\{Q_\alpha^i, Q_\beta^j \right\} = 2 (\gamma^\mu C)_{\alpha\beta}\delta^{ij}P_\mu+ C_{\alpha\beta}U^{ij} + (\gamma_5 c)_{\alpha\beta}V^{ij}
+\end{align}
+
+Torniamo allora ad occuparci del commutatore con i generatori delle simmetrie interne \(T_r\). Poniamoci ancora in \(N=1\): 
+
+\begin{align}
+    [Q_\alpha, T_r] = l_r Q_\alpha + i (\gamma_5)^\beta_\alpha t_r Q_\beta, \quad l_r, t_r \in \mathbb{C}
+\end{align}
+
+In realtà, \(l_r, t_r\) sono numeri reali. Per vederlo, ricorda che \(T_r\) sono generatori anti-hermitiani, e quindi vale 
+
+\begin{align}
+    (Q_\alpha T_r - T_r Q_\alpha)^\dagger = T_r^\dagger Q_\alpha^\dagger - Q_\alpha^\dagger T_r^\dagger = Q_\alpha ^\dagger T_r - T_r Q_\alpha^\dagger
+\end{align}
+
+Cioè
+
+\begin{align}
+    [Q_\alpha^\dagger, T_r] = ([Q_\alpha, T_r])^\dagger = l_r^* Q_\alpha^\dagger -iQ_\beta^\dagger (\gamma_5)^\beta_\alpha t_r^*
+\end{align}
+
+Moltiplico a destra per \(i\gamma^0\), così scrivo l'espressione in termini dello spinore coniugato di Dirac/Majorana (ricorda che sono la stessa cosa): 
+
+\begin{align}
+    [\bar{Q}_\alpha, T_r] = l_r^* \bar{Q}_\alpha +i\bar{Q}_\beta (\gamma_5)^\beta_\alpha t_r^*
+\end{align}
+
+il segno cambia davanti al secondo pezzo perché per spostare \(\gamma^0\) vicino a \(Q_\beta^\dagger\) devo anticommutarlo con \(\gamma^5\). Ora semplicemente moltiplico per \(C_{\gamma\alpha}\), ed uso la condizione di Majorana: 
+
+\begin{align}
+    [Q_\gamma, T_r] = l_r^* Q_\gamma + i(\gamma^5)^\alpha_\gamma Q_\alpha t_r^* \implies l_r = l_r^*, \, t_r = t_r^*
+\end{align}
+
+Ora, applico l'identità di Jacobi: ricorda che \([Q_\alpha, Q_\beta] \propto P_\mu\), che ha commutatore nullo con i generatori della simmetria interna. Si ha quindi 
+
+\begin{align}
+    \left\{[T_r, Q_\alpha], Q_\beta \right\} - \left\{[Q_\beta, T_r],  Q_\alpha\right\} = 0 
+\end{align}
+
+(ricorda che i segni dipendono dal grado dei generatori). Andando avanti si ottiene: 
+
+\begin{align}
+    (l_r \delta^\gamma_\alpha +i(\gamma^5)^\gamma_\alpha t_r)\underbrace{\left\{Q_\alpha, Q_\beta \right\}}_{2(\gamma^\mu C)_{\alpha\beta}P_\mu} + (\alpha \leftrightarrow \beta) = 0 
+\end{align}
+
+I coefficienti delle parte simmetriche nello scambio devono quindi annullarsi. Ricorda le proprietà delle \(C\gamma^\mu\): \(C\gamma^\mu\) è simmetrica, \(C\gamma^\mu \gamma^5\) è antisimmetrica. Questo impone \(l_r = 0\). Rimane solo \(t_r\) che possiamo porre uguale ad 1, giocandoci la normalizzazione del generatore della simmetria interna. Si trova infine, quindi, 
+
+\begin{align}
+    [Q_\alpha, T_r] = i(\gamma^5)^\beta_\alpha Q_\beta
+\end{align}
+
+Osserviamo che i generatori \(T_r\) hanno tutti lo stesso comportamento su \(Q_\alpha\). Con l'identità di Jacobi è facile mostrare che se avessi più di un generatore, dovrebbero avere commutarore nullo. Segue quindi che l'algebra di simmetria interna, nel caso susy \(\mathcal{N} =1\), è \(\mathfrak{u}(1)\) (ed il settore bosonico è quindi \(\mathcal{P} + \mathfrak{u}(1)\)). 
+
+Veniamo allora alla discussione sul commutatore nel caso \(\mathcal{N} \geq 1\). Usiamo una notazione conveniente per gli spinori, cioè a due componenti: 
+
+se usiamo le matrici gamma di Dirac nella rappresentazione chirale, si ha 
+
+\begin{align}
+    \gamma^0 = -i\begin{pmatrix}
+        0 & \mathbb{I}_2 \\ \mathbb{I}_2 & 0 
+    \end{pmatrix}, \quad \gamma^j = i \begin{pmatrix}
+        0 & -\sigma^j \\ \sigma^j & 0 
+    \end{pmatrix}, \quad \gamma^5 = \begin{pmatrix}
+        \mathbb{I}_2 & 0 \\ 0 & \mathbb{I}_2
+    \end{pmatrix}
+\end{align}
+
+Invece la matrice di coniugazione di carica è data da 
+
+\begin{align}
+    C = \begin{pmatrix}
+        0 & 1 & 0 & 0 \\ 
+        -1 & 0 & 0 & 0 \\ 
+        0 & 0 & 0 & -1 \\ 
+        0 & 0 & 1 & 0 
+    \end{pmatrix} =: \begin{pmatrix}
+        \eps_{AB} & 0 \\ 
+        0 & \eps^{\dot{A}\dot{B}}
+    \end{pmatrix}
+\end{align}
+
+dove \(\eps^{AB} = \eps_{AB}, \, \eps^{\dot{A}\dot{B}} = \eps_{\dot{A}\dot{B}}\). Uno spinore di Dirac invece si scrive 
+
+\begin{align}
+    \chi_\alpha = \begin{pmatrix}
+        \chi^A \\ \bar{\chi}_{\dot{A}}
+    \end{pmatrix}
+\end{align}
+
+dove \(\chi^A \in (1/2, 0)\), \(\bar{\chi}_{\dot{A}} \in (0, 1/2)\). Come al solito vale 
+
+\begin{align}
+    \begin{pmatrix}
+        \chi^A // 0
+    \end{pmatrix} = \frac{1}{2}(1+\gamma^5)\chi_\alpha, \quad \begin{pmatrix}
+        0 // \chi_{\dot{A}}
+    \end{pmatrix} = \frac{1}{2}(1-\gamma^5)\chi_\alpha
+\end{align}
+
+Definiamo inoltre \(\chi_A = \eps_{AB}\chi^B\) e similmente \(\bar{\chi}^{\dot{A}} = \eps^{\dot{A}\dot{B}}\chi_{dot{B}}\). In questa notazione, come diventa la condizione di Majorana? Si ha che 
+
+\begin{align}
+    \chi = iC (\gamma^0)^T \chi^* \implies \begin{cases}
+        \chi^A = \eps_{AB}(\bar{\chi}_{\dot{B}}) = -(\bar{\chi}^{\dot{A}})^* \\
+        \bar{\chi}_{\dot{A}} = (\chi_A)^*
+    \end{cases}
+\end{align}
+
+Scriviamo anche i generatori delle trasformazioni di lorentz, \(\gamma_{\mu\nu}\), con \((\sigma_{\mu\nu})^A_B\) per la parte left, \((\bar{\sigma}_{\mu\nu})_{\dot{A}}^{\dot{B}}\), con \(\sigma_{\mu\nu} = 1/2(\sigma_\mu \bar{\sigma}_\nu - \sigma_\nu \bar{\sigma}_\mu)\),  \(\bar{\sigma}_{\mu\nu} = 1/2(\bar{\sigma}_\mu \sigma_\nu - \bar{\sigma}_\nu \sigma_\mu)\). L'algebra che abbiamo scritto finora di supersimmetria diventa 
+
+\begin{align}
+    &[Q_A^i, P^\mu] = 0, \quad [Q_A^i, J^{\mu\nu}] = \frac{1}{2}(\sigma_{\mu\nu})^B_A Q^i_B \notag \\ 
+    &\left\{Q_A^i, Q_B^j \right\} = \eps_{AB}(U^{ij} + iV^{ij}), \quad \left\{Q_A^i, \bar{Q}_{j\dot{B}} \right\} = -2i(\sigma^\mu)_{A \dot{B}}\delta^i_j P_\mu
+\end{align}
+
+Aggiungiamo poi i commutatori con i generatori delle simmetrie interne, 
+
+\begin{align}
+    &[Q^i_A, T_r] = (l_r +it_r)^i_j Q^j_A =: (U_R)^i_j Q_A^j \notag \\
+    &[\bar{Q}_{\dot{A} i}, T_r] = \bar{Q}_{\dot{A} j}(U^\dagger)^j_i 
+\end{align}
+
+Usiamo allora l'identità di Jacobi: 
+
+\begin{align}
+    &[[T_r, Q_A^i], \bar{Q}_{\dot{B}j}] - [[\bar{Q}_{\dot{B}j}, T_r], Q_A^j] = 0 \notag \\
+    &(U_r)^i_k \left\{Q_A^k, \bar{Q}_{\dot{B}j} \right\} + \left\{\bar{Q}_{\dot{B}k}, Q_A^i \right\}(U_r^\dagger)^k_j = 0 \notag \\
+    &-2i(\sigma^\mu)_{AB}P_\mu [(U_r)^i:k \delta^k_j + \delta^i_k (U_r^\dagger)^k_j] = 0 \implies U_r = -U_r^\dagger
+\end{align}
+
+Cioè \(U_r\) è un hermitiano, ovvero un generatore del gruppo \(U(N)\). In generale, dunque, il settore bosonico della supersimmetria è dato da \(\mathcal{P} + \mathfrak{u}(N)\).
+
+\chapter{Modelli supersimmetrici con \(\mathcal{N} = 1\)}
+
+Per partire, sfruttiamo inanzitutto una proprietà fondamentale che segue dall'algebra. Supponiamo di avere una teoria con un set di stati bosonici, ed un set di stati fermionici. L'operatore di momento \(P^\mu\) è 1:1 nel set completo degli stati. Inoltre, applicare \(Q_\alpha\) ad un bosone lo rende un fermione, e similmente applicarlo ad un fermione lo rende un bosone. La immediata conseguenza di ciò è che 
+
+\begin{align}
+    n_F \text{ dei fermioni} = n_B \text{ dei bosoni}
+\end{align}
+
+Cominciamo ad ipotizzare come possono essere fatti i più semplici modelli supersimmetrici con \(\mathcal{N} = 1\). Sicuramente deve esserci un fermione nella teoria, \(\chi_\alpha\), che possiamo pensare essere di Majorana. 
+
+In generale, uno spinore di Majorana ha 4 gradi di libertà (reali, 2 complessi). Questi si riducono a 2 se lo spinore soddisfa l'eq. del moto, cioè se lo spinore è on-shell: \(\gamma^\mu \partial_\mu \chi = \slashed{\partial}\chi = 0\). 
+
+Abbiamo quindi due possibilità: 
+
+\begin{enumerate}
+    \item \(\chi_\alpha\) on-shell + due scalari reali, \(A, B\). 
+    \item \(\chi_\alpha\) on-shell + un vettore \(A_\mu\), anch'esso on shell. 
+\end{enumerate}
+
+In entrambi i casi, abbiamo due gradi di libertà bosonici e due gradi di libertà fermionici. 
+
+\section{Modello di Wess-Zumino}
+
+Il primo modello è detto di Weiss-Zumino, iniziamo a studiarlo. In analogia con le simmetrie ordinarie, considero delle trasformazioni infinitesime di supersimmetria: \(\delta_\eps = \bar{\eps}^\alpha Q_\alpha\), con \(\eps^\alpha\) un parametro spinoriale infinitesimo, che prendiamo anch'esso di Majorana. Quale è l'azione di queste trasformazioni sui campi? 
+
+Inanzitutto guardiamo alla dimensione in massa dei campi. Dalle lagrangiane libere, si ricava subito che (in \(d=4\)) \([A] = [B] = 1\), mentre \([\chi_\alpha] = 3/2\). Chiaramente \([P^\mu] = 1\), dunque \([Q_\alpha] = 1/2\), ed \([\eps^\alpha] = -1/2\). 
+
+Vediamo quindi che \([Q_\alpha A] = 3/2\), da cui è naturale scegliere \(Q_\alpha A = \chi_\alpha\), cioè 
+
+\begin{align}
+    \delta_\eps A = \bar{\eps}^\alpha \chi_\alpha =: \eps \chi 
+\end{align}
+
+Analogamente, si trova che \(B\) deve essere uno pseudoscalare, e deve valere 
+
+\begin{align}
+    \delta_\eps B = \bar{\eps}^\alpha Q_\alpha B = i\bar{\eps}^\alpha (\gamma_5)^\beta_\alpha \chi_\beta =: i \bar{\eps}\gamma_5 \chi
+\end{align}
+
+Sempre dimensionalmente, \([Q\chi] = 2 = [\partial A] = [\partial B]\). Scriviamo quindi 
+
+\begin{align}
+    \delta_\eps \chi_\alpha = a\eps_\beta (\gamma^\mu)^\beta_\alpha \partial_\mu A + ib\eps_\beta (\gamma^\mu \gamma^5)^\beta_\alpha \partial_\mu B = (a\slashed{\partial}A + ib\slashed{\partial}\gamma^5 \beta)\eps
+\end{align}
+
+dove \(a, b\) sono parametri da fissare (mi sono già "giocato" la normalizzazione di \(A, B\) rispetto a \(\chi\) con la trasformazione \(\delta_\eps A, \, \delta_\eps B\)). Una proprietà fondamentale di queste trasformazioni è che soddisfino la superalgebra. In particolare, 
+
+\begin{align}
+    \left\{Q_\alpha, Q_\beta \right\} = 2(\gamma^\mu C)P_\mu \implies [\delta_{\eps_1}, \delta_{\eps_2}] &=[\bar{\eps}_1^\alpha Q_\alpha, \bar{\eps}^\beta_2 Q_\beta] = \bar{\eps}^\alpha_1 Q_\alpha \bar{\eps}^\beta_2 Q_\beta - \bar{\eps}^\beta_2 Q_\beta \bar{\eps}^\alpha_1 Q_\alpha \notag \\ 
+    &= -\bar{\eps}_1^\alpha\bar{\eps}_2^\beta (Q_\alpha Q_\beta) -\bar{\eps}_1^\alpha\bar{\eps}_2^\beta (Q_\beta Q_\alpha) = -\bar{\eps}^\alpha_1 \bar{\eps}^\beta_2 \left\{Q_\alpha, Q_\beta \right\} \notag \\ 
+    &= -2\bar{\eps}^{\alpha}_1 \bar{\eps}^\beta_2 (\gamma^\mu C)_{\alpha \beta} \partial_\mu
+\end{align}
+
+Possiamo scrivere la relazione in un modo un po' più elegante: commutiamo i due spinori, e successivamente sfruttiamo il fatto che \((\gamma^\mu C)^T = \gamma^\mu C\): 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}] = 2\bar{\eps}_2^\beta (\gamma^\mu C)_{\alpha\beta}\bar{\eps}_1^\alpha \partial_\mu = 2\bar{\eps}_2^\beta (\gamma^\mu C)_{\beta\alpha}\bar{\eps}_1^\alpha \partial_\mu 
+\end{align}
+
+Infine usando che \(\eps\) è uno spinore di Majorana, 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}] = 2\bar{\eps}_2^\beta (\gamma^\mu C)_{\beta\alpha} C^{-1} \eps^\alpha \partial_\mu = 2 \bar{\eps}_2 \gamma^\mu \eps_1 \partial_\mu
+\end{align}
+
+Siccome \(C^T = C^{-1}\). Ciò vuol dire che, per esempio, è necessario che valga \([\delta_{\eps_1}, \delta_{\eps_2}]A = 2\bar{\eps_2}\gamma_\mu \eps_1 \partial_\mu A\). Vediamo se è vero, usando le leggi di traformazione scritte prima: 
+
+\begin{align}
+    \delta_{\eps_1}(\eps_2 \chi) - \delta_{\eps_2}(\eps_1 \chi) = \eps_2 (a\slashed{\partial}A + ib\slashed{\partial}\gamma^5 B)\eps_1 - \eps_1(a\slashed{\partial}A + ib\slashed{\partial}\gamma^5 B)\eps_2
+\end{align}
+
+Osserva il termine \(\propto \partial_\mu A\): è dato da \(\eps_2 \gamma^\mu \eps^1 - \eps^1 \gamma^\mu \eps^2\). 
+
+\clm{}{}{
+    Il termine \(\eps_2 \gamma^\mu \eps_1\) è \emph{antisimmetrico} nello scambio \(1 \leftrightarrow 2 \). 
+}
+
+\pf{}{
+    Vale chiaramente 
+    \begin{align}
+       \bar{\eps}_2 \gamma^\mu \eps_1 = (\bar{\eps}_2 \gamma^\mu \eps_1)^T = -\eps_1^T \gamma_\mu^T \bar{\eps}_2^T = -\bar{\eps}_1 C^{-1}\gamma_\mu^\dagger C^\dagger \eps_2  
+    \end{align}
+
+    D'altra parte \(C \gamma_\mu C^{-1} = -\gamma_\mu^T \implies C^T \gamma_\mu^T C^T = \gamma_\mu \implies C^{-1}\gamma_\mu^T C^T = \gamma_\mu\), e dunque troviamo 
+
+    \begin{align}
+        \bar{\eps}_2 \gamma_\mu \eps_1 = -\bar{\eps}_2 \gamma_\mu \eps_1
+    \end{align}
+}
+
+Con ragionamenti simili, si può provare che \(\bar{\eps}_2 \gamma^\mu \gamma^5 \eps_1\) è invece simmetrico. Il commutatore allora diventa 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A = 2a \bar{\eps}_2 \gamma^\mu \eps_1 \partial_\mu A \implies a = 1
+\end{align}
+
+Per fissare \(b\) è necessario controllare che le trasformazioni che agiscono su \(B\) devono rispettare l'algebra di supersimmetria. Si trova così che \(b=1\). Vorremmo ora controllare se \([\delta_1, \delta_2]\chi\) rispetta l'algebra. Questo richiederà del lavoro in più. In particolare, si ha che 
+
+\begin{align}
+    [\delta_1, \delta_2]\chi &= \delta_1 [\slashed{\partial}(A+i\gamma_5 B)\eps_2] - \delta_2 [\slashed{\partial}(A+i\gamma_5B)\eps_1] \notag \\ 
+    &= \slashed{\partial}(\bar{\eps}_1 \chi + i\gamma^5 i (\bar{\eps}_1 \gamma_5 \chi))\eps_2 - (1 \leftrightarrow 2)
+\end{align}
+
+Ci rendiamo conto che le strutture spinoriali sono quindi più complicate. In particolare, il primo e il secondo termine sono dati da 
+
+\begin{align}
+    &\gamma^\mu (\bar{\eps}_1 \chi)\eps_2 = \gamma^\mu \eps_2 (\bar{\eps}_1 \chi) \notag \\
+    &\gamma^\mu \gamma_5 (\bar{\eps}_1 \gamma_5 \chi)\eps_2 = \gamma^\mu \gamma_5 \eps_2 (\bar{\eps}_1 \gamma_5 \chi) 
+\end{align}
+
+In entrambi i casi compare l'oggetto spinoriale \(\eps_{2\rho}\bar{\eps}_1^\sigma\): è una matrice nello spazio degli spinori, quindi deve essere scritta in termini di \(\mathbb{I}, \gamma^5, \gamma^\mu, \gamma^5\gamma^\mu, \gamma^{\mu\nu}, \gamma^5\gamma^{\mu\nu}\). La c.l. deve inoltre essere bilineare nei due \(\eps\) e deve avere tutti gli indici saturati oltre a quelli esterni. Si ottiene quindi che la più generica combinazione lineare si scrive 
+
+\begin{align}
+    \eps_{2\rho}\bar{\eps}_1^\sigma = &a \mathbb{I}_\rho^\sigma (\bar{\eps}_1 \eps_2) + b(\gamma_5)_\rho^\sigma (\bar{\eps}_1 \gamma_5 \eps_2) + c(\gamma_\mu)_\rho^\sigma (\bar{\eps}_1 \gamma^\mu \eps_2) \notag \\ 
+    +&d (\gamma_\mu\gamma_5)^\sigma_\rho (\bar{\eps}_1\gamma^\mu \gamma_5 \eps_2) + e(\gamma_{\mu\nu})^\sigma_\rho (\bar{\eps}_1 \gamma^{\mu\nu} \eps_2)
+\end{align}
+
+Una volta scritti in questo modo, leggere i coefficienti \(a, b, \ldots\) non è complicato, basta prendere la traccia dell'espressione, dopo aver moltiplicato laa struttura per una opportuna matrice di Dirac. Ad esempio, 
+
+\begin{enumerate}
+    \item \(a\): Chiaramente, \(\eps_{2\alpha}\bar{\eps}_1^\alpha = -\bar{\eps}_1^\alpha \eps_{2\alpha} = -\bar{\eps}_1 \eps_2\). D'altra parte, usando la nostra espansione, 
+    \begin{align}
+        \text{Tr}(\eps_\rho \bar{\eps}_1^\sigma) = 4a \bar{\eps_1}\eps_2
+    \end{align}
+    Confrontando le due espressioni, leggiamo \(a = -1/4\). 
+    \item \(c\): Moltiplica la nostra espansione per \(\gamma_\nu\): considerando per il momento solo la parte proporzionale a \(c\), si ottiene: 
+    \begin{align}
+        \gamma_\nu \eps_{2\rho} \bar{\eps}_1^\sigma = c\gamma_\nu \gamma_\mu (\bar{\eps_1}\gamma^\mu \eps_2)
+    \end{align}
+    Traccio il lato destro dell'espressione: 
+    \begin{align}
+       \text{Tr}(\gamma_\nu \eps_{2\rho}\bar{\eps}_1^\sigma) = \text{Tr}(\bar{\eps}_1^\sigma \gamma_\nu \eps_{2\rho}) = \bar{\eps}_1^\rho \gamma_\nu \eps_{2\rho} = \bar{\eps}_1 \gamma_\nu \eps_2
+    \end{align}
+    Per il lato sinistro, ricorda che vale \(\text{Tr}(\gamma_\mu\gamma_\nu) = (1/2)\text{Tr}(2\eta_{\mu\nu}) = 4\eta_{\mu\nu}\). Si ottiene così 
+    \begin{align}
+        \bar{\eps}_1 \gamma_\nu \eps_2 = 4c\eta_{\mu\nu}\bar{\eps}_1 \gamma^\mu \eps_2 = 4c \bar{\eps_1}\gamma^\mu \eps_2
+    \end{align}
+    Da cui segue semplicemente \(c = 1/4\). 
+\end{enumerate}
+
+Inoltre, con ragionamenti simili a quelli usati precedentemente, si dimostrano queste regole di simmetria degli spinori: 
+
+\begin{align}
+    \begin{cases}
+        \bar{\eps}_1 \eps_2 = \bar{\eps}_2\eps_1 \\ 
+        \bar{\eps}_1 \gamma_5 \eps_2 = \bar{\eps}_2\gamma_5\eps_1 \\
+        \bar{\eps}_1 \gamma_\mu \eps_2 = -\bar{\eps}_2\gamma_\mu \eps_1 \\
+        \bar{\eps}_1 \gamma_\mu \gamma_5 \eps_2 = \bar{\eps}_2 \gamma_\mu \gamma_5 \eps_1 \\
+        \bar{\eps}_1 \gamma_{\mu\nu}\eps_2 = -\bar{\eps}_2 \gamma_{\mu\nu}\eps_1 
+    \end{cases}
+\end{align}
+
+Riconosciamo l'utilità di aver scomposto la matrice in termini delle 5 combinazioni: alla sottrazione sopravvivono solo i termini antisimmetrici, cioè proporzionali a \(c, e\). In formule, 
+
+\begin{align}
+    [\delta_1, \delta_2]\chi = &[\gamma^\mu (2c\gamma_\nu)(\bar{\eps}_1\gamma^\nu \eps_2) + 2e(\bar{\eps}_1\gamma^{\nu\sigma}\eps_2)]\partial_\mu \chi \notag \\
+    -&[\gamma^\mu\gamma^5 (2c\gamma_\nu (\bar{\eps}_1\gamma^\nu \eps_2) + 2e\gamma_{\nu\sigma}(\bar{\eps}_1 \gamma^{\nu\sigma}\eps_2)\gamma^5]\partial_\mu \chi
+\end{align}
+
+Poiché vale \(\left\{\gamma^5, \gamma^\mu \right\} = 0\), segue che \(\gamma^5 \gamma^\mu \gamma^5 = -\gamma^\mu\), \(\gamma^5 \gamma^{\mu\nu}\gamma^5 = \gamma^{\mu\nu}\). I termini proporzionali a \(c\) dunque si sommano, mentre i proporzionali a \(e\) si cancellano: 
+
+\begin{align}
+    [\delta_1, \delta_2]\chi = 4c\gamma_\mu \gamma_\nu(\bar{\eps}_1 \gamma^\nu \eps_2)\partial^\mu \chi = (\bar{\eps}_1 \gamma^\nu \eps_2)\gamma_\mu \gamma_\nu\partial^\mu \chi 
+\end{align}
+
+Siccome \(c = 1/4\) e la struttura spinoriale nelle parentesi è uno scalare. Uso infine l'algebra di Clifford per ottenere 
+
+\begin{align}
+    [\delta_1, \delta_2]\chi = -(\bar{\eps}_1 \gamma^\nu \eps_2)\gamma_\nu \slashed{\partial}\chi + 2(\bar{\eps}_1\gamma^\nu \eps_2)\partial_\nu \chi
+\end{align}
+
+Il primo pezzo si annulla se \(\chi\) è on-shell, cioè \(\slashed{\partial}\chi = 0\), come richiesto da inizio sezione. 
+
+Concludiamo che \(A, B, \chi\) forniscono una rappresentazione della supersimmetria, per campi on-shell. Queste sono le equazioni del moto che seguono dall'azione 
+
+\begin{align}
+    S = \int d^4x \left(-\frac{1}{2}\partial_\mu A \partial^\mu A - \frac{1}{2}\partial^\mu B \partial_\mu B -\frac{1}{2}\bar{\chi}\slashed{\partial}\chi\right)
+\end{align}
+
+Si può anche vedere che questa espressione è invariante sotto trasformazioni di supersimmetria. 
+
+La domanda più naturale è come estendere questo modello se vogliamo una descrizione dei campi off-shell. Per farlo, torniamo ai gradi di libertà: uno spinore \(\chi_\alpha\) di Majorana off-shell ha 4 g.d.l. (reali) fermionici. Dobbiamo aggiungere dunque due campi \(F, G\) (detti campi \emph{ausiliari}) ad \(A, B\), con la proprietà di essere nulli on-shell. Questo vuol dire che le equazioni che seguono dalla azione devono essere \(F =0, G=0\). Si può prendere allora 
+
+\begin{align}
+    S = \int d^4x \left(-\frac{1}{2}\partial^\mu A \partial_\mu A - \frac{1}{2}\partial^\mu B \partial_\mu B -\frac{1}{2}\bar{\chi}\slashed{\partial}\chi + \frac{1}{2}(F^2 + G^2) \right)
+\end{align}
+
+Da questa lagrangiana seguono due osservazioni: 
+\begin{enumerate}
+    \item I campi \(F, G\) non hanno componenti cinematiche, cioè non propagano. 
+    \item I campi \(F, G\) sono scalare e pseudoscalare, esattamente come \(A, B\), ed hanno dimensione in massa \([A] = [B] = 2\). 
+\end{enumerate}
+
+In questo caso bisogna studiare come si generalizzano le trasformazioni di supersimmetria. Ricorda che \([\delta_\eps A] = 1\), quindi rimane come prima. Le cose cominciano a diventare diverse quando considero che \([\delta_\eps \chi] = 3/2\), cioè in generale posso scrivere 
+
+\begin{align}
+    \delta_\eps \chi = \slashed{\partial}(A+i\gamma_5 B)\eps + (aF + ib\gamma_5 G)\eps
+\end{align}
+
+E le trasformazioni su \(F\) saranno date da 
+
+\begin{align}
+    \delta_\eps F = \bar{\eps}\slashed{\partial}\chi, \quad \delta_\eps G = i\bar{\eps}\gamma^5 \slashed{\partial}\chi
+\end{align}
+
+Nella seconda non ho scritto coefficienti giocandomi la normalizzazione di \(G, F\). Con gli stessi passaggi del caso on-shell, si trova che \(a = b = 1\), così come si trova che le trasformazioni soddisfano l'algebra di supersimmetria. 
+
+Il modello che abbiamo costruito è detto di Wess-Zumino \emph{libero}, perché non c'è interazione fra i campi. Per poter scrivere una teoria interagente, dovremo sviluppare un formalismo ad hoc, detto formalismo del superspazio/supercampo. 
+
+\section{Elettrodinamica susy con \(\mathcal{N}=1\)}
+
+L'altra opzione nel costruire una teoria supersimmetrica partendo da un solo spinore (che chiameremo \(\lambda\)), e con 1 generatore delle simmetrie interne, è di pareggiare i suoi gradi di libertà (on-shell) con un bosone vettore di gauge \(A_\mu\), anche esso on-shell
+
+La quantità fisica associata al bosone è il tensore di intensità di campo, \(F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu\), che è invariante sotto le trasformazioni di gauge \(\delta_\Lambda A_\mu = \partial_\mu \Lambda\). In questo caso il gruppo di gauge è \(U(1)\). I due campi sono liberi, ed hanno equazioni del moto 
+
+\begin{align}
+    \slashed{\partial}\lambda = 0, \quad \partial_\mu F^{\mu\nu} = 0 
+\end{align}
+
+Supponiamo che l'invarianza di gauge commuti con la supersimmetria. Uno può chiedersi perché non si prende \(U(1)\) come la R simmetria della teoria. In realtà noi stiamo facendo una teoria rispetto a trasformazioni di supersimmetria \emph{rigide}. Se invece volessi fare la supersimmetria locale, dovrei trattare una teoria che coinvolge la \emph{supergravità}. 
+
+Nota che siccome \(A_\mu\) non ha carica, cioè sta nell'aggiunta di \(U(1)\) di gauge, allora anche il suo patner supersimmetrico \(\lambda\) (spesso chiamato \emph{fotino}) deve stare nell'aggiunta, cioè \(\delta_\Lambda \lambda = 0\). 
+
+Come abbiamo fatto per Wess-Zumino, ipotizziamo le trasformazioni dei campi, partendo dall'analisi dimensionale. Poiché \([A_\mu] = 1, [\lambda] = 3/2, [F_{\mu\nu}] = 2, [\eps] = -1/2\), scriviamo 
+
+\begin{align}
+    \delta_\eps A_\mu = \bar{\eps}\gamma_\mu \lambda, \quad \delta_\eps \lambda_\alpha = (a\gamma^{\mu\nu}F_{\mu\nu} + b\partial_\mu A^\mu)\eps
+\end{align}
+
+Nella prima mi sono giocato la normalizzazione, quindi nella secconda devo mettere dei coefficienti. Per ipotesi, vale \([\delta_\eps, \delta_\Lambda] = 0\), che posso usare per fissare \(b\): 
+
+\begin{align}
+    [\delta_\eps, \delta_\Lambda]\lambda = \delta_\Lambda(a\gamma^{\mu\nu}F_{\mu\nu} + b\partial_\mu A^\mu)\eps - \delta_\eps\delta_\Lambda \lambda = 0 
+\end{align}
+
+Ma abbiamo detto che \(F^{\mu\nu}\) è gauge invariante, e che \(\delta_\Lambda \lambda = 0\), quindi si trova 
+
+\begin{align}
+    b (\square \Lambda)\eps = 0 \implies b = 0 
+\end{align}
+
+Usando quindi le leggi \(\delta_\eps A_\mu = \bar{\eps}\gamma_\mu \lambda\) e \(\delta_\eps \lambda = a \gamma^{\mu\nu}F_{\mu\nu}\eps\), verifichiamo che l'algebra sia rispettata. In particolare, si trova che 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = \ldots = -4a \bar{\eps}_2 \slashed{\partial}\eps_1 A_\mu + \partial_\mu (4a\bar{\eps}_2 \slashed{A}\eps_1)
+\end{align}
+
+Se prendo \(a = -1/2\), si ottiene 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = 2 \bar{\eps}_2 \slashed{\partial}\eps_1 A_\mu - \partial_\mu (2\bar{\eps}_2 \slashed{A}\eps_1)
+\end{align}
+
+La prima parte è la parte che ci aspettiamo. La seconda invece è un termine di gauge puro. Concludiamo che le trasformazioni susy on-shell sono date da 
+
+\begin{align}
+    \begin{cases}
+        \delta_\eps A_\mu = \bar{\eps}\gamma_\mu \lambda \\ 
+        \delta_\eps \lambda = -\frac{1}{2}\gamma^{\mu\nu}F_{\mu\nu}\eps
+    \end{cases}
+\end{align}
+
+Con le equazioni del moto on-shell che seguono dall'azione 
+
+\begin{align}
+    S = \int d^4x \left(-\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}\bar{\lambda}\slashed{\partial}\lambda \right)
+\end{align}
+
+Per avere una descrizione off-shell, è necessario poi ripareggiare i gradi di libertà fermionici e bosonici. Poiché \(A_\mu\) ha solo 3 gradi di libertà se preso off-shell, dobbiamo aggiungere un campo ausilirario, \(D\), che può essere preso pseudoscalare. L'azione off-shell sarà quindi 
+
+\begin{align}
+    S = \int d^4x \left(-\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}\bar{\lambda}\slashed{\partial}\lambda + \frac{1}{2}D^2 \right)
+\end{align}
+
+Con le trasformazioni di susy che si generalizzano in 
+
+\begin{align}
+    \begin{cases}
+        \delta_\eps A_\mu = \bar{\eps}\gamma_\mu \lambda \\
+        \delta \eps \lambda = (-(1/2)\gamma^{\mu\nu}F_{\mu\nu} + i\gamma_5 D)\eps \\ 
+        \delta_\eps D = i\bar{\eps}\gamma^5 \slashed{\partial}\lambda
+    \end{cases}
+\end{align}
+
+\chapter{Rappresentazioni di supersimmetria}
+
+Torniamo al caso generale, con \(\mathcal{N} \geq 1\). Quali sono le rappresentazioni di susy? Per scoprirlo, usiamo il metodo delle rappresentazioni indotte (o del piccolo gruppo), introdotto da Wigner. Questo consiste nel trovare le rappresentazioni del piccolo gruppo, cioè quelle che lasciano invariato un momento di riferimento, preso a piacere. 
+
+\section{Gruppo di Poincarè}
+
+Prima di applicare il metodo alla supersimmetria, ricordiamo come si usa la tecnica per il caso di Poincarè: distinguiamo inanzitutto due casi: 
+
+\begin{enumerate}
+    \item Caso massivo: se vale \(p^2 = p^\mu p_\mu = -m^2\), il momento di riferimento può essere preso come \(k^\mu = (m ,0, 0, 0)\) (esiste sempre una trasformazione di lorentz nel SR a riposo della particella). In questo caso, il piccolo gruppo è quello che lascia invariata la componente spaziale del vettore, cioè \(SO(3)\), o meglio il suo ricoprimento universale \(SU(2)\). Poiché le rappresentazioni di \(SU(2)\) sono indicate con un indice semi-intero \(j\), segue che, nel caso massivo, tutte le rappresentazione di Poincarè sono caratterizzate da una massa ed uno spin. 
+    \item Caso massless: se vale \(p^2 = p^\mu p_\mu = 0\), il momento di riferimento può essere dato da \(k^\mu = (E, 0, 0, E)\). In questo caso da cosa è dato il piccolo gruppo? è dato dalle trasformazioni \(e^{\omega_{\mu\nu}J^{\mu\nu}} = 1 + (1/2)\omega_{\mu\nu}J^{\mu\nu} + o(\omega^2)\), tali che 
+    \begin{align}
+        k^\mu \to k^{\mu} + \omega^\mu_\nu k^\nu = k^\mu \implies \omega^\mu_\nu k^\nu = 0 \implies \begin{cases}
+            \omega^{30} = 0 \\ -\omega^{10}+\omega^{13} = 0 \\ -\omega^{20} + \omega^{30} = 0 
+        \end{cases}
+    \end{align}
+    Da cui leggiamo la più generale scelta di \(\omega\): (ricorda che è un tensore antisimmetrico di parametri) 
+    \begin{align}
+        \omega^{\mu\nu} = \begin{pmatrix}
+            0 & -\eta & -\rho & 0 \\
+            \eta & 0 & \eps & \eta \\ 
+            \rho & -\eps & 0 & \rho \\ 
+            0 & -\eta & -\rho & 0 
+        \end{pmatrix}
+    \end{align}
+    A questo punto, 
+    \begin{align}
+        \frac{1}{2}\omega_{\mu\nu}J^{\mu\nu} = \eta (J_{10} + J_{13}) + \rho (J_{20} + J_{23}) + \eps J_{12}
+    \end{align}
+    Definisco allora \(T_1 = J_{10} + J_{31}\), \(T_2 = J_{20} + J_{23}\), \(J = J_{12}\). Dall'algebra di Poincarè ricaviamo le relazioni di commutazione 
+    \begin{align}
+        [T_1, J] = -T_2, \quad [T_2, J] = T_1, \quad [T_1, T_2] = 0 
+    \end{align}
+    che riconosciamo essere l'algebra del gruppo euclideo sul piano. Ma se cerchiamo rappresentazioni unitarie finito dimensionali: la parte non compatta deve essere rappresentata in modo triviale. Sopravvive allora solo \(J\) i cui autovalori sono detti \emph{elicità}, e si indicano tipicamente con \(\lambda\) (\(J\ket{\lambda} = \lambda\ket{\lambda}\). 
+
+    A livello di gruppo, \(\lambda\) è quantizzato \(\lambda \in \mathbb{Z}/2\). Per il teorema CPT, inoltre, la rappresentazione \(\ket{\lambda}\) va unita alla rappresentazione \(\ket{-\lambda}\). Quindi, ad esempio 
+    \begin{align}
+        \lambda = 0 \to \text{scalare}, \quad 
+        \begin{cases}
+            \lambda = 1/2 \\ \lambda = -1/2
+        \end{cases} \to \text{spin 1/2}, \quad 
+        \begin{cases}
+            \lambda = 1 \\ \lambda = -1 
+        \end{cases} \to \text{spin 1}
+    \end{align}
+\end{enumerate}
+
+
+\section{Supersimmetria, caso massless}
+
+Dobbiamo capire quale è il piccolo supergruppo. Cominciamo considerando l'algebra di susy nella rappresentazione a due componenti: 
+
+\begin{align}
+    \left\{Q_A^i, \bar{Q}_{\dot{B}j} \right\} = -2i (\sigma^\mu)_{A\dot{B}}\delta^i_j P_\mu
+\end{align}
+
+Il momento di riferimento è sempre dato da \(k^\mu = (E, 0, 0, E)\). Cosa succede se applico il commutatore ad uno stato \(\ket{\psi}\), con momento \(k^\mu\)? 
+
+\begin{align}
+    \left\{Q_A^i, \bar{Q}_{\dot{B}j} \right\}\ket{\psi} == -2i(\sigma^\mu)_{A\dot{B}}\delta^i_j (-ik_\mu)\ket{\psi} \notag \\ 
+    &= 2E (-\sigma^0 +\sigma^3)_{A\dot{B}}\delta^i_j \ket{\psi}
+\end{align}
+
+Per ottenere le matrici di Pauli con gli indici bassi, ricorda che questi vengono abbassati/alzati dai tensori antisimmetrici. In particolare, 
+
+\begin{align}
+    (\sigma^0)^{A\dot{B}} = \begin{pmatrix}
+        1 & 0 & 0 & 1 
+    \end{pmatrix} \implies (\sigma^0)_{A\dot{B}} = (\sigma^0)^{C\dot{D}}\eps_{CA}\eps_{\dot{D}\dot{B}} = -\begin{pmatrix}
+        1 & 0 \\ = &  1
+    \end{pmatrix}
+\end{align}
+
+Similmente si trova 
+\begin{align}
+    (\sigma^3)_{A\dot{B}}  = \begin{pmatrix}
+        1 & 0 \\ 0 & -1
+    \end{pmatrix}
+\end{align}
+
+Concludiamo che 
+
+\begin{align}
+    \left\{Q_A^i, \bar{Q}_{\dot{B}j} \right\}\ket{\psi} = -4E\delta^i_j \begin{pmatrix}
+        1 & 0 \\ 0 & 0 
+    \end{pmatrix} \ket{\psi} \implies \begin{cases}
+        \left\{Q_1^i, \bar{Q}_{\dot{1}j} \right\} = -4E\delta^i_j \\
+        \left\{Q_1^i, \bar{Q}_{\dot{2}j} \right\} = 0 \\
+        \left\{Q_2^i, \bar{Q}_{\dot{1}j} \right\} = 0 \\
+        \left\{Q_2^i, \bar{Q}_{\dot{2}j} \right\} = 0
+    \end{cases}
+\end{align}
+
+Se prendo il prodotto interno \(\bra{\psi}\left\{Q_2^i, \bar{Q}_{\dot{2}j} \right\} \ket{\psi}\), questo è nullo per l'ultima espressione, che mi dice quindi che \(||Q_2^i\ket{\psi}||^2 = 0\), che implica \(Q_2^i \ket{\psi} = 0\). Quindi la carica \(Q_2\) non gioca un ruolo nella costruzione della superalgebra di piccolo gruppo. 
+
+Diversamente, le cariche \(Q_1\) giocano un ruolo, perchè connettono stati di elicità diversa. Si può infatti trovare che (verificarlo per esercizio) il commutatore fra \(Q_1, J\) è dato da (\(J\) è sempre l'operatore che ha come autovalore l'elicità)
+
+\begin{align}
+    [Q^i_1, J] = -\frac{i}{2}Q^i_1  
+\end{align}
+
+Questo implica che, dato \(\ket{\lambda}\) t.c. \(J\ket{\lambda} = \lambda\ket{\lambda}\), allora
+
+\begin{align}
+    J Q_1^i \ket{\lambda} &= Q_1^i i\lambda \ket{\lambda} + [J, Q_1^i]\ket{\lambda} \notag \\ 
+    &= i\lambda Q_1^i \ket{\lambda} + \frac{i}{2}Q_1^i \ket{\lambda} = i\left(\lambda + \frac{1}{2} \right)Q_1^i \ket{\lambda}
+\end{align}
+
+Cioè \(Q_1^i\ket{\lambda}\) è un autostato dell'elicità, con autovalore \(\lambda + 1/2\). Analogamente, \(Q^{i*}_1\ket{\lambda}\) è un autostato con autovalore \(\lambda - 1/2\). 
+
+Per costruire la rappresentazione, partiamo da uno stato di elicità massimo, che indichiamo con \(\ket{\lambda}\): questo deve esistere se la rappresentazione è finito dimensionale. Si tratta dell'unico stato dove vale 
+
+\begin{align}
+    Q^i_1 \ket{\lambda} = 0 
+\end{align}
+
+Partendo da questo, si agisce con gli operatori \(Q^{i*}_j\) per abbassare l'elicità. Ad esempio, otteniamo così \(\mathcal{N}\) stati con elicità \(\lambda -1/2\), dati esplicitamente da 
+
+\begin{align}
+    (Q_1^i)^* \ket{\lambda}, \quad i = 1, \ldots, \mathcal{N}
+\end{align}
+
+A partire da questo genero gli stati con elicità \(\mathcal{N}-1\). Quanti sono questi stati? Devo stare attento perché le cariche sono oggetti anticommutanti: sono quindi \(\mathcal{N}(\mathcal{N}-1)/2\) stati, dati esplicitamente da 
+
+\begin{align}
+    (Q_1^j)^*(Q_1^i)^*\ket{\lambda}, \quad i = 1, \ldots, \mathcal{N}, \quad j = i+1, \ldots, \mathcal{N}
+\end{align}
+
+Così facendo, ottengo tutti gli stati fino all'unico stato con elicità \(\lambda - \mathcal{N}/2\), che è lo stato che ottengo applicando tutti gli \(\mathcal{N}\) generatori ad \(\ket{\lambda}\). In generale, gli stati con elicità \(\mathcal{N} - k/2\) sono generati dall'applicazione di \(k\) generatori, ed hanno \(k\) indici antisimmetrizzati, così che il numero di questi stati è dato da \(\begin{pmatrix}
+    \mathcal{N} \\ k
+\end{pmatrix}\). 
+
+Ora, per il teorema CPT, bisogna anche aggiungere gli stati di elicità opposta. Questo tranne nel caso in cui \(\lambda - \mathcal{N}/2 = -\lambda\), cioè quando \(\lambda = \mathcal{N}/2\). In questo caso si dice che la rapprestazione è automaticamente self coniugata. 
+
+Il numero totale degli stati è quindi: 
+\begin{enumerate}
+    \item Nel caso generale \(2\sum_k \begin{pmatrix}
+        \mathcal{N} \\ k 
+    \end{pmatrix} = 2^{\mathcal{N}+1}\) 
+    \item nel caso speciale self coniugato, \(2^\mathcal{N}\). 
+\end{enumerate}
+
+\nt{In questa costruzione, anche se non è apparente, c'è perfetta simmetria tra stati bosonici e stati fermionici.}
+
+\ex{Rappresentazioni susy con \(\mathcal{N}=1\)}{
+
+    Il caso in cui \(\mathcal{N} =1\) è particolarmente semplice, perché, partendo dallo stato di elicità più alta, posso ottenere solo un altro stato con elicità più bassa. L'intera rappresentazione è quindi data da: 
+
+    \begin{align}
+        \ket{\lambda}, \quad \ket{\lambda - 1/2} = Q^*_1\ket{\lambda}, \quad \ket{-\lambda}, \quad \ket{-\lambda + 1/2} = Q_1 \ket{-\lambda}
+    \end{align}
+
+    Cioè in tutto 4 stati. L'elicità deve essere semi-intera, quindi non è possibile, nel caso \(\mathcal{N}=1\), avere una rappresentazione self coniugata. 
+
+    Esempi sono: 
+    \begin{enumerate}
+        \item \(\lambda =1/2\): In questo caso gli stati hanno elicità \(1/2, 0, 0, -1/2\): è il modello di Wess-Zumino! 
+        \item \(\lambda =1\): le elicità degli stati sono \(1, 1/2, -1/2, -1\): è l'elettrodinamica. 
+        \item \(\lambda = 3/2\): elicità \(2, 3/2, -3/2, -2\), detto multipletto del \emph{gravitino} perché ha una particella con spin 3/2. 
+        \item \(\lambda = 2\): detta supergravità in \(\mathcal{N} =1\), descrive gravitone e gravitino. 
+    \end{enumerate}
+
+    Questi sono i modelli \emph{on-shell} studiati precedentemente: questo è giusto perché abbiamo richiesto che \(p^2 =0\). 
+}
+
+\ex{Rappresentazioni susy con \(\mathcal{N}=2\)}{
+
+    La lista degli stati in questo caso è data da 
+    \begin{align}
+        &\ket{\lambda} \notag \\
+        &\ket{\lambda -1/2, i} = (Q_i)^*\ket{\lambda}, \, i = 1, 2 \notag \\ 
+        &\ket{\lambda -1} \notag \\ 
+        &\, \oplus \notag \\ 
+        &\ket{-\lambda + 1} \notag \\ 
+        &\ket{-\lambda +1/2, i} = Q_i \ket{\lambda}, \, i = 1, 2 \notag \\ 
+        &\ket{-\lambda}
+    \end{align}
+
+    Che sono 8 stati distinti, a meno che non siamo nel caso self coniugato, ovvero \(\lambda = 1/2\). Vediamo qualche esempio: 
+
+    \begin{enumerate}
+        \item \(\lambda = 1/2\): caso self-coniugato, uno spinore e due scalari. In realtà va comunque raddoppiato, e si parla di ipermultipletto. 
+        \item \(\lambda = 1\): ci sono 1 vettore, 2 spinori e 2 scalari. 
+        \item \(\lambda = 2\): c'è un gravitone, un gravitino ed un vettore (spesso detto gravifotone). 
+    \end{enumerate}
+}
+
+\ex{Casi con \(\mathcal{N}\geq 4\)}{
+    Un caso particolarmente studiato è \(\mathcal{N} = 4\). Come elicità minima si ha \(\lambda = 1\), che è anche il caso self coniugato. In questo caso ci sono 1 vettore, 4 spinori e 6 scalari. Questo è di solito il punto di partenza quando si parla di Super-Yang-Mills (SYM). Teorie invece che hanno \(\mathcal{N} \geq 4\) coinvolgono necessariamente la supergravità (\(\lambda_{\text{min}} > 1\). Importanti ad esempio sono le teorie con \(\mathcal{N} = 8\): la rappresentazione self coniugata è \(\lambda = 2\) e contiene 1 gravitone, 8 gravitini, 28 gravifotoni, 56 spinori e 70 scalari. 
+}
+
+
+\section{Supersimmetria, caso massivo}
+
+Ricordiamo il caso di Poincarè: le rappresentazioni sono caratterizzate dalla massa \(m\) e dello spin \(j\) di \(SU(2)\). Cerchiamo di ripercorrere i passaggi eseguiti nel caso massless: 
+
+\begin{align}
+    \left\{Q^{Ai}, \bar{Q}_{\dot{B}j} \right\}\ket{\psi} = 2m \delta^A_{\dot{B}} \delta^i_j \ket{\psi}
+\end{align}
+
+Vediamo che, a differenza del caso massless, \emph{tutte} le cariche \(Q\) sono coinvolte nella costruzione della rappresentazione. Come nel caso massless, però, posso partire da uno stato \(\ket{\psi}\), t.c. \(Q_A^i \ket{\psi} = 0\), \(A=1, 2\) ed \(i=1, \ldots, \mathcal{N}\). 
 
 \end{document}
+
+
+
