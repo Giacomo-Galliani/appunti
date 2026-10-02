@@ -1993,6 +1993,8 @@ che descrivono due scalari, e uno spin 1/2: è il modello di Wess-Zumino massivo
 
 \chapter{Superspazio e supercampi}
 
+\section{Formalismo}
+
 Ogni volta che ho una simmetria, vale la pena costruire un formalismo adatto. Ad esempio, in meccanica classica c'è come simmetria \(SO(3)\): si introducono allora i vettori \(\vec{A}\), da cui si possono scrivere velocemente gli invarianti, come \(\vec{A}\cdot \vec{B}\). 
 
 Similmente, passando poi in relatività speciale, \(SO(3) \to SO(3, 1)\) e si introducono i quadrivettori, \(W^\mu\). Per il gruppo di Poincarè, generalmente gli invarianti si scrivono \(\int d^4x v^\mu W_\mu\). 
@@ -2010,6 +2012,418 @@ Accanto alle coordinate spaziotemporali \(x^\mu\) introdurremo coordinate fermio
 \end{align}
 
 e di Majorana (\(\theta_\alpha = C_{\alpha\beta}\bar{\theta}^\beta\)). Questa è l'idea per \(\mathcal{N} = 1\). Invece nel caso generale si prende \(\theta_\alpha^i\), \(i = 1, \ldots, \mathcal{N}\). 
+
+Essendo coordinate spinoriali, queste si trasformano sotto traslazioni e sotto trasformazioni di lorentz nel seguente modo: 
+
+\begin{align}
+    \begin{cases}
+        x^{'\mu} = x^\mu + a^\mu \\ \theta^{'a} = \theta^a  
+    \end{cases}, \quad \begin{cases}
+        x^{'\mu} = x^\mu - \omega^\mu_\nu x^\nu \\ \theta'_\alpha = \theta_\alpha -\frac{1}{4}(\gamma^{\mu\nu})^\beta_\alpha \theta_\beta
+    \end{cases}
+\end{align}
+
+Invece introduco la supertraslazione, che trasla \(\theta\) di un parametro spinoriale \(\eps_\alpha\), e agisce sul superspazio completo come 
+
+\begin{align}
+    \begin{cases}
+        x^{'\mu} = x^{\mu} - \bar{\eps}\gamma^\mu \theta \\ \theta'_\alpha = \theta_\alpha + \eps_\alpha
+    \end{cases}
+\end{align}
+
+Questa trasformazione è scelta in modo tale che realizzi la trasformazione di supersimmetria \(\delta_\eps = \bar{\eps}^\alpha Q_\alpha\). Verifico quindi che valga \([\delta_{\eps_1}, \delta_{\eps_2}] = 2(\bar{\eps_2}\gamma^\mu \eps_1)\partial_\mu\)
+
+Agisco due volte con la trasformazione: 
+
+\begin{align}
+    \begin{cases}
+        x^\mu \\ \theta^\alpha
+    \end{cases} \xrightarrow{\eps_2} \begin{cases}
+        x^\mu - \bar{\eps_2}\gamma^\mu \theta \\ \theta + \eps_2 
+    \end{cases} \xrightarrow{\eps_1} \begin{cases}
+        x^\mu -\bar{\eps_2}\gamma^\mu \theta -\bar{\eps_1}\gamma^\mu \theta - \bar{\eps_1}\gamma^\mu \eps_2 \\ \theta + \eps_1 + \eps_2
+    \end{cases}
+\end{align}
+
+Se inverto le due traslazioni, la coordinata spinoriale si trasforma allo stesso modo (regolari traslazioni commutano), invece nella coordinata spaziale cambia l'ultimo fattore: sarà dato da \(\bar{\eps}_2 \gamma^\mu \eps_2\). Ricordando che questa struttura è antisimmetrica nello scambio \(1 \leftrightarrow 2\) si sommano in \(2\bar{\eps}_2 \gamma^\mu \eps_1\). 
+
+L'insieme dei punti \(x^\mu, \theta_\alpha\) è detto superspazio, e le funzioni definite sul superspazio sono dette supercampi. Ad esempio, 
+
+\begin{align}
+    &\phi(x^\mu, \theta_\alpha) \quad \text{supercampo scalare} \\ 
+    &A_\mu(x^\mu, \theta_\alpha) \quad \text{supercampo vettoriale}
+\end{align}
+
+Nel caso ordinario, le traslazioni sono realizzate da derivate che agiscono sui campi. Vogliamo quindi scrivere le supertraslazioni come derivate agenti sui supercampi. Per farlo, facciamo una supertraslazione infinitesima del supercampo \(\phi\): 
+
+\begin{align}
+    \delta_\eps \phi (x, \theta) &= \phi(x', \theta') - \phi(x, \theta) = \phi(x^\mu-\bar{\eps}\gamma^\mu \theta, \theta + \eps) - \phi(x, \theta) \notag \\ 
+    &= -\bar{\eps}\gamma^\mu \theta \partial_\mu \phi(x, \theta) + \eps_\alpha \frac{\partial}{\partial \theta_\alpha}\phi(x, \theta) \notag \\ 
+    &=\bar{\eps}^\alpha Q_\alpha \phi(x, \theta) \quad \text{se definisco  } Q_\alpha = (C^T)_{\alpha\beta}\frac{\partial}{\partial \theta^\beta} - (\gamma^\mu \theta)\partial_\mu
+\end{align}
+
+Abbiamo quindi trovato un espressione di \(Q_\alpha\) in termini di derivate. Osserva che siccome \(\theta_\alpha = \bar{\theta}^\beta (C^T)_{\beta\alpha}\), si ha che 
+
+\begin{align}
+    \frac{\partial}{\partial \bar{\theta}^\gamma} = \frac{\partial}{\partial \theta^\alpha}\frac{\partial \theta^\alpha}{\partial \bar{\theta}^\gamma} = (C^T)_{\gamma\alpha}\frac{\partial}{\partial \theta^\alpha}
+\end{align}
+
+Si scrive quindi più comodamente 
+
+\begin{align}
+    Q_\alpha = \frac{\partial}{\partial \bar{\theta}^\alpha} - (\gamma^\mu \theta)_\alpha \partial_\mu
+\end{align}
+
+Si può verificare esplicitamente che i generatori soddisfino l'algebra di susy, cioè che valga \(\left\{ Q_\alpha, Q_\beta \right\} = -2(\gamma^\mu C)_{\alpha\beta}\partial_\mu\). In particolare, vale \([Q_\alpha, \partial_\mu] = 0\), ma \(\left\{ Q_\alpha, \frac{\partial}{\partial \bar{\theta}^\beta} \right\} \neq 0\). Posso allora definire una derivata covariante, che corregga la derivata spinoriale, facendo modo che commuti con i generatori di susy. Si trova che 
+
+\begin{align}
+    \left\{ Q_\alpha, D_\beta \right\} = 0 \implies D_\alpha = \frac{\partial}{\partial \bar{\theta}^\alpha} + (\gamma^\mu \theta)_\alpha \partial_\mu
+\end{align}
+
+Questa soddisfa la relazione \(\left\{ D_\alpha, D_\beta \right\} = 2(\gamma^\mu C)_{\alpha\beta}\partial_\mu\). Quale è il significato fisico di questa descrizione? 
+
+Considera un supercampo \(\phi\): espandiamolo nella variabile \(\theta\)
+
+\begin{align}
+    \phi(x, \theta) = \varphi(x) + \theta^\alpha \varphi_\alpha (x) + \theta^\alpha \theta^\beta \varphi_{\alpha\beta}(x) + \theta^\alpha \theta^\beta \theta^\gamma \varphi_{\alpha\beta\gamma} + \theta^\alpha \theta^\beta \theta^\gamma \theta^\delta \varphi_{\alpha\beta\gamma\delta}(x)
+\end{align}
+
+Questa espansione non è una approssimazione: è una espansione \emph{esatta}, perché \(\theta^5 =0\), data la natura anticommutante delle coordinate spinoriali. I coefficienti \(\varphi\), invece, sono funzione ordinarie dello spaziotempo, cioè sono i campi che descrivono gli ordinari bosoni, spinori e scalari in teorie di campo ordinarie. 
+
+Attenzione: questo è un supercampo scalare con \(\mathcal{N} =1\): facciamo il conto di quanti campi descrive, e di che tipo sono questi campi. Si ottiene: 
+
+\begin{align}
+    &\varphi(x), \quad \text{1 grado di libertà bosonico} \notag \\
+    &\varphi_\alpha(x), \quad \text{4 gradi di libertà fermionici} \notag \\
+    &\varphi_{\alpha\beta}(x), \quad \text{6 gradi di libertà bosonici} \notag \\
+    &\varphi_{\alpha\beta\gamma}(x), \quad \text{4 gradi di libertà fermionici} \notag \\
+    &\varphi_{\alpha\beta\gamma\delta}(x), \quad \text{1 grado di libertà bosonico} \notag \\
+\end{align}
+
+In tutto, il campo contiene 8 gradi di libertà bosonici e 8 fermionici. L'espressione può essere messa nella forma 
+
+\begin{align}
+    \phi(x, \theta) = \varphi(x) + \bar{\theta}^\alpha \chi_\alpha(x) + (\bar{\theta}\theta)F(x) + (\theta\gamma_5 \theta)G(x) + (\bar{\theta}\gamma_5\gamma_\mu \theta)A^\mu(x) + (\bar{\theta}\theta)\bar{\theta}^\alpha \lambda_\alpha (x) + (\bar{\theta}\theta)(\bar{\theta}\theta)D(x) 
+\end{align}
+    
+Ci ricordiamo però la discussione sulle rappresentazioni di supersimmetria, e i modello studiati sia on-shell sia off-shell: nel caso on-shell avevamo \(2+2\) gradi di libertà bosonici e fermionici, mentre nel caso off-shell \(4+4\). Qui ne abbiamo \(8+8\)! Cosa manca? 
+
+Applichiamo una condizione, detta \emph{condizione di supercampo}: inanzitutto, scriviamo la derivata covariante in notazione a due componenti: 
+
+\begin{align}
+    D_A = \frac{\partial}{\partial \theta^A} - i(\sigma^\mu)_{A\dot{A}}\bar{\theta}^{\dot{A}}\partial_\mu, \quad \bar{D}_{\dot{A}} = \frac{\partial}{\partial \bar{\theta}^{\dot{A}}} \theta^A \partial_\mu, \quad \left\{ D_A, D_{\dot{A}} \right\} = -2i (\sigma^\mu)_{A\dot{A}}\theta^A \partial_\mu
+\end{align}
+
+impongo la condizione di \emph{chiralità}: \(\bar{D}_{\dot{A}}\phi(x, \theta) = 0\). Un supercampo che soddisfa questa condizione è detto \emph{supercampo chirale}. 
+
+La prima domanda è chiedersi se, dato un supercampo chirale, questo rimane chirale dopo aver applicato una trasformazione di susy. Vediamo subito: 
+
+\begin{align}
+    \bar{D}_{\dot{A}}(\phi + \delta_\eps \phi) = \bar{D}_{\dot{A}}(\phi + \delta_\eps \phi) = \bar{D}_{\dot{A}}(1 + \underbrace{\eps^A Q_A  + \bar{\eps}^{\dot{A}}\bar{Q}_{\dot{A}}}_{= \eps^\alpha Q_\alpha})\phi = 0 
+\end{align}
+
+Siccome \(\bar{D}_{\dot{A}}\) anticommuta con i generatori \(Q_A\). Dunque la condizione di chiralità \emph{riduce} le rappresentazioni di susy, perché agendo sui supercampi chirali, rimango nei supercampi chirali. Inoltre, se \(\phi\) è chirale, allora \(\phi \in \mathbb{C}\). Questo perché se fosse reale, sarebbe anche antichirale. Ma se un campo è sia chirale sia antichirale vale 
+
+\begin{align}
+    \partial_\mu \phi = \left\{ D_A, \bar{D}_{\dot{A}} \right\}\phi = 0 \implies \phi = \text{cost.}
+\end{align}
+
+Dunque \(\phi\) è chirale, e \(\bar{\phi}\) è antichirale. Quanti campi ordinari (e quali) contiene il supercampo chirale? Introduciamo una coordinata usiliaria 
+
+\begin{align}
+    y^\mu := x^\mu - i\theta^A (\sigma^\mu)_{A\dot{B}}\bar{\theta}^{\dot{B}}
+\end{align}
+
+Per costruzione, vale 
+
+\begin{align}
+    \bar{D}_{\dot{A}}y^\mu = \left(\frac{\partial}{\partial \bar{\theta}^{\dot{A}}} -i(\sigma^\mu)_{A\dot{A}}\theta^A \partial_\mu \right)y^\mu = 0 
+\end{align}
+
+Inoltre, vale chiaramente \(\bar{D}_{\dot{A}}\theta^A = 0\), così che un supercampo che è funzione solo di \(y^\mu, \theta^A\), cioè ad esempio \(\phi(y^\mu, \theta^A)\) è \emph{automaticamente} chirale. Posso allora esprandere questo campo: l'espansione esatta in questo caso si ferma al secondo termine (perché è funzione di uno spinore a due componenti): 
+
+\begin{align}
+    \phi(y^\mu, \theta^A) = z(y) + \theta^A \chi_A(y) + \frac{1}{2}\theta^A \theta_A f(y)
+\end{align}
+ 
+Ricordando che il campo è complesso, conto i g.d.l. : 4 fermionici + 4 bosonici. Dunque questo funziona per descrivere il modello di Wess-Zumino off-shell.  
+
+In generale, l'espansione del supercampo si può scrivere 
+
+\begin{align}
+    \phi(x, \theta^A, \bar{\theta}^{\dot{A}}) &= z(x) + \theta^A \chi_A + \frac{1}{2}\theta^A \theta_A f(x) \notag \\
+    &= -i\theta^A \bar{\theta}^{\dot{A}}\partial_{A\dot{A}}z(x) - i\theta^A \theta^B \bar{\theta}^{\dot{B}}\partial_{B\dot{B}}\chi_A - \frac{1}{2}\theta^A \bar{\theta}^{\dot{A}}\theta^B \bar{\theta}^{\dot{B}}\partial_{A\dot{A}}\partial_{B\dot{B}}z(x)
+\end{align}
+
+Per semplificare la notazione, scriviamo \(\theta^2 = \bar{\theta}^A\theta_A\). Inoltre, scrivo \(\theta^A \theta^B = -1/2\eps^{AB}\theta^2\). Infatti, vale \(\theta^2 = \theta^A \theta^B \eps_{AB}\). Ora, \(\eps_{BA}\eps^{AB} = -\eps_{AB}\eps^{BA} = -2\), quindi vale \(\theta^2 = -(1/2)\eps_{BA}\eps^{AB}\theta^2\). Confrontando questa espressione con quella iniziale, trovo quanto volevasi dimostrare.  
+
+Essendo off-shell, i campi includono sia i fisici, sia gli ausilirari. Chi è uno e chi è l'altro? Per riconoscerli, ricorda che i fisici hanno dimensione in massa 1, mentre gli ausilirari dimensione in massa 2. Per leggere la dimensione dal campo però devo conoscere quanto vale \([\theta]\): considero allora la supertraslazione 
+
+\begin{align}
+    x^{'\mu} = x^\mu - \bar{\eps}\gamma^\mu \theta, \quad [x] = -1, \quad [\eps] = -1/2 \implies  [\theta] = -1/2
+\end{align}
+
+Salendo nell'espansione del supercampo, dunque, aumento sempre la dimensione in massa dei campi dello spaziotempo ordinario di \(1/2\): sapendo che \([\chi] = 3/2\), segue che \([z] = 1, \, [f] = 2\). 
+
+Se questo è proprio WZ, allora le trasformazioni del supercampo \(\delta_\eps \phi\) impongono le trasformazioni sui campi \(z, \chi, f\) studiati nei capitoli precedenti. Verifichiamolo: 
+
+\begin{align}
+    \delta_\eps \phi = (\eps^A Q_A + \bar{\eps}^{\dot{A}}Q_{\dot{A}})\phi 
+\end{align}
+
+Come leggo le trasformazioni sui campi? Ad esempio, vale \(z = \phi|_{\theta = 0}\). Allora avrò che
+
+\begin{align}
+    \delta_\eps z &= \delta_\eps \phi |_{\theta = 0} = [\eps^A Q_A + \bar{\eps}^{\dot{A}}\bar{Q}_{\dot{A}}]\phi |_{\theta = 0} \notag \\ 
+    &= [\eps^A D_A + \bar{\eps}^{\dot{A}}\bar{D}_{\dot{A}}]\phi |_{\theta =0} = \eps^A D_A \phi |_{\theta = 0} = \eps^A \chi_A
+\end{align}
+
+Infatti, dalla espressione di \(D\), vale \(Q_A = D_A\) per \(\theta =0\), nella penultima uguaglianza abbiamo usato che il supercampo è chirale, e per l'ultima è chiaro dall'espressione che \(D_A \phi |_{\theta = 0} = \chi_A\). 
+
+Questo è in accordo con quanto studiato. Proseguiamo: 
+
+\begin{align}
+    \delta_\eps \chi_A = \delta_\eps D_A \phi |_{\theta = 0} = [\eps^B D_B D_A \phi + \bar{\eps}^{\dot{B}}D_{\dot{B}}D_A \phi] |_{\theta = 0} 
+\end{align}
+
+Ora, dalla chiralità \(D_{\dot{B}}D_A\phi = \left\{ D_{\dot{B}}, D_A \right\}\phi = -2i\partial_{\dot{B}A}\phi\). Invece, possiamo scrivere \(D_B D_A = -(1/2)\eps_{BA}D^2\), così che 
+
+\begin{align}
+    \delta_\eps \chi_A = \eps_A f - 2i\bar{\eps}^{\dot{A}}\partial_{A\dot{A}}z
+\end{align}
+
+dove abbiamo usato \(f = -(1/2)D^2\phi|_{\theta = 0}\). Similmente si ricavano le altre. 
+
+\section{Invarianti supersimmetrici}
+
+Analogalmente al caso di Poincarè, per ottenere degli invarianti supersimmetrici dovremo integrare su tutto il superspazio. C'è prima un problema tecnico da risolvere: dobbiamo definire l'integrazione sulle variabili \(\theta\). 
+
+Supponiamo di avere una sola variabile anticommutante \(\theta\). Una funzione di \(\theta\) ha al massimo la forma 
+
+\begin{align}
+    f(\theta) = a + b\theta
+\end{align}
+
+perchè \(\theta^2 = 0\). Genericamente, scriviamo 
+
+\begin{align}
+    \int d\theta' f(\theta') = A + B\theta
+\end{align}
+
+come determino i coefficienti \(A, B\)? Posso fare delle richieste ragionevoli: 
+
+\begin{enumerate}
+    \item L'integrale in \(\theta\) sia lineare
+    \item Il risultato sia invariante sotto traslazioni
+\end{enumerate}
+
+In formule, vuol dire che deve valere 
+
+\begin{align}
+    &\int d\theta' \alpha (a+\theta b) = \alpha (A+\theta B) \notag \\ 
+    &\int d\theta' (a_1 + \theta'b_1) + (a_2 \theta' b_2) = (A_1 + A_2) + \theta(B_1 + B_2) \notag \\ 
+    &\int d\theta' (a + (\theta'+\eps)) = A +B\theta
+\end{align}
+
+Unendo le ultime due, si trova che 
+
+\begin{align}
+    \int d\theta' \eps b = 0 \implies \int d\theta ' a = 0, \, \forall a
+\end{align}
+
+cioè l'integrale di una costante è sempre nullo. Segue che 
+
+\begin{align}
+    \int d\theta' a + b\theta' = \int d\theta' b \theta' = b \int d\theta' \theta'
+\end{align}
+
+Convenziolamente, si prende \(\int d\theta' \theta' = 1\). In questo modo, si ottiene 
+
+\begin{align}
+    \int d\theta' a + b\theta' = b
+\end{align}
+
+cioè, l'integrale funziona in modo analogo alla derivazione. 
+
+Questo formalismo si generalizza in fretta al caso di più \(\theta\): si ottiene infatti 
+
+\begin{align}
+    \int d\theta^1 d\theta^2 (a + b\theta_1 + c\theta_2 + d\theta_2 \theta_1) = \int d\theta_1 c + \theta_1 d = d 
+\end{align}
+
+Cioè come al solito si applica un integrale per volta. 
+
+Torniamo alla supersimmetria con \(\mathcal{N} = 1\): useremo le convenzioni del West, dove si ha che 
+
+\begin{align}
+    \int d^2 \theta = -\frac{1}{4}\partial^A \partial_A
+\end{align}
+
+Ad esempio, si ottiene 
+
+\begin{align}
+    \int d^2\theta \theta^2 &= -\frac{1}{4}\partial^A \partial_A (\theta^B \theta_B) = -\frac{1}{4}\partial^A \partial_A (\theta^B \theta^C)\eps_{CB} \notag \\
+    &= -\frac{1}{4}\partial_A (\delta_A^B \theta^C - \theta^B \delta^C_A)\eps_{CB} = -\frac{1}{2}\partial^A \theta_A = \frac{1}{2}\partial_A \theta^A = \frac{1}{2}\delta^A_A = 1 
+\end{align}
+
+Nel penultimo passaggio abbiamo usato una comoda regola generale, cioè 
+
+\begin{align}
+    \chi_A \psi^A = \chi_A \eps^{AB}\psi_B = -\chi^B \psi_B
+\end{align}
+
+Analogamente vale 
+
+\begin{align}
+    \int d^2\bar{\theta}^2 \bar{\theta}^2 = 1
+\end{align}
+
+Si definisce poi 
+
+\begin{align}
+    \int d^4\theta := \int d^2\theta d^2\bar{\theta} \implies \int d^4\theta \theta^2 \bar{\theta}^2 = 1 
+\end{align}
+
+Unendo queste regole alle espansioni dei supercampi, si ottengono facilmente alcune utili formule, per gli integrali sul superspazio dei supercampi: alcuni esempi sono (dato \(\phi\) supercampo chirale)
+
+\begin{align}
+    &\int d^2\theta \phi(x, \theta, \bar{\theta}) = \frac{1}{2}f(x) - \frac{i}{2}\bar{\theta}^{\dot{A}}\partial_{A\dot{A}}\chi^A + \frac{1}{4}\theta^2 \square z \notag \\ 
+    &\int d^2\theta d^2\bar{\theta} = \frac{1}{4}\square z
+\end{align}
+
+Se invece integro in tutto lo spaziotempo
+
+\begin{align}
+    &\int d^4x d^2\theta \phi = \frac{1}{2}\int d^4x f(x) \notag \\
+    &\int d^4x d^4\theta \phi = 0
+\end{align}
+
+perchè i termini derivativi sono nulli, se il campo va a zero all'infinito. Dato invece \(\psi\) un supercampo generico, vale 
+
+\begin{align}
+    \int d^4x d^4\theta \psi = \frac{1}{4}\int d^4x D(x), \quad \text{ricorda, } \psi = \ldots + \frac{1}{4}\theta^2\bar{\theta}^2 D(x)
+\end{align}
+
+\nt{L'integrale in \(d^2\theta\) di una derivata totale è sempre nullo. Infatti, 
+
+    \begin{align}
+        \int d^2\theta \partial_A = -\frac{1}{4}\partial^2 \partial_A = 0, \quad \int d^2\bar{\theta} \bar{\partial}_{\dot{A}} = 0 
+    \end{align}
+
+    Da ciò segue che sotto un integrale nelle coordinate spinoriali, posso sostituire \(\partial_A \to D_A\) perchè la differenza è data da \(-i\bar{\theta}^A \partial_{A\dot{A}}\), e in particolare è proporzionale ad una derivata totale. 
+
+    Sono dunque valide le seguenti formule: 
+
+    \begin{align}
+        &\int d^4x d^2 \theta = \int d^4x \left(-\frac{1}{4}\partial^2\right) = \int d^4x \left(-\frac{1}{4}D^2\right) \notag \\ 
+        &\int d^4x d^4 \theta = \int d^4x \left(\frac{1}{16}D^2 \bar{D}^2 \right)
+    \end{align}
+}
+
+
+Siamo pronti a costruire degli \emph{invarianti supersimmetrici}: considera 
+
+\begin{align}
+    &\delta_\psi := \int d^4x d^4 \theta \psi  \notag \\ 
+    &\delta_\phi := \int d^4x d^2\theta \phi  
+\end{align}
+
+Se \(\psi\) è generico e \(\phi\) è chirale, questi sono lasciati invariati dalle trasformazioni susy. Possiamo verificarlo esplicitamente: 
+
+\begin{align}
+    \delta_\eps \delta_\psi = \int d^4x d^4\theta \delta_\eps \psi = \int d^4x d^4\theta^2 [\eps^A Q_A + \bar{\eps}^{\dot{A}}Q_{\dot{A}}]\psi = 0 
+\end{align}
+
+Siccome le \(Q\) sono tutte derivate totali! Similmente, \(\delta_\phi\) è invariante perchè, rifacendo lo stesso conto, si trova che la parte proporzionale a \(Q_A\) è una derivata totale, mentre la seconda si annulla per chiralità. 
+
+\section{Applicazione: scrittura di azioni supersimmetriche}
+
+\subsection{Azione generale di Wess-Zumino}
+
+Cominciamo ad usare il formalismo che abbiamo sviluppato per costruire delle azioni da cui poi estrarre la fisica. Potremmo cominciare ad esempio dall'azione di Wess-Zumino, che precedentemente avevamo visto solo nel caso non massivo e non interagente. Il supercampo in termini dei quali scriveremo l'azione è il supercampo chirale \(\phi\), che contiene i campi fermionici/sclari. Abbiamo bisogno di una lagrangiana cinetica, di massa e di interazione. 
+
+Iniziamo con la lagrangiana cinetica: deve essere quadratica nei campi (e non, come nel caso ordinario, nelle derivate dei campi, perchè l'integrazione sulle coordinate spinoriali agisce già come derivate). L'analisi dimensionale ci dice che \([\phi] = [z] = 1\): vediamo qualche possibilità: 
+
+\begin{align}
+    \int d^4x d^4 \theta \phi^2 = 0, \quad \int d^4x d^4\theta \bar{\phi}^2 = 0 
+\end{align}
+
+Ci restano come possibilità 
+
+\begin{align}
+    \int d^4x d^4 \theta \phi \bar{\phi}, \quad \int d^4x d^2\theta \phi^2
+\end{align}
+
+Dimensionalmente l'azione deve essere adimensionale: siccome \([\theta] = 1/2\), si ha che \([d^2\theta] =2\), mentre chiaramente \([d^4x] = 4\). L'unica scelta possibile è quindi 
+
+\begin{align}
+    S_{\text{cin}} = \int d^4x d^4\theta \phi \bar{\phi}
+\end{align}
+
+Penso adesso al termine di massa: deve essere quadratico e proporzionale alla massa: mi accorgo che \([m\phi^2] = 3\), cioè \([d^4x d^2\theta m\phi^2] = 0\): scivo allora 
+
+\begin{align}
+    S_{m} = \frac{1}{2}\int d^4x d^2\theta m\phi^2 + c.c.
+\end{align}
+
+Vogliamo poi un termine di interazione rinormalizzabile. Deve perciò essere: 
+
+\begin{enumerate}
+    \item Almeno cubico 
+    \item Con costante di accoppiamento \(\lambda\) adimensionale (\([\lambda] = 0\)). 
+\end{enumerate}
+
+La prima condizione mi dice che devo integrare solo in \(d^2\theta\), non in \(d^4\theta\), altrimenti il differenziale sarebbe con dimensione in massa \(-2\) e sicuramente l'azione avrebbe dimensione \(>0\). La scelta più semplice possibile è allora 
+
+\begin{align}
+    S_{\text{int}} = \frac{\lambda}{3!}\int d^4x d^2\theta \phi^3 + c.c
+\end{align}
+
+Date le formule ricavate nella sezione precedente, gli integrali in \(\theta\) possono essere svolti esplicitamente. Ad esempio, consideriamo il termine di massa: 
+
+\begin{align}
+    S_m &= \frac{1}{2}\int d^4x d^2\theta m \phi^2 = \frac{1}{2}m\int d^4x \left(-\frac{1}{4}D^2\phi^2 \right)\biggr|_{\theta = 0} \notag \\
+    &= -\frac{8}{m}\int d^4x [(D^2\phi)\phi + \phi(D^2\phi) + 2(D_A\phi)(D^A\phi)]|_{\theta = 0}
+\end{align}
+
+Usando ora \(\phi|_{\theta=0} = z, \, D_A\phi|_{\theta=0} = \chi_A, \, D^2 \phi|_{\theta=0} = (1/2) f\), possiamo sostituire e ottenere 
+
+\begin{align}
+    S_m = m \int d^4x \left(-\frac{1}{4}\chi^A \chi_A + fz \right) + c.c.
+\end{align}
+
+Similmente, è possibile svolgere tutti gli integrali nelle coordinate spinoriali, ed esprimere l'azione in termini di campi ordinari. Svolgendo il conto, si ottiene
+
+\begin{align}
+    S = \int d^4x \mathcal{L}, \quad \mathcal{L} &= -\frac{1}{2}(\partial_\mu A)^2 - \frac{1}{2}(\partial_\mu B)^2 -\frac{1}{2}\bar{\chi}\slashed{\partial}\chi + \frac{1}{2}(F^2 + G^2) \notag \\ 
+    &+m(FA + GB - \frac{1}{2}\bar{\chi}\chi) \notag \\ 
+    &+\lambda(F(A^2 - B^2) + 2ABG - \bar{\chi}(A-i\gamma_5 B)\chi) 
+\end{align}
+
+Riconosciamo riga per riga termine cinetico, di massa e di interazione. 
+
+Da questa, leggiamo che le equazioni del moto per i campi ausiliari sono più interessanti (pur rimanendo algebriche): 
+
+\begin{align}
+    \begin{cases}
+        F + mA +\lambda(A^2 - B^2) = 0 \\ G + mB + 2\lambda AB = 0 
+    \end{cases}
+\end{align}
+
+Usando queste equazioni per eliminare \(F, G\), si trova finalmente l'azione in termini di campi fisici: 
+
+\begin{align}
+    \mathcal{L}_{WZ} &= -\frac{1}{2}\left((\partial_\mu A)^2 + m^2 A^2 + (\partial_\mu B)^2 + m^2B^2\right) - \frac{1}{2}\bar{\chi}(\slashed{\partial}+m)\chi \notag \\
+    &-\frac{1}{2}\lambda^2(A^2 + B^2)^2 - \lambda \bar{\chi}(A-i\gamma_5 B)\chi - \lambda m A (A^2 + B^2)
+\end{align}
+
+\clm{}{}{
+
+    Le correzzioni quantistiche a livello di 1 loop al termine di massa del campo \(A\) non contengono divergenze quadratiche
+}
+
+
+\pf{}{Inanzitutto, dobbiamo scrivere i diagrammi di Feynman per le correzzioni ad un loop del propagatore di A: }
 
 \end{document}
 
