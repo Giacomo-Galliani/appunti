@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.24)  2 OCT 2026 17:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.24)  3 OCT 2026 17:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1198,7 +1198,33 @@ File: tikzlibraryplotmarks.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 File: pgflibraryplotmarks.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 ))) (/usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty) (/usr/share/texlive/texmf-dist/tex/latex/carlisle/slashed.sty
 Package: slashed 1997/01/16 v0.01 Feynman Slashed Character Notation (DPC)
-)
+) (/usr/share/texlive/texmf-dist/tex/latex/tikz-feynman/tikz-feynman.sty
+Package: tikz-feynman 2016/02/05v1.1.0Feynman diagrams with TikZ
+ (/usr/share/texlive/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks62
+\pgfopts@list@add@b@toks=\toks63
+) (/usr/share/texlive/texmf-dist/tex/latex/tikz-feynman/tikzlibraryfeynman.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowinset=\dimen364
+\pgfarrowlength=\dimen365
+\pgfarrowwidth=\dimen366
+\pgfarrowlinewidth=\dimen367
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.code.tex
+File: tikzlibrarygraphs.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\tikz@lib@auto@number=\count391
+\tikz@qnode@count=\count392
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
+File: tikzlibrarypatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
+File: pgflibrarypatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/share/texlive/texmf-dist/tex/latex/tikz-feynman/tikzfeynman.keys.code.tex)))
 \pgf@layerbox@background=\box152
 \pgf@layerboxsaved@background=\box153
 \pgf@layerbox@foreground=\box154
@@ -1208,115 +1234,115 @@ Package: tikzsymbols 2021/12/14 v4.12a Some symbols created using tikz and LaTeX
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytrees.code.tex
 File: tikzlibrarytrees.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
-\l__tikzsymbols_Moai_thickness_dim=\dimen364
-\l__tikzsymbols_Kochtopf_nr_arguments_int=\count391
-\l__tikzsymbols_Bratpfanne_nr_arguments_int=\count392
-\l__tikzsymbols_Schneebesen_nr_arguments_int=\count393
-\l__tikzsymbols_Sieb_nr_arguments_int=\count394
-\l__tikzsymbols_Purierstab_nr_arguments_int=\count395
-\l__tikzsymbols_Dreizack_nr_arguments_int=\count396
-\l__tikzsymbols_Backblech_nr_arguments_int=\count397
-\l__tikzsymbols_Ofen_nr_arguments_int=\count398
-\l__tikzsymbols_Pfanne_nr_arguments_int=\count399
-\l__tikzsymbols_Herd_nr_arguments_int=\count400
-\l__tikzsymbols_Saftpresse_nr_arguments_int=\count401
-\l__tikzsymbols_Schussel_nr_arguments_int=\count402
-\l__tikzsymbols_Schaler_nr_arguments_int=\count403
-\l__tikzsymbols_Reibe_nr_arguments_int=\count404
-\l__tikzsymbols_Flasche_nr_arguments_int=\count405
-\l__tikzsymbols_Nudelholz_nr_arguments_int=\count406
-\l__tikzsymbols_Knoblauchpresse_nr_arguments_int=\count407
-\l__tikzsymbols_Sadey_nr_arguments_int=\count408
-\l__tikzsymbols_dSadey_nr_arguments_int=\count409
-\l__tikzsymbols_Changey_nr_arguments_int=\count410
-\l__tikzsymbols_dChangey_nr_arguments_int=\count411
-\l__tikzsymbols_cChangey_nr_arguments_int=\count412
-\l__tikzsymbols_dcChangey_nr_arguments_int=\count413
-\l__tikzsymbols_Annoey_nr_arguments_int=\count414
-\l__tikzsymbols_dAnnoey_nr_arguments_int=\count415
-\l__tikzsymbols_Smiley_nr_arguments_int=\count416
-\l__tikzsymbols_dSmiley_nr_arguments_int=\count417
-\l__tikzsymbols_Laughey_nr_arguments_int=\count418
-\l__tikzsymbols_dLaughey_nr_arguments_int=\count419
-\l__tikzsymbols_Neutrey_nr_arguments_int=\count420
-\l__tikzsymbols_dNeutrey_nr_arguments_int=\count421
-\l__tikzsymbols_Winkey_nr_arguments_int=\count422
-\l__tikzsymbols_oldWinkey_nr_arguments_int=\count423
-\l__tikzsymbols_dWinkey_nr_arguments_int=\count424
-\l__tikzsymbols_olddWinkey_nr_arguments_int=\count425
-\l__tikzsymbols_Sey_nr_arguments_int=\count426
-\l__tikzsymbols_dSey_nr_arguments_int=\count427
-\l__tikzsymbols_Xey_nr_arguments_int=\count428
-\l__tikzsymbols_dXey_nr_arguments_int=\count429
-\l__tikzsymbols_Innocey_nr_arguments_int=\count430
-\l__tikzsymbols_wInnocey_nr_arguments_int=\count431
-\l__tikzsymbols_dInnocey_nr_arguments_int=\count432
-\l__tikzsymbols_Cooley_nr_arguments_int=\count433
-\l__tikzsymbols_dCooley_nr_arguments_int=\count434
-\l__tikzsymbols_Tongey_nr_arguments_int=\count435
-\l__tikzsymbols_dTongey_nr_arguments_int=\count436
-\l__tikzsymbols_Nursey_nr_arguments_int=\count437
-\l__tikzsymbols_dNursey_nr_arguments_int=\count438
-\l__tikzsymbols_Vomey_nr_arguments_int=\count439
-\l__tikzsymbols_dVomey_nr_arguments_int=\count440
-\l__tikzsymbols_Walley_nr_arguments_int=\count441
-\l__tikzsymbols_rWalley_nr_arguments_int=\count442
-\l__tikzsymbols_dWalley_nr_arguments_int=\count443
-\l__tikzsymbols_drWalley_nr_arguments_int=\count444
-\l__tikzsymbols_Cat_nr_arguments_int=\count445
-\l__tikzsymbols_SchrodingersCat_nr_arguments_int=\count446
-\l__tikzsymbols_Ninja_nr_arguments_int=\count447
-\l__tikzsymbols_dNinja_nr_arguments_int=\count448
-\l__tikzsymbols_Sleepey_nr_arguments_int=\count449
-\l__tikzsymbols_dSleepey_nr_arguments_int=\count450
-\l__tikzsymbols_Maskey_nr_arguments_int=\count451
-\l__tikzsymbols_NiceReapey_nr_arguments_int=\count452
-\l__tikzsymbols_Strichmaxerl_nr_arguments_int=\count453
-\l__tikzsymbols_Person_nr_arguments_int=\count454
-\l__tikzsymbols_Heart_nr_arguments_int=\count455
-\l__tikzsymbols_dHeart_nr_arguments_int=\count456
-\l__tikzsymbols_HeartBroken_nr_arguments_int=\count457
-\l__tikzsymbols_Candle_nr_arguments_int=\count458
-\l__tikzsymbols_Fire_nr_arguments_int=\count459
-\l__tikzsymbols_Coffeecup_nr_arguments_int=\count460
-\l__tikzsymbols_Chair_nr_arguments_int=\count461
-\l__tikzsymbols_Bed_nr_arguments_int=\count462
-\l__tikzsymbols_Tribar_nr_arguments_int=\count463
-\l__tikzsymbols_Moai_nr_arguments_int=\count464
-\l__tikzsymbols_Snowman_nr_arguments_int=\count465
-\l__tikzsymbols_BasicTree_nr_arguments_int=\count466
-\l__tikzsymbols_WorstTree_nr_arguments_int=\count467
-\l__tikzsymbols_Springtree_nr_arguments_int=\count468
-\l__tikzsymbols_Summertree_nr_arguments_int=\count469
-\l__tikzsymbols_Autumntree_nr_arguments_int=\count470
-\l__tikzsymbols_Wintertree_nr_arguments_int=\count471
+\l__tikzsymbols_Moai_thickness_dim=\dimen368
+\l__tikzsymbols_Kochtopf_nr_arguments_int=\count393
+\l__tikzsymbols_Bratpfanne_nr_arguments_int=\count394
+\l__tikzsymbols_Schneebesen_nr_arguments_int=\count395
+\l__tikzsymbols_Sieb_nr_arguments_int=\count396
+\l__tikzsymbols_Purierstab_nr_arguments_int=\count397
+\l__tikzsymbols_Dreizack_nr_arguments_int=\count398
+\l__tikzsymbols_Backblech_nr_arguments_int=\count399
+\l__tikzsymbols_Ofen_nr_arguments_int=\count400
+\l__tikzsymbols_Pfanne_nr_arguments_int=\count401
+\l__tikzsymbols_Herd_nr_arguments_int=\count402
+\l__tikzsymbols_Saftpresse_nr_arguments_int=\count403
+\l__tikzsymbols_Schussel_nr_arguments_int=\count404
+\l__tikzsymbols_Schaler_nr_arguments_int=\count405
+\l__tikzsymbols_Reibe_nr_arguments_int=\count406
+\l__tikzsymbols_Flasche_nr_arguments_int=\count407
+\l__tikzsymbols_Nudelholz_nr_arguments_int=\count408
+\l__tikzsymbols_Knoblauchpresse_nr_arguments_int=\count409
+\l__tikzsymbols_Sadey_nr_arguments_int=\count410
+\l__tikzsymbols_dSadey_nr_arguments_int=\count411
+\l__tikzsymbols_Changey_nr_arguments_int=\count412
+\l__tikzsymbols_dChangey_nr_arguments_int=\count413
+\l__tikzsymbols_cChangey_nr_arguments_int=\count414
+\l__tikzsymbols_dcChangey_nr_arguments_int=\count415
+\l__tikzsymbols_Annoey_nr_arguments_int=\count416
+\l__tikzsymbols_dAnnoey_nr_arguments_int=\count417
+\l__tikzsymbols_Smiley_nr_arguments_int=\count418
+\l__tikzsymbols_dSmiley_nr_arguments_int=\count419
+\l__tikzsymbols_Laughey_nr_arguments_int=\count420
+\l__tikzsymbols_dLaughey_nr_arguments_int=\count421
+\l__tikzsymbols_Neutrey_nr_arguments_int=\count422
+\l__tikzsymbols_dNeutrey_nr_arguments_int=\count423
+\l__tikzsymbols_Winkey_nr_arguments_int=\count424
+\l__tikzsymbols_oldWinkey_nr_arguments_int=\count425
+\l__tikzsymbols_dWinkey_nr_arguments_int=\count426
+\l__tikzsymbols_olddWinkey_nr_arguments_int=\count427
+\l__tikzsymbols_Sey_nr_arguments_int=\count428
+\l__tikzsymbols_dSey_nr_arguments_int=\count429
+\l__tikzsymbols_Xey_nr_arguments_int=\count430
+\l__tikzsymbols_dXey_nr_arguments_int=\count431
+\l__tikzsymbols_Innocey_nr_arguments_int=\count432
+\l__tikzsymbols_wInnocey_nr_arguments_int=\count433
+\l__tikzsymbols_dInnocey_nr_arguments_int=\count434
+\l__tikzsymbols_Cooley_nr_arguments_int=\count435
+\l__tikzsymbols_dCooley_nr_arguments_int=\count436
+\l__tikzsymbols_Tongey_nr_arguments_int=\count437
+\l__tikzsymbols_dTongey_nr_arguments_int=\count438
+\l__tikzsymbols_Nursey_nr_arguments_int=\count439
+\l__tikzsymbols_dNursey_nr_arguments_int=\count440
+\l__tikzsymbols_Vomey_nr_arguments_int=\count441
+\l__tikzsymbols_dVomey_nr_arguments_int=\count442
+\l__tikzsymbols_Walley_nr_arguments_int=\count443
+\l__tikzsymbols_rWalley_nr_arguments_int=\count444
+\l__tikzsymbols_dWalley_nr_arguments_int=\count445
+\l__tikzsymbols_drWalley_nr_arguments_int=\count446
+\l__tikzsymbols_Cat_nr_arguments_int=\count447
+\l__tikzsymbols_SchrodingersCat_nr_arguments_int=\count448
+\l__tikzsymbols_Ninja_nr_arguments_int=\count449
+\l__tikzsymbols_dNinja_nr_arguments_int=\count450
+\l__tikzsymbols_Sleepey_nr_arguments_int=\count451
+\l__tikzsymbols_dSleepey_nr_arguments_int=\count452
+\l__tikzsymbols_Maskey_nr_arguments_int=\count453
+\l__tikzsymbols_NiceReapey_nr_arguments_int=\count454
+\l__tikzsymbols_Strichmaxerl_nr_arguments_int=\count455
+\l__tikzsymbols_Person_nr_arguments_int=\count456
+\l__tikzsymbols_Heart_nr_arguments_int=\count457
+\l__tikzsymbols_dHeart_nr_arguments_int=\count458
+\l__tikzsymbols_HeartBroken_nr_arguments_int=\count459
+\l__tikzsymbols_Candle_nr_arguments_int=\count460
+\l__tikzsymbols_Fire_nr_arguments_int=\count461
+\l__tikzsymbols_Coffeecup_nr_arguments_int=\count462
+\l__tikzsymbols_Chair_nr_arguments_int=\count463
+\l__tikzsymbols_Bed_nr_arguments_int=\count464
+\l__tikzsymbols_Tribar_nr_arguments_int=\count465
+\l__tikzsymbols_Moai_nr_arguments_int=\count466
+\l__tikzsymbols_Snowman_nr_arguments_int=\count467
+\l__tikzsymbols_BasicTree_nr_arguments_int=\count468
+\l__tikzsymbols_WorstTree_nr_arguments_int=\count469
+\l__tikzsymbols_Springtree_nr_arguments_int=\count470
+\l__tikzsymbols_Summertree_nr_arguments_int=\count471
+\l__tikzsymbols_Autumntree_nr_arguments_int=\count472
+\l__tikzsymbols_Wintertree_nr_arguments_int=\count473
 )
-\c@tcb@cnt@Theorem=\count472
-\c@tcb@cnt@theorem=\count473
-\c@tcb@cnt@Corollary=\count474
-\c@tcb@cnt@corollary=\count475
-\c@tcb@cnt@Lemma=\count476
-\c@tcb@cnt@lemma=\count477
-\c@tcb@cnt@Exercise=\count478
-\c@tcb@cnt@exercise=\count479
-\c@tcb@cnt@Prop=\count480
-\c@tcb@cnt@prop=\count481
-\c@tcb@cnt@claim=\count482
-\c@tcb@cnt@Example=\count483
-\c@tcb@cnt@example=\count484
-\c@tcb@cnt@Definition=\count485
-\c@tcb@cnt@definition=\count486
-\c@questioncounter=\count487
-\c@tcb@cnt@qstion=\count488
-\c@tcb@cnt@wconc=\count489
+\c@tcb@cnt@Theorem=\count474
+\c@tcb@cnt@theorem=\count475
+\c@tcb@cnt@Corollary=\count476
+\c@tcb@cnt@corollary=\count477
+\c@tcb@cnt@Lemma=\count478
+\c@tcb@cnt@lemma=\count479
+\c@tcb@cnt@Exercise=\count480
+\c@tcb@cnt@exercise=\count481
+\c@tcb@cnt@Prop=\count482
+\c@tcb@cnt@prop=\count483
+\c@tcb@cnt@claim=\count484
+\c@tcb@cnt@Example=\count485
+\c@tcb@cnt@example=\count486
+\c@tcb@cnt@Definition=\count487
+\c@tcb@cnt@definition=\count488
+\c@questioncounter=\count489
+\c@tcb@cnt@qstion=\count490
+\c@tcb@cnt@wconc=\count491
  (/usr/share/texlive/texmf-dist/tex/latex/pgf-blur/tikzlibraryshadows.blur.code.tex  v1.02, 2012/12/09 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshadows.code.tex
 File: tikzlibraryshadows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
-\pgfbs@fading@count=\count490
+\pgfbs@fading@count=\count492
 ) (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 )
-\c@mylabelcounter=\count491
+\c@mylabelcounter=\count493
 \diffdbox=\box156
 ) (./macros.tex) (./letterfonts.tex) (/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
@@ -1442,13 +1468,13 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count492
-\c@mv@boldtabular=\count493
+\c@mv@tabular=\count494
+\c@mv@boldtabular=\count495
 Package hyperref Info: Link coloring ON on input line 19.
 LaTeX Info: Redefining \ref on input line 19.
 LaTeX Info: Redefining \pageref on input line 19.
 LaTeX Info: Redefining \nameref on input line 19.
-\c@lstlisting=\count494
+\c@lstlisting=\count496
 (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
@@ -1459,6 +1485,12 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
  on input line 19.
+
+
+Package tikz-feynman Warning: LuaTeX is required if you wish to have vertices automatically placed. You can disable this warning by setting /tikzfeynman/warn luatex=false on input line 19.
+
+
+Package tikz-feynman Warning: Consider loading TikZ-Feynman with \usepackage[compat=1.1.0]{tikz-feynman} so that you can be warned if TikZ-Feynman changes. on input line 19.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 17.28pt on input line 22.
@@ -1561,6 +1593,7 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
 )
 \tf@toc=\write5
 \openout5 = `main.toc'.
@@ -1644,20 +1677,135 @@ Capitolo 4.
 Capitolo 5.
 [39
 
-] [40] [41] [42] [43] [44] [45] [46] [47] (./main.aux) ) 
+] [40] [41] [42] [43] [44] [45] [46]
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 9.0pt on input line 2429.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 9.0pt on input line 2429.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2433.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2433.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2433.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2437.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2437.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2437.
+
+
+Package tikz-feynman Warning: The key you tried to use '/tikz/graphs/spring layout' requires LuaTeX. It will be ignored. on input line 2437.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2447.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2447.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2447.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2451.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2451.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2451.
+
+
+Package tikz-feynman Warning: The key you tried to use '/tikz/graphs/spring layout' requires LuaTeX. It will be ignored. on input line 2451.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2461.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2461.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2461.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2465.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2465.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2465.
+
+
+Package tikz-feynman Warning: The key you tried to use '/tikz/graphs/spring layout' requires LuaTeX. It will be ignored. on input line 2465.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2475.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2475.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2475.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2479.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2479.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2479.
+
+
+Package tikz-feynman Warning: The key you tried to use '/tikz/graphs/spring layout' requires LuaTeX. It will be ignored. on input line 2479.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2489.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2489.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2489.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/node distance' requires LuaTeX. It will be ignored. on input line 2493.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/level distance' requires LuaTeX. It will be ignored. on input line 2493.
+
+
+Package tikz-feynman Warning: The key you tried to use '/graph drawing/sibling distance' requires LuaTeX. It will be ignored. on input line 2493.
+
+
+Package tikz-feynman Warning: The key you tried to use '/tikz/graphs/spring layout' requires LuaTeX. It will be ignored. on input line 2493.
+
+[47] [48] [49] [50] [51]
+Capitolo 6.
+[52
+
+] [53] [54] [55] [56] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 55145 strings out of 478287
- 1250791 string characters out of 5849288
- 1696189 words of memory out of 5000000
- 71578 multiletter control sequences out of 15000+600000
- 622089 words of font info for 428 fonts, out of 8000000 for 9000
+ 57540 strings out of 478287
+ 1318671 string characters out of 5849288
+ 1795997 words of memory out of 5000000
+ 73828 multiletter control sequences out of 15000+600000
+ 631695 words of font info for 457 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,20n,99p,1228b,1621s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 99i,20n,99p,1228b,2003s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qhvb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexas.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (48 pages, 434919 bytes).
+Output written on main.pdf (57 pages, 471771 bytes).
 PDF statistics:
- 952 PDF objects out of 1000 (max. 8388607)
- 806 compressed objects within 9 object streams
- 427 named destinations out of 1000 (max. 500000)
- 96659 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 1097 PDF objects out of 1200 (max. 8388607)
+ 936 compressed objects within 10 object streams
+ 501 named destinations out of 1000 (max. 500000)
+ 100795 words of extra memory for PDF output out of 106986 (max. 10000000)
 

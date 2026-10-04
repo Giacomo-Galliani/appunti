@@ -1810,7 +1810,7 @@ Prima di applicare il metodo alla supersimmetria, ricordiamo come si usa la tecn
     \begin{align}
         [T_1, J] = -T_2, \quad [T_2, J] = T_1, \quad [T_1, T_2] = 0 
     \end{align}
-    che riconosciamo essere l'algebra del gruppo euclideo sul piano. Ma se cerchiamo rappresentazioni unitarie finito dimensionali: la parte non compatta deve essere rappresentata in modo triviale. Sopravvive allora solo \(J\) i cui autovalori sono detti \emph{elicità}, e si indicano tipicamente con \(\lambda\) (\(J\ket{\lambda} = \lambda\ket{\lambda}\). 
+    che riconosciamo essere l'algebra del gruppo euclideo sul piano. Ma se cerchiamo rappresentazioni unitarie finito dimensionali: la parte non compatta deve essere rappresentata in modo triviale. Sopravvive allora solo \(J\) i cui autovalori sono detti \emph{elicità}, e si indicano tipicamente con \(\lambda\) \(J\ket{\lambda} = \lambda\ket{\lambda}\). 
 
     A livello di gruppo, \(\lambda\) è quantizzato \(\lambda \in \mathbb{Z}/2\). Per il teorema CPT, inoltre, la rappresentazione \(\ket{\lambda}\) va unita alla rappresentazione \(\ket{-\lambda}\). Quindi, ad esempio 
     \begin{align}
@@ -2419,11 +2419,489 @@ Usando queste equazioni per eliminare \(F, G\), si trova finalmente l'azione in 
 
 \clm{}{}{
 
-    Le correzzioni quantistiche a livello di 1 loop al termine di massa del campo \(A\) non contengono divergenze quadratiche
+    Le correzioni quantistiche a livello di 1 loop al termine di massa del campo \(A\) non contengono divergenze quadratiche. 
+
+    Questo è un esempio dei teoremi di non rinormalizzazione in susy, che sono formulati nel formalismo dei supercampi, in cui l'assenza di divergenze quadratiche è solo un aspetto. 
 }
 
+\begin{figure}
+        \begin{center}
+        \caption{correzioni ad 1 loop al propagatore di \(A\)}
+        \label{fig:feymanA1loop}
+        \begin{tikzpicture}
+            \begin{feynman}
+            \vertex (a);
+            \vertex [right = of a] (b);
+            \vertex [right = of b] (c);  
+            \vertex [above = of b] (d); 
+            \diagram{
+            (b) -- [half left, edge label = \(A\)] (d); 
+            (d) -- [half left, edge label = \(A\)] (b); 
+            (a) -- (b); 
+            (b) -- (c); 
+            };
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+            \vertex (a);
+            \vertex [right = of a] (b);
+            \vertex [right = of b] (c);  
+            \vertex [above = of b] (d); 
+            \diagram{
+            (b) -- [half left, edge label = \(B\)] (d); 
+            (d) -- [half left, edge label = \(B\)] (b); 
+            (a) -- (b); 
+            (b) -- (c); 
+            };
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- (b); 
+                    (b) -- [fermion, half left, edge label = \(\chi\)] (c); 
+                    (c) -- [fermion, half left, edge label = \(\chi\)] (b); 
+                    (c) -- (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- (b); 
+                    (b) -- [half left, edge label = \(A\)] (c); 
+                    (c) -- [half left, edge label = \(A\)] (b); 
+                    (c) -- (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+        \begin{tikzpicture}
+            \begin{feynman}
+                \vertex (a); 
+                \vertex [right = of a] (b); 
+                \vertex [right = of b] (c); 
+                \vertex [right = of c] (d); 
+                \diagram{
+                    (a) -- (b); 
+                    (b) -- [half left, edge label = \(B\)] (c); 
+                    (c) -- [half left, edge label = \(B\)] (b); 
+                    (c) -- (d); 
+                }; 
+            \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \end{figure}
 
-\pf{}{Inanzitutto, dobbiamo scrivere i diagrammi di Feynman per le correzzioni ad un loop del propagatore di A: }
+
+\pf{}{Inanzitutto, dobbiamo capire quali vertici sono permessi dalla lagrangiana di interazione: il termine \(\propto (A^2+B^2)^2\) rende possibili i vertici a 4 scalari, con 4 \(A\), 4 \(B\) oppure \(2A +2B\). Il secondo termine invece permette l'annichilazione di un fermione ed antifermione in uno scalare, \(A\) oppure \(B\). L'ultimo invece è un vertice a 3 tra scalari, a 3 \(A\) oppure \(A +2B\). 
+
+    In figura \ref{fig:feymanA1loop} sono riportate le correzioni possibili ad un loop per il propagatore del campo \(A\). 
+
+    Le ampiezze dei diagrammi sono date da: 
+
+    \begin{align}
+        &-i6\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{i}{k^2 - m^2} \notag \\
+        &-2i\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{i}{k^2 - m^2} \notag \\
+        &-2(-i\lambda)^2 \int \frac{d^4k}{(2\pi)^4}\text{Tr}\left[\frac{i(\slashed{k}+\slashed{p}+m)}{(k+p)^2 - m^2}\frac{i(\slashed{k}+m)}{k^2 -m^2} \right] = -8\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{k(k+p)+m^2}{[(k+p)^2 - m^2][k^2 -m^2]}
+    \end{align}
+
+    Mentre le ultime due possiamo non scriverle perchè divergono già logaritmicamente. La cancellazione deve quindi avvenire tra queste tre equazioni. La somma delle prime due da 
+
+    \begin{align}
+        8\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{1}{k^2 -m^2}
+    \end{align}
+
+    Sviluppiamo invece la terza nel limite ultravioletto: 
+
+    \begin{align}
+        &-8\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{k(k+p) + m^2}{[(k+p)^2-m^2][k^2-m^2]} \approx -8\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{(k^2-m^2)}{[(k+p)^2 - m^2][k^2-m^2]} \notag \\ 
+        &= \int \frac{d^4k}{(2\pi)^4}\frac{(-8\lambda^2)}{(k+p)^2 -m^2} approx = -8\lambda^2 \int \frac{d^4k}{(2\pi)^4}\frac{1}{k^2 -m^2}
+    \end{align}
+
+    Vediamo quidi che le divergenze quadratiche si cancellano esattamente.  
+}
+
+\subsection{Elettrodinamica}
+
+Come scriviamo l'elettrodinamica con il formalismo dei supercampi? Come al solito, l'invarianza di gauge introduce delld difficoltà. Per iniziare torniamo al supercampo generico: 
+
+\begin{align}
+    \psi(x, \theta) = \varphi(x) + \bar{\theta}^\alpha \chi_\alpha + \bar{\theta}\theta F(x) + \bar{\theta}\gamma_5\gamma_\mu \theta A^\mu (x) + \bar{\theta}\theta \bar{\theta}^\alpha \lambda_\alpha (x) + \bar{\theta}\theta \bar{\theta}\theta D(x)
+\end{align}
+
+che ricordiamo contenere 8 g.d.l bosonici e fermionici. Per ottenere WZ abbiamo dovuto imporre la condizione di Chiralità. 
+
+La situazione però è diversa in elettrodinamica: in effetti, un g.d.l. è di gauge (sotto trasformazioni \(A^\mu \to A^\mu + \partial^\mu \Lambda\)). Viene allora il sospetto che ci possano essere altri gradi di libertà di gauge (ad esempio se ce ne è uno bosonico sembra essere naturale che ci sia uno fermionico). L'idea quindi è che tutto il supercampo sia soggetto a trasformazioni di gauge, che generalizzano le trasformazioni di \(A^\mu\). Sia \(V(x, \theta)\) il supercampo, che scegliamo \emph{reale}. Questo è tipicametnte detto \emph{supercampo vettoriale}. 
+
+Prima di sviluppare il formalismo ricordiamo cosa succedeva in teoria dei campi ordinaria: l'azione di Dirac è invariante sotto trasformazioni \(U(1)\) globali, cioè sotto \(\psi \to e^{i\alpha}\psi, \, \bar{\psi} = \bar{\psi}e^{-i\alpha}\), Ora, se il parametro \(\alpha\) viene promosso ad una funzione dello spaziotempo \(\alpha(x)\), allora l'azione non è più invariante: questo perchè 
+
+\begin{align}
+    \partial_\mu \psi \to e^{i\alpha(x)\partial_\mu \psi} + i(\partial_\mu\alpha) e^{i\alpha}\psi
+\end{align}
+
+Così che 
+
+\begin{align}
+    S_D = \int d^4x \bar{\psi}(i\slashed{\partial}-m)\psi, \quad S \to S - \int d^4x \bar{\psi}\gamma^\mu (\partial_\mu \alpha) \psi
+\end{align}
+
+Per scrivere una azione invariante, introduciamo un campo aggiuntivo \(A_\mu\), e sostituiamo la derivata ordinaria con la derivata covariante \(D_\mu = \partial_\mu +ieA_\mu\). Sotto trasformazioni locali, il campo \(A_\mu\) si trasforma secondo 
+
+\begin{align}
+    A_\mu \to A_\mu - \partial_\mu \alpha \implies D_\mu \psi \to e^{i\alpha(x)}D_\mu \psi 
+\end{align}
+
+Così facendo, l'azione 
+
+\begin{align}
+    S'_D = \int d^4x \bar{\psi}(i\slashed{D}-m)\psi
+\end{align}
+
+è invariante sotto \(U(1)\) di gauge. Questo procedimento non è affatto limitato agli spinori: un altro esempio è l'elettrodinamica scalare. Posso prendere l'azione per un campo scalare carico (anch'essa invariante sotto \(U(1)\) globale), e renderla invariante sotto trasformazioni locali: 
+
+\begin{align}
+    S = \int d^4x (\partial_\mu \phi)(\partial^\mu \phi)^* -m^2 \phi^*\phi \to S' = \int d^4x (D_\mu \phi)(D^\mu \phi)^* - m^2\phi\phi^*
+\end{align}
+
+queste teoria è nota come elettrodinamica scalare. 
+
+Un ragionamento analogo funziona per i supercampi. Considera infatti l'azione cinetica WZ (\(\phi\) supercampo chirale):
+
+\begin{align}
+    S = \int d^4x d^2\theta \bar{\phi}\phi
+\end{align}
+
+osservo che anche questa è invariante sotto \(U(1)\) globale, cioè \(\phi \to e^{i\lambda}\phi, \, \bar{\phi} \to \bar{\phi}e^{-i\lambda}\). Promuoviamo allora \(\Lambda \to \Lambda(x, \theta)\) cioè ad essere una funzione del superspazio. Richiedo esplicitamente che valga \(\bar{D}_{\dot{A}}\Lambda = 0\), perchè voglio che \(\phi\) rimanga chirale. Devo quindi prendere \(\Lambda \in \mathbb{C}\), cioè la legge di trasformazione è 
+
+\begin{align}
+    \begin{cases}
+        \phi \to e^{i\Lambda}\phi \\ \bar{\phi} \to \bar{\phi}e^{-i\bar{\Lambda}}
+    \end{cases} \implies \bar{\phi}\phi \to \bar{\phi}e^{-i\bar{\Lambda}}e^{i\Lambda}\phi
+\end{align}
+
+In particolare, l'azione non è più invariante. La posso rendere introducendo il supercampo \(V\), nel seguente modo: 
+
+\begin{align}
+    S = \int d^4x d^4 \theta \bar{\phi}e^V \phi, \quad V \to V +i(\bar{\Lambda}-\Lambda)
+\end{align}
+
+Quanti g.d.l. contiene \(V\)? Considera l'espansione: 
+
+\begin{align}
+    V &= c(x) + \theta^{\dot{A}}\chi_{\dot{A}} + \bar{\theta}^{\dot{A}}\bar{\chi}_{\dot{A}} + \frac{1}{2}\theta^2 f(x) + \frac{1}{2}\bar{\theta}^2 \bar{f} + \theta^A \bar{\theta}^{\dot{A}}(\sigma^\mu)_{A\dot{A}}A_\mu (x) \notag \\
+    &+\frac{1}{2}\theta^2 \bar{\theta}^{\dot{A}}\lambda_{\dot{A}} + \frac{1}{2}\theta^2 \theta^A \lambda_A + \frac{1}{4}\theta^2 \bar{\theta}^2 D(x)
+\end{align}
+
+Quanti campi posso eliminare con una trasformazione di gauge \(V \to V +i(\bar{\Lambda} - \Lambda)\)? Ricordando che \(\Lambda\) è chirale, posso espadere anche questa: 
+
+\begin{align}
+    \Lambda = a(x) + \theta^A \eta_A + \bar{\theta}^{\dot{A}}\bar{\eta}_{\dot{A}} + \frac{1}{2}\theta^2 b(x) -i\theta^A \bar{\theta}^{\dot{A}}\partial_{A\dot{A}}a(x) - \frac{i}{2}\theta^2 \bar{\theta}^{\dot{A}}\partial_{A\dot{A}}\eta^A + \frac{1}{4}\theta^2 \bar{\theta}^2 \square a(x)
+\end{align}
+
+Posso quindi eliminare \(c\) con Im\(a\), \(\chi_A\) con \(\eta_A\), \(\bar{\chi}_{\dot{A}}\) con \(\bar{\eta}\), e \(f\) con \(b\). I campi "fisici" sono quindi \(A_\mu\) il fotone, \(\lambda_A, \bar{\lambda}_{\dot{A}}\) il fotino, e l'ausliare \(D\). Come nel caso ordinario, questo ragionamento fissa l'interazione tra i campi, ma dobbiamo comunque fabbricare un termine cinetico nell'azione per \(V\). Definiamo quindi la \emph{super-field strength}: 
+
+\begin{align}
+    W_A = D^2 D_A V
+\end{align}
+
+la quantità è gauge-invariante: infatti, 
+
+\begin{align}
+    \delta W_A &= D^2 D_A \delta V = iD^2 D_A (\bar{\Lambda}-\Lambda) = -iD^2 D_A \Lambda = -i \bar{D}^{\dot{A}}\left\{ \bar{D}_{\dot{A}}, D_A \right\}\Lambda \notag \\ 
+    &= -2\bar{D}^{\dot{A}}\partial_{A\dot{A}}\Lambda = -2\partial_{A\dot{A}}\bar{D}^{\dot{A}}\Lambda = 0   
+\end{align}
+
+dove nella seconda e nell'ultima uguaglianza abbiamo usato il fatto che \(\Lambda\) è chirale. Inoltre, \(W_A\) è anch'esso un supercampo chirale, 
+
+\begin{align}
+    \bar{D}_{\dot{A}}W_A = \underbrace{\bar{D}_{\dot{A}}\bar{D}^2}_{=0} D_A V = 0 
+\end{align}
+
+L'azione cinetica deve essere quindi quadratica nella superfield strength. Ci aiutiamo con l'analisi dimensionale: \([A_\mu] = 1 \implies [V] = 0\), cioè \([W_A] = 3/2\): non abbiamo altra scleta oltre a (a parte la costante)
+
+\begin{align}
+    S = \frac{1}{64}\int d^4x d^2\theta W^A W_A = \int d^4x -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}\bar{\lambda}\slashed{\partial}\lambda + \frac{1}{2}D^2
+\end{align}
+
+Cioè esattamente l'azione libera già studiata. Studiamo ora l'interazione: 
+
+\begin{align}
+    S = \int d^4x d^2\theta \bar{\phi}e^{gV}\phi + \frac{1}{64}\int d^4xd^4\theta W^A W_A
+\end{align}
+
+questo descrive una teoria dove interagiscono i campi \(A_\mu, \lambda_\alpha\) con \(\chi_\alpha, z\), cioè fotone, fotino e i campi WZ. Sottolineamo però che l'azione non si riduce propriamente all'elettrodinamica quantistica nel caso non supersimmetrico, perché servono due spinori di WZ, con carica opposta, per descrivere uno spinore di Dirac, come l'elettrone. 
+
+Una azione per la QED susy sarebbe data da 
+
+\begin{align}
+    S_{\text{QED , } \mathcal{N} =1} = \frac{1}{64}\int d^4x d^2\theta W^A W_A + \int d^4xd^2\theta \left( \bar{\phi}_1e^{gV}\phi_1 + \bar{\phi}_2 e^{-gV}\phi_2 \right)
+\end{align}
+
+\subsection{Super Yang-Mills}
+
+Questa costruzione può essere estesa alle teorie di gauge non abeliane, come ad esempio la QCD. 
+
+In questo caso, \(V\) non è più un supercampo reale, ma vive nella rapprestazione aggiunta del gruppo di gauge, ovvero 
+
+\begin{align}
+    V = V_a T^a, \quad a = 1, \ldots, \dim g 
+\end{align}
+
+dove con \(T^a\) indichiamo i generatori del gruppo \(G\). Le trasformazioni di gauge non abeliane sono date da 
+
+\begin{align}
+    \begin{cases}
+        \phi \to e^{i\Lambda}\phi \\ \bar{\phi} \to \bar{\phi}e^{-i\bar{\Lambda}}
+    \end{cases}, \quad \Lambda = \Lambda_a T^a 
+\end{align}
+
+La lagrangiana \(\bar{\phi}e^V \phi\) è formalmente la stessa, ma va intesa come \(\bar{\phi}_j (e^{gV})^j_i \phi^i, \, i, j = 1, \ldots, \dim g\). Questa è invariante, se \(V\) si trasforma secondo 
+
+\begin{align}
+    e^{gV} \to e^{i\bar{\Lambda}}e^{gV}e^{-i\Lambda}
+\end{align}
+
+Si complica anche la struttura della super-field strength: 
+
+\begin{align}
+    W_A =   \bar{D}^2(e^{-V}D_A e^V) \implies S \propto \int d^4x d^2\theta \text{Tr}(W_A W^A)
+\end{align}
+
+Più precisamente, l'azione per super Yang-Mills (SYM) con \(\mathcal{N} =1\) è data da 
+
+\begin{align}
+    S_{SYM} = \frac{1}{64g^2 C_2(g)}\int d^4x d^2\theta \text{Tr}(W^A W_A)
+\end{align}
+
+A differenza delle teorie non abeliane, è necessario scrivere già nella lagrangiana libera la costante di accoppiamento \(g\): questo perchè la lagrangiana libera già include termini di interazioni (e.g. fra i gluoni), la cui intensità dipende dalla costante di accoppiamento \(g\). 
+
+L'azione SYM pura può essere poi accoppiata ai campi di materia, 
+
+\begin{align}
+    S = S_{SYM} + \int d^4x d^2\theta (\bar{\phi}_1 e^{gV}\phi_1 + \bar{\phi}_2 e^{-gV}\phi_2)
+\end{align}
+
+così facendo è possibile costrutire la QCD susy, oppure il modello standard supersimmetrico. 
+
+\chapter{Quantizzazione di teorie supersimmetriche}
+
+\section{Derivazione, integrazione e supergrafi}
+
+
+Avendo in mano le azioni supersimmetriche appena viste, l'analisi \emph{quantistica} delle teorie corrispondenti può essere fatta in due modi: 
+
+\begin{enumerate}
+    \item In componenti: come abbiamo fatto per WZ, si svolgono gli integrali in \(\theta\) e si scrivono i supercampi in termini di campi ordinari. 
+    \item Direttamente quantizzando i supercampi 
+\end{enumerate}
+
+Se si sceglie l'ultima strada, bisogna fare attenzione perchè i concetti di derivazione e integrazione funzionale devono essere generalizzati al caso di superspazio e supercampi. 
+
+Nel caso ordinario, considera \(A(x)\) una funzione del punto, ed \(F[A]\) un funzionale. Allora 
+
+\begin{align}
+    F[A+\delta A] = F[A] + \int d^4x \frac{\delta F}{\delta A(x)}\delta A(x) + o(\delta A)^2
+\end{align}
+
+Prendi \(\delta_{x'} A(x) = \eps \delta^4(x-x')\): si ottiene 
+
+\begin{align}
+    \frac{\delta F[A]}{\delta A} = \lim_{\eps \to 0}\frac{F[A+\delta_{x'}A] - F[A]}{\eps}
+\end{align}
+
+Si ottiene allora che 
+\begin{align}
+    \frac{\delta A(x)}{\delta A(x')} = \frac{A(x) + \eps \delta^4(x-x') - A(x)}{\eps} = \delta^4(x-x')
+\end{align}
+
+Passiamo ora ai supercampi: consideriamo \(\psi(x, \theta, \bar{\theta})\) un supercampo, \(F[\psi]\) un funzionale. Chiama \(z = (x, \theta) \implies d^4x d^4\theta = d^8z\). Scegli come incremento \(\delta_{z'}\psi = \eps\delta^8(z-z')\), e si ottiene come prima 
+
+\begin{align}
+    \frac{\delta F}{\delta \psi} = \lim_{\eps \to 0}\frac{F[\psi + \delta \psi] -F[\psi]}{\eps}, \quad \frac{\delta \psi(z)}{\delta \psi(z')} = \delta^8(z-z')
+\end{align}
+
+Se il supercampo è chirale, invece, 
+
+\begin{align}
+    \frac{\delta \phi(z)}{\delta \phi(z')}  = \delta^4(x-x')\delta^2(\theta-\theta') = -\frac{\bar{D}^2}{4}\delta^4(x-x')\delta^4(\theta -\theta') = -\frac{\bar{D}^2}{4}\delta^8(z-z')
+\end{align}
+
+Per poter fare una teoria quantistica direttamente dai supercampi, bisogna usare gli integrali funzionali: si sanno calcolare integrali gaussiani, come 
+
+\begin{align}
+    \int \mathcal{D}V e^{\int d^8z (1/2)V^2}, \quad \int \mathcal{D}\phi e^{\int d^4x d^2\theta \phi^2}
+\end{align}
+
+se \(V\) supercampo vettoriale, \(\phi\) supercampo chirale. 
+
+Formalmente poi si procede come nel caso ordinario: si scrive la funzione 
+
+\begin{align}
+    Z[J] = \int \mathcal{D}\psi e^{S(\psi) + \int J\psi}
+\end{align}
+
+da questo si ottengono il generatore delle funzioni di Green connesse \(W[J] = \log(Z[J])\), il campo classico \(\psi = \frac{\delta W}{\delta J}\), l'azione effettiva \(\Gamma(\psi) = W[J] - \int J(\psi)\psi\). 
+
+\ex{Propagatore del supercampo vettoriale}{
+
+    Facciamo un esempio di come è possibile estrarre le regole di Feynman per un supercampo. Prendiamo il supercampo vettoriale, nel caso abeliano con \(\mathcal{N}=1\). Partiamo quindi dall'azione cinetica 
+
+    \begin{align}
+        S &= \frac{1}{64}\int d^4x d^2\theta W^A W_A \notag \\ 
+        &= \frac{1}{64}\int d^4x d^2 \theta (\bar{D}^2 D^A V)(\bar{D}^2 D_A V)
+    \end{align}
+
+    Ricorda che sotto integrale spaziale poi scrivere \(d^2\theta = -(1/4)\bar{D}^2\), che possiamo sostituire: 
+
+    \begin{align}
+        S &= -\frac{1}{16}\int d^4xd^4\theta [(D^A V)(\bar{D}^2 D_A V)] \notag \\
+        &= \frac{1}{16}\int d^8z V[D^A \bar{D}^2 D_A]V
+    \end{align}
+
+    Ora questo operatore \emph{non} è invertibile. Infatti, \(D^A\bar{D}^" D_A\bar{\phi} =0\) per chiralità. D'altra parte, c'è l'invarianza di gauge che possiamo sfruttare. 
+
+    In effetti la situazione è analoga al caso ordinario, dove vale 
+
+    \begin{align}
+        S = \int d^4x -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} = \ldots = \frac{1}{2}\int d^4x A_\mu (\delta^{\mu\nu}\square -\partial^\mu\partial^\nu)A_\nu
+    \end{align}
+
+    L'opertaore che compare tra le parentesi non è invertibile: ad esempio se agisce su un termine di puro gauge 
+
+    \begin{align}
+        (\delta^{\mu\nu}\square - \partial^\mu \partial^\nu)(\partial_\nu \Lambda) = 0 
+    \end{align}
+
+    Un modo per risolvere questo problema è il \emph{gauge fixing}: si aggiunge un pezzo alla lagrangiana che rompre l'invarianza di gauge: 
+
+    \begin{align}
+        S \to S + \int d^4x \frac{1}{2\alpha}A_\mu (\partial^\mu \partial^\nu)A_\nu
+    \end{align}
+
+    Se voglio descrivere la stessa teoria di prima, devo fissare il gauge di lorentz, cioè imporre \(\partial_\mu A^\mu = 0\). La nuova azione diventa 
+    
+    \begin{align}
+        S = \frac{1}{2}\int d^4x A_\mu (\delta^{\mu\nu}\square + \frac{1-\alpha}{\alpha}\partial^\mu \partial^\nu)
+    \end{align}
+
+    L'operatore adesso è invertibile: scegliendo \(\alpha =1\) (detto gauge di Feynman), si ottiene infine 
+
+    \begin{align}
+        \braket{A^\mu(x)A^\nu(x')} = -\frac{\delta^{\mu\nu}}{\square}\delta^4(x-x')
+    \end{align}
+
+    Torniamo al caso susy: inserisco un termine di gauge fixing 
+    \begin{align}
+        S_{gf} = \frac{1}{16}\int d^8z V(D^A \bar{D}^2 D_A)V - \frac{1}{\alpha}(D^2 V)(\bar{D}^2 V)
+    \end{align}
+    Integrando per parti, 
+    \begin{align}
+        S_{gf} = \frac{1}{16}\int d^8z V[D^A \bar{D}^2 D_A -\frac{1}{2\alpha}(D^2\bar{D}^2 + \bar{D}^2 D^2)]V
+    \end{align}
+    Si trova (usando \(\left\{ D_A, \bar{D}_{\dot{A}} \right\} = -2\partial_{A\dot{A}}\)) che vale \(\bar{D}^2 D^2 + D^2 \bar{D}^2 -2D^A \bar{D}^2 D_A = 16\square\). Si ottiene così 
+    
+    \begin{align}
+        S^{\alpha = 1}_{gf} = -\frac{1}{2}\int d^8z V\square V
+    \end{align}
+
+    Da questo poi si scrive \(Z[J]\), e si può usare 
+
+    \begin{align}
+        <V(z)V(z')> = \frac{\delta ^2 Z}{\delta J(z) \delta J(x')}\biggr|_{J=0} = \ldots = \frac{1}{\square}\delta^8(z-z')
+    \end{align}
+}
+
+Similmente si può fare per il supercampo chirale. I vertici poi si possono leggere direttamente dalla lagrangiana di interazione, ad esempio 
+
+\begin{align}
+    \int d^8z \bar{\phi}e^{gV}\phi = \int d^8z (\bar{\phi}\phi + g\bar{\phi}V \phi + \frac{1}{2}g^2 \bar{\phi}VV\phi + \ldots 
+\end{align}
+
+Da dei vertici tra il campo scalare e il campo vettoriale, oppure l'azione di interazione di Wess-Zumino da un vertice a 3 tra i campi scalari. 
+
+Chiaramente la storia non finisce qua, ci sono molte proprietà interessanti delle teorie quantistiche supersimmetriche. Ad esempio, considera una teoria solamente di Wess-Zumino: l'unico supergrafo che compare nelle correzioni ad un loop del propagatore si trova in realtà essere nullo. Questo è un esempio di un risultato generale noto come teorema di non rinormalizzazione. 
+
+\section{Rottura della supersimmetria}
+
+Considera una generalizzaione del modello di Wess-Zumino, contenente \(\ell\) supercampi chirali. La azione sarà 
+
+\begin{align}
+    S = \int d^8z \sum_i \bar{\phi}_i \phi_i + \int d^8z f(\phi_1, \ldots, \phi_\ell) + c.c.
+\end{align}
+
+Cosa succede se eseguo gli integrali nelle coordinate spinoriali e esprimo il tutto in componenti? Per la parte cinetica ho
+
+\begin{align}
+    \int d^8z \sum_i \bar{\phi}_i \phi_i \to \sum_i \int d^4x \left(\bar{z}_i \square z_i + \frac{i}{2}\bar{\chi}_{\dot{A}i}\partial^{A\dot{A}}\chi_{Ai} + \frac{1}{4}\bar{F}_i F_i\right)
+\end{align}
+
+mentre la parte del potenziale (massa + interazioni) diventa 
+
+\begin{align}
+    \int d^4x d^2\theta f(\phi_1, \ldots, \phi_\ell) \to &-\frac{1}{4}\int d^4x D^2 f + c.c = -\frac{1}{4}\int d^4x D^A \left(\frac{\partial f}{\partial z_i}D_A \phi_i \right)\biggr|_{\theta =0} + c.c \notag \\
+    &= -\frac{1}{4}\int d^4x \left(\frac{\partial^2f}{\partial z_j \partial z_i} D^A \phi_j D_A \phi_i \right)\biggr|_{\theta =0} + \frac{\partial f}{\partial z_i}D^2\phi_i |_{\theta =0} + c.c
+\end{align}
+
+dove abbiamo usato che \(\phi_i |_{\theta =0} = z_i\). Uso poi \(\chi_{iA} = D_A \phi_i |_{\theta =0}, \, F_i = -(1/2)D^2\phi_i |_{\theta = 0}\), oer ottenere 
+
+\begin{align}
+    \int d^4x \left(-\frac{1}{4}\underbrace{\frac{\partial^2 f}{\partial z_j \partial z_i}}_{= M_{ij}}\chi^A_j \chi_{Ai} + \frac{1}{2}\frac{\partial f}{\partial z_i}F_i \right) + c.c.
+\end{align}
+
+La matrice \(M_{ij}\) è detta matrice di massa dei fermioni. Il "potenziale" si separa quindi in un termine di massa più un termine che chiamiamo \(V\) .Le equazioni del moto per i campi ausiliari Sono
+
+\begin{align}
+    \begin{cases}
+        \bar{F}_i = -2\frac{\partial f}{\partial z_i} \\ F_i = -2\left(\frac{\partial f}{\partial z_i}\right)^*
+    \end{cases}
+\end{align}
+
+Sostituisco per trovare 
+
+\begin{align}
+    V(z, \bar{z}) = \frac{1}{4}\bar{F}_i F_i = \sum_i \biggr|\frac{\partial f}{\partial z_i} \biggr|^2 \geq 0 
+\end{align}
+
+Ora, sia \(z_{i0}\) il minimo di \(V\): ci sono due possibilità, che portano a due conclusioni diverse: 
+
+\begin{enumerate}
+    \item \(V(z_{i0})\) = 0, che si verifica s.se \(\frac{\partial f}{\partial z}\biggr|_{z_i = z_{i0}}\). 
+    \item \(V(z_{i0} > 0)\), che si verifica se \(\nexists\) soluzioni all'equazione \(\frac{\partial f}{\partial z}\biggr|_{z_i = z_{i0}}\). 
+\end{enumerate}
+
+Il secondo caso corrisponde alla situazione di \emph{rottura spontanea della supersimmetria}. Infatti, ricorda la legge di trasformazione dei campi: 
+
+\begin{align}
+    \delta_\eps z_i = \eps^A \chi_{iA}, \quad \delta_\eps \chi_{Ai} = \eps_A F_i - 2i \bar{\eps}^{\dot{A}} \partial_{A\dot{A}}z, \quad \delta_\eps F_i = -2i \bar{\eps}^{\dot{A}}\partial_{A\dot{A}}\chi^A_i 
+\end{align}
+
+Ora, se prendo il valore di aspettazione sul vuoto (\(z_i = z_{i0}\)) di queste espresioni, l'unico modo di avere almeno uno tra \(<\delta_\eps z_i>, \, <\delta_\eps \chi_{iA}>, \, <\delta_\eps F_i> \) diversi da zero senza rompere la simmetria di lorentz è che valga 
+
+\begin{align}
+    <\delta_\eps \chi_{iA}> = \eps_A <F_i> \neq 0 \implies F_i = \frac{\partial f}{\partial z^i}
+\end{align}
+
+Quindi, se siamo nel caso in cui esiste una soluzione a \(\partial_z f = 0\), allora la susy non è spontaneamente rotta. Questa è una caratteristica generale delle teorie supersimmetriche, non solo del modello WZ. 
+
+Ora se siamo nel caso di susy non rotta, espando intorno al minimo:     
+
+\begin{align}
+    z_i = z_{i0} + s_i \implies V(s) = -s_i (M^\dagger M)_{ij}s_j 
+\end{align}
+
+con \(M\) la matrice di massa dei fermioni. Ma allora è anche quella degli scalari! Lo spettro di massa dei fermioni coincide con lo spettro di massa degli scalari. (ricorda che gli autovalori di \(M^\dagger M\) sono le masse al quadrato). 
+
+Se siamo invece nel caso di susy non rotta, non è mai verificata la condizione \(\partial_z f = 0\). Ma comunque \(V(z_{i0})\) è un minimo: posso espandere 
+
 
 \end{document}
 
