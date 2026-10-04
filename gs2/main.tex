@@ -2884,7 +2884,7 @@ Il secondo caso corrisponde alla situazione di \emph{rottura spontanea della sup
     \delta_\eps z_i = \eps^A \chi_{iA}, \quad \delta_\eps \chi_{Ai} = \eps_A F_i - 2i \bar{\eps}^{\dot{A}} \partial_{A\dot{A}}z, \quad \delta_\eps F_i = -2i \bar{\eps}^{\dot{A}}\partial_{A\dot{A}}\chi^A_i 
 \end{align}
 
-Ora, se prendo il valore di aspettazione sul vuoto (\(z_i = z_{i0}\)) di queste espresioni, l'unico modo di avere almeno uno tra \(<\delta_\eps z_i>, \, <\delta_\eps \chi_{iA}>, \, <\delta_\eps F_i> \) diversi da zero senza rompere la simmetria di lorentz è che valga 
+Ora, se prendo il valore di aspettazione sul vuoto (\(z_i = z_{i0}\)) di queste espresioni, l'unico modo di avere almeno uno tra \(<\delta_\eps z_i>, \, <\delta_\eps \chi_{iA}>, \, <\delta_\eps F_i> \) diversi da zero (condizione necessaria e sufficiente per la rottura spontanea di simmetria) senza rompere la simmetria di lorentz è che valga 
 
 \begin{align}
     <\delta_\eps \chi_{iA}> = \eps_A <F_i> \neq 0 \implies F_i = \frac{\partial f}{\partial z^i}
@@ -2900,7 +2900,148 @@ Ora se siamo nel caso di susy non rotta, espando intorno al minimo:
 
 con \(M\) la matrice di massa dei fermioni. Ma allora è anche quella degli scalari! Lo spettro di massa dei fermioni coincide con lo spettro di massa degli scalari. (ricorda che gli autovalori di \(M^\dagger M\) sono le masse al quadrato). 
 
-Se siamo invece nel caso di susy non rotta, non è mai verificata la condizione \(\partial_z f = 0\). Ma comunque \(V(z_{i0})\) è un minimo: posso espandere 
+Se siamo invece nel caso di susy non rotta, non è mai verificata la condizione \(\partial_z f = 0\). Ma comunque \(V(z_{i0})\) è un minimo: questo vuol dire che vale 
+
+\begin{align}
+    V'(z_{0}) = 0 \implies \sum_i \underbrace{\frac{\partial^2 f}{\partial z_i \partial z_j}\biggr|_{z=z_0}}_{M_{ij}}\left( \frac{\partial f}{\partial z_j} \right)^* = 0 
+\end{align}
+
+cioè la condizione di minimo dice che la matrice \(M\) ha un autovettore con autovalore nullo: nello spettro di massa dei fermioni esiste quindi un fermione a massa nulla (detto fermione di Goldstone o Goldistino).
+
+Nella espansione del potenziale al secondo ordine, compaiono dei termini in più (infatti \((|f'|^2)'' = f'(f^{*'''}) + f'''f^{'*} + \ldots\), prima ce ne erano molto meno perchè \(f' =0\)). Si trova quindi 
+
+\begin{align}
+    V = \frac{1}{2}(z \quad \bar{z})M^2 \begin{pmatrix}
+        z \\ \bar{z}
+    \end{pmatrix}, \quad M := \begin{pmatrix}
+        M^*M & N^* \\ N & MM^*
+    \end{pmatrix}, \quad M_{ij} = \frac{\partial^2 f}{\partial z_i \partial z_j}\biggr|_{z_0}, \quad N_{ij} = \sum_\ell \frac{\partial^3 f}{\partial z_i \partial z_j \partial z_\ell}\biggr|_{z_0}\frac{\partial f}{\partial z_\ell}\biggr|_{z_0}
+\end{align}
+
+In particolare se la susy è spontaneamente rotta, lo spettro di massa dei bosoni è diverso da quello deri fermioni. Osserva però che i termini aggiuntivi \(N\) sono off-diagonali: se prendo la traccia non li vedo! D'altra parte la traccia è la somma delle masse, quindi vale 
+
+\begin{align}
+    \sum_{\text{scalari}}m^2 = 2\sum_{\text{fermioni}}m^2
+\end{align}
+
+che è solo il caso particolare delle cosiddette "regole di somma", che in generale si scrivono 
+
+\begin{align}
+    \text{Str}(M^2) = \sum_J (2J+1)(-1)^{2J}\text{Tr}(M_J^2) = 0 
+\end{align}
+
+con \(J\) lo spin. Questa è una "firma" della supersimmetria che rimane nel caso di rottura spontanea. In effetti questo crea non pochi problemi, perchè nel modello standard queste regole di somma devono valere in ogni settore con diversi numeri quantici. 
+
+\ex{Vincolo su masse degli squark}{
+
+    Considera il settore dei quark con carica elettrica \(-e/3\). Si tratta di 3 particelle, \(d, s, b\) (down, strange e bottom). Sperimentalmente, vale 
+
+    \begin{align}
+        m_d^2 + m_s^2  + m_b^2 \simeq 5 \, \text{GeV}^2
+    \end{align}
+
+    Quindi la somma delle masse al quadrato dei superquark scalari dovrebbe essere di circa \(2.5 \, \text{GeV}^2\). Dovremmo vederli, ma non lo facciamo! Una soluzione a questo problema è che vi sia una quarta generazione di quark. Questo però crea diversi altro problemi. 
+}
+
+Questo sembra essere un segnale che la supersimmetria vada rotta in modo più complicato. In ogni caso la rottura deve essere non-perturbativa, perchè i teoremi di non rinormalizzazione lo impediscono. 
+
+Riassimiamo però tre caratteristiche importanti della rottura spontanea di susy: 
+
+\begin{enumerate}
+    \item \(V \geq 0\), sempre
+    \item la susy non è rotta se l'energia del vuoto è nulla 
+    \item la rottura della supersimmetria implica l'esistenza di un fermione massless. 
+\end{enumerate}
+
+queste tre caratteristiche sono valide nel caso generale, non solo in WZ. Si mostra infatti facilmente che vale, usando l'algebra susy e la condizione di Majorana
+
+\begin{align}
+    \sum_\alpha \left\{ Q_\alpha, Q^{\dagger \alpha} \right\} = 8iP_0 = 8H
+\end{align}
+
+Prendendo il valore di aspettazione di questa equazione sul vuoto, si ottiene 
+
+\begin{align}
+    8\bra{0}H\ket{0} = \sum_\alpha |Q_\alpha \ket{0}|^2 + \sum_\alpha |Q^\dagger_\alpha \ket{0}|^2 \geq 0
+\end{align}
+
+cioè \(\bra{0}H\ket{0} =0\) (condizione necessaria e sufficiente perchè il vuoto sia supersimmetrico) se e solo se 
+
+\begin{align}
+    \begin{cases}
+        Q_\alpha\ket{0} = 0 \\ Q^\dagger_\alpha \ket{0} = 0
+    \end{cases} \quad \forall \alpha
+\end{align}
+
+Se invece il vuoto non è susy, vuol dire che esiste almeno un \(\alpha\) t.c. \(Q_\alpha \ket{0} \neq 0\). Sia dunque \(\ket{\psi_\alpha} = Q_\alpha \ket{0}\). Quanto è il valore di aspettazione dell'Hamiltoniana in questo stato? 
+
+\begin{align}
+    H \ket{\psi_\alpha} = HQ_\alpha \ket{0} = Q_\alpha H \ket{0} = Q_\alpha E_V \ket{0} = E_V \ket{\psi_\alpha}
+\end{align}
+
+troviamo che è l'energia del vuoto! Questo vuol dire che è un fermione massless, il goldstino. 
+
+C'è uno strumento particolarmente importante per studiare se la susy è rotta oppure no in una teoria. Questo strumento è l'\emph{indice di Witten}. Considera l'algebra a due componenti: 
+
+\begin{align}
+    \left\{ Q_A, \bar{Q}_{\dot{A}} \right\} = 2(\sigma^\mu)_{A\dot{A}} i P_\mu
+\end{align}
+
+scegliamo \(Q(p) = u^A(p)Q_A + \bar{u}^{\dot{A}}\bar{Q}_{\dot{A}}\), con \(u\) coefficiente da determinare. In particolare, imponiamo che valga 
+
+\begin{align}
+    Q^2(p) = p^0 \implies \begin{cases}
+        u^A (\vec{\sigma}\cdot \vec{p})_{A\dot{A}}\bar{u}^{\dot{A}} = 0 \\
+        u^A (\sigma^0)_{A\dot{A}}\bar{u}^{\dot{A}} = 1/2
+    \end{cases}
+\end{align}
+
+Ad esempio, quindi, se \(\vec{p}\) punta nella direzione \(z\), si può prendere \(u = (1/2, 1/2)\). Dato uno stato bosonico qualunque \(\ket{B}\), con momento \(p^\mu\) costruiamo lo stato fermionico 
+
+\begin{align}
+    \ket{F} = \frac{Q(p)}{\sqrt{p^0}}\ket{B}
+\end{align}
+
+Cosa succede se applico due volte questo operatore? 
+
+\begin{align}
+    \frac{Q(p)}{\sqrt{p_0}}\ket{F} = \frac{Q^2(p)}{p^0}\ket{B} = \ket{B}
+\end{align}
+
+Questo mostra in modo più formale la corrispondenza 1:1 tra stati bosonici/fermionici. Questo ragionamento però fallisce per lo stato di vuoto supersimmetrico, dove vale \(Q\ket{0} = 0\). 
+
+Questo suggerisce di definire un parametro, appunto l'indice di Witten: 
+
+\begin{align}
+    \text{Ind}_W = n_B^{E=0} - n_F^{E=0} = n_B - n_E
+\end{align}
+
+L'indice è un invariante topologico: se faccio modisfiche smooth ai parametri della mia teoria, posso cambiare l'energia che separa diversi stati, ma mai il numero di bosoni - fermioni della teoria. 
+
+Osserva inoltre che se l'indice è non-nullo, la teoria non ammette rottura spontanea della susy: il fatto che ci sono bosoni e fermioni spaiati indica che il vuoto è supersimmetrico. Invece nel caso in cui l'indice è nullo non posssiamo concludere niente. 
+
+\ex{Indice di Witten per WZ}{
+
+    Considera l'azione WZ: 
+
+    \begin{align}
+        S_{WZ} = \int d^4x d^2\theta \bar{\phi}\phi + \int d^4x d^2\theta f(\phi) + c.c. \quad f(\phi) = \frac{1}{2}m\phi^2 + \frac{\lambda}{3!}\phi^3
+    \end{align}
+
+    quindi si ha 
+
+    \begin{align}
+        \frac{\partial f}{\partial \phi} = m\phi +\frac{1}{2}\lambda\phi^2 = \phi\left(m+\frac{1}{2}\lambda\phi \right) = 0 \implies \phi = 0, \phi = -\frac{2m}{\lambda}
+    \end{align}
+
+    I due minimi sono separati da una barriera di potenziale, alta \(m^4/\lambda^2\). Nel limite di \(m\) grande e \(\lambda\) piccolo si creano due stati non comunicanti tra loro. Vale quindi 
+
+    \begin{align}
+        \text{Ind}_W = \text{Ind}_W |_{m\to +\infty, \lambda \to 0} = 2
+    \end{align}
+
+    cioè la susy non è rotta!
+}
 
 
 \end{document}
