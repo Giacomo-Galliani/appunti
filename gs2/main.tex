@@ -8,6 +8,7 @@
 \input{letterfonts}
 
 \usepackage[indent=0pt]{parskip}
+\usetikzlibrary{arrows.meta, positioning, calc}
 
 \renewcommand{\chaptername}{Capitolo}
 \renewcommand{\contentsname}{Indice}
@@ -215,9 +216,59 @@ Dunque le equazioni del moto sono
 
 e sono manifestamente invarianti rispetto a trasformazioni di lorentz. (sotto queste, \(x^\mu \rightarrow \Lambda^\mu_\nu x^\nu\)). 
 
-\section{La stringa relativistica}
+Siccome stiamo parlando di relatività speciale, ne approfittiamo per introdurre un sistema di coordinate interessante per quando quantizzeremo la stringa. Questo sistema è detto coordinate di cono di luce: il cambio di coordinate \((x^0, x^1, x^2, x^3) \to (x^+, x^-, x^2, x^3)\) è dato da 
 
-\subsection{L'azione di Nanbu-Goto}
+\begin{align}
+    x^\pm = \frac{1}{\sqrt{2}}(x^0 \pm x^1) \implies x^{0 / 1} = \frac{x^+ \pm x^-}{\sqrt{2}}
+\end{align}
+
+Geometricamente è abbastanza evidente che oer le particelle che tracciano curve causali, cioè con vettore tangente sempre all'interno del cono di luce, le coordinate \(x^\pm\) \emph{non} sono descrescenti. Per un raggio di luce emesso in direzione \(x^1\) ad esempio possono essere costanti. 
+
+Per convenzione diciamo che \(x^+\) è la coordinata temporale ed \(x^-\) la coordinata spaziale. La metrica è data da 
+
+\begin{align}
+    ds^2 = \tilde{\eta}_{\mu\nu}dx^\mu dx^\nu \implies \tilde{\eta}_{+-} = \tilde{\eta}_{-+} = -1, \tilde{\eta}_{22} = \tilde{\eta}_{33} = +1
+\end{align}
+
+e tutti gli altri elementi della metrica sono nulli. 
+
+Facciamo un esempio per prendere confidenza con questo sistema. Considera una particella in moto lungo l'asse \(x^1\). Sia la sua velocità \(\beta = v/c\). Al tempo \(t = 0\) occupa la posizione spaziale \(x^i = 0\). In generale, la legge del moto è 
+
+\begin{align}
+    \begin{cases}
+        x^1(t) = \beta x_0 \\ x^2(t) = x^3(t) = 0 
+    \end{cases}
+\end{align}
+
+Come si esprime questo moto in coordinate light-cone? ricorda che \(x^2, x^3\) rimangono ugugali, mentre \(x^+\) è il tempo, \(x^-\) la distanza. Devo quindi esprimere la seconda in termini della prima. Vale 
+
+\begin{align}
+    x^- = \frac{x^0 - x^1}{\sqrt{2}} = \frac{1-\beta}{\sqrt{2}}x^0 = \frac{1-\beta}{\sqrt{2}}\frac{x^+ + x^-}{\sqrt{2}} = \frac{(1-\beta)(x^+ + x^-)}{2} \implies x^- = \frac{1-\beta}{1+\beta}x^+
+\end{align}
+
+La velocità è allora data da 
+
+\begin{align}
+    \frac{d x^-}{dx^+} = \frac{1-\beta}{1+\beta}
+\end{align}
+
+In effetti potevamo aspettarcelo, perchè se \(\beta = 1\), allora siamo nel caso di coordinata \(x^-\) che non cambia, come descritto inizialmente. Per \(\beta = -1\) la velocità è infinita: questo non è in contrasto con la relatività speciale, perchè non c'è nessun boost di lorentz che ti permette di andare dal sistema di coordinate ordinario ad un sistema analogo con coordinate light-cone. 
+
+Come si scrivono il momento e l'energia nel light-cone? Si ha 
+
+\begin{align}
+    p^\pm = \frac{1}{\sqrt{2}}(p^0 \pm p^1) = -p^\mp 
+\end{align}
+
+quale è invece l'energia? Essendo \(x^+\) il tempo, verebbe da prendere \(p^+\) come l'energia. Bisogna però stare attenti: 
+
+\begin{align}
+    p\cdot x = p_+ x^+ + p_-x^- - p_2x^2 - p_3 x^3 
+\end{align}
+
+In coordinate standard, \(p_0 = -E/c \implies -p_+ = E/c = p_-\).  
+
+\section{L'azione di Nanbu-Goto}
 
 Ora vogliamo passare da una particella, ad un oggetto esteso in una direzione, la stringa. Anche per questa vogliamo scrivere un'azione. La differenza principale rispetto ad una particella puntiforme è che la stringa non traccia una linea di mondo, ma traccia una World-Sheet (WS). Questa superficie può essere una superficie chiusa nel caso di stringa chiusa, oppure una superficie aperta nel caso di stringa aperta. Su queste superfici, le linee con \(x^0\) costante sono proprio le stringhe. 
 
@@ -231,7 +282,94 @@ Cioè la superficie fisica è l'immagine dello spazio dei parametri, sotto la ma
 
 Equivalentemente, posso pensare che le \(\xi^i\) sono coord. locali sulla superficie. Questo vuol dire che la mappa inversa di \(\vec{x}\) manda punti sulla superficie nello spazio dei parametri. Localmente, la mappa è 1:1, e associa dunque ad ogni punto sulla superficie due coordinate, \((\xi^1, \xi^2)\). 
 
-Sulla superficie si introduce il concetto di area nel modo seguente: dato un "quadratino" nello spazio dei parametri \(d\xi^1d\xi^2\), voglio determinare \(dA\) cioè l'area (infinitesima) dell'immagine del quadratino, sulla superficie. In generale questo è un parallelogramma, con lati 
+\begin{figure}
+    \caption{Rappresentazione grafica di una superficie immersa in \(\mathbb{E}^3\)}
+    \label{fig:worldsheet}
+    \begin{center}
+
+
+\begin{tikzpicture}[>=Stealth, scale=1.2]
+
+  % ==========================================
+  % 1. SPAZIO DEI PARAMETRI (In alto / Sinistra)
+  % ==========================================
+  \begin{scope}[shift={(0,0)}]
+    % Titolo del dominio
+    \node[font=\small\bfseries] at (1.5, 3.2) {Spazio dei parametri $\Sigma$};
+
+    % Assi cartesiani del parametro
+    \draw[->, thick] (-0.2,0) -- (3.2,0) node[right] {$\sigma$};
+    \draw[->, thick] (0,-0.2) -- (0,2.8) node[above] {$\tau$};
+
+    % Rettangolo di integrazione (Dominio della stringa)
+    \draw[thick, fill=blue!10, fill opacity=0.6] (0.5, 0.5) rectangle (2.5, 2.2);
+
+    % Elemento d'area infinitesimo d\tau d\sigma
+    \draw[fill=blue!40, draw=blue!80!black] (1.3, 1.1) rectangle (1.7, 1.5);
+    \node[font=\tiny] at (1.1, 1.3) {$d\tau$};
+    \node[font=\tiny] at (1.5, 1) {$d\sigma$};
+
+    % Etichette estremi
+    %\node[below, font=\footnotesize] at (0.5,0) {$0$};
+    %\node[below, font=\footnotesize] at (2.5,0) {$\ell$};
+    %\node[left, font=\footnotesize] at (0,0.5) {$\tau_i$};
+    %\node[left, font=\footnotesize] at (0,2.2) {$\tau_f$};
+  \end{scope}
+
+  % ==========================================
+  % 2. MAPPA DI IMMERSIONE X^\mu
+  % ==========================================
+  \draw[->, very thick, bend left=25, color=blue!70!black] (2.7, 1.8) 
+    to node[above, font=\small, color=black] {$X^\mu(\tau, \sigma)$} (5.2, 2.3);
+
+  % ==========================================
+  % 3. SPAZIO BERSAGLIO E^3 (Destra)
+  % ==========================================
+  % Proiezione assonometrica 3D personalizzata
+  \begin{scope}[shift={(7.5,0.5)}, x={(-0.6cm,-0.3cm)}, y={(0.9cm,-0.1cm)}, z={(0cm,1.1cm)}]
+    
+    % Titolo dello Spazio Target
+    \node[font=\small\bfseries] at (0, 0, 3) {Spazio bersaglio $\mathbb{E}^3$};
+
+    % Assi cartesiani E^3
+    \draw[->, thick, gray!80] (0,0,0) -- (3.5,0,0) node[left, black, font=\small] {$X^1$};
+    \draw[->, thick, gray!80] (0,0,0) -- (0,3.5,0) node[right, black, font=\small] {$X^2$};
+    \draw[->, thick, gray!80] (0,0,0) -- (0,0,2.5) node[above, black, font=\small] {$X^0$};
+
+    % Superficie del World-Sheet immersa
+    \path[fill=blue!20, opacity=0.7, draw=blue!80!black, thick]
+      (0.8, 0.8, 0.5) .. controls (1.5, 1.0, 1.5) and (2.5, 0.8, 1.2) .. (3.0, 1.2, 1.8)
+      .. controls (2.8, 2.2, 2.2) and (2.0, 2.8, 2.0) .. (1.0, 2.5, 1.5)
+      .. controls (0.5, 2.0, 1.0) and (0.6, 1.2, 0.8) .. (0.8, 0.8, 0.5) -- cycle;
+
+    % Griglia coordinata sul World-sheet (Linee a \tau e \sigma costanti)
+    %\draw[dashed, color=blue!60!black, thin]
+    %  (1.2, 0.9, 0.8) .. controls (1.8, 1.5, 1.6) .. (2.1, 2.4, 1.8);
+    %\draw[dashed, color=blue!60!black, thin]
+    %  (0.7, 1.5, 0.9) .. controls (1.8, 1.4, 1.4) .. (2.8, 1.7, 1.9);
+
+    % Punto mappato e vettori tangenti dell'elemento d'area
+    \coordinate (P) at (1.8, 1.6, 1.5);
+    \filldraw[red!80!black] (P) circle (1.5pt);
+
+    % Vettori tangenti dX/d\sigma e dX/d\tau
+    \draw[->, thick, red!80!black] (P) -- ++(0.2, 0.4, -0.3) 
+      node[right, font=\tiny] {$\frac{\partial X^\mu}{\partial \sigma}$};
+    \draw[->, thick, red!80!black] (P) -- ++(0.2, 0.5, 0.3) 
+      node[above, font=\tiny] {$\frac{\partial X^\mu}{\partial \tau}$};
+    
+
+    % Etichetta della superficie (World-sheet)
+    \node[color=blue!90!black, font=\small] at (2.5, 0.7, 0.8) {$X(\Sigma)$};
+
+  \end{scope}
+
+\end{tikzpicture}
+    \end{center}
+\end{figure}
+
+
+Sulla superficie si introduce il concetto di area nel modo seguente (si veda la figura \ref{fig:worldsheet} per visualizzare l'idea geometrica): dato un "quadratino" nello spazio dei parametri \(d\xi^1d\xi^2\), voglio determinare \(dA\) cioè l'area (infinitesima) dell'immagine del quadratino, sulla superficie. In generale questo è un parallelogramma, con lati 
 
 \begin{align}
     \begin{cases}
@@ -288,7 +426,7 @@ da cui
 se chiamo con \(\tilde{M}\) la matrice jacobiana del cambio di coordinate, cioè \(\tilde{M}_{ij} = \frac{\partial \tilde{\xi}^i}{\partial \xi^j}\). Chiamiamo invece \(M\) la matrice inversa. Troviamo allora 
 
 \begin{align}
-    \int d\xi^1 d\xi^2 \sqrt{\det{g}} \, \xrightarrow[]{\text{cambio coordinate}} \, \int d\tilde{\xi}^1 d\tilde{\xi}^2 \abs{\det M} \sqrt{\det g} \abs{\det{\tilde{M}}} = \int d\tilde{\xi}^1 d\tilde{\xi}^2 \sqrt{\det g} 
+    \int d\xi^1 d\xi^2 \sqrt{\det{g}} \, \xrightarrow[]{\text{cambio coordinate}} \, \int d\tilde{\xi}^1 d\tilde{\xi}^2 \abs{\det M} \sqrt{\det \tilde{g}} \abs{\det{\tilde{M}}} = \int d\tilde{\xi}^1 d\tilde{\xi}^2 \sqrt{\det g} 
 \end{align}
 
 Se abbiamo una superficie spaziotemporale, cosa cambia? In particolare, noi siamo interessati al WS di una stringa. Parametrizziamo la superficie con parametri \(\sigma, \tau\), cioè la superficie è l'immagine della mappa 
@@ -441,7 +579,7 @@ Ora, le equazioni del moto che derivano direttamente dall'azione sono orribili. 
     ed è dunque automaticamente soddisfatta. 
 }
 
-\subsection{Parametrizzazione e velocità della stringa}
+\section{Parametrizzazione e velocità della stringa}
 
 Veniamo ora a parlare di velocità sulla stringa. Un candidato ingenuo è dato da 
 
@@ -559,7 +697,7 @@ Dunque le condizioni al contorno dicono
     \frac{\partial \vec{X}}{\partial \sigma}\biggr|_{\sigma = 0} = \frac{\partial \vec{X}}{\partial \sigma}\biggr|_{\sigma = \sigma_1} = 0 
 \end{align}
 
-\subsection{Studio delle equazioni del moto}
+\section{Studio delle equazioni del moto}
 
 Molto bene: adesso abbiamo tutti gli ingredienti per risolvere le equazioni. La più generale soluzione dell'equazione delle onde si scrive 
 
@@ -696,7 +834,7 @@ Allora, se indichiamo \(\sigma_0, t_0\) i parametri che otteniamo invertendo \(u
 
 poiché \(\vec{F}'\) è un vettore unitario, allora si ottiene che in quel punto la velocità della stringa è pari a \(c\). Poiché vale anche \(\partial_\sigma \vec{X} =0\), la stringa ha una \emph{cuspide} in quel punto. 
 
-\subsection{Correnti conservate sul WS}
+\section{Correnti conservate sul WS}
 
 In generale, sappiamo dal teorema di Noether che una simmetria di una lagrangiana implica una carica conservata, e una simmetria nella densità lagrangiana implica una corrente conservata. In particolare, data un'azione 
 
@@ -793,7 +931,7 @@ Come ottengo le leggi di conservazione sullo spaziotempo? posso sfruttare l'inva
     Dunque ottengo la stessa quantità integrando su qualunque curva. Se prendiamo una curva a \(\tau\) costante, ritroviamo il punto di partenza. 
 }
 
-\subsection{Simmetrie di lorentz e correnti}
+\section{Simmetrie di lorentz e correnti}
 
 Siccome \(S_{NG}\) è uno scalare di lorentz, le trasformazioni di lorentz delle coordinate \(x^\mu\) sono simmetrie. Vogliamo allora determinare le cariche conservate. 
 
@@ -863,6 +1001,905 @@ Ad esempio, se ho un boost, la carica è data da
 \begin{align}
     M^{0i} = \int d\sigma (c\tau P^{\tau i} - X^i P^{\tau 0}) = ctP^i - \int d\sigma X^i P^{\tau 0}
 \end{align}
+
+Da questa equazione possiamo ottenere una utile relazione. Moltiplica entrambi i lati per \(c/E\): 
+
+\begin{align}
+    \frac{c}{E}M^{0i} = \frac{c^2 t}{E}^i -\underbrace{\frac{1}{E}\int d\sigma X^i cP^{\tau 0}}_{x^i_{cm}}
+\end{align}
+
+Infatti, la quantità \(cP^{\tau 0}\) è proprio la densità di energia lungo la stringa. Invertendo per il centro di massa trovo 
+
+\begin{align}
+    x^i_{cm}(t) = -\frac{c}{E}(M^{0i} - ctp^i)
+\end{align}
+
+che è la legge del moto per il centro di massa per la stringa. Ad esempio, conoscendo le cariche conservate posso facilmente risalire alla posizione del centro di massa al tempo \(t=0\). Inoltre interpretiamo \(\frac{c^2t}{E}p^i\) come la velocità del centro di massa. 
+
+Fin dall'inizio, abbiamo evidenziato come l'azione di stringa dipenda da un solo parametro dimensionale, \(T_0\). In alternativa, si può usare un altro parametro \(\alpha'\) (detto \emph{slope}). Questo è definito nel modo seguente: 
+
+Considera una stringa aperta, in rotazione rigida. Deve valere 
+
+\begin{align}
+    \frac{J}{\hbar} \propto E^2 
+\end{align}
+
+Determiniamo la costante di Infatti, \(J = |M_{12}|\), e la posizione ed il momento sono dati da 
+
+\begin{align}
+    &\vec{x} = \frac{\sigma_1}{\pi}\cos\left(\frac{\pi\sigma}{\sigma_1} \right)\left(\cos\left(\frac{\pi ct}{\sigma_1} \right), \sin\left(\frac{\pi ct}{\sigma_1}  \right) \right) \notag \\
+    &\vec{p}^\tau = \frac{T_0}{c^2}\frac{\partial \vec{x}}{\partial t} = \frac{T_0}{c}\cos\left(\frac{\pi\sigma}{\sigma_1} \right)\left(-\sin\left(\frac{\pi ct}{\sigma_1} \right), \cos\left(\frac{\pi ct}{\sigma_1}  \right) \right)
+\end{align}
+
+Dunque, 
+
+\begin{align}
+    M_{12} = \frac{\sigma_1}{\pi}\frac{T_0}{c}\int_0^{\sigma_1}\cos^2\left(\frac{\pi \sigma}{\sigma_1} \right) = \frac{\sigma_1^2 T_0}{2\pi c} 
+\end{align}
+
+Ricordando che \(\sigma_1 T_0 = E\), si trova 
+
+\begin{align}
+    J = \frac{1}{2\pi \hbar T_0 c}E^2 \implies \alpha' = \frac{1}{2\pi \hbar T_0 c}
+\end{align}
+
+Questo è il parametro dimensionale più usato, per ragioni storiche. Infatti, la stringa si poneva inizialmente come teoria candidata per l'interazione forte, ed in particolare sembrava riprodurre inizialmente la curva \(J(E^2)\) che si vedeva sperimentalmente. 
+
+L'azione NG in termini di \(\alpha'\) si scrive semplicemente 
+
+\begin{align}
+    S = -\frac{1}{2\pi \hbar c^2 \alpha'}\int_{\tau_0}^{\tau_1}d\tau \int_0^{\sigma_1}d\sigma \sqrt{(\dot{X}\cdot X')^2 - (\dot{X})^2(X')^2}
+\end{align}
+
+\section{Stringa nel cono di luce}
+
+Introduciamo una classe di parametrizzazioni di \(\tau\) per la stringa. Una la abbiamo già vista, la gauge statica (che ricordiamo essere \(X^0(\tau, \sigma) = c\tau, \, \tau = t\)). 
+
+Generalizziamo la parametrizzazione (questo ci serve sia per risolvere le equazioni del moto completamente, sia per quantizzare la stringa): imponiamo che valga 
+
+\begin{align}
+    \eta_{\mu}X^\mu(\tau,\sigma) = \lambda \tau
+\end{align}
+
+ora, in generale, se impongo \(\eta_{\mu}x^\mu = \lambda \tau\), con \(x^\mu\) una coord. dello spaziotempo, non del WS, cosa succede? Fissa \(\tau\) e considera due punti \(x_1^\mu, x_2^\mu\). Se soddisfano la relazione, allora vale anche 
+
+\begin{align}
+    \eta_{\mu}x_1^\mu = \eta_{\mu}x_2^\mu \implies  \eta_{\mu}(x_1^\mu - x_2^\mu) = 0 
+\end{align}
+
+cioè ogni vettore che misura la distanza di due punti che soddisfano la relazione, giace nell'iperpiano ortogonale ad \(\eta_\mu\). 
+
+La relazione quindi determina un iperpiano ortogonale. Se siamo sul WS, i punti con lo stesso \(\tau\) devono stare sia sul WS, sia sull'iperpiano: ma questi punti sono proprio le strighe! 
+
+I gauge, in generale, non sono covarianti di lorentz. In particolare scegliendo \(\eta_\mu\) sto scegliendo una specifica combinazione di coordinate, che si trasformerà per forza sotto trasf. di lorentz. 
+ 
+Da ora in poi, sceglieremo le coordinate sul WS \(\sigma, \tau\) come a-dimensionali. Imponiamo la relazione 
+
+\begin{align}
+    n \cdot X (\tau, \sigma) = \tilde{\lambda} (n\cdot p)\tau 
+\end{align}
+
+quali devono essere le dimensioni di \(\tilde{\lambda}\)? A sinistra ho le dimensioni di una lunghezza, a destra di un momento. Si trova quindi che le dimensioni di \(\tilde{\lambda}\) sono quelle di una velocità su una forza, e quindi è naturale prendere \(\tilde{\lambda} = c/T_0\). Se poniamo \(\hbar = c = 1\), scriviamo quindi 
+
+\begin{align}
+    n \cdot X = 2\alpha' (n\cdot p)\tau
+\end{align}
+
+Questo per \(\tau\): cosa posso dire per \(\sigma\)? Inanzitutto impongo che \(n\cdot p^\tau = \) const. lungo le stringhe (un po' come nella gauge statica imponevo che \(p^{\tau 0}\), la densità di energia della stringa, fosse costante lungo questa: ciò implicava una parametrizzazione di \(\sigma\)). Dobbiamo comunque capire se è possibile imporre questa condizione, e a quali parametrizzazioni conduce. 
+
+Considera allora una riparametrizzazione delle coordinate di WS: 
+
+\begin{align}
+    \sigma \to \tilde{\sigma}, \quad p^{\tau \mu}(\tau, \sigma) = p^{\tau \mu}(\tau, \sigma)\frac{d\tilde{\sigma}}{d\sigma} \implies n\cdot p^{\tau}(\tau, \sigma) = \frac{d\tilde{\sigma}}{d\sigma}n\cdot p^\tau (\tau, \sigma)
+\end{align}
+
+Se si sceglie una parametrizzazione di \(\tilde{\sigma}\) in cui \(p^\tau(\tau, \tilde{\sigma})\) dipende da \(\tilde{\sigma}\), si può anche scegliere \(\sigma\) t.c. \(n\cdot p^\tau\) non dipenda da \(\sigma\), se aggiusto il valore di \(d\tilde{\sigma}/d\sigma\) opportunamente. Successivamente posso riscalare \(\sigma\) in modo tale che appartenga al range \([0, \pi]\). In particolare così facendo \(n\cdot p^\tau(\sigma, \tau)\) è solamente una funzione di \(\tau\) (che chiamiamo \(a(\tau)\)), che si può ricavare nel modo seguente: 
+
+\begin{align}
+    \int_0^\pi d\sigma n \cdot p^\tau (\tau, \sigma) = n\cdot p = \pi a(\tau) \implies a(\tau) = \frac{n\cdot p}{\pi}
+\end{align}
+
+\emph{Fisicamente}: siccome \(n\cdot \tau\) è costante, il valore di \(\sigma\) è proporzionale alla energia trasportata dalla porzione di stringa, da \(0 \to \sigma\). 
+
+
+se la stringa è aperta, \(a(\tau) \propto n\cdot p\) è costante. Questo implica che, partendo dalla conservazione della corrente si trova
+
+\begin{align}
+    \partial_\tau p^{\tau \mu} + \partial_\sigma p^{\sigma \mu} = 0 \implies (\partial_\mu n\cdot p^\tau) + \partial_\sigma (n\cdot p^\sigma) = 0 
+\end{align}
+
+Per una stringa aperta, abbiamo appena visto che \(n\cdot p^\tau\) è costante: rimane 
+
+\begin{align}
+    \partial_\sigma (n\cdot p^\sigma) = 0 \implies n\cdot p^\sigma = \text{const.} \implies n\cdot p^\sigma = 0
+\end{align}
+
+dove nell'ultima abbiamo usato le condizioni di Neumann: al bordo il momento è nullo, dunque il prodotto scalare è nullo ovunque. 
+
+Cosa succede invece per strighe chiuse? di solito vogliamo che per queste \(\sigma \in [0, 2\pi]\), perciò vale 
+
+\begin{align}
+    n\cdot p^\tau = \frac{n\cdot p}{2\pi}
+\end{align}
+
+per lo stesso motivo è conveniente imporre \(n\cdot X = \alpha'(n\cdot p)\tau\). Per stringhe chiuse però non vale più che \(n\cdot p^\sigma = 0\). 
+
+Cosa possiamo fare invece è scegliere un punto una stringa chiusa, che chiamiamo \(\sigma = 0\). A questo punto, impiniamo che valga \(n\cdot p^\sigma =0\), e i questo modo troviamo i punti \(\sigma=0\) per \(t\) arbitrario. Questa procedura è possibile s.se in effetti esiste per ogni stringa almeno un punto dove \(n\cdot p^\sigma\) si annulla: comincia considerando 
+
+\begin{align}
+    n\cdot p^\sigma = -\frac{1}{2\pi\alpha'}\frac{(\dot{X}\cdot X')\partial_\tau (n\cdot X)-\dot{X}^2\partial_\sigma (n \cdot X)}{\sqrt{(\dot{X}\cdot X')^2-\dot{X}^2(X')^2}} = \frac{1}{2\pi\alpha'}\frac{(\dot{X}\cdot X')\partial_\tau (n\cdot X)}{\sqrt{(\dot{X}\cdot X')^2-\dot{X}^2(X')^2}}
+\end{align}
+
+dove abbiamo usato che \(n\cdot X = \alpha'(n\cdot p)\tau\), quindi la sua derivata rispetto a \(\sigma\) è nulla. Dalla stessa relazione, vediamo che \(\partial_\tau(n\cdot X)\) è costante, ed è in particolare non-nullo. Dobbiamo quindi mostrare che esiste un punto su ogni stringa, dove vale \(\dot{X}\cdot X' =0\). 
+
+\clm{}{}{
+    Sia \(P\) un punto sul WS. Sia \(X^\mu\) il vettore tangente alla stringa in \(P\) (di tipo spazio). Esiste un unico (a meno di un riscalamento) vettore tagente al WS in \(P\) \(v^\mu\), che sia \(\perp\) ad \(X^\mu\)
+}
+
+\pf{}{
+
+    Geometricamente non è difficile da vedere. Più precisamente, essendo unaa superficie in Minkowski il WS in \(P\) ha almeno un vettore tangente di tipo tempo, \(t^\mu\). Poiché invece \(X^\mu\) è di tipo spazio, \emph{non} sono chiaramente paralleli, e dunque generano tutto lo spazio tangente in \(P\). Se \(t\cdot X =0\) ho finito, altrimenti costruisco \(v^\mu = t^\mu + bX^\mu\), ed impongo 
+
+    \begin{align}
+        v \cdot X = 0 \implies t\cdot X' + b (X')^2 = 0 \implies b = -\frac{t\cdot X'}{(X')^2} \implies v^\mu = t^\mu - \frac{t\cdot X'}{(X')^2}X'^\mu
+    \end{align}
+}
+
+Partendo dalla stringa dove ho scelto \(\sigma = 0\), e denotandolo \(X^\mu(p)\), il punto su una stringa vicino, sempre con \(\sigma =0\) sarà dato da \(X^\mu(p) +\eps v^\mu\), con \(\eps\) piccolo: così facendo costruisco tutta la linea \(\sigma=0\), semplicemente richiedendo che ad ogni punto la linea sia \(\perp\) al vettore tangente \(X'^\mu\). Chiaramente la tangente alla linea è proporzionale a \(\dot{X}^\mu\), così che vale \(\dot{X}\cdot X' =0\). Finalmente troviamo quindi che \(n\cdot p^\sigma =0\) sia per stringhe aperte sia per stringhe chiuse. 
+
+Riassumendo, vale 
+
+\begin{align}
+    &n\cdot X = \beta \alpha' (n\cdot p)\tau \notag \\
+    &n\cdot p = \frac{2\pi}{\beta} \notag \\
+    &n\cdot p^\sigma = 0 
+\end{align}
+
+con \(\beta =2\) per stringhe aperte, \(\beta = 1\) per stringhe chiuse. 
+
+Veniamo allora alla scrittura delle equazioni e dei vincoli, che poi risolveremo. In particolare, dalla discussione precedente è chiaro che 
+
+\begin{align}
+    \dot{X} \cdot X' = 0 
+\end{align}
+
+Da questa trovo che \(p^\tau\) si scrive in modo più semplice in questa parametrizzazione: 
+
+\begin{align}
+    p^{\tau \mu} = \frac{1}{2\pi \alpha'}\frac{(X')^2\dot{X}^\mu}{\sqrt{-\dot{X}^2(X')^2}} \implies n\cdot p = \int_0^{2\pi/\beta} d\sigma n\cdot p^\tau = \frac{1}{\beta\alpha'}\frac{(X')^2 (n\cdot \dot{X})}{\sqrt{-\dot{X}^2(X')^2}}
+\end{align}
+
+Usiamo quindi anche l'altro vicolo, 
+
+\begin{align}
+    n \cdot X = \beta \alpha' (n\cdot p)\tau  \implies n\cdot \dot{X} = \beta\alpha' (n\cdot p )  = \frac{(X')^2 (n\cdot \dot{X})}{\sqrt{-\dot{X}^2(X')^2}} \implies 1 = \frac{(X')^2}{\sqrt{-\dot{X}^2 (X')^2}} \implies \dot{X}^2 + (X')^2 = 0 
+\end{align}
+
+
+Le equazioni sono dunque due: 
+
+\begin{align}
+    \begin{cases}
+        \dot{X}\cdot X' = 0 \\ 
+        \dot{X}^2 + (X')^2 = 0
+    \end{cases} \implies (\dot{X} \pm X')^2 = 0, \quad \forall \beta
+\end{align}
+
+Riutilizzando queste nel calcolo delle componenti della corrente conservata, si trova subito 
+
+\begin{align}
+    p^{\tau \mu} = \frac{\dot{X}^\mu}{2\pi \alpha'}, \quad p^{\sigma \mu} = -\frac{1}{2\pi\alpha'}\frac{\dot{X}^2 X^{'\mu}}{\sqrt{-\dot{X}^2 (X')^2}} = -\frac{X^{'\mu}}{2\pi\alpha'}
+\end{align}
+
+Da cui ora è evidente che 
+
+\begin{align}
+    \partial_\alpha P_\mu^\alpha \implies \ddot{X}^\mu = X^{''\mu}
+\end{align}
+
+\section{Soluzione generale delle equazioni del moto}
+
+Scrivi 
+
+\begin{align}
+    X^\mu (\tau, \sigma) = \frac{1}{2}(f^\mu (\tau + \sigma) + g^mu (\tau-\sigma))
+\end{align}
+
+
+con il vincolo \(p^{\sigma \mu} = 0\) agli estremi, cioè 
+
+\begin{align}
+    \partial_\sigma X^\mu |_{\sigma=0, \sigma = \pi} = 0 
+\end{align}
+
+Imponendo la condizione a \(\sigma = 0\), immediatamente si ottiene 
+
+\begin{align}
+    X^\mu (\tau, \sigma) = \frac{1}{2}(f(\tau+\sigma) + f(\tau-\sigma))
+\end{align}
+
+Applicandola per \(\sigma = \pi\), si trova invece la condizione 
+
+\begin{align}
+    f^{'\mu} (\sigma + \pi) = f^{\mu'}(\sigma-\pi)
+\end{align}
+
+cioè \(f'\) è periodica in \(2\pi\). Espando quindi questa in modo di Fourier: 
+
+\begin{align}
+    f^{'\mu}(u) = f_1^\mu + \sum_1^\infty (\tilde{a}^\mu_n \cos(nu) + \tilde{b}_n^\mu\sin(nu)) \implies f^\mu(u) = f_0^\mu + f_1^\mu u + \sum_{1}^{\infty} (A^\mu_n \cos(nu) + B_n^\mu \sin(nu))
+\end{align}
+
+Sostituendo per l'equazione del WS, si ottiene 
+
+\begin{align}
+    X^\mu (\tau, \sigma) = f_0^\mu + f_1^\mu \tau + \sum_1^\infty \cos(n\sigma)[A_n^\mu \cos(n\tau) + B_n^\mu \sin(n\tau)]
+\end{align}
+
+che interpretazione hanno \(A, B\)? Troviamo comodo riscriverli (soprattuto per quando poi quantizzeremo)
+
+\begin{align}
+    A^\mu_n \cos(n\tau) + B_n^\mu \sin(n\tau) = \frac{i}{2}[(B_n^\mu + iA_n^\mu)e^{in\tau} - (B_n-iA_n^\mu)e^{-in\tau}] = -i\sqrt{\frac{2\alpha'}{n}}(a_n^{*\mu} e^{in\tau} + a_n^\mu e^{-in\tau})
+\end{align}
+
+dove abbiamo riscritto seni e coseni in termini di esponenziali complessi, ed abbiamo usato una costante dimensionale in modo tale che i coefficienti \(a, a^*\) (che diventeranno gli operatori di distruzione e di creazione quando quantizzeremo) siano adimensionali. 
+
+Come interpretiamo fisicamente invece \(f_0, f_1\)? Il momento totale è dato da (usa \(p^{\tau \mu} = \frac{\dot{X}}{2\pi\alpha'}\), e nota che i termini proporzionali al coseno hanno integrale nullo) 
+
+\begin{align}
+    p^\mu = \int_0^\pi p^{\tau \mu}d\sigma = \frac{\pi f_1^\mu}{2\pi\alpha'} \implies f_1^\mu = 2\alpha' p^ \mu
+\end{align}
+
+cioè \(f_1\) è proporzionale al momento trasportato dalla stringa. Interpreto invece \(f_0^\mu\) come la posizione del CM della stringa al tempo \(t=0\). Si scrive quindi 
+
+Infine, ridefinisco 
+
+\begin{align}
+    &\alpha_0^\mu = \sqrt{2\alpha'}p^\mu \notag \\
+    &\alpha_n^\mu = a^\mu_n \sqrt{n} \notag \\ 
+    &\alpha_{-n}^\mu = a_n^{*\mu}\sqrt{n}
+\end{align}
+
+così si ottiene il noto risultato 
+
+\begin{align}
+    X^\mu(\tau, \sigma) = x_0^\mu + \sqrt{2\alpha'}\alpha_0^\mu \tau +i\sqrt{2\alpha'}\sum_{n \neq 0}\frac{e^{-in\tau}}{n}\alpha_n
+\end{align}
+
+La soluzione si trova quindi specificando \(\alpha_n\), in modo che rispettino i vincoli. Siamo quasi pronti a quantizzare. Prima di farlo ci mettiamo in un particolare gauge (cioè nella classe di parametrizzazioni che abbiamo individuato, prendiamo un particolare \(n^\mu\)), ovvero nel gauge del light-cone. 
+
+Prendiamo quindi 
+
+\begin{align}
+    n = \frac{1}{\sqrt{2}}(1, 1, 0 , \ldots, 0) \implies \begin{cases}
+        n\cdot X = X^+ \\ n\cdot p = p^+
+    \end{cases} \implies \begin{cases}
+        X^+(\tau, \sigma) = B\alpha'p^+ \tau \\ p^+ (\tau, \sigma) = \frac{2\pi}{\alpha'}p^{\tau +}
+    \end{cases}
+\end{align}
+
+Le coordinate saranno quindi \(X^+, X^-, X^I\), con \(I = 2, \ldots, d\). (e.g. \(d=4 \implies I= 2, 3\))
+
+Perchè abbiamo scelto questa gauge? La dinamica in \(X^+\) è banale dall'equazione scritta sopra. Invece, dimostriamo ora che anche la dinamica in \(X^-\) è banale. Segue che tutte la dinamica non banale sta nelle direzioni trasverse. Possiamo scrivere i vincoli come 
+
+\begin{align}
+    (\dot{X} \pm X')^2 = 0 \xrightarrow{\text{light cone}} -2(\dot{X}^+ \pm (X^+)')(\dot{X}^- \pm (X^-)') + (\dot{X}^I \pm (X')^I)^2 = 0 
+\end{align}
+
+Sò gia tutto di \(X^+\): vale \(\dot{X}^+ = \beta \alpha' p^+\), \((X^+)' = 0\), e possiamo sostituire: 
+
+\begin{align}
+    \dot{X}^- \pm (X^-)' = \frac{1}{2\beta\alpha p^+}(\dot{X}^I \pm (X')^I)^2 
+\end{align}
+
+\nt{Dobbiamo per forza fare l'assunzione \(p^+ >0\). Il formalismo non si applica nel caso di un modo non massivo che si propaga esattamente nella direzione \(x^1\). Questo è un problema noto che si risolve quantizzando una azione diversa rispetto a NG (azione di Polyakov). Didatticamente, il light cone è la scelta di quantizzazione migliore perchè ha meno dettagli tencici, e a meno di questo problema si può comunque comprendere la fisica.}
+
+L'equazione precedente si può vedere come una equazione differenziale per \(X^-\), che la determina completamente, a meno di una costante. Se conosco \(X^-\) in un punto, diciamo \(P\), posso allora integrare la relazione precedente usando 
+
+\begin{align}
+    dX^- = \frac{\partial X^-}{\partial \tau}d\tau + \frac{\partial X^-}{\partial \sigma}d\sigma 
+\end{align}
+
+e se siamo in stringa aperta, posso determinare \(Q(P')\) scegliendo un qualunque cammino \(\gamma\) da \(P \to P'\), e il risultato non dipende dal particolare cammino. La situazione è leggermente più delicata per una stringa chiusa. Possiamo però integrare su una curva a \(\tau\) costante, se ci assicuriamo che 
+
+\begin{align}
+    \int_0^{2\pi}d\sigma \frac{dX^-}{d\sigma} = 0
+\end{align}
+
+Considero allora una stringa aperta \(\beta =2\). Voglio determinare \(X^-\) (cioè i coefficienti dell'espansione \(X^-_0, \alpha^-_n\)) partendo dall'espressione di \(X^I\). Per farlo, considera
+
+\begin{align}
+    X^I(\tau, \sigma) = x_0^I +\sqrt{2\alpha'}\alpha_0^I \tau -\sqrt{2\alpha'}\sum_{n\neq 0}\frac{e^{-in\tau}\cos(n\sigma)}{n}\alpha_n^I
+\end{align}
+
+L'eq. del vincolo scritta esprimendo le \(X\) in termini di modi di Fourier è data da 
+
+\begin{align}
+    \sqrt{2\alpha'}\sum_{n\in \mathbb{Z}}\alpha^-_n e^{-in(\tau \pm \sigma)} = \frac{1}{2p^+}\sum_{r,s}\alpha_r^I \alpha_{n-r}^I e^{-in(\tau \pm \sigma)}
+\end{align}
+
+dove nel secondo termine ho riarrangiato i coefficienti, in modo tale da trovare la stessa struttura esponenziale che avevo a destra. Troviamo quindi che 
+
+\begin{align}
+    \sqrt{2\alpha'} = \frac{1}{2p^+}\sum_{r\in\mathbb{Z}}\alpha^I_n\alpha^I_{r-n} 
+\end{align}
+
+Definiamo ora un oggetto che diventerà particolarmente utile quando quantizzeremo: 
+
+\begin{align}
+    L_n^\perp = \frac{1}{2}\sum_{p\in \mathbb{Z}}\alpha^I_{n-p}\alpha^I_p
+\end{align}
+
+detti \emph{modi trasversi di Virasoro}. Con questi scriviamo, ad esempio, 
+
+\begin{align}
+    \sqrt{2\alpha'} \alpha^-_n = \frac{1}{p^+}L_n^\perp  
+\end{align}
+
+ricordando poi come è legato \(\alpha_0^-\) al momento \(p^-\), 
+
+\begin{align}
+    \sqrt{2\alpha'}\alpha_0 = 2\alpha' p^- = \frac{1}{p^+}L^\perp_0 \implies 2p^+ p^- = \frac{1}{\alpha'}L_o^\perp
+\end{align}
+
+Un calcolo utile è quindi la massa di una stringa in moto arbitrario. Usiamo la relazione relativistica
+
+\begin{align}
+    M^2 = -p^2 = 2p^+p^- - p^I p^I 
+\end{align}
+
+\(p^+p^-\) può essere epsresso in termini del modo zero di Virasoro (come abbiamo appena visto), è in particolare vale 
+
+\begin{align}
+    2p^+ p^- = \frac{1}{\alpha'}L_0^\perp &= \frac{1}{\alpha'}\left(\frac{1}{2}\alpha^I_0 \alpha^I_0 +\sum_1^{\infty}\alpha_{-n}^I \alpha_n^I \right) \notag \\
+    &= p^I p^I + \frac{1}{\alpha'}\sum_1^\infty \alpha^I_n \alpha^I_{-n}
+\end{align}
+
+Quindi la massa è la somma di quantità positive,
+
+\begin{align}
+    M^2 = \frac{1}{\alpha'}\sum_{n=1}^\infty \alpha^{I*}_n \alpha^I_{-n}
+\end{align}
+
+Questa teoria ha qualche problema: lo spettro di massa è continuo, e un modo massless implica il collasso della strigna in un punto. Questi problemi vengono entrambi risolti dalla quantizzazione. Questa però porterà ad altri problemi... 
+
+
+\chapter{Quantizzazione della stringa}
+
+\section{Stringa bosonica aperta}
+
+Veniamo finalmente alla quantizzazione della stringa. Abbiamo concluso la sezione precedente calcolando la massa di una stringa in moto arbitrario, mostrando che lo spettro era continuo, e una massa nulla implicava il collasso della stringa ad un punto. Abbiamo anche osservato che probabilmente la quantizzazione poteva risolvere questi problemi. Facciamo allora esattamente questo: quantizziamo la teoria, cioè promuoviamo le variabili classiche ad operatori quantistici, e imponiamo che soddisfino le relazioni di commutazione classiche. Verifichiamo che sostituendo queste alle parentesi di poisson (quantizzazione canonica), gli operatori quantistici (in rappresentazione di Heisemberg) seguono le equazioni del moto classiche. Successivamente, ci occupiamo di costruire un Hamiltoniana. La sua sccelta non sarà banale, ed inoltre avremo un problema di ordinamento normale, che risolveremo fissando le dimensioni della teoria \(d = 26\). Sucessivamente studieremo lo spettro di massa della teoria, con particolare focus sul settore massless. In questo modo risponderemo alla domanda che avevamo lasciato in sospeso.  
+
+\subsection{Relazioni di commutazione ed Hamiltoniana}
+
+In rappresentazione di Schroedinger, imponiamo le relazioni di commutazione fra i nostri operatori: 
+
+\begin{align}
+    &[X^I(\sigma), P^{\tau J}(\sigma')] = i\eta^{IJ}\delta(\sigma-\sigma') \notag \\
+    &[X^I(\sigma), X^J(\sigma')] = [p^{\tau I}(\sigma), p^{\tau J}(\sigma')] = 0 \notag \\ 
+    &[x_0^-, p^+] = -i 
+\end{align}
+
+Quelle di Heisemberg si ottengono imponendo gli operatori falliscono di commutare solo se presi allo stesso tempo. Quale è l'hamiltoniana? Deve generare le traslazioni temporali. Vale 
+
+\begin{align}
+    \frac{\partial}{\partial \tau} = \frac{\partial X^+}{\partial \tau}\frac{\partial}{\partial X^+}, \quad X^+ = 2\alpha' p^+ \tau \implies \frac{\partial}{\partial \tau} = 2\alpha' p^+ \frac{\partial}{\partial X^+}
+\end{align}
+
+Ma \(p^-\) genera le traslazioni in \(X^+\): scriviamo allora 
+
+\begin{align}
+    H(\tau) = 2\alpha' p^+ p^-= 2\alpha' p^+ \int_0^\pi p^{\tau -}(\sigma) d\sigma = H
+\end{align}
+
+dove abbiamo notato che essendo \(H(\tau)\) costrutita da op. di Heisemberg che \emph{non} dipendono esplicitamente dal tempo, anche lei non dipende esplicitamente dal tempo. Ricordando che \(L_0^\perp = 2\alpha' p^+ p^-\), possiamo anche scrivere \(H = L_0^\perp\). Questa hamiltoniana dà le corrette equazioni del moto? Verifichiamo: 
+
+Prima di tutto riscrivo la Hamiltoniana in un modo equivalente: nel gauge del LC, vale 
+
+\begin{align}
+    P^{\tau \mu} = \frac{\dot{X}^\mu}{2\pi\alpha'}, \quad \dot{X}^- = \frac{1}{2\alpha' 2p^+}(\dot{X}^I \dot{X}^I + (X^I)'(X^I)'), \implies P^{\tau -} = \frac{\pi}{2p^+}\left(P^{\tau I}P^{\tau I} + \frac{(X^I)'(X^I)'}{(2\pi\alpha')^2} \right)
+\end{align}
+
+cioè per l'hamiltoniana 
+
+\begin{align}
+    H = \pi \alpha' \int \left(P^{\tau I}P^{\tau I} + \frac{(X^I)'(X^I)'}{(2\pi\alpha')^2} \right)
+\end{align}
+
+Ora calcolo le equazioni del moto di Heisemberg: siccome \([X, X'] =0\), troviamo 
+
+\begin{align}
+    i\dot{X}^I (\tau, \sigma) &= [X^I (\tau, \sigma), H] = \pi\alpha' \int_0^\pi d\sigma' [X^I(\tau, \sigma), p^{\tau J}(\sigma', \tau)p^{\tau J}(\sigma', \tau)] \notag \\
+    &= 2\pi \alpha' \int_0^\pi d\sigma' p^{\tau J} i \eta^{IJ} \delta (\sigma - \sigma') \notag \\
+    &= 2i\pi \alpha' p^{\tau I}(\tau, \sigma)
+\end{align}
+
+dunque le equazioni coincidono con le equazioni classiche. 
+
+Cosa impone la quantizzazione sugli oscillatori classici? In generale, i modi \(\alpha_n^I\) diventano degli operatori quantistici, che soddisfano relazioni di commutazioni non banali. Come le determino? 
+
+Considera le relazioni 
+
+\begin{align}
+    (\dot{X}^I \pm (X')^I)(\tau, \sigma) = \sqrt{2\alpha'}\sum_{n \in \mathbb{Z}} \alpha_n^{\pm} e^{in (\tau \pm \sigma)}
+\end{align}
+
+Da questa posso costruire una funzione periodica: 
+
+\begin{align}
+    A^I (\tau, \sigma) = \sqrt{2\alpha'}\sum_{n\in \mathbb{Z}} \alpha_n^I e^{-in(\tau + \sigma)}
+\end{align}
+
+che soddisfa \(A^I(\tau, \sigma +2\pi) = A^I(\tau, \sigma)\). Possiamo scrivere \(A\) in termini di coordinate di stringa: 
+
+\begin{align}
+    A^I(\tau, \sigma) = \begin{cases}
+        (\dot{X} + (X')^I) \quad \sigma \in [0, \pi] \\
+        (\dot{X} - (X')^I) \quad \sigma \in [-\pi, 0]
+    \end{cases}
+\end{align}
+
+si possono calcolare le relazioni di commutazione: 
+
+\begin{align}
+    [A^I (\tau, \sigma), A^J(\tau, \sigma')] = \ldots = 4\pi i \eta^{IJ} \frac{d}{d\sigma}\delta(\sigma-\sigma')
+\end{align}
+
+Integrando il lato destro e sinistro rispetto a \((2\pi)^{-1}\int_0^\pi d\sigma e^{im\sigma}\int_0^{2\pi}d\sigma' e^{in\sigma'}\), si ottengono le relazioni di commutazione: 
+
+\begin{align}
+    [\alpha_m^I, \alpha_n^J] = m \eta^{IJ}\delta_{m+n, 0}
+\end{align}
+
+in particolare quindi \(\alpha_0\) commuta con tutti gli altri modi. In effetti questo ha senso, perchè \(\alpha_0^I = \sqrt{2\alpha'}p^I\), il momento trasportato, e dovrebbe avere commutatore non banale solamente rispetto a \(x_0\). 
+
+A proposito di \(x_0\), l'ultima cosa da calcolare sono le sue relazioni di commutazione con gli oscillatori \(\alpha^I_n\). Per cominciare, considera 
+
+\begin{align}
+    [X^I(\tau, \sigma), 2\pi\alpha' p^{\tau J}(\tau, \sigma')] = [X^I(\tau, \sigma), \dot{X}^I(\tau, \sigma')] = 2\pi\alpha' i \eta^{IJ}\delta(\sigma-\sigma')
+\end{align}
+
+
+Integriamo entrambi i lati dell'equazione per \(\sigma \in [0, \pi]\): ottengo che al lato sinistro si cancella il contributo degli oscillatori (\(\propto \cos(n\sigma)\)), mentre al lato destro integro la delta di Dirac
+
+\begin{align}
+    [x_0^I + \sqrt{2\alpha'}\alpha_0^I, \dot{X}^J (\tau, \sigma')] = 2\alpha' i \eta^{IJ}
+\end{align}
+
+Siccome abbiamo visto che \(\alpha_0^I\) non commuta solo con \(x_0\), commuta con \(\dot{X}^J\). Posso quindi buttarlo, ed inoltre espandere in modi \(\dot{X}^J\): 
+
+\begin{align}
+    &\sum_{n\in \mathbb{Z}}[x_0^I, \alpha_n^J]\cos(n\sigma') e^{-in\tau} = \sqrt{2\alpha'}i\eta^{IJ} \notag \\
+    & [x_0^I, a_0^J] + \sum_{n \geq 1}([x_0^I, \alpha_n^J] e^{-in\tau} + [x_0^I, \alpha_{-n}^J] e^{in\tau})\cos(n\sigma') = \sqrt{2\alpha'}i\eta^{IJ}
+\end{align}
+
+Integrando ora in \(\sigma' \in [0, \pi]\), si otteniene infine 
+
+\begin{align}
+    [x_0^I, \alpha_0^J] = \sqrt{2\alpha'}\eta^{IJ} \implies [x_0^I, \alpha_n^J] = 0, \, n \neq 0
+\end{align}
+
+Ora che abbiamo le relazioni di commutazione fra tutti gli operatori, possiamo osservare: 
+
+\clm{}{}{
+
+    I modi \(\alpha_n, \,  n \in \mathbb{Z}\) sono equivalenti ad un set di infiniti operatori di creazione e distruzione
+}
+
+Infatti, se definiamo 
+
+\begin{align}
+    \begin{cases}
+        \alpha^I_n =: \sqrt{n}a^I_n \\
+        \alpha^I_{-n} =: \sqrt{n}a^{I\dagger}_n
+    \end{cases}, \quad n \in \mathbb{N} \implies [a_m^I, a_n^{J\dagger}] = \delta_{n,m}\eta^{IJ}
+\end{align}
+
+\subsection{Operatori di Virasoro e invarianza di Lorentz}
+
+Cosa succede per gli operatori \(\alpha^I_-\)? Avevamo visto che erano legati ai modi di Virasoro (che ora sono promossi ad operatori di Virasoro), secondo la relazione 
+
+\begin{align}
+    \sqrt{2\alpha'}\alpha^-_n = \frac{1}{p^+}L_n^\perp, \quad L_n^\perp = \frac{1}{2}\sum_{p\in\mathbb{Z}}\alpha^I_{n-p}\alpha^I_p 
+\end{align}
+
+In particolare, \(L_0^\perp\) coincide con l'Hamiltoniana, ma abbiamo un problema: l'hamiltoniana quantistica \emph{deve} essere ordinata normalmente (cioè con gli operatori di creazione alla destra). Dobbiamo quindi prima risolvere questo problema prima di poter determinare lo spettro di massa della teoria. Considero quindi 
+
+\begin{align}
+    L_0^\perp = \frac{1}{2}\sum_{p \in \mathbb{Z}}\alpha^I_{-p}\alpha^I_p = \frac{1}{2}\alpha_0^I \alpha_0^I + \frac{1}{2}\sum_{p=1}^\infty \alpha_{-p}^I\alpha_p^I + \underbrace{\frac{1}{2}\sum_{p=1}^{\infty}\alpha_p^I \alpha_{-p}^I}_{\text{non ordinato normalmente}}
+\end{align}
+
+ci concentriamo quindi sul pezzo non ordinato: vale 
+
+\begin{align}
+    \frac{1}{2}\sum_{p=1}^{+\infty}\alpha_p^I \alpha_{-p}^I &= \frac{1}{2}\sum_{p=1}^\infty \left(\alpha_{-p}^I \alpha^I_p + [\alpha_p^I, \alpha_{-p}^I] \right) \notag \\
+    &= \frac{1}{2}\left(\sum_{p=1}^\infty \alpha_{-p}^I \alpha_p^I + \eta^{II} \right) \notag \\
+    &= \frac{1}{2}\left(\sum_{p=1}^\infty \alpha_{-p}^I \alpha_p^I + (D-2)p \right)
+\end{align}
+
+L'ultimo pezzo è divergente. Questo è un problema perché entra nella massa degli stati di stringa (siccome \(\sqrt{2\alpha'}\alpha_0^- = 2\alpha^- p^- = \frac{1}{p^+}L_o^\perp\)). 
+
+Usiamo la seguente strategia: definiamo, come operatore quantistico, il modo zero di Virasoro come l'operatore ordinato normalmente, senza costante aggiuntiva, cioè 
+
+\begin{align}
+    L_0^\perp := \frac{1}{2}\alpha^I \alpha^I + \sum_p^\infty a_p^I a_{-p}^I = \alpha' p^I p^I + \sum_p^\infty p a_p^{I\dagger}a_p^I 
+\end{align}
+
+La costante si ri-introduce quando leghiamo questo modo alla componente meno del momento, \(p^-\): la relazione diventa quindi 
+
+\begin{align}
+    2\alpha' p^- = \frac{1}{p^+}(L_0^\perp + a), \quad a = \frac{D-2}{2}\sum_{p=1}^{\infty}p 
+\end{align}
+
+Lasciando per il momento \(a\) simbolico, quanto vale la massa di una stringa? Vale, seguendo passaggi simili al caso non quantistico, 
+
+\begin{align}
+    M^2 = -p^2  = 2p^+p^- - p^I p^I = \frac{1}{\alpha'}(L_0^\perp + a) - p^I p^I = \frac{1}{\alpha'}(a + \sum_{n=1}^\infty n a_n^{I\dagger}a_n^I)
+\end{align}
+
+Il parametro \(a\) quindi introduce uno shift nelle masse. Che senso fisico traiamo d'altra parte, dato che \(a\) diverge? Possiamo usare un notevole risultato matematico: considera la seguente funzione 
+
+\begin{align}
+    \zeta(s) = \sum_{n=1}^{+\infty} \frac{1}{n^s}, \quad \text{Re}(s) > 1
+\end{align}
+
+A noi serve \(a = \zeta(s = -1)\). Scrivendo 
+
+\begin{align}
+    \eta(s) = \sum_{n=1}^{+\infty} \frac{(-1)^{n+1}}{n^s} \implies \eta(s) = \zeta(s)(1-2^{1-s})
+\end{align}
+
+Possiamo quindi facilmente passare da una all'altra. Vale 
+
+\begin{align}
+    \eta(-1) = \lim_{x\to 1^-} \sum_{n=1}^{+\infty} (-1)^{n+1} n x^{n-1} = \lim_{x \to 1^-}\frac{1}{1+x^2} = \frac{1}{4} \implies \zeta(-1) = -\frac{\eta(-1)}{3} = -\frac{1}{12}
+\end{align}
+
+Dunque, \(a = -\frac{D-2}{24}\). 
+
+Per gli altri modi di Virasoro, vale \(L^\dagger_n = L_{-n}\), infatti: 
+
+\begin{align}
+    (L_n)^\dagger &= \frac{1}{2}\sum_{p=1}^\infty (\alpha_{n-p}^I \alpha_p^I)^\dagger = \frac{1}{2}\sum_{p=1}^\infty \alpha_p^{I \dagger} \alpha_{n-p}^{I\dagger}  \notag \\
+    &= \frac{1}{2}\sum_{p=1}^\infty \alpha^I_{-p}\alpha^I_{-n+p} = \frac{1}{2}\sum_{p\in \mathbb{Z}} \alpha_{-n-p}^I \alpha_p^I = L_{-n}^\perp
+\end{align}
+
+Nella penultima uguaglianza ho commutato i due operatori, ed ho cambiato l'indice di sommazione \(p \to -p\). Per esercizio si possono poi ricavare le seguenti relazioni: 
+
+\begin{align}
+    &[L_m^\perp, L_n^\perp] = (m-n)L^\perp_{n+m} \notag \\
+    &[L_m^\perp, L_{-m}^\perp] = 2mL_0 +\frac{1}{12}(D-2)(m^3 -m)
+\end{align}
+
+(caso particolare di algebra di Lie, detta algebra di Virasoro centralmente estesa). Un altra importante caratteristica dei modi di Virasoro è come questi agiscono sulle coordinate di stringa. Si dimostra in particolare che vale 
+
+\begin{align}
+    [L_m^\perp, X^I(\sigma, \tau)] = -ie^{im\tau}\cos(m\sigma)\dot{X}^I + ie^{im\sigma}\sin(m\sigma)(X^I)' =: \xi_m^\tau \dot{X}^I + \xi_m^\sigma (X^I)'
+\end{align}
+
+\clm{}{}{
+
+    Gli operatori di Virasoro generano le riparametrizzazioni del WS, ovvero inducono le trasformazioni 
+
+    \begin{align}
+        \begin{cases}
+            \tau \to \tau + \xi^\tau_m \eps \\ 
+            \sigma \to \sigma +\xi^\sigma_m \eps
+        \end{cases}, \quad \eps << 1
+    \end{align}
+}
+
+\pf{}{
+    Considera \(X^I(\tau + \eps \xi^\tau_m, \sigma + \eps \xi^\sigma_m)\): possiamo espandere ed ottenere 
+    \begin{align}
+        X^I(\tau + \eps \xi^\tau_m, \sigma + \eps \xi^\sigma_m) = X^I(\tau, \sigma) + \eps (\xi^\tau_m \dot{X}^I + \xi^\sigma_m (X^I)') = X^I (\tau, \sigma) + \eps[L_m^\perp, X^I(\tau, \sigma)]
+    \end{align}
+}
+
+Viene naturale quindi chiedersi quale sia la riparametrizzazione indotta da \(L_0^\perp\). Direttamente dalle espressioni, si trova \(\xi^\tau_0 = 0, \xi^\sigma_0 = i \implies [L_0^\perp, X^I] = -i\partial_\tau X^I\), cioè abbiamo ritrovato l'eq. del moto alla Heisemberg! Questo risultato è giusto, perchè a meno di una costante additiva \(L_0^\perp\) è l'hamiltoniana quindi ricopre il suo stesso ruolo nelle equazioni del moto. 
+
+Parliamo ora di generatori di Lorentz. L'invarianza di lorentz dell'azione \(S_{NG}\) aveva permesso di trovare una serie di correnti conservate sul WS, come \(M^\alpha_{\mu\nu}\). Da queste correnti abbiamo poi ottenuto le cariche, che sono poi i generatori delle trasformazioni di Lorentz. 
+
+Come si scrivono quindi queste cariche in termini degli oscillatori? Classicamente, si ottiene 
+
+\begin{align}
+    M^{\mu\nu} = \frac{1}{2\pi\alpha'}\int_0^\pi d\sigma (X^\mu \dot{X}^\mu - X^\nu \dot{X}^\mu)
+\end{align}
+
+Da cui, in termini di oscillatori \emph{classici}, si ottiene
+
+\begin{align}
+    M^{\mu\nu} = x_0^\mu p^\nu - x_0^\nu p^\mu -i\sum_{n=1}^\infty \frac{\alpha^\mu_{-n}\alpha^\nu_n - \alpha_{-n}^\nu \alpha^\mu_n}{n}
+\end{align}
+
+Ora, i più complicati generatori quantistici, nel gauge LC sono \(M^{-I}\) (siccome \(X^-\) è una funzione complicata dei modi trasversi). Qualunque sia la loro forma, l'algebra di lorentz ci dice che deve valere 
+
+\begin{align}
+    [M^{-I}, M^{-J}] = 0
+\end{align}
+
+Determinare la forma dell'operatore quantistico è un (tedioso) esercizio. Si usa il fatto che deve essere un operatore hermitiano, e che deve essere ordinato normalmente, partendo dalla forma del generatore classico. Infine, si calcola il commutatore. Il risultato è che le seguenti due equazioni devono valere: 
+
+\begin{align}
+    \begin{cases}
+        1 - \frac{d-2}{24} = 0 \\ \frac{d-2}{24} + a = 0 
+    \end{cases}
+\end{align}
+
+La prima fissa \(d = 26\), la seconda \(a = -1\). Vedremo che il fatto che \(a<0\) è un problema perchè introdurrà un tachione nello spettro di massa. 
+
+
+\subsection{Costruzione dello spazio degli stati e spettro di massa}
+
+Ricorda i due problemi della teoria non quantistica: il range delle masse era continuo, e lo stato fondamentale era un punto, cioè \(\nexists\) fotone. Siamo pronti a vedere cosa succede ora nella teoria quantistica. Cominciamo considerando lo stato fondamentale: 
+
+\begin{align}
+    \ket{p^+, \vec{p}_\perp} \, \text{t.c.} \quad a_n^I \ket{p^+, \vec{p}_\perp} = 0, \quad n\geq 1, I = 2, \ldots, 25
+\end{align}
+
+Per costruire gli stati eccitati, si agisce sul vuoto con gli operatori di costruzione \(a^{I\dagger}_n\). Nota che questi operatori sono \emph{infiniti}, e possono agire in un numero arbitrario di volte. Si tratta comunque di un infinito \emph{numerabile}, che possiamo organizzare nel modo seguente: 
+
+\begin{align}
+    \ket{\lambda} = \prod_{n=1}^\infty \prod_{I=2}^{25}(a_n^{I+})^{\lambda_{m, I}}\ket{p^+, \vec{p}_\perp}
+\end{align}
+
+Lo stato \(\ket{\lambda}\) indica un qualunque stato, ed inoltre \(\lambda_{m, I} \in \mathbb{N}\) indica \emph{quante volte} agisco con lo l'operatore di creazione con etichette \(m, I\). 
+
+Osserviamo quindi che lo spazio di Hilbert di stringa, \(\mathcal{H}_{\text{str}}\) è uno spazio vettoriale infinito-dimensionale, spannato da un insieme infinito di stati di base \(\ket{\lambda}\): dunque la teoria di stringa descrive un numero infinito di particelle diverse, e in generale uno stato è somma di stati \(\ket{\lambda}\). 
+
+Veniamo ora a discutere della massa degli stati. Per determinarla, possiamo usare l'equazione 
+
+\begin{align}
+    M^2 = -p^2 = \ldots = \frac{1}{\alpha'}\left(\sum_{n=1}^{\infty} na_n^{I\dagger}a_n^I -1\right) =: \frac{1}{\alpha'}(N^\perp -1)
+\end{align}
+
+Abbiamo definito l'operatore \(N^\perp\), che soddisfa le relazioni 
+
+\begin{align}
+    &[N^\perp, a_n^{I\dagger}] = na_n^{I\dagger} \notag \\
+    &[N^\perp, a_n^I] = -na_n^I 
+\end{align}
+
+ed inoltre ha le seguenti proprietà fondamentali: è ordinato normalmente, annichila lo stato fondamentale, entra nella definizione di \(L_0^\perp\), perchè \(L_0^\perp = \alpha' p^I p^I +N^\perp\). 
+
+Come agisce \(N^\perp\) sui nostri stati? In altre parole, quali sono i suoi autovalori ed autovettori? Considera per esempio 
+
+\begin{align}
+    N^\perp a_2^{I\dagger}\ket{p^+ \vec{p}_\perp} = [N^\perp, a_2^{I\dagger}]\ket{p^+ \vec{p}_\perp} = 2a_2^{I\dagger}\ket{p^+ \vec{p}_\perp}
+\end{align}
+
+cioè troviamo che \(a_n^{I\dagger}\ket{p^+ \vec{p}_\perp}\) è un autovettore di \(N^\perp\), con autovalore \(n\). Più in generale, si trova immediatamente che 
+
+\begin{align}
+    N^\perp \ket{\lambda} = N^\perp_\lambda \ket{\lambda}, \quad N^\perp_\lambda = \sum_n \sum_I n \lambda_{n, I}
+\end{align}
+
+Dunque troviamo che gli stati fondamentali sono quelli con \(N^\perp = 0\): ma osservo che chiaramente 
+
+\begin{align}
+    M^2 \ket{p^+ \vec{p}_\perp} = -\frac{1}{\alpha'}\ket{p^+, \vec{p}_\perp}
+\end{align}
+
+cioè lo stato fondamentale è un tachione! Vediamo cosa succede agli stati eccitati: 
+
+\begin{align}
+    \begin{cases}
+        N^\perp = 1 \\ M^2 = 0 
+    \end{cases} \implies d -2 = 24 \, \text{stati massless, ottenuti usando un operatore di creazione}
+\end{align}
+
+possiamo quindi pensare che questi sono i \(24\) stati trasversi di un bosone vettore massless (come il fotone)! Se proseguiamo con gli stati eccitati, troviamo poi gli stati di un bosone vettoriale massivo, 
+
+\begin{align}
+    \begin{cases}
+        N^\perp = 2 \\
+        M^2 = 1/\alpha'
+    \end{cases}, \quad a_1^{I\dagger}a_1^{J\dagger}\ket{p^+, \vec{p}_\perp}, \, a_2^{I\dagger} \ket{p^+, \vec{p}_\perp}, \quad \frac{1}{2}(D-2)(D-1) + (D-2) =  \frac{(D-2)(D+1)}{2} = 324
+\end{align}
+
+\section{Stringa bosonica chiusa}
+
+\subsection{Soluzione dell'equazione del moto classica}
+
+Abbiamo visto che la teoria quantistica di una stringa bosonica aperta porta ad uno stato fondamentale a massa quadra negativa (tachione). Potremmo quindi buttare via tutto il lavoro da noi fatto. Vedremo che introducendo la stringa fermionica, lo spettro della teoria cambiarà, e il tachione scomparirà, tornando ad avere una teoria plausibile. Ma perchè vale la pena tentare un operazione così complicata? 
+
+Il motivo sta tutto nello spettro di massa della teoria quantistica di stringa chiusa: scopriremo che il settore massless inculde una particella di spin 2: il \emph{gravitone}. La strina bosonica ha quindi diversi problemi: tachione, \(d=26\), etc. ma ha anche un grande pregio: offre un modo di unificare gravità e teorie di gauge a livello quantistico. 
+
+Ricordiamo quindi le equazioni del moto per la stringa chiusa classica, e la sua soluzione: 
+
+\begin{align}
+    \ddot{X}^\mu - (X^\mu)'' = 0, \quad X^\mu(\tau, \sigma) = X^\mu_L (\tau, \sigma) + X^\mu_R(\tau, \sigma)
+\end{align}
+
+Ricordando che \(X_L\) va verso \(\sigma <0\), mentre \(X_R\) verso \(\sigma >0\). Nel caso aperto, \(L, R\) erano vincolate dalle condizioni al bordo. Invece, nel caso chiuso queste sono sostituite con la condizione di perioditicità, ovvero 
+
+\begin{align}
+    X^\mu (\tau, \sigma) = X^\mu (\tau, \sigma +2\pi), \quad \forall \tau, \sigma
+\end{align}
+
+definisci \(u = \tau +\sigma\), \(v = \tau -\sigma\). Allora si ha che 
+
+\begin{align}
+    X^\mu = X^\mu_L (u) + X^\mu_R(v) \implies X^\mu_L(u) + X^\mu_R(v) = X^\mu_L (u+2\pi) + X^\mu_R (v-2\pi) \implies X^\mu_L(u) - X^\mu_L(u+2\pi) = X^\mu_R(v-2\pi) - X_R^\mu (v)
+\end{align}
+
+per cui otteniamo che le componenti \(L, R\) non sono completamente indipendenti. Derivando rispetto ad \(u, v\) si ottiene 
+
+\begin{align}
+    \begin{cases}
+        \partial_u X^\mu_L (u) = \partial_u X^\mu_L (u+2\pi) \\
+        \partial_v X^\mu_R(v) = \partial_v X^\mu_R (v-2\pi)
+    \end{cases}
+\end{align}
+
+ovvero le derivate sono funzioni periodiche, e posso procedere come nel caso della stringa aperta, cioè espandere in modi di Fourier le derivate: 
+
+\begin{align}
+    \begin{cases}
+        \partial_u X^\mu_L (u) = \sqrt{\frac{\alpha'}{2}}\sum_{n\in \mathbb{Z}}\bar{\alpha}_n^\mu e^{-in u} \\
+        \partial_v X^\mu_R (v) = \sqrt{\frac{\alpha'}{2}}\sum_{n\in \mathbb{Z}}\alpha_n^\mu e^{-in v}
+    \end{cases}
+\end{align}
+
+che posso poi integrare: 
+
+\begin{align}
+    \begin{cases}
+        X^\mu_L (u) = \frac{1}{2}x_0^{Lu} + \sqrt{\frac{\alpha'}{2}}\bar{\alpha}^\mu_0 u + i\sqrt{\frac{\alpha'}{2}}\sum_{n \neq 0} \frac{\bar{\alpha}_n^\mu}{n}e^{-inu} \\
+        X^\mu_R (v) = \frac{1}{2}x_0^{Lv} + \sqrt{\frac{\alpha'}{2}}\alpha^\mu_0 v + i\sqrt{\frac{\alpha'}{2}}\sum_{n \neq 0} \frac{\alpha_n^\mu}{n}e^{-inv}
+    \end{cases}
+\end{align}
+
+resta da imporre il vincolo che lega \(X_L, X_R\): fortunatamente tutte le parti periodiche e costanti si cancellano, così che il vincolo si traduce semplicemente in \(\alpha_0^\mu = \bar{\alpha}^\mu_0\). Quindi ho un solo operatore di momento. 
+
+Sostituendo troviamo la soluzione generale: 
+
+\begin{align}
+    X^\mu(\tau, \sigma) = \frac{x_0^{L\mu} + x_0^{R\mu}}{2} + \sqrt{2\alpha'}\alpha^\mu_0 \tau + i \sqrt{\frac{\alpha'}{2}}\sum_{n\neq 0}\frac{e^{-in\tau}}{n}(\alpha^\mu_n e^{in\sigma} + \bar{\alpha}_n^\mu e^{-in\sigma})
+\end{align}
+
+da questa si può ottenere il momento, usando 
+
+\begin{align}
+    p^{\tau mu} = \frac{1}{2\pi\alpha'}\dot{X}^\mu (\tau, \sigma) \implies P^\mu = \int_0^{2\pi} p^{\tau \mu}d\sigma = \sqrt{\frac{2}{\alpha'}}\alpha^\mu_0 \implies \alpha^\mu_0 = \sqrt{\frac{\alpha'}{2}}P^\mu
+\end{align}
+
+Inoltre, siccome nel risultato finale conta solo la somma, scriviamo senza perdità di generalià che \(X_0^{L\mu} = X_0^{R\mu} = X_0^\mu\). 
+
+A partire dalla soluzione generale si ottiene infine 
+
+\begin{align}
+    \begin{cases}
+        \dot{X}^\mu + (X^\mu)' = \sqrt{2\alpha'}\sum_{n\in \mathbb{Z}}\bar{\alpha}_n^\mu e^{-in(\tau + \sigma)} \\ 
+        \dot{X}^\mu - (X^\mu)' = \sqrt{2\alpha'}\sum_{n\in \mathbb{Z}}\alpha_n^\mu e^{-in(\tau - \sigma)}
+    \end{cases}
+\end{align}
+
+\subsection{Relazioni di commutazione}
+
+Non resta che imporre le condizioni di quantizzazione e quantizzare. Imponiamo le regole direttamente a livello degli oscillatori: 
+
+\begin{align}
+    &[bar{\alpha}_n^I, \bar{\alpha}_m^J] = m \delta_{m+n, 0}\eta^{IJ} \\
+    &[\alpha_n^I, \alpha_m^J] = m \delta_{m+n, 0}\eta^{IJ} \\
+    &[\bar{\alpha}_n^I, \alpha_m^J]  = 0  
+\end{align}
+
+cioè i due set di oscillatori non si parlano. Analogamente costruiamo gli operatori di creazione e distruzione: 
+
+\begin{align}
+    \alpha^I_n = \sqrt{n}a_n^I, \quad \alpha^I_{-n} = \sqrt{n}a_n^{I\dagger}, \quad \bar{\alpha}^I_n = \sqrt{n}\bar{a}_n^I, \quad \bar{\alpha}^I_{-n} = \sqrt{n}\bar{a}_n^{I\dagger}   
+\end{align}
+
+Le regole di commutazione complete sono quindi date da: 
+
+\begin{align}
+    &[a_m^I, a_n^{J\dagger}] = \delta_{n,m}\eta^{IJ} = [\bar{a}_m^I, \bar{a}_n^{J\dagger}] \notag \\ 
+    &[x_0^I, a_n^I] = 0 = [x_o^I, \bar{a}_n^J], \quad n \neq 0 \notag \\ 
+    &[x_o^I, a_0^J] = [x_o^I, \bar{a}_0^J] = i\sqrt{\frac{\alpha'}{2}}\eta^{IJ}
+\end{align}
+
+L'hamiltoniana sul LC è ancora \(H = \alpha' p^+ p^-\), siccome \(p^-\) genera le traslazioni di \(X^+\). Similmente al caso aperto c'è un problema di ordinamento normale, ed è necessario studiare gli operatori di Virasoro trasversi anche per la stringa chiusa. 
+
+Per la stringa aperta avevamo visto che i modi di Virasoro erano in corrispondenza con gli operatori \(\alpha^-\). Per la stringa chiusa abbiamo sia \(\alpha^-\), sia \(\bar{\alpha}^-\), quindi ci aspettiamo di avere due algebre di Virasoro distinite. D'altra parte, sappiamo anche che \(\bar{\alpha}^-_0 = \alpha_0^-\), quindi dobbiamo studiare bene gli operatori zero di Virasoro, che sono i puù importanti perchè sono legati all'hamiltoniana (e alla massa degli stati di stringa). 
+
+Legando quindi le coordinate \(X^-\) alle coordinate trasverse \(X^I\), attraverso la equazione 
+
+\begin{align}
+    (\dot{X}^- \pm (X^-)') = \frac{1}{2\alpha' p^+}(\dot{X}^I \pm (X^I)')^2 
+\end{align}
+
+si procede come nel caso della stringa aperta e si definisce 
+
+\begin{align}
+    \begin{cases}
+        \bar{L}_n^\perp = \frac{1}{2}\sum_{p\in \mathbb{Z}} \bar{\alpha}_p^I \bar{\alpha}_{n-p}^I \\
+        L_n^\perp = \frac{1}{2}\sum_{p\in \mathbb{Z}} \alpha_p^I \alpha_{n-p}^I 
+    \end{cases}
+\end{align}
+
+Da cui si ottiene 
+
+\begin{align}
+    \begin{cases}
+        \dot{X}^I + X' = \frac{2}{p^+}\sum_{n\in \mathbb{Z}}\bar{L}_n^\perp e^{-in(\sigma+\tau)} \\ 
+        \dot{X}^I - X' = \frac{2}{p^+}\sum_{n\in \mathbb{Z}}L_n^\perp e^{-in(\tau-\sigma)}
+    \end{cases} \implies \begin{cases}
+        \sqrt{2\alpha'}\bar{\alpha}_n^- = \frac{2}{\pi}\bar{L}_n^\perp \\
+        \sqrt{2\alpha'}\alpha_n^- = \frac{2}{\pi}L_n^\perp  
+    \end{cases} \implies \bar{L}_0^\perp = L_0^\perp
+\end{align}
+
+L'ultima equazione va letta come equazione operatoriale, cioè quando gli operatori agiscono sugli stati. 
+
+Occupiamoci ora dell'ordinamento normale. Vale 
+
+\begin{align}
+    &\bar{L}_0^\perp = \frac{\alpha'}{4}p^I p^I + \bar{N}^\perp \notag \\ 
+    &L_0^\perp = \frac{\alpha'}{4}p^Ip^I + N^\perp 
+\end{align}
+
+dove abbiamo definito 
+
+\begin{align}
+    &\bar{N}^\perp = \sum_{n=1}^\infty n \bar{a}_n^{I\dagger}\bar{a}_n^I \notag \\
+    &N^\perp = \sum_{n=1}^\infty n a_n^{I\dagger}a_n^I
+\end{align}
+
+deve valere sempre \(d=26\) come nella stringa aperta, e si trova che 
+
+\begin{align}
+    &\sqrt{2\alpha'}\bar{\alpha}_0 ^- = \frac{2}{p^+}(\bar{L}_0^\perp -1) \notag \\
+    &\sqrt{2\alpha'}\alpha_0 ^- = \frac{2}{p^+}(L_0^\perp -1)
+\end{align}
+
+in modo simmetrico quindi scriviamo 
+
+\begin{align}
+    \sqrt{2\alpha'}\alpha^-_0 = \frac{1}{p^+}(L_0^\perp + \bar{L}_0^\perp -2) = \alpha' p^-
+\end{align}
+
+Otteniamo quindi l'operatore massa quadra come 
+
+\begin{align}
+    M^2 = -p^2 = -p^Ip^I +2p^+p^- = \frac{2}{\alpha'}(N^\perp + \bar{N}^\perp -2)
+\end{align}
+
+Non rimane che studiare l'azione di \(L_0, \bar{L}_0\) sulle coordinate, per poi poter costruire lo spazio degli stati ed analizzare lo spettro di massa. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
