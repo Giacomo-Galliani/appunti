@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {1.8}Simmetrie di lorentz e correnti}{18}{section.1.8}%
 \contentsline {section}{\numberline {1.9}Stringa nel cono di luce}{20}{section.1.9}%
 \contentsline {section}{\numberline {1.10}Soluzione generale delle equazioni del moto}{23}{section.1.10}%
-\contentsline {chapter}{\numberline {2}Quantizzazione della stringa}{27}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Quantizzazione della stringa bosonica}{27}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Stringa bosonica aperta}{27}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Relazioni di commutazione ed Hamiltoniana}{27}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Operatori di Virasoro e invarianza di Lorentz}{29}{subsection.2.1.2}%
@@ -20,25 +20,30 @@
 \contentsline {subsection}{\numberline {2.2.3}Spazio degli stati e spettro}{37}{subsection.2.2.3}%
 \contentsline {section}{\numberline {2.3}T-dualità}{38}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Compattificazione tramite Orbifold}{41}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Le superalgebre di Lie}{45}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{45}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Definizione di superalgebra di Lie e primi esempi}{48}{section.3.2}%
-\contentsline {section}{\numberline {3.3}L'algebra di supersimmetria}{50}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Modelli supersimmetrici con \(\mathcal {N} = 1\)}{56}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Modello di Wess-Zumino}{56}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Elettrodinamica susy con \(\mathcal {N}=1\)}{60}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Rappresentazioni di supersimmetria}{62}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Gruppo di Poincarè}{62}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Supersimmetria, caso massless}{63}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Supersimmetria, caso massivo}{65}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Superspazio e supercampi}{66}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Formalismo}{66}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Invarianti supersimmetrici}{70}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Applicazione: scrittura di azioni supersimmetriche}{72}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Azione generale di Wess-Zumino}{72}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Elettrodinamica}{75}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Super Yang-Mills}{77}{subsection.6.3.3}%
-\contentsline {chapter}{\numberline {7}Quantizzazione di teorie supersimmetriche}{79}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Derivazione, integrazione e supergrafi}{79}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Rottura della supersimmetria}{81}{section.7.2}%
+\contentsline {chapter}{\numberline {3}La superstringa}{45}{chapter.3}%
+\contentsline {section}{\numberline {3.1}L'azione di stringa fermionica}{45}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Settore NS}{46}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Settore di Ramond}{47}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Conteggio degli stati}{48}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Le superalgebre di Lie}{50}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{50}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Definizione di superalgebra di Lie e primi esempi}{53}{section.4.2}%
+\contentsline {section}{\numberline {4.3}L'algebra di supersimmetria}{55}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Modelli supersimmetrici con \(\mathcal {N} = 1\)}{61}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Modello di Wess-Zumino}{61}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Elettrodinamica susy con \(\mathcal {N}=1\)}{65}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Rappresentazioni di supersimmetria}{67}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Gruppo di Poincarè}{67}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Supersimmetria, caso massless}{68}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Supersimmetria, caso massivo}{70}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Superspazio e supercampi}{71}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Formalismo}{71}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Invarianti supersimmetrici}{75}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Applicazione: scrittura di azioni supersimmetriche}{77}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Azione generale di Wess-Zumino}{77}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Elettrodinamica}{80}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Super Yang-Mills}{82}{subsection.7.3.3}%
+\contentsline {chapter}{\numberline {8}Quantizzazione di teorie supersimmetriche}{84}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Derivazione, integrazione e supergrafi}{84}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Rottura della supersimmetria}{86}{section.8.2}%
 \contentsfinish 

@@ -1364,7 +1364,7 @@ Quindi la massa è la somma di quantità positive,
 Questa teoria ha qualche problema: lo spettro di massa è continuo, e un modo massless implica il collasso della strigna in un punto. Questi problemi vengono entrambi risolti dalla quantizzazione. Questa però porterà ad altri problemi... 
 
 
-\chapter{Quantizzazione della stringa}
+\chapter{Quantizzazione della stringa bosonica}
 
 \section{Stringa bosonica aperta}
 
@@ -2233,12 +2233,236 @@ concludiamo che la costante di ordinamento è \(-15/8\). La formula di massa che
 
 Quindi non è possibile risolvere il problema del tachione tramite l'orbifold. Semplicemente offre un'altra tecnica di compattificazione. La chiave per eliminare il tachione è considerare una teoria di stringa che includa i fermioni. 
 
+\chapter{La superstringa}
 
+\section{L'azione di stringa fermionica}
 
+Per descrivere fermioni sul WS è necessario introdurre delle variabile dinamiche \emph{anticommutanti}, che denoteremo \(\psi^\mu_\alpha (\sigma, \tau), \, \alpha = 1, 2\). 
 
+In generale due variabili \(b_1, b_2\) si dicono anticommutanti se \(\left\{ b_1, b_2 \right\} = 0\), e \(b_1^2 = b_2^2 = 0\). Quantisticamente ci possono essere dei casi in cui l'anticommutatore è diverso da zero. I fermioni sono descritti dall'eq. classica di Dirac, che introduce quantizzando degli operatori di creazione e distruzione distinti a seconda della carica (positiva o negativa). Uno stato a molte particelle è tipicamente nella forma 
 
+\begin{align}
+    \prod_i f^\dagger_{p_i, s_i} \ket{\Omega}
+\end{align}
 
+Si noti che gli stati così creati sono antisimmetrici in tutte le etichette, ed è automatico il principio di esclusione di Pauli. 
 
+Nel caso della sringa bosonica, \(X^+\) era fissato dal gauge, ed \(X^-\) si otteneva a partire dalle coordinate nelle direzioni trasversali \(X^I\). Questo continua ancora ad essere vero in stringa fermionica: vale \(\psi^+_\alpha =0\), e \(\psi^-_\alpha\) si scrive in termini di \(\psi^I_\alpha\). Il commutatore \([M^{-I}, M^{-J}]\) cambia leggermente, così che \(d=10\). Cambia inoltre la costante di ordinamento che diventa \(-1/2\). 
+
+Scriviamo dunque l'azione: 
+
+\begin{align}
+    S_\psi = \frac{1}{2\pi}\int d\tau \int_0^\pi d\sigma (\psi_1^I (\partial_\tau + \partial_\sigma)\psi_1^I + \psi_2^I (\partial_\tau - \partial_\sigma)\psi_2^I)
+\end{align}
+
+Quindi \(\psi_1\) è right moving mentre \(\psi_2\) è left moving. Le equazioni del moto si ottengono variando rispetto a \(\delta \psi^I_\alpha\). Sono date da 
+
+\begin{align}
+    (\partial_\tau + \partial_\sigma)\psi^I_1 = 0, \quad (\partial_\tau - \partial_\sigma)\psi_2^I = 0, \quad  \psi_1^I(\tau, \sigma^*) \delta \psi_1^I(\tau, \sigma^*) - \psi_2^I(\tau, \sigma^*)\delta\psi_2^I(\tau, \sigma^*) = 0, \, \sigma^* = 0, \pi 
+\end{align}
+
+Le equazioni del moto trattano \(\psi_1, \psi_2\) separatamente, ma le due si parlano nelle condizioni al contorno. In particolare, si possono eseguire diverse scelte per soddisfarle: 
+
+\begin{align}
+    \begin{cases}
+    \psi_1^I (\tau, 0) = \pm \psi_2^I (\tau, 0) \\
+    \psi_2^I (\tau, \pi) = \pm \psi_2^I (\tau, \pi)
+    \end{cases} \implies \begin{cases}
+        \delta\psi_1^I (\tau, 0) = \pm \delta\psi_2^I (\tau, 0) \\
+        \delta\psi_2^I (\tau, \pi) = \pm \delta\psi_2^I (\tau, \pi)
+    \end{cases}
+\end{align}
+
+Un segno dei due è irrilevante, e per convenzione si prende \(\psi_1^I(\tau, 0) = \psi_2^I (\tau, 0) \). Il segno delle seconde è invece rilevante, e separa le stringhe in due settori: se scelgo il + ho il settore di Ramond, invece il - ho il settore di Neveu-Schwartz. 
+
+Tipicamente per studiare i due settori si introduce una notazione leggermente diversa: definisci il campo fermionico sul WS 
+
+\begin{align}
+    \Psi^I = \begin{cases}
+        \psi_1^I(\tau, \sigma), \, \sigma \in [0, \pi] \\
+        \psi_2^I (\tau, \sigma), \, \sigma \in [-\pi, 0]
+    \end{cases}
+\end{align}
+
+che ha le seguenti proprietà: 
+
+\begin{enumerate}
+    \item In entrabi i settori, è continua all'origine 
+    \item Nel settore di Ramond è periodica, nel settore NS è anti-periodica (di periodo \(2\pi\), in \(\sigma\))
+    \item è una funzione solamente di \(\tau-\sigma\), direttamente dalle equazioni del moto. 
+\end{enumerate}
+
+\section{Settore NS}
+
+Abbiamo visto che un fermione nel settore NS è funzione di \(\tau-\sigma\), ed è antiperiodico in \(\sigma \to \sigma +2\pi\), cioè è periodica in \(4\pi\). Cioò significa che posso espandere con Fourier, usando modi semi-interi: 
+
+\begin{align}
+    \psi^I (\tau-\sigma) \propto \sum_{r \in (\mathbb{Z} + 1/2)} b_r^I e^{-ir(\tau-\sigma)}
+\end{align}
+
+Quantizzando, i \(b_r^I\) diventano operatori anticommutanti, con \(r<0\) operatori di creazione, \(r>0\) operatori di distruizione. Agiscono sullo stato di vuoto (\(\ket{NS}\)), e obbediscono alle relazioni 
+
+\begin{align}
+    \left\{ b_r^I, b_s^J \right\} = \delta_{r+s, 0}\delta^{IJ}
+\end{align}
+
+Dunque una possibile base del settore NS è data dA
+
+\begin{align}
+    \ket{\lambda} = \left(\prod_{I=2}^d\prod_{n=1}^\infty (\alpha_{-n}^I)^{\lambda_{n, I}}\right)\left(\prod_{J=2}^d\prod_{r=1/2, 3/2, \ldots}^\infty (b_{-r}^J)^{\rho_{r, J}}\right) \ket{NS} \otimes \ket{p^+, \vec{p}_\perp}
+\end{align}
+
+La formula di massa è quindi 
+
+\begin{align}
+    M^2 = \frac{1}{\alpha'}\left( \frac{1}{2}\sum_{p\neq0}\alpha_p^I \alpha_{-p}^I +\frac{1}{2}b^I_{-r}b^I_r\right)
+\end{align}
+
+La costante di ordinamento si ottiene allo stesso modo della stringa bosonica, con regolarizzazione \(\zeta\). Vediamo cosa cambia in questo settore: i bosoni sono come prima, mentre per i fermioni vale 
+
+\begin{align}
+    \frac{1}{2}\sum_{r = -1/2, -3/2, \ldots} r b_r^I b_{-r}^I \xrightarrow{r \to -r} \frac{1}{2}\sum_{r = 1/2, 3/2, \ldots}(-r)b_r^I b_{-r}^I 
+\end{align}
+
+A questo punto uso l'anticommutatore, ed ottengo 
+
+\begin{align}
+    \frac{1}{2}\sum_{r = 1/2, 3/2, \ldots}r b_{-r}b_r^I - \frac{1}{2}(D-2)(1/2+3/2+\ldots)
+\end{align}
+
+Abbiamo visto che la somma dei dispari è \(1/12\), così che \(a_{NS} = -\frac{1}{48}\), ed 
+
+\begin{align}
+    a_{tot} = (D-2)(a_B + a_{NS}) = \frac{D-2}{12} \implies a = -1/2
+\end{align}
+
+dove abbiamo sostituito \(D=10\) come richiede l'invarianza di Lorentz. La formula della massa quadra è dunque 
+
+\begin{align}
+    M^2 = \frac{1}{\alpha'}\left(N^\perp - \frac{1}{2}\right)
+\end{align}
+
+Notiamo che c'è ancora il tachione: lo stato di vuoto corrisponde ad \(N^\perp = 0\), ed ha massa \(-\frac{1}{2\alpha'}\). I primi stati eccitati sono invece massless (nota che ora gli autovalori di \(N^\perp\) sono i semi-interi), e sono \((D-2) = 8\). 
+
+Risulta utile introdurre l'operatore \((-1)^F\), che ha la proprietà di avere come autostati gli stati bosonici e fermionici, e come autovalore \(+1\) per gli stati bosonici, \(-1\) per gli stati fermionici. Vogliamo però definire come agisce \((-1)^F\) sugli stati di base. Questo è possibile solo se definiamo l'azione sul vuoto: decidicamo che il vuoto è fermionico. Allora la natura di \(\ket{\lambda}\) dipende da quante volte ho applicato degli operatori di costruzione fermionici. In particolare, se \(\sum \rho_{r, J}\) è pari lo stato è ancora fermionico, viceversa è dispari. In formule scriviamo quindi 
+
+\begin{align}
+    (-1)^F \ket{\lambda} = -(-1)^{\sum_{r,J}\rho_{r, J}}\ket{\lambda}
+\end{align}
+
+Questo è lo stesso risultato che avremmo ottenuto se avessimo imposto che \(\left\{ (-1)^F, b_r^I \right\} = 0\). 
+
+Possiamo anche concludere che i gli stati con \(N^\perp\) intero sono fermioni, mentre gli stati con autovalore semi-intero sono bosoni. Dunque gli 8 stati massless sono bosoni. Si parla sempre di bosoni/fermioni sul WS, non sull'intero spaziotempo. 
+
+\section{Settore di Ramond}
+
+Siccome \(\Psi^I\) è periofica, posso espandere in modi interi: 
+
+\begin{align}
+    \Psi^I (\tau-\sigma) \propto \sum_{n \in \mathbb{Z}} d_n e^{-in(\tau-\sigma)}
+\end{align}
+
+con \(d_n^I\) op. anticommutanti, che obbediscono a \(\left\{ d_m^I, d_n^J \right\} = \delta_{m+n, 0}\delta^{IJ}\). A differenza del settore NS, ci sono 8 modi zero fermionici, \(d_0^I\). Questi soddisfano \(\left\{ d_o^I, d_o^J \right\}  = \delta^{IJ}\), ossia l'algebra di Clifford (come le \(\gamma^5\)). Questo vuol dire che ci sono 4 operatori di creazione \(\xi_1^- = d_0^1 - id_0^2, \xi_2^- = d_0^3 - id_0^4, \ldots\) che agiscono sullo stato di vuoto (che indichiamo come \(\ket{0}\), ed assumiamo essere fermionico ed unico), creando stati con la stessa massa del vuoto. Dunque ci sono 16 stati fondamentali degeneri nel settore di Ramond, che si posso organizzare in 8 stati con numero pari di creatori, e 8 stati con numeri dispari, che sono dati da 
+
+\begin{multicols}{2}
+    \begin{center}
+        \boxed{\textbf{pari} (fermionici)}
+        \begin{align}
+            &\ket{0} \notag \\
+            &\xi_I^- \xi_J^-\ket{0} \notag \\
+            &\xi_I^-\xi_J^-\xi_K^-\xi_M^-\ket{0} \notag \\    
+        \end{align}
+    \end{center}
+    \columnbreak
+    \begin{center}
+        \boxed{\textbf{dispari} (bosonici)}
+        \begin{align}
+            &\xi_I^-\ket{0} \notag \\
+            &\xi_I^-\xi_J^-\xi_K^-\ket{0} \notag \\    
+        \end{align}
+    \end{center}
+\end{multicols}
+
+Indichiamo quindi genericamente \(\ket{R_A}\), \(A = 1, \ldots, 16\) gli stati di vuoto degeneri. Uno stato di base nel setore di Ramond è allora dato da 
+
+\begin{align}
+    \ket{\lambda} = \left(\prod_{I=2}^d\prod_{n=1}^\infty (\alpha_{-n}^I)^{\lambda_{n, I}}\right)\left(\prod_{J=2}^d\prod_{m=1}^\infty (d_{-r}^J)^{\rho_{m, J}}\right) \ket{R_A} \otimes \ket{p^+, \vec{p}_\perp}
+\end{align}
+
+Veniamo quindi allo spettro di massa del settore. La formula con i soliti passaggi è data da 
+
+\begin{align}
+    M^2 = \frac{1}{\alpha'}\left( \frac{1}{2}\sum_{p\neq 0}\alpha_{-p}^I \alpha_p^I + \frac{1}{2}\sum_{m \in \mathbb{Z}}n d_{-n}^I d_n^I \right)
+\end{align}
+
+La parte bosonica sappiamo come ordinarla normalmente: porta un fattore \(a_b = -\frac{D-2}{24}\). Ci occupiamo allora di ordinare la parte fermionica: 
+
+\begin{align}
+    \frac{1}{2}\sum_{n = -1, -2, \ldots} n d_{-n}^I d_n^I & = -\frac{1}{2}\sum_{n = 1, 2, \ldots} n d_n^I d_{-n}^I = -\frac{1}{2}\sum_{n = 1, 2, \ldots} n \left\{d_n^I, d_{-n}^I  \right\} \notag \\ 
+    &= -\frac{(D-2)}{2}\sum_{n = 1, 2, \ldots} n = \frac{D-2}{24}
+\end{align}
+
+Quindi le due costanti si cancellano! Come conseguenza nel settore NS non sono presenti tachioni. Nello spettro inoltre si verifica che ad ogni livello di massa, il numero di fermioni e il numero di bosoni coincide, Questo è un segno della SUSY di WS della teoria. 
+
+\section{Conteggio degli stati}
+
+Per i primi stati eccitati non è difficile quanti stati ci sono, ma salendo con i livelli sale anche la difficoltà di contare gli stati. Esiste uno strumento, dette \emph{funzioni generatrici}, che permettono di calcolare automaticamente il numero di stati eccitati ad un dato livello. In particolare, costruiremo funzioni della forma 
+
+\begin{align}
+    f(x) = \sum_{n =0}^{\infty} a(n)x^n
+\end{align}
+
+con \(a(n)\) il numero di stati all'n-esimo livello. 
+
+Cominciamo con il caso più semplice di tutti: se ho un solo oscillatore \(a_1^\dagger\), allora il \(k\)-esimo livello ha sempre un solo stato. Quindi la funzione è data da 
+
+\begin{align}
+    f(x) = 1 + x + x^2 + \ldots = \frac{1}{1-x}
+\end{align}
+
+Se invece avessi solamente \(a_2^\dagger\), avrei i livelli pari con 1 stato, e zero stati dispari. La funzione generatrice sarebbe quindi 
+
+\begin{align}
+    f(x) = 1 + x^2 + x^4 + \ldots = \frac{1}{1-x^2}
+\end{align}
+
+Non ci vuole troppo a convincersi che la corretta funzione generatrice nel caso si abbiano a disposizione sia \(a_1^\dagger\), sia \(a_2^\dagger\) sia data da 
+
+\begin{align}
+    f(x) = \frac{1}{1-x}\frac{1}{1-x^2}
+\end{align}
+
+come si può vedere ordine per ordine. La funzione generatrice per la stringa bosonica aperta è allora data da 
+
+\begin{align}
+    f(x) = \prod_{n=1}^\infty \left( \frac{1}{1-x^n} \right)^{24}
+\end{align}
+
+Possiamo anche scrivere le funzioni generatrici rispetto ad \(\alpha' M^2\): in questo caso avremmo 
+
+\begin{align}
+    f_{b, \, open}(x) = \frac{1}{x}\prod_{n=1}^\infty \frac{1}{1-x^n}
+\end{align}
+
+Vorremmo ora trovare le funzioni generatrici per il settore di Ramond e per Navue-Schwartz. Questo è più complicato perchè gli oscillatori sono operatori fermionici, anticommutanti. Parto sempre dai casi più semplici: 
+
+Un solo oscillatore \(f_{-r}\): ci sono solo due stati possibili, \(\ket{0}, \, f_{-r}\ket{0}\). Il secondo stato è al livello \(r\). La appropriata funzione è quindi \(\mathcal{F} = 1 + x^r\). Per il settore di NS, ho infiniti oscillatori, dati da \(b^I_{-1/2}, b_{-3/2}^I, \ldots\). Segue che la funzione generatrice è 
+
+\begin{align}
+    \mathcal{F}'_{NS}(x) = \prod_{n=1}^\infty (1+x^{n/2})^8 
+\end{align}
+
+rispetto alla massa e tenendo conto degli stati bosonici, si ottiene 
+
+\begin{align}
+    \mathcal{F}_{NS} = \frac{1}{\sqrt{x}}\prod_{n=1}^{\infty}\left( \frac{1+x^{n-1/2}}{1-x^n} \right)^8 
+\end{align}
+
+Il settore di Ramond sarà invece semplicemente descritto da 
+
+\begin{align}
+    \mathcal{F}_{R} = 16 \prod_{n=1}^\infty \left( \frac{1+x^n}{1-x^n} \right)^8 
+\end{align}
 
 
 
