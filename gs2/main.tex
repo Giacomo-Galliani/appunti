@@ -1867,20 +1867,371 @@ Otteniamo quindi l'operatore massa quadra come
 
 Non rimane che studiare l'azione di \(L_0, \bar{L}_0\) sulle coordinate, per poi poter costruire lo spazio degli stati ed analizzare lo spettro di massa. 
 
+Si trovano le seguenti relazioni di commutazione: 
 
+\begin{align}
+    &[\bar{L}_m^\perp, \bar{\alpha}_n^J] = -n\bar{\alpha}^J_{m+n} \notag \\
+    &[L_m^\perp, \alpha_n^J] = -n\alpha^J_{m+n} \notag \\
+    &[\bar{L}_m^\perp, \alpha_n^J] = [L_m^\perp, \bar{\alpha}_n^J] = 0 \notag \\ 
+    &[\bar{L}_m^\perp, x_0] = -i\sqrt{\frac{\alpha'}{2}}\bar{\alpha}^J_m \notag \\ 
+    &[L_m^\perp, x_0] = -i\sqrt{\frac{\alpha'}{2}}\alpha^J_m
+\end{align}
 
+Da queste si può ottenere che 
 
+\begin{align}
+    &[L_0^\perp, X^I(\tau, \sigma)] = -\frac{i}{2}(\dot{X}^I + (X^I)') \notag \\
+    &[\bar{L}_0^\perp, X^I(\tau, \sigma)] = -\frac{i}{2}(\dot{X}^I - (X^I)')
+\end{align}
 
+dalle quali poi si trova 
 
+\begin{align}
+    [L_0^\perp + \bar{L}_0^\perp, X^I] = i \frac{\partial X^I}{\partial \tau}, \quad [L_0^\perp - \bar{L}_0^\perp, X^I] = i\frac{\partial X^I}{\partial \sigma}
+\end{align}
 
+La prima è l'equazione di Heisemberg del moto: la seconda invece è interessante perchè ci dice che il generatore delle trasformazioni lungo la stringa è \(L_0^\perp - \bar{L}_0^\perp\). Infatti a livello ifinitesimo, 
 
+\begin{align}
+    X^I(\tau, \sigma + \eps) = X^I(\tau, \sigma) -i\eps [L_0^\perp - \bar{L}_0^\perp, X^I]
+\end{align}
 
+se definisco \(P:= L_0^\perp - \bar{L}_0^\perp\), allora si trova che 
 
+\begin{align}
+    e^{-iP\sigma_0}X^I(\tau, \sigma)e^{iP\sigma_0} = X^I(\tau, \sigma + \sigma_0)
+\end{align}
 
+D'altra parte \(P\) annichilisce tutti gli stati fisici di stringa chiusa, dove vale (sempre a livello operatoriale) \(L_0^\perp = \bar{L}_0^\perp\). In questo senso dunque si dice che gli stati di stringa chiusa sono invarianti rispetto a rotazioni rigide, perchè 
 
+\begin{align}
+    e^{-iP\sigma_0}\ket{\psi}_{\text{chiusa}} = \ket{\psi}_{\text{chiusa}}
+\end{align}
 
+\subsection{Spazio degli stati e spettro}
 
+Lo spazio degli stati si ottiene agendo sullo stato fondamentale, che indichiamo con \(\ket{p^+, \vec{p}_\perp}\), che ha la proprietà di essere annichilito da tutti gli operatori di distuzione, sia right-moving che left-moving. 
 
+Un possibile candidato per la forma degli stati eccitati è 
+
+\begin{align}
+    \ket{\lambda, \tilde{\lambda}} = \left(\prod_{n=1}^\infty \prod_{I=2}^{25}(a_n^{I\dagger})^{\lambda_{n,I}} \right)\left(\prod_{m=1}^\infty \prod_{J=2}^{25}(\bar{a}_m^{J\dagger})^{\lambda_{m,J}} \right)\ket{p^+, \vec{p}_\perp}, \quad \lambda_{n, I}, \lambda_{m, J} \in \mathbb{N}
+\end{align}
+
+Dalle regole di commutazione segue che questi sono autostati degli operatori \(N^\perp, \bar{N}^\perp\), con autovalori 
+
+\begin{align}
+    &N^\perp \to \sum_{n=1}^\infty \sum_{I=2}^{25}n \lambda_{n, I} \notag \\ 
+    &\bar{N}^\perp \to \sum_{m=1}^\infty \sum_{J=2}^{25}m \lambda_{m, J} 
+\end{align}
+
+Questo è fondamentale perchè il vincolo \(N^\perp = \bar{N}^\perp\) deve valere: gli unici stati che fanno veramente parte dello spettro sono quindi quelli che soddisfano questa relazione. Lo stato di vuoto è dato da \(N^\perp = \bar{N}^\perp = 0\), per cui \(M^2 = -4/\alpha' <0\): anche qui ritroviamo un tachione. 
+
+Per il primo stato eccitato deve valere \(N^\perp = \bar{N}^\perp = 1\), quindi è uno stato massless. Siccome le etichette \(I, J\) degli operatori di creazione sono totalmente indipendenti, questo stato ha \((D-2)^2\) componenti. Una composizzione generale di questi stati è quindi 
+
+\begin{align}
+    R_{IJ}a_1^{I\dagger} \bar{a}_1^{J\dagger} \ket{p^+, \vec{p}_\perp} 
+\end{align}
+
+con \(R_{IJ}\) una matrice \((D-2)\times (D-2)\). Possiamo scomporre la matrice \(R_{IJ}\) in tre componenti: 
+
+\begin{align}
+    R_{IJ} = \hat{S}_{IJ} + A_{IJ} + S' \delta_{IJ}
+\end{align}
+
+Dove \(S\) è simmetria a traccia nulla e \(A\) è antisimmetrica. Questo spezza gli stati massless in 3 gruppi: sono in particolare 
+
+\begin{align}
+    &\hat{S} \to \text{gravitone} \notag \\ 
+    &A \to \text{Campo di Kalb-ramond (tensoriale e antisimmetrico)} \notag \\ 
+    &S' \to \text{dilatone} \notag 
+\end{align}
+
+\section{T-dualità}
+
+Abbiamo visto che la teoria di stringa bosonica per rispettare l'invarianza di Lorentz deve essere formulata in \(d = 26\) dimensioni. Supponiamo allora di considerare una di queste dimensioni come compatta, con raggio \(R\). Questo vuol dire imporre l'identificazione 
+
+\begin{align}
+    X^{25} \simeq X^{25} + 2\pi R
+\end{align}
+
+Lo spazio globale è quindi \(\mathbb{R}^{1, 24}\times S^1\). Studiamo la fisica per lunghezze \( >> R\) (in modo da trascurare quello che succede su \(S^1\)). Lo scopo è capire quale sia la fisica osservata da un osservatore in \(\mathbb{R}^{1, 24}\): questo meccanismo è noto come riduzione di Kaluza-Klein (KK). 
+
+Si studia il problema in due modi: dal punto di vista dell'azione efficace spaziotemporale, o dal punto di vista del WS. 
+
+A scale \(>> R\), possiamo considerare i campi come indipendenti da \(X^{25}\). La matrica \(g_{mn}\) si decompone in 3 pezzi distinti: una metrica \(\hat{g}\)in \(24\) dimensioni, un campo vettoriale in \(24\) dimensioni e infine un campo scalare. In particolare, l'invarianza per diffeomorfismi di cui godeva la teoria originale viene rotta dalla dimensione compatta, ma resiste sotto forma di invarianza di gauge. Per essere più specifici: 
+
+\clm{}{}{
+    L'elemento infinitesimo di lunghezza in \(d=26\) dimensioni si può scrivere come \(ds^2 = G_{\mu\nu}dx^\mu dx^\nu + e^{2\sigma}(dx^{25} + A_\mu dx^\mu)\), con \(A_\mu\) campo di gauge. 
+}
+
+\pf{}{
+    Per provarlo è sufficiente mostrare che sotto un generale diffeomorfismo, \(A_\mu\) si trasforma come un campo di gauge. Sia \(\delta(x^\mu) = V^\mu (x)\). Il tensore metrico si trasforma secondo 
+
+    \begin{align}
+        \delta G_{\mu\nu} = \nabla_\mu V_\nu + \nabla_\mu V_\mu
+    \end{align}
+
+    sia \(\delta x^{25} = \Lambda(x)\), allora si trova che \(\delta A_\mu = \partial_\mu \Lambda\)
+}
+
+Particolarmente interessante è capire cosa succede ad una teoria di pura gravità in \(d=26\) dimensioni, cioè una teoria con lagrangiana di Hilbert-Einstein, dopo la riduzione KK sul cerchio. Ad esempio lo scalare di Ricci si può scrivere 
+
+\begin{align}
+    R^{(26)} = R - 2e^{-2\sigma}\nabla e^{2\sigma} - \frac{1}{4}e^{2\sigma}(F_{\mu\nu}F^{\mu\nu})
+\end{align}
+
+Per cui l'azione si mostra diventare 
+
+\begin{align}
+    S = \frac{\pi R}{k^2}\int d^{25}x \sqrt{\hat{G}}e^\sigma \left(R - \frac{1}{4}e^{2\sigma}F_{\mu\nu}F^{\mu\nu} - \partial_\mu \sigma \partial^\mu \sigma \right)
+\end{align}
+
+Rilassiamo ora l'ipotesi di campi indipendenti da \(x^{25}\). Siccome sono periodici, però, posso sempre espanderli in Fourier: considera ad esempio un campo scalare massless
+
+\begin{align}
+    \Phi(x^\mu; x^{25}) = \sum_{n \in \mathbb{Z}} \phi_n (x^\mu)e^{in x^{25} /R}, \quad \phi_n^* = \phi_{-n}
+\end{align}
+
+la sua azione quindi diventa 
+
+\begin{align}
+    \int d^{26}x (\partial_\mu \phi \partial^\mu \Phi + (\partial_{25}\Phi)^2) = 2\pi R \int d^{25}x \sum_{n \in \mathbb{Z}} \left(\partial_\mu \phi_n \partial^\mu \phi_n + \frac{n^2}{E^2}|\phi_n|^2\right)
+\end{align}
+
+la teoria descrive adesso \(\infty\) scalari, con massa \(|n|/R\)! Se \(R\), come per ipotesi, è preso molto grande, tutti i campi della torre KK sono troppo pesanti per participare alla fisica. 
+
+Inoltre, i campi \(\phi_n\), \(n \neq 0\) sono \emph{carichi} sotto il campo \(A_\mu\) che si ottiene dalla riduzione della metrica. Infatti, sotto una trasformazione di gauge \(x^{25} \to x^{25} + \Lambda \implies \phi_n \to e^{in \Lambda/R}\phi_n\), cioè il modo \(n\)-esimo ha carica \(n/R\). 
+
+Ma cosa succede sul WS? Il risultato in teoria delle stringhe è diverso da quello della teoria dei campi, e offre un modo di vedere più facilmente le extra-dimensioni. Immediatamente vi sono due conseguenze della direzione compatta: 
+
+\begin{enumerate}
+    \item Il momento \(p^{25}\) è quantizzato, cosa che segue direttamente dalla richiesta che \(e^{ip\cdot x}\) sia monodroma. 
+    \item L'espansione in modi di \(X\) può seguire delle condizioni al bordo più generali: infatti, sia \(m\) il Winding number della stringa: allora vale 
+    \begin{align}
+        X^{25}(\sigma +2\pi) - X^{25}(\sigma) = 2\pi m R
+    \end{align}
+    che chiaramente si riduce al caso standard se \(m=0\). 
+\end{enumerate}
+
+Dalla seconda condizione, l'espansione in modi per \(X^{25}\) è leggermente diversa dalla solita: 
+
+\begin{align}
+    X^{25}(\sigma, \tau) = X_0^{25} + \frac{\alpha' n}{R}\tau + mR\sigma + \ldots
+\end{align}
+
+dove abbiamo omesso il contributo degli oscillatori. (ricorda che \(p = n/R\)). Definiamo allora 
+
+\begin{align}
+    \begin{cases}
+        P_L = \frac{n}{R} + \frac{m R}{\alpha'} \\ 
+        P_R = \frac{n}{R} - \frac{mR}{\alpha'}
+    \end{cases}
+\end{align}
+
+in termini delle quali scriviamo 
+
+\begin{align}
+    X^{25}(\sigma, \tau) = X^{25}_L (\tau+\sigma) + X^{25}_R (\tau-\sigma), \quad \begin{cases}
+        X^{25}_L = \frac{X_0^{25}}{2} + \frac{1}{2}\alpha' P_L (\tau + \sigma) + \ldots \\ 
+        X^{25}_R = \frac{X_0^{25}}{2} + \frac{1}{2}\alpha' P_R (\tau - \sigma) + \ldots
+    \end{cases}
+\end{align}
+
+Lo spettro di massa diventa 
+
+\begin{align}
+    M^2 = -p^2 = p^2_L + \frac{4}{\alpha'}(\bar{N}^\perp -1) = p^2_R + \frac{4}{\alpha'}(N^\perp -1)
+\end{align}
+
+Ci rendiamo conto che quindi lo spettro di massa è stato modificato. In particolare, vale 
+
+\begin{align}
+    M^2 = \frac{m^2}{R^2} + \frac{m^2R^2}{\alpha'} + \frac{2}{\alpha'}(\bar{N}^\perp + N^\perp -2)
+\end{align}
+
+attenzione: diversamente dal caso del campo scalare massless, la stringa ha contributi non banali alla massa sia nel caso \(R >>1\), sia nel caso \(R << 1\). La differenza fondamentale sta nel fatto che la stringa può essere avvolta attorno alla dimensione compatta. Possiamo in particolare studiare allora lo spettro. La condizione di power matching della stringa chiusa diventa \(\bar{N}^\perp - N^\perp = mn \). 
+
+Esistono ancora stati massless: sono quelli dove vale \(N^\perp = \bar{N}^\perp = 1\), ed inoltre \(m= n = 0\). Questi coincidono agli stati in assenza di direzione compatta. Si possono anche creare altri stati massless, per specifici valori di \(m, R\) posso stati ad \(M^2 = 0\), e con \(N^\perp = \bar{N}^\perp = 0\), sempre con \(n=0\). 
+
+Un osservazione particolarmente importante è una simmetria (o meglio, una \emph{dualità}) nell'espressione di \(M^2\): è invariante sotto lo scambio 
+
+\begin{align}
+    \begin{cases}
+        R \leftrightarrow \alpha'/R \\ 
+        m \leftrightarrow n 
+    \end{cases}
+\end{align}
+
+in altri termini, una stringa chiusa che si muove lungo una direzione compatta di raggio \(R\) ha lo stesso spettro di massa di una stringa chiusa che si muove in una direzione con raggio \(R/\alpha'\), se \(m\) ed \(n\) sono scambiate. Quando in teria dei campi (o in meccanica quantistica) prendavamo il limite \(R \to 0\) la dimensione extra scompariva, adesso invece sembra riemergere! 
+
+Vogliamo quindi studiare meglio questa dimensione spaziale emergente. Si definisce la trasformazione di T duality come 
+
+\begin{align}
+    \begin{pmatrix}
+        P_L \\ P_R
+    \end{pmatrix} \to \begin{pmatrix}
+        P_L \\ -P_R 
+    \end{pmatrix}
+\end{align}
+
+Per prima cosa mostriamo che questo corrisponde in effetti alla simmetria che abbiamo notato nella formula della massa. Consideriamo il campo scalare 
+
+\begin{align}
+    y^{25} := X^{25}_L (\tau +\sigma) - X_R^{25}(\tau -\sigma)
+\end{align}
+
+sia \((\alpha, \beta) = (\tau, \sigma)\) e si osservi che \(\partial_\alpha X^{25} = \eps_{\alpha\beta}\partial^\beta y^{25}\). Come si trasforma il Dilatone sotto T-dualità? sia \(g_s\) il dilatone, dalla normalizzazione della azione si trova che deve valere 
+
+\begin{align}
+    g_s \to \frac{\sqrt{\alpha'}}{R}g_s
+\end{align}
+
+Considera ora una stringa aperta: supponi di star compattificando su un cerchio \(S^1\), su una direzione dove valgono le condizioni di Dirichlet: \(\partial_\tau X^{25} =0, \, \sigma = 0, \pi\). (cioè se vogliamo in una dimensione trasversa ad una d-brana). Nella dimensione T-duale si ha 
+
+\begin{align}
+    \partial_\sigma y^{25} = 0, \quad \sigma = 0, \pi
+\end{align}
+
+In particolare, quindi, la T-dualità scambia le condizioni al contorno di Neumann e Dirichlet. Questo è interessante: immaginiamo di partire da una teoria di stringa aperta, dove consideriamo solamente le condizioni al contorno di Neumann, perchè sono quelle che conservano il momento. Poi compattifichiamo, e siamo obbligati a farlo perchè \(d=26\) tutte macroscopiche non descrivono la nostra fisica. Allora questa teoria è duale ad una teoria con condizioni al bordo di Dirichlet, e dobbiamo per forza includere le brane per consistenza. Questo è stato il modo in cui storicamente sono state scoperte le D-brane. 
+
+\section{Compattificazione tramite Orbifold}
+
+Ricordiamo che gli Orbifold sono spazi non banali, dove possiamo studiare la propagazione della stringa. Nel nostro caso prenderemo \(\mathbb{R}/\mathbb{Z}^2\), ovvero una retta con la identificazione \(x \simeq -x\), cioè una semiretta. Scegliamo quindi \(x^{25}\) come la coordinata a cui imporremo l'identificazione. 
+
+Usiamo le coordinate del light-cone. Denotiamo \(X^i\) le coordinate trasverse tranne l'ultima, e prendiamo invece \(X = X^{25}\). Sia \(U\) l'op. che realizza la trasformazione \(x \to -x\), cioè che agisce sulle coordinate di stringa secondo 
+
+\begin{align}
+    &U X U^{-1} = -X \notag \\
+    &U X^i U^{-1} = X^i \notag \\
+    &U X^\pm U^{-1} = X^\pm
+\end{align}
+
+In particolare da questo segue che \(p^+, x_0^-\) ed \(H = \alpha' p^+ p^-\). Poiché \(U\) è una simmetria della hamiltoniana, stati \(U\) invarianti rimangono \(U\) invarianti anche dopo l'evoluzione temporale, e dunque si dice che il troncamento degli stati è consistente. 
+
+Possiamo determinare dalle regole che abbiamo scritto l'azione di \(U\) sugli oscillatori. Considera quindi la solita espansione (per l'ultima coordinata)
+
+\begin{align}
+    X = X_0 + \alpha p \tau + i\sqrt{\frac{\alpha'}{2}} \sum_{n\neq 0}\frac{2}{N}e^{-in\tau}(\alpha_n + \ldots)
+\end{align}
+
+sostituendo, si trova in particolare che 
+
+\begin{align}
+    &U x_0 U^{-1} = -x_0 \notag \\ 
+    &UpU^{-1} = -p_0 \notag \\
+    &U\alpha U^{-1} = -\alpha \\ 
+    &U\bar{\alpha}U^{-1} = -\bar{\alpha} 
+\end{align}
+
+così che tutti gli operatori nell'espansione cambiano segno sotto l'azione di \(U\). Questo è l'unico modo per cui la condizione \(UXU^{-1} = -X\) possa valere per tutti i valori di \(\sigma, \tau\). 
+
+Assumiamo che gli stati con \(0\) momento lungo \(X\) siano invarianti rispetto ad \(U\), cioè 
+
+\begin{align}
+    U \ket{p^+, \vec{p}, 0} = \ket{p^+, \vec{p}, 0}
+\end{align}
+
+ci si può chiedere se esistono degli altri ground state (invarianti sotto ad \(U\)). Assumiamo che valga la seguente relazione per ogni coppia \((p,q)\) di momenti coniugati
+
+\begin{align}
+    \ket{\delta p} = e^{i\delta p q} \ket{0}, \quad \delta p = \text{const.}
+\end{align}
+
+Allora posso scrivere il generico stato \(\ket{p^+, \vec{p}, p}\) come \(e^{ix_o p}\ket{p^+, \vec{p}, 0}\), così che posso calcolare 
+
+\begin{align}
+    U \ket{p^+, \vec{p}, p} &= Ue^{ix_0p}U^{-1} U\ket{p^+, \vec{p}, 0} \notag \\ 
+    &= e^{-ix_0P} U \ket{p+, \vec{p}, 0} = \ket{p^+, \vec{p}, -p}
+\end{align}
+
+Dunque combinazioni lineari di \(\ket{p^+, \vec{p}, \pm p}\) formano stati \(U\) invarianti. Possiamo quindi scrivere nella forma più generale gli stati fondamentali della teoria, ovvero 
+
+\begin{align}
+    \int \psi (\tau, \psi^+, \vec{p}, p) \ket{p^+, \vec{p}, p}dp^+ d\vec{p}dp
+\end{align}
+
+con \(\psi\) funzione tale che \(\psi(\tau, p^+, \vec{p}, p) = \psi(\tau, p^+, \vec{p}, -p)\). 
+
+La compattificazione sull'orbifold non cambia lo spettro di massa della teoria, così che gli stati massless sono ancora quelli con \(N^\perp = \bar{N}^\perp = 1\). Questi si ottengono con due oscillatori (uno barrato e uno non) che agiscono sullo stato fondamentale. Possiamo quindi elencarli: 
+
+\begin{align}
+    &\alpha^i_{-1}\bar{\alpha}^j_{-1}(\ket{p^+ \vec{p} p} + \ket{p^+ \vec{p} -p}) \notag \\
+    &\alpha_{-1}\bar{\alpha}^j_{-1}(\ket{p^+ \vec{p} p} + \ket{p^+ \vec{p} -p}) \notag \\
+    &\alpha^i_{-1}\bar{\alpha}_{-1}(\ket{p^+ \vec{p} p} + \ket{p^+ \vec{p} -p}) \notag \\
+    &\alpha_{-1}\bar{\alpha}_{-1}(\ket{p^+ \vec{p} p} + \ket{p^+ \vec{p} -p})
+\end{align}
+
+La cosa interessante della stringa chiusa sull'orbifold però è il fatto che lo spettro contiene un intero settore (detto settore \emph{twistato}) completamente nuovo, che non esiste nella teoria originaria. Questo consiste nelle stringhe che nella teoria non quozientata sono aperte, ma i cui estremi vengono identificati dall'azione di \(\mathbb{Z}_2\). Si tratta di stringhe con periodo \(4\pi\), per cui vale 
+
+\begin{align}
+    X (\tau, \sigma +2\pi) = -X(\tau, \sigma) \simeq_{\mathbb{Z}_2} X (\tau, \sigma)
+\end{align}
+
+Per studiare le prorietà di questo settore (e in particolare analizzare la massa degli stati) dobbiamo ripetere i passaggi principali della quantizzazione: questi infatti sono leggermente diversi da quelli della stringa chiusa che abbiamo già visto. 
+
+In particolare, bisogna risolvere le e.o.m. classiche, dove le coordinate \(X^i\) sono identiche a prima, mentre per la coordinata \(X\) ci sono delle differenze nei segni: 
+
+\begin{align}
+    \begin{cases}
+    X'_L (u+2\pi) = -X'_L (u) \\
+    X'_R (v+2\pi) = -X'_R (v)
+    \end{cases}
+\end{align}
+
+la derivata dell'ultima coordinata va quindi espansa in Fourier con potenze \emph{semi-intere}: 
+
+\begin{align}
+    &X'_L (u) = \sqrt{\frac{\alpha'}{2}}\sum_{n\in \mathbb{Z}_{\text{odd}}}\bar{\alpha}_{n/2}e^{-\frac{in}{2}u} \notag \\
+    &X'_R (v) = \sqrt{\frac{\alpha'}{2}}\sum_{n\in \mathbb{Z}_{\text{odd}}}\alpha_{n/2}e^{-\frac{in}{2}v}
+\end{align}
+
+Che integro immediatamente: 
+
+\begin{align}
+    &X_L(u) = x_L + i\sqrt{\frac{\alpha'}{2}}\sum_{n \in \mathbb{Z}_{\text{odd}}}\frac{2}{n}\bar{a}_{n/2}e^{-\frac{in}{2}u} \notag \\
+    &X_R(v) = x_R + i\sqrt{\frac{\alpha'}{2}}\sum_{n \in \mathbb{Z}_{\text{odd}}}\frac{2}{n}a_{n/2}e^{-\frac{in}{2}v} 
+\end{align}
+
+ed ottengo la soluzione generale per \(X = X_L - X_R\): 
+
+\begin{align}
+    X(\tau, \sigma) = i\sqrt{\frac{\alpha'}{2}}\sum_{n \in \mathbb{Z}_{\text{odd}}}\frac{2}{n}e^{-\frac{in}{2}\tau}\left(\bar{\alpha}_{n/2}e^{-\frac{in}{2}\sigma} + \alpha_{n/2}e^{\frac{in}{2}\sigma} \right)
+\end{align}
+
+In particolare, non esistono modi zero. Si possono ricavare le relazioni di commutazione tra gli oscillatori, che sono date da 
+
+\begin{align}
+    &[\bar{\alpha}_{m/2}, \bar{\alpha}_{n/2}] = \delta_{m+n, 0}\frac{m}{2} \notag \\ 
+    &[\alpha_{m/2}, \alpha_{n/2}] = \delta_{n+m, 0}\frac{m}{2} \notag \\ 
+    &[\bar{\alpha}_{m/2}, \alpha_{n/2}] = 0 
+\end{align}
+
+L'azione delle \(U\) sugli oscillatori è sempre data da \(U\alpha_{m/2}U^{-1} = -\alpha_{m/2}\), \(U\bar{\alpha}_{n/2}U^{-1} = -\bar{\alpha}_{n/2}\). 
+
+L'assenza di modi zero nell'espansione di \(X\) implica gli stati nel settore twisted 
+
+Studiamo quindi gli stati eccitati: sono modificati dalla presenza dei modi semi-interi: questi possono alterare la costante di ordinamento, che ci aveva dato tanti problemi! In realtà vedremo che non è possibile con l'orbifolding eliminare il tachione, ma vale la pena comunque fare un tentativo, prima di vedere quale è il \emph{vero} modo per eliminare il tachione. 
+
+Consideriamo quindi l'operatore zero di Virasoro barrato, 
+
+\begin{align}
+    \bar{L}_o^\perp = \frac{1}{2}\sum_{p \in \mathbb{Z}}\bar{\alpha}^i_p \alpha^i_{-p} + \sum_{k \in \mathbb{Z}_{\text{odd}}}\bar{\alpha}_{k/2} \alpha_{-k/2}
+\end{align}
+
+Ora, i \(23\) termini delle coordinate ordinarie contribuiscono ciascuno alla costante di ordinamento normale con \(-\frac{1}{2}\frac{1}{12}\). Per valutare la seconda, invece, devo considerare la somma di tutti gli interi \emph{dispari}. Si può fare nel modo seguente: 
+
+\begin{align}
+    \sum_{p =1}^{\infty} k = \sum_{k \text{odd}} k + \sum_{k \text{even}} k = \sum_{k \text{odd}}k + 2\sum_{k} k\implies \sum_{k \text{odd}} k  = -\sum_{k}k = \frac{1}{12}
+\end{align}
+
+concludiamo che la costante di ordinamento è \(-15/8\). La formula di massa che stavamo cercando è quindi data da 
+
+\begin{align}
+    M^2 = \frac{2}{\alpha'}(N^\perp + \bar{N}^\perp - \frac{15}{8})
+\end{align}
+
+Quindi non è possibile risolvere il problema del tachione tramite l'orbifold. Semplicemente offre un'altra tecnica di compattificazione. La chiave per eliminare il tachione è considerare una teoria di stringa che includa i fermioni. 
 
 
 

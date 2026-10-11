@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1791543464 "/home/giacomo_galliani/appunti/gs2/main.tex" "main.pdf" "main" 1791543470
+["pdflatex"] 1791647196 "/home/giacomo_galliani/appunti/gs2/main.tex" "main.pdf" "main" 1791647207
   "/etc/texmf/web2c/texmf.cnf" 1763917403 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/giacomo_galliani/appunti/gs2/main.tex" 1791543453 213155 3c75ff890242996d0ef4876ebb6e6369 ""
+  "/home/giacomo_galliani/appunti/gs2/main.tex" 1791647177 233531 184a40807c51576fc91e32106bcf5e52 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1640468671 3136 aac2e2476de8af6c827239df395814ee ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1640468671 2914 8283dfc24eaf1964346f843d7605c2b0 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -379,9 +379,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1763985202 2799529 aa51b4209c5317024e3e8cadfa5c1e89 ""
   "letterfonts.tex" 1763992645 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1763992645 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1791543470 27547 acdc743a05dd0ae9c07cc2a7aa896942 "pdflatex"
-  "main.tex" 1791543453 213155 3c75ff890242996d0ef4876ebb6e6369 ""
-  "main.toc" 1791543470 3826 01b0d1c6553171f7e63fcdfeac63b134 "pdflatex"
+  "main.aux" 1791647206 29111 076312c83e3be73f5cef0fe729d8c40b "pdflatex"
+  "main.tex" 1791647177 233531 184a40807c51576fc91e32106bcf5e52 ""
+  "main.toc" 1791647206 4091 97443ed2df3f8f630f5abe052af733c6 "pdflatex"
   "preamble.tex" 1791013406 20205 b73d0efcf3e731c3882c75ee1a84912a ""
   "settings/fncystyle.sty" 1765982971 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)
