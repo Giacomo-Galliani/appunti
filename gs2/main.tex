@@ -2464,13 +2464,48 @@ Il settore di Ramond sarà invece semplicemente descritto da
     \mathcal{F}_{R} = 16 \prod_{n=1}^\infty \left( \frac{1+x^n}{1-x^n} \right)^8 
 \end{align}
 
+\section{Modelli di superstringa aperta}
 
+Abbiamo visto che il settore di Ramond ha pari numero di stati fermionici e bosonici sul WS. D'altra parte, la natura di questi stati nello spaziotempo non è immediata. In realtà, essendo stati costruiti nella rappresentazione \emph{spinoriale} di \(SO(8)\), trasformano tutti come spinori sotto trasformazioni di Lorentz. Concludiamo che dovremmo estrarre solo stati fermionici dal settore di Ramond. Per farlo però prendiamo solo metà degli stati, cioè selezioniamo quelli con autovalore negativo di \((-1)^F\). Questo settore è detto \(R_-\), ed ha la seguente funzione generatrice: 
 
+\begin{align}
+    f_{R_-}(x) = 8\prod_{n=1}^\infty \left( \frac{1+x^n}{1-x^n} \right)^8
+\end{align}
 
+Passiamo al settore NS, dove nessuno stato porta indici spinoriali: possiamo quindi sperare di estrarre i bosoni dello spaziotempo da questo settore. Ricorda che lo stato di base è un fermione del WS, ed è un tachione. Invece gli stati massless li avevamo identificati come gli stati del fotone 10-dimensionale. Vorremmo allora gettare via il tachione, e identificare gli 8 stati massless come i superpatner degli 8 stati massless fermionici di \(R_-\). Possiamo farlo se consideriamo il settore troncato di NS con autovalore \emph{positivo} di \((-1)^F\). 
 
+Questa teoria che abbiamo creato, è supersimmetrica nello spaziotempo? I livelli energetici nei due settori (\(R_-, \, NS_+\)) sono identici, ma il numero degli stati è lo stesso? Possiamo rispondere creando la funzione generattrice per \(NS_+\): se cambio il segno al numeratore di \(f_{NS}\), questo cambia il segno del numero di stati fermionici: concludiamo che 
 
+\begin{align}
+    f_{NS_+} = \frac{1}{2\sqrt{x}}\left[ \prod_{n=1}^\infty \left( \frac{1+x^{n-1/2}}{1-x^n} \right)  - \prod_{n=1}^\infty\left( \frac{1-x^{n-1/2}}{1-x^n} \right)  \right]
+\end{align}
 
+La supersimmetria dello spaziotempo, se c'è, richidede che valga \(f_{R_-} = f_{NS_+}\). Sono funzioni molto differenti, ma Jacobi nel 1828 ha provato che sono la stessa funzione. 
 
+\section{Modelli di superstringa chiusa}
+
+Per il momento abbiamo parlato solamente di variabili fermioniche sulla stringa aperta. La stringa chiusa si ottiene, come nel caso bosonico, da una stringa aperta right moving e una stringa aperta left moving: ognuna di queste può essere nel settore di Ramond o nel settore di Navue-Schwartz. Facendo proiezione GSO, abbiamo diverse scelte.
+
+\begin{enumerate}
+    \item Stringa di tipo IIA: si prende \(NS_+, R_-\) per la left-moving, e \(NS_+, R_+\) per la right moving. Si ottengono quindi 4 settori, \((NS_+, NS_+), \, (NS_+, R_-), \, (R_-, NS_+), \, (R_-, R_+)\). Come è fatto lo spettro della teoria? In stringa chiusa deve sempre valere la condizione di level-matching, cioè se la formula per la massa è data da 
+    \begin{align}
+        \frac{1}{2}\alpha'M^2 = \alpha' M^2_L + \alpha' M^2_R
+    \end{align}
+    allora deve valere \(M^2_L = M^2_R\). In particolare, non ci sono tachioni, e possiamo guardare lo spettro massles: 64 bosoni si ottengono nel seguente modo: 
+    \begin{align}
+        \bar{b}_{-1/2}^I \ket{NS}_L \otimes b ^J_{-1/2}\ket{NS}_R \otimes \ket{p^+, \vec{p}_\perp}
+    \end{align}
+    Ci sono poi altri 64 bosoni, che sono gli stati fondamentali della settore Ramond-Ramond, 
+    \begin{align}
+        \ket{R_a}_R \otimes \ket{R_{\bar{b}}}_L
+    \end{align}
+    A questi corrispodono i 128 stati fermionici massless nei settori "misti" che sono esplicitamente dati da
+    \begin{align}
+        &\bar{b}_{-1/2}^I \ket{NS}_L \otimes \ket{R_{\bar{a}}}_R \otimes \ket{p^+, \vec{p}_\perp} \notag \\
+        &\ket{R_a}_L \otimes b ^J_{-1/2}\ket{NS}_R \otimes \ket{p^+, \vec{p}_\perp}
+    \end{align}
+    \item Stringa di tipo IIB: è la teoria che si ottiene scegliendo \((NS_+, R_-)\) sia per right-moving sia per left-moving. Si mostra che è legata alla stringa di tipo IIB da T-dualità- 
+\end{enumerate}
 
 
 

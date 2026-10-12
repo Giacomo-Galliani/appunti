@@ -25,25 +25,27 @@
 \contentsline {section}{\numberline {3.2}Settore NS}{46}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Settore di Ramond}{47}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Conteggio degli stati}{48}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Le superalgebre di Lie}{50}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{50}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Definizione di superalgebra di Lie e primi esempi}{53}{section.4.2}%
-\contentsline {section}{\numberline {4.3}L'algebra di supersimmetria}{55}{section.4.3}%
-\contentsline {chapter}{\numberline {5}Modelli supersimmetrici con \(\mathcal {N} = 1\)}{61}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Modello di Wess-Zumino}{61}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Elettrodinamica susy con \(\mathcal {N}=1\)}{65}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Rappresentazioni di supersimmetria}{67}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Gruppo di Poincarè}{67}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Supersimmetria, caso massless}{68}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Supersimmetria, caso massivo}{70}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Superspazio e supercampi}{71}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Formalismo}{71}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Invarianti supersimmetrici}{75}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Applicazione: scrittura di azioni supersimmetriche}{77}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}Azione generale di Wess-Zumino}{77}{subsection.7.3.1}%
-\contentsline {subsection}{\numberline {7.3.2}Elettrodinamica}{80}{subsection.7.3.2}%
-\contentsline {subsection}{\numberline {7.3.3}Super Yang-Mills}{82}{subsection.7.3.3}%
-\contentsline {chapter}{\numberline {8}Quantizzazione di teorie supersimmetriche}{84}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Derivazione, integrazione e supergrafi}{84}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Rottura della supersimmetria}{86}{section.8.2}%
+\contentsline {section}{\numberline {3.5}Modelli di superstringa aperta}{49}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Modelli di superstringa chiusa}{50}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Le superalgebre di Lie}{51}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Motivazione allo studio della supersimmetria e teorema di Coleman-Mandula}{51}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Definizione di superalgebra di Lie e primi esempi}{54}{section.4.2}%
+\contentsline {section}{\numberline {4.3}L'algebra di supersimmetria}{56}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Modelli supersimmetrici con \(\mathcal {N} = 1\)}{62}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Modello di Wess-Zumino}{62}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Elettrodinamica susy con \(\mathcal {N}=1\)}{66}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Rappresentazioni di supersimmetria}{68}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Gruppo di Poincarè}{68}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Supersimmetria, caso massless}{69}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Supersimmetria, caso massivo}{71}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Superspazio e supercampi}{72}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Formalismo}{72}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Invarianti supersimmetrici}{76}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Applicazione: scrittura di azioni supersimmetriche}{78}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Azione generale di Wess-Zumino}{78}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Elettrodinamica}{81}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Super Yang-Mills}{83}{subsection.7.3.3}%
+\contentsline {chapter}{\numberline {8}Quantizzazione di teorie supersimmetriche}{85}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Derivazione, integrazione e supergrafi}{85}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Rottura della supersimmetria}{87}{section.8.2}%
 \contentsfinish 

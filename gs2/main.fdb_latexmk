@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1791737711.03478 "/home/marin/appunti/gs2/main.tex" "main.pdf" "main" 1791737714.12181 0
+["pdflatex"] 1791803021.10357 "/home/marin/appunti/gs2/main.tex" "main.pdf" "main" 1791803024.78128 0
   "/etc/texmf/web2c/texmf.cnf" 1776007129.54043 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/marin/appunti/gs2/main.tex" 1791737707.33169 245919 d1f449c72df97757ebca71d3cb538ec4 ""
+  "/home/marin/appunti/gs2/main.tex" 1791803020.88002 249842 148c28502ae60187c267422d30ad4c51 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc" 1698694482 3136 bbe665bd0bb471a2da1e8fd326cff9fa ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1698694482 2914 fdbc4a54b9bc76f4551b5303f2737d33 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
@@ -375,9 +375,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1776008606 8213975 ea2ad71cf415a6caecaab02f57dd30c7 ""
   "letterfonts.tex" 1776429879.8495 7365 b76f37e9ff1d4cecac7d1fd23fc626a6 ""
   "macros.tex" 1776429879.8495 1390 e02343db25b6b0a7b14fed906327ad7b ""
-  "main.aux" 1791737713.9492 31088 69aba31a3e35a3d93af4306562baf5c2 "pdflatex"
-  "main.tex" 1791737707.33169 245919 d1f449c72df97757ebca71d3cb538ec4 ""
-  "main.toc" 1791737713.95982 4494 efb3ec91b16033d8613e87027601d6e2 "pdflatex"
+  "main.aux" 1791803024.60882 32252 4d307d914c1bf981039086f549c49e2b "pdflatex"
+  "main.tex" 1791803020.88002 249842 148c28502ae60187c267422d30ad4c51 ""
+  "main.toc" 1791803024.62151 4676 8bd61f4e13d6821b1975a382414a34b4 "pdflatex"
   "preamble.tex" 1791099225.21846 20205 b73d0efcf3e731c3882c75ee1a84912a ""
   "settings/fncystyle.sty" 1776429879.8535 10672 7b0d55c4ce9b202998d60bac56907cf1 ""
   (generated)
