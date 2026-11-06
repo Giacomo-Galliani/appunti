@@ -48,4 +48,9 @@
 \contentsline {chapter}{\numberline {8}Quantizzazione di teorie supersimmetriche}{85}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Derivazione, integrazione e supergrafi}{85}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Rottura della supersimmetria}{87}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Esercizi}{92}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Stringhe: 4.7 BBS}{92}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Stringhe: 6.7 Zwiebach}{92}{section.9.2}%
+\contentsline {section}{\numberline {9.3}SUSY 9.27}{94}{section.9.3}%
+\contentsline {section}{\numberline {9.4}SUSY 5.58}{94}{section.9.4}%
 \contentsfinish 

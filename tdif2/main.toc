@@ -1,0 +1,6 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}Interazioni forti (QCD)}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduzione storica}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}La QCD come teoria di gauge non abeliana}{3}{section.1.2}%
+\contentsfinish 

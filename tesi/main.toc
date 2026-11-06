@@ -1,0 +1,5 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {chapter}{\numberline {1}NLO computations in the subtraction scheme}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}\(q(p_1)\bar {q}(p_2) \to V + g(p_4)\), V colorless}{2}{section.1.1}%
+\contentsfinish 

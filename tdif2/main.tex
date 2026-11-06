@@ -1,0 +1,252 @@
+\documentclass[11pt]{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Appunti Teoria delle Interazioni Fondamentali 2}}}
+\author{Giacomo Galliani, corso dei prof. A. Vicini, M. Zaro}
+\date{Anno accademico 2026-2027}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{Interazioni forti (QCD)}
+
+\section{Introduzione storica}
+
+Dagli anni 50' in avanti, si cominciarono a costruire dei collider \(e^+e^- \to \ldots\) alle energie di 1-10 GeV. Da questi, si rilevò una grandissima quantità di particelle, raggruppate in adroni (con massa di circa 1 GeV), e mesoni (di massa circa 100 MeV). Di questo tipo di particelle se ne vedevano \emph{decine}: si cominciò a pensare che non potessero essere particelle fondamentali. 
+
+Alcune di queste particelle venivano organizzate in multipletti, a seconda se avevano stesso spin, stesso comportamento sotto \(C, P\) e massa simile (differenze di max 20 per cento). 
+
+Tutte queste particelle erano instabili, ed erano classificate in base ai loro tempi di decadimento. In particolare, era chiaro che c'erano tre tipi diversi di decadimento: 
+
+\begin{enumerate}
+    \item Veloci: questi hanno tempi di decadimento dell'ordine di \(\approx 10^{-23}\) s. Un esempio è il decadimento di un \(\Xi\) eccitato, \(\Xi^* \to \Xi + \Pi^0\). 
+    \item Medi: \(\tau \approx 10^{-20}\) s. Esempio il decadimento del barione \(\Sigma\), \(\Sigma \to \Lambda^0 + \gamma\)
+    \item Lenti: con tempi \(\approx 10^{-10}\) s, ad esempio come il \(\Sigma\) carico, \(\Sigma^+ \to p + \Pi^0\). 
+\end{enumerate}
+
+Venne data la seguente spiegazione teorica: i decadimenti veloci dovevano essere mediati da una forza \emph{forte}, i decadimenti medi dovevano essere elettromagnetici, mentre i decadimenti lenti dovevano in qualche modo violare qualche numero quantico. Questo numero quantico fu chiamato \emph{stranezza}. 
+
+Il modello a quark voleva spiegare la zoologia di tutte queste particelle. Inizialmente, si introdussero tre quark, \(u, d, s\). \(u, d\) stavano in un doppietto di isospin, mentre \(s\) in un singoletto. Inoltre ad \(s\) veniva assegnato il numero quantico della stranezza. Le particelle composite diventavano quindi: 
+
+\begin{align}
+    p = uud, \quad n = udd, \quad, \Sigma^- = dds, \quad \Sigma^0 = uds, \quad \Sigma^+ = uus, \quad \Xi^- = ssd, \quad \Xi^0 = ssu 
+\end{align}
+
+Si ipotizzava che ci fosse una simmetria \(SU(3)\) di sapore, tale che potessi mischiare il tripletto 
+
+\begin{align}
+    \begin{pmatrix}
+        u \\ s \\ d 
+    \end{pmatrix} \to U \begin{pmatrix}
+        u \\ s \\ d 
+    \end{pmatrix}
+\end{align}
+
+Il fatto poi che i quark sono massivi, doveva portare alla rottura \(SU(3)\to SU(2) \otimes U(1)\). 
+
+Usando la carica delle particelle composite, si trova \(Q_\mu = 2/3\), \(Q_d = Q_s = -1/3\). 
+
+Un problema fu l'osservazione della particella \(\Delta^{++}\), con carica \(+2e\), e spin \(3/2\). L'unico stato compatibile con queste caratterische è chiaramente 
+
+\begin{align}
+    \ket{\Delta^{++}} = \ket{uuu}
+\end{align}
+
+con tutti gli \(u\) con spin \(+1/2\). Questo è chiaramente un problema per il principio di di esclusione di Pauli. Una possibilità è introdurre un nuovo numero quantico. Questo fu chiamato colore, e deve valere \(N_c \geq 3\). Questo avrebbe portato ad un enorme profilerazione di particelle, quindi si postulò che le particelle stabili dovessero avere colore nullo. 
+
+Domanda: posso vedere subito se quello che sto facendo ha senso, ancora prima di iniziare? Considero i processi \(e^+e^- \to \mu^+\mu^-\), \(e^+e^- \to q \bar{q}\). Vale allora che 
+
+\begin{align}
+    \frac{\sigma (e^+e^- \to q\bar{q})}{\sigma (e^+e^- \to \mu^+ \mu^-)} = \sum_i q_i^2 N_c
+\end{align}
+
+che è valida se \(\sqrt{s}\) è abbastanza piccola da trascurare \(Z\). Da questo esperimento, si trova subito \(N_c = 3\). 
+
+Rispetto a queste prime idee storiche, nella teoria moderna delle interazioni forti ci sono delle differenze: in particolare i quark sono 6, organizzati in 3 doppietti. 
+
+\section{La QCD come teoria di gauge non abeliana}
+
+Consideriamo ora la lagrangiana 
+
+\begin{align}
+    \mathcal{L}_{QCD} = \sum_f \bar{q}_f^a (i\slashed{D}_{ab} -m\mathbb{I}_{ab})q_f^b - \frac{1}{4}F^{\mu\nu}_a F^{\mu\nu a}
+\end{align}
+
+Dove vale \(F^{\mu\nu} = F^{\mu\nu a}T_a\), \(A_\mu = A_\mu^a T_a\), con \(\left\{ T_a \right\}\) una base delle matrici nello spazio del colore. Cioè, data una trasformazione \(q \to U q, \, U \in SU(3)\), allora posso scrivere \(U = e^{i\theta_a T^a}\). Le \(T^a\) sono dette matrici di Gell-Mann, e sono date da 8 generatori. Si scrivono tipicamente \(T^a = \frac{\lambda^a}{2}\), con \(\lambda^a\) una generalizzazione delle matrici di Pauli. In particolare sono definite in modo tale che valga \(\text{Tr}(T^a T^b) = \frac{1}{2}\delta^{ab}\). Inoltre, poiché sono una base dell'algebra \(\mathfrak{su}(3)\), vale \([T_a, T_b] = if_{abc}T^c\). 
+
+In questo contesto, da cosa è data la derivata covariante \(D_\mu\)? Similmente alla QED, è definita da 
+
+\begin{align}
+    D_\mu = \partial_\mu + ig A_\mu^a T_a 
+\end{align}
+
+Per cercare di essere più chiari inizialmente, useremo gli indici latini maiuscoli per quelli che corrono all'interno dell'algebra, ed useremo gli indici latini minuscoli per gli indici spinoriali. Una trasformazione di gauge generica si scrive quindi 
+
+\begin{align}
+    q'_a = U(x)_{ab}Q_b = \exp(i\theta(x)_A T^A)_{ab}q_b
+\end{align}
+
+La derivata covariante trasforma 
+
+\begin{align}
+    D'_\mu q' = (\partial_\mu + igT^A A'_{\mu A})U(x)q = (\partial_\mu U)q + U(x)\partial_\mu q + igT^A A'_{\mu A} U q 
+\end{align}
+
+Impongo quindi che valga \(D'_\mu q' = UD_\mu q = U\partial_\mu q + igU T^A A_{\mu A}q\) (che equivale a richiedere che la lagrangiana sia gauge invariante). Confrontando le due espressioni, ricavo la legge di trasformazione di \(A_\mu\): 
+
+\begin{align}
+    T^A A_{\mu A}' = U(x)T^A A_{\mu A}U^{-1}(x) - \frac{i}{g}(\partial_\mu U(x))U^{-1}
+\end{align}
+
+Nota che il primo termine è sempre nullo in QED, siccome \(U(1)\) è un gruppo abeliano. Da un punto di vista della geometria differenziale, la legge di trasformazione è la stessa legge di trasformazione di una connessione su un fibrato principale. 
+
+In particolare, dunque, \(D_\mu \to U D_\mu U^{-1}\). Definendo \(igT_A F^{\mu\nu A} = [D^\mu, D^\nu]\), sotto trasformazione di gauge \(ig T_A F^{\mu\nu A} \to U^{-1}igT_A F^{\mu\nu A} U\). Questo non è gauge invariante. Ciononostante, posso riscrivere il termine che compare nella lagrangiana, 
+
+\begin{align}
+    -\frac{1}{4}F^{\mu\nu}_A F^{\mu\nu A} = -\frac{1}{2}\text{Tr}(F^{\mu\nu}_A T^A F^{\mu\nu}_B T^B)
+\end{align}
+
+dove abbiamo semplicemente sfruttato il fatto che \(\text{Tr}(T^A T^B) = \frac{1}{2}\delta^{AB}\). D'altra parte, usando la ciclicità della traccia, è evidente che il termine è gauge invariante. 
+
+A differenza della teoria elettrodebole, la teoria è non chirale. Questo rende possibile dare massa ai fermioni, senza usare necessariamente il meccanismo di Higgs. L'invarianza di gauge protegge inoltre, anche a livello di correzioni quantistiche, la massa dei gluoni, che è zero ad ogni ordine in teoria delle perturbazioni. 
+
+Dalla lagrangiana si derivano le regole di Feynman: 
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5} % Aggiunge spaziatura verticale tra le righe
+\begin{tabular}{ p{0.35\textwidth} p{0.55\textwidth} }
+  % ---------------------------------------------------------
+  % 1. Propagatore del gluone
+  % ---------------------------------------------------------
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (a) {$A,\alpha$};
+      \vertex [right=1.8cm of a] (b);
+      \diagram* {
+        (a) -- [gluon] (b)
+      };
+      \vertex [right=1.8cm of a] (c) {$B,\beta$};
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle \delta^{AB} \left[-g^{\alpha\beta} + (1-\lambda)\frac{p^\alpha p^\beta}{p^2+i\epsilon}\right] \frac{i}{p^2+i\epsilon}$
+  \\
+  % ---------------------------------------------------------
+  % 2. Propagatore del ghost (fantasma)
+  % ---------------------------------------------------------
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (a) {$A$};
+      \vertex [right=1.8cm of a] (b);
+      \diagram* {
+        (a) -- [scalar] (b)
+      };
+      \vertex [right=1.8cm of a] (c) {$B$};
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle \delta^{AB} \frac{i}{p^2+i\epsilon}$
+  \\
+  % ---------------------------------------------------------
+  % 3. Propagatore del quark
+  % ---------------------------------------------------------
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (a) {$a,i$};
+      \vertex [right=1.8cm of a] (b);
+      \diagram* {
+        (a) -- [fermion] (b)
+      };
+      \vertex [right=1.8cm of a] (c) {$b,j$};
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle \delta^{ab} \frac{i}{(\not{p} - m + i\epsilon)_{ji}}$
+  \\
+  % ---------------------------------------------------------
+  % 4. Vertice a tre gluoni
+  % ---------------------------------------------------------
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (center);
+      \vertex [left=1.2cm of center] (a) {$A,\alpha$};
+      \vertex [above right=1.2cm of center] (b) {$B,\beta$};
+      \vertex [below right=1.2cm of center] (c) {$C,\gamma$};
+      \diagram* {
+        (a) -- [gluon] (center),
+        (center) -- [gluon] (b),
+        (center) -- [gluon] (c)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle -g f^{ABC} \left[(p-q)^\gamma g^{\alpha\beta} + (q-r)^\alpha g^{\beta\gamma} + (r-p)^\beta g^{\gamma\alpha}\right]$
+  \\
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (center);
+      \vertex [left=1.2cm of center] (a) {$A,\alpha$};
+      \vertex [above right=1.2cm of center] (b) {$B,\beta$};
+      \vertex [below right=1.2cm of center] (c) {$C,\gamma$};
+      \diagram* {
+        (a) -- [gluon] (center),
+        (center) -- [fermion] (b),
+        (c) -- [fermion] (center)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle ig\gamma^\mu T^A_{bc}$
+  \\
+  \centering
+  \begin{tikzpicture}[baseline={([yshift=-.5ex]current bounding box.center)}]
+    \begin{feynman}
+      \vertex (center);
+      \vertex [left=1.2cm of center] (a) {$A,\alpha$};
+      \vertex [above right=1.2cm of center] (b) {$B,\beta$};
+      \vertex [below right=1.2cm of center] (c) {$C,\gamma$};
+      \diagram* {
+        (a) -- [boson] (center),
+        (center) -- [fermion] (b),
+        (c) -- [fermion] (center)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  &
+  $\displaystyle ie\gamma^\mu \delta_{ab}$
+  \\
+\end{tabular}
+\end{center}
+
+Oltre a questi ci sono anche i termini \(\propto g^2\), che descrivono un vertice a 4 gluoni. L'invarianza di gauge della teoria è codificata nella struttura dei vertici. Ad esempio, il vertice a tre gluoni e tra un gluone e due quark è proporzionale a \(g\): questo rimane vero ad ogni ordine in teoria delle perturbazioni, ovvero i due diagrammi (diversi tra loro, e con diverse correzioni quantistiche) hanno gli stessi identici controtermini. 
+
+Veniamo a parlare della struttura del propagatore. 
+
+
+
+
+\end{document}
+
+ 

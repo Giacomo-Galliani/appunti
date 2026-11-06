@@ -4690,6 +4690,247 @@ Osserva inoltre che se l'indice è non-nullo, la teoria non ammette rottura spon
     cioè la susy non è rotta!
 }
 
+\chapter{Esercizi}
+
+\section{Stringhe: 4.7 BBS}
+
+Consideriamo una superstringa aperta, \((NS_+, R_-)\). Vogliamo verificare al secondo livello in massa l'uguaglianza il numero di stati bosonici e stati fermionici. Per farlo, ricordiamo prima cosa succede al livello massless e al primo livello in massa. 
+
+Al livello massless nel settore di Ramond, ci sono 16 stati, \(\ket{R_A}\). Di questi, 8 hanno autovalore positivo sotto \((-1)^F\) e sono dunque stati bosonici sul WS (li indichiamo con \(\ket{R_a}\)), mentre altri otto (che indichiamo con \(\ket{R_{\bar{b}}}\)) hanno autovalore negativo. La proiezione GSO richiede quindi che siano presi solamente gli stati \(\ket{R_{\hat{b}}}\). 
+
+Lo stato fondamentale nel settore di NS è fermionico ed unico, oltre ad essere tachionico. Fortunatamente \emph{non} resiste alla proiezione GSO. Invece, resistono i primi stati eccitati, massless, dati da \(b_{-1/2}^I\ket{NS}\). Siccome \(\ket{NS}\) è unico e \(I = 1, \ldots, D-2 = 8\), concludiamo che sono 8 stati bosonici, in perfetta corrispondenza con gli 8 stati fondamentali di \(R_-\). 
+
+Al primo livello in massa per il settore \(R_-\) avrò i 64 stati che ottengo facendo agire l'operatore di costruzione bosonico sugli stati fondamentali, ovvero \(a^{I\dagger}_1\ket{R_{\bar{b}}}\), oltre ai 64 che si ottengono usando l'operatore di creazione fermionico sugli stati fondamentali bosonici, ovvero \(d_{-1}^I \ket{R_a}\). In tutto abbiamo 128 stati fermionici. 
+
+Al primo livello in massa per il settore \(NS_+\), invece, abbiamo tutti gli stati possibili con \(N^\perp = 3/2\). Ci sono quindi 3 tipi di stati: 
+
+\begin{align}
+    &b_{-1/2}^I b_{-1/2}^J b_{-1/2}^K \ket{NS} \notag \\ 
+    &b_{-1/2}^I a_{1}^{J\dagger} \ket{NS} \notag \\
+    &b_{-3/2}^I \ket{NS}
+\end{align}
+
+L'ultimo sono 8 stati, il penultimo siccome non c'è nessuna relazione tra l'operatore bosonico e fermionico sono 64 stati. Il primo invece è leggermente più complicato, perchè è una collezione di stati etichettati con 3 indici, totalmente antisimmetrici. Si contano nel modo seguente: il primo lo posso scegliere in \(d-2\) modi diversi, il secondo in \(d-3\), il quarto in \(d-4\). Successivamente devo dividere per il numero di permutazioni, cioè \(3! = 6\). Si ottiene così che sono 56 stati. In tutto abbiamo quindi 128 stati fermionici, come ci aspettavamo. 
+
+Veniamo ora al caso più di nostro interesse, ovvero il secondo livello di massa. 
+
+\section{Stringhe: 6.7 Zwiebach}
+
+Considera una stringa chiusa, circolare, al tempo \(t=0\) di raggio \(R_0\), e con velocità nulla \(\dot{R}(t=0) = 0\). Usando l'azione di Nanbu-Goto, vogliamo determinare \(R(t)\), e dare un'idea qualitativa di come è fatto il WS di questa stringa. 
+
+Partiamo dalla azione di Nabbu-Goto: 
+
+\begin{align}
+    S_{NG} = -T_0 \int d\tau d\sigma \frac{ds}{d\sigma}\sqrt{1-\frac{\dot{R}^2}{c^2}} \implies L = -T_0\int ds \sqrt{1-\frac{\dot{R}^2}{c^2}}
+\end{align}
+
+nota che la l'argomento dell'integrale non dipende da \(s\). Poiché \(\int ds\) è la lunghezza totale della stringa, concludiamo subito che \(\int ds = 2\pi R(t)\). Dunque, la lagrangiana è data da 
+
+\begin{align}
+    L = -T_0 2\pi R(t)\sqrt{1-\frac{\dot{R}^2}{c^2}}
+\end{align}
+
+Ora possiamo scrivere l'Hamiltoniana. Questa è data da 
+
+\begin{align}
+    H = \frac{\partial L}{\partial \dot{R}}\dot{R} - L, \quad \frac{\partial L}{\partial \dot{R}} = \frac{T_0 2\pi R(t)}{c^2}\frac{\dot{R}}{\sqrt{1-\frac{\dot{R}^2}{c^2}}} \implies H = \frac{2\pi R(t)T_0}{\sqrt{1-\frac{\dot{R}^2}{c^2}}} 
+\end{align}
+
+Sappiamo che \(H\) è una costante del moto, e che \(\dot{R}(t=0) =0, R(t=0) = R_0\). Dunque vale il vincolo 
+
+\begin{align}
+    2\pi R_0 T_0 = \frac{2\pi R(t) T_0}{\sqrt{1-\frac{\dot{R}^2}{c^2}}} \implies \dot{R}^2 = c^2 \left(1-\frac{R^2(t)}{R_0} \right)
+\end{align}
+
+che dà una equazione differenziale per \(R(t)\). Prendendo la derivata otteniamo 
+
+\begin{align}
+    2\dot{R}\ddot{R} = -\frac{c^2}{R_0}2\dot{R}R \implies \ddot{R} = -\frac{c^2}{R_0^2}R(t)
+\end{align}
+
+che è semplicemente l'eq. dell'oscillatore armonico, con pulsazione \(\omega = c/R_0\). La soluzione generale è data da 
+
+\begin{align}
+    R(t) = A\cos \left( \frac{ct}{R_0} \right) + B\sin\left( \frac{ct}{R_0} \right) \implies R(t) = R_0 \cos \left( \frac{ct}{R_0} \right)
+\end{align}
+
+dove abbiamo usato le condizioni iniziali per fissare \(A = R_0, B= 0\). La velocità è quindi data da 
+
+\begin{align}
+    \dot{R}(t) = -c \sin \left( \frac{ct}{R_0} \right)
+\end{align}
+
+possiamo fare qualche commento: 
+
+\begin{enumerate}
+    \item La stringa oscilla con raggio massimo \(R_0\) (è facile vedere che non può mai valere \(R>R_0\), perchè già in \(R_0\) la stringa è statica, quindi non abbiamo abbastanza energia per andare oltre), con un moto periodico di periodo \(2\pi \frac{R_0}{c}\). All'interno di ogni periodo, per due volte la stringa si restringe ad un punto. 
+    \item La velocità della stringa prende tutti i valori tra 0 e \(c\) (o meglio il suo modulo assoluto). Il momento in cui si restringe ad un punto si muove alla velocità della luce. 
+\end{enumerate}
+
+\section{SUSY 9.27}
+
+Partendo dall'algebra di susy \(\left\{ Q_\alpha, Q_\beta \right\} = 2(\gamma^\mu C)_{\alpha\beta}P_\mu\), voglio calcolare 
+
+\begin{align}
+    \sum_\alpha \left\{ Q_\alpha, Q^{\dagger\alpha} \right\} = \, ? 
+\end{align}
+
+Per cominciare, devo scrivere il secondo generatore fermionico in termini del suo hermitiano coniugato. Sfrutto la condizione di Majorana: 
+
+\begin{align}
+    Q_\beta = C_{\beta\gamma}\bar{Q}^\gamma = C_{\beta\gamma} i (Q^\dagger \gamma^0)^{\gamma} = C_{\beta\gamma} i Q^{\dagger\delta} (\gamma^0)^\gamma_\delta 
+\end{align}
+
+dove ho anche usato la definizione di coniugato di Dirac, ovvero \(\bar{\psi} =  \psi^\dagger i\gamma^0\). 
+
+Sostituendo nell'anticommutatore, 
+
+\begin{align}
+    iC_{\beta\gamma}\left\{ Q_\alpha, Q^{\dagger \delta} \right\} (\gamma^0)^\gamma_\delta = 2 (\gamma^\mu C)_{\alpha\beta}P_\mu
+\end{align}
+
+Non resta che sbarazzarsi a destra della matrice \(C\) di coniugazione di carica e della \(\gamma^0\). Comincio ad occuparmi della \(C\): 
+
+\begin{align}
+    &(C^{-1})^{\lambda\beta}C_{\beta\gamma}\left\{ Q_\alpha, Q^{\dagger \delta} \right\} (\gamma^0)^\gamma_\delta = -2i (C^{-1})^{\lambda\beta} (\gamma^\mu C)_{\beta \alpha}P_\mu \notag \\ 
+    &\delta^\lambda_\gamma \left\{ Q_\alpha, Q^{\dagger\delta} \right\}(\gamma^0)^\gamma_\delta = -2i (C^{-1} \gamma^\mu C)^\lambda_\alpha P_\mu \notag \\ 
+    &\left\{ Q_\alpha, Q^{\dagger\delta} \right\}(\gamma^0)^\lambda_\delta = 2i (\gamma^\mu)_\alpha^\lambda P_\mu 
+\end{align}
+ 
+Infine moltiplico da destra per \(\gamma^0\): 
+
+\begin{align}
+    &\left\{ Q_\alpha, Q^{\dagger\delta} \right\}(\gamma^0)^\lambda_\delta(\gamma^0)^\gamma_\lambda = 2i (\gamma^\mu\gamma^0)_\alpha^\gamma P_\mu \notag \\
+    &-\left\{ Q_\alpha, Q^{\dagger\gamma} \right\} = 2i (\gamma^\mu\gamma^0)_\alpha^\gamma P_\mu 
+\end{align}
+
+Non rimane che tracciare: 
+
+\begin{align}
+    \sum_\alpha \left\{ Q_\alpha, Q^{\dagger \alpha} \right\} = -2i (\gamma^\mu \gamma^0)^\alpha_\alpha P_\mu = -2i \text{Tr}(\gamma^\mu \gamma^0)P_\mu = -8i \eta^{\mu0} P_\mu = -8iP^0 = 8iP_0
+\end{align}
+
+Infatti, vale 
+
+\begin{align}
+    \text{Tr}(\gamma^\mu \gamma^0) = \frac{1}{2}\text{Tr}(\gamma^\mu \gamma^0 + \gamma^0 \gamma^\mu) = \frac{1}{2}\text{Tr}(\left\{ \gamma^\mu, \gamma^0 \right\}) = \eta^{\mu0}\text{Tr}(\mathbb{I}) = 4\eta^{\mu0}
+\end{align}
+
+\section{SUSY 5.58}
+
+Vogliamo verificare che, date le leggi di trasformazioni dei campi nel modello \(\mathcal{N}=1\) dell'elettrodinamica libera, ovvero 
+
+\begin{align}
+    \begin{cases}
+        \delta_\eps A_\mu = \bar{\eps} \gamma_\mu \lambda \\ 
+        \delta_\eps \lambda = \alpha \gamma^{\mu\nu}F_{\mu\nu} \eps 
+    \end{cases}
+\end{align}
+
+queste trasformazioni verifichino l'algebra di supersimmetria, cioè in particolare valga 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = 2\bar{\eps}_2 \gamma^\nu \eps_1 \partial_\nu A_\mu
+\end{align}
+
+comincio allora con il calcolo: 
+
+\begin{align}
+    &\delta_{\eps_1}(\bar{\eps_2}\gamma_\mu \lambda) - (1 \to 2) \notag \\ 
+    &\bar{\eps_2}\gamma_\mu \alpha \gamma^{\rho\lambda}F_{\rho\lambda} \eps_1 - (1\to 2) = 2\bar{\eps_2}\gamma_\mu \alpha \gamma^{\rho\lambda}F_{\rho\lambda} \eps_1
+\end{align}
+
+Infatti un veloce calcolo mostra che \(\bar{\eps}_2 \gamma_\mu \gamma^{\rho\sigma}\eps_1\) è antisimmetrico nello scambio di 1 in 2. 
+
+Usando le definizioni, scrivo 
+
+\begin{align}
+    \gamma^{\rho\lambda}F_{\rho\lambda} &= \frac{1}{2}(\gamma^\rho\gamma^\lambda \partial_\rho A_\lambda - \gamma^\rho\gamma^\lambda \partial_\lambda A_\rho - \gamma^\lambda\gamma^\rho \partial_\rho A_\lambda + \gamma^\lambda\gamma^\rho \partial_\lambda A_\rho) \notag \\ 
+    &= \gamma^\rho \gamma^\lambda \partial_\rho A_\lambda - \gamma^\rho \gamma^\lambda \partial_\lambda A_\rho 
+\end{align}
+
+Ottengo 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = 2\alpha \bar{\eps_2} \gamma_\mu \gamma^\rho \gamma^\lambda \partial_\rho A_\lambda - 2\alpha \bar{\eps_2} \gamma_\mu \gamma^\rho \gamma^\lambda \partial_\lambda A_\rho  
+\end{align}
+
+La strategia adesso è di anticommutare \(\gamma_\mu\), così da poter ottenere dei termini proporzionali a \(A_\mu\). In particolare comincia con il primo pezzo: 
+
+\begin{align}
+    2\alpha \bar{\eps_2} \gamma_\mu \gamma^\rho \gamma^\lambda \partial_\rho A_\lambda &= 2\alpha \bar{\eps}_2 (2\delta^\rho_\mu - \gamma^\rho \gamma_\mu)\gamma^\lambda \partial_\rho A_\lambda \notag \\ 
+    &= 4\alpha \gamma^\lambda \partial_\mu A_\lambda - 2\alpha \bar{\eps_2} \gamma^\rho \gamma^\mu \gamma^\lambda \partial_\rho A_\lambda \notag \\ 
+    &= 4\alpha \partial_\mu \slashed{A} - 2\alpha\bar{\eps}_2\gamma^\rho (2\eta^{\mu\lambda} - \gamma^\lambda \gamma^\mu)\partial_\rho A_\lambda \notag \\ 
+    &= 4\alpha \partial_\mu \slashed{A} -4\alpha\bar{\eps}_2 \gamma^\rho \partial_\rho A_\mu + 2\alpha \bar{\eps}_2 \gamma^\rho \gamma^\lambda \gamma^\mu \partial_\rho A_\lambda
+\end{align}
+
+Considero ora il secondo pezzo: inanzitutto cambio gli indici muti, 
+
+\begin{align}
+    -2\alpha \bar{\eps}_2 \gamma_\mu \gamma^\lambda \gamma^\rho \partial_\rho A_\lambda 
+\end{align}
+
+e considero la somma di questo termine con l'ultimo termine precedente: 
+
+\begin{align}
+    2\alpha (\partial_\rho A_\lambda)\bar{\eps}_2(\gamma^\rho \gamma^\lambda \gamma_\mu - \gamma_\mu \gamma^\lambda \gamma^\rho) \eps_1
+\end{align}
+
+No, ho sbagliato tutto. Considera il comportamento dell'oggetto spinoriale sotto scambio 1 in 2:  
+
+\begin{align}
+    \bar{\eps_2}\gamma_\mu \gamma^{\rho\sigma}\eps_1 = (\bar{\eps_2}\gamma_\mu \gamma^{\rho\sigma}\eps_1)^T = -\eps_1^T (\gamma_\mu)^T (\gamma^{\rho\sigma})^T \bar{\eps}_2^T 
+\end{align}
+
+uso le relazioni \((\gamma^\mu)^T = -C^{-1}\gamma^\mu C\), e \((\gamma^{\mu\nu})^T = - C^{-1}\gamma^{\mu\nu}C\), così da ottenere
+
+\begin{align}
+    -\eps_1^T C \gamma_\mu \gamma^{\rho\sigma} C^{-1}\bar{\eps}_2^T 
+\end{align}
+
+ora usa il fatto che gli spinori sono di Majorana: vale quindi \(\bar{\eps} = \eps^T  C\), da cui leggo anche \(\bar{\eps}^T = -C \eps\). Ottengo quindi 
+
+\begin{align}
+    \bar{\eps}_1 \gamma_\mu \gamma^{\rho \sigma}\eps_2 = 
+\end{align}
+
+dunque la struttura è quasi simmetrica, ma vengono scambiate l'ordine delle matrici all'interno! Segue che 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = \alpha \bar{\eps}_2 \gamma_\mu \gamma^{\sigma \rho}F_{\sigma \rho} \eps_1 - (1 \to 2)
+\end{align}
+
+posso scrivere 
+
+\begin{align}
+    \bar{\eps}_1 \gamma_\mu \gamma^{\sigma \rho}F_{\sigma \rho} \eps_2 = \bar{\eps}_2 \gamma^{\sigma \rho} \gamma_\mu F_{\sigma \rho} \eps_1 = \bar{\eps}_2  \gamma_\mu \gamma^{\sigma \rho} F_{\sigma \rho} \eps_1 + \bar{\eps}_2  [\gamma^{\sigma \rho}, \gamma_\mu] F_{\sigma \rho} \eps_1 
+\end{align}
+
+così che trovo 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = -\alpha \bar{\eps}_2 [\gamma^{\sigma\rho}, \gamma_\mu]F_{\sigma \rho}\eps_1
+\end{align}
+
+a questo punto si usa solamente la relazione \([\gamma_\mu, \gamma^{\sigma\rho}] = 2\delta^\rho_\mu \gamma^\sigma - 2\delta^\sigma_\mu \gamma^\rho \), e si ottiene 
+
+\begin{align}
+    [\delta_{\eps_1}, \delta_{\eps_2}]A_\mu = -2\alpha \bar{\eps}_2 [\gamma^\rho F_{\rho \mu} - \gamma^{\sigma}F_{\mu\sigma}]\eps_1 = -4\alpha \gamma^\rho F_{\rho \mu}\eps_1 = -4\alpha \slashed{\partial}A_\mu + 4\alpha \partial_\mu \slashed{A}
+\end{align}
+
+Per dimostrare la relazione precedente, si procede nel seguente modo: 
+
+\begin{align}
+    [\gamma_\mu, \gamma^{\rho\sigma}] = \frac{1}{2}[\gamma_\mu, \gamma^\rho \gamma^\sigma - \gamma^{\sigma}\gamma^{\rho}] = [\gamma_\mu, \gamma^\sigma\gamma^\rho]
+\end{align}
+
+visto che \(-\gamma^\rho\gamma^\sigma\) differisce da \(\gamma^\sigma \gamma^\rho\) solamente per una termine proporzionale all'identità che commuta con tutto. A questo punto si usa che \([A, BC] = B\left\{ A, C \right\} + \left\{ A, B \right\}C\), e si ottiene quindi 
+
+\begin{align}
+    [\gamma_\mu, \gamma^{\rho\sigma}] = 2\delta^\sigma_\mu \gamma^\rho + \gamma^\sigma \delta^\rho_\mu
+\end{align}
+
+
 
 \end{document}
 

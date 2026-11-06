@@ -1,0 +1,99 @@
+\documentclass[11pt]{report}
+
+\usepackage{amsmath}
+\usepackage[inlinechap]{settings/fncystyle}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\usepackage[indent=0pt]{parskip}
+
+\renewcommand{\chaptername}{Capitolo}
+\renewcommand{\contentsname}{Indice}
+
+\title{\Huge{\textbf{Fisica Teorica 2 lecture notes}}}
+\author{Giacomo Galliani, course held by R. Ronscht}
+\date{Academic year 2026-2027}
+
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{Spontaneous symmetry braking}
+
+\section{Complications: one loop corrections in the linear sigma model}
+
+Let's now try to make some explicit computations in the linear sigma model. For example, say we want to compute the cross section for a given process. Computing it at tree level can be done with standard procedures. At one loop, we must deal with the UV divergences that emerge. 
+
+In contrast with tipical \(\phi^4\), or \(\phi^3\) theory, the linear sigma model has a lot of different vertices, but the cuplings and masses that appear in the theory are not so many: this raises an important question: can we absorbe all the infinities using re-definitions of our parameters, even if the divergent diagrams are more than the couplings? 
+
+First, we start by introducing the counterterms, directly in the original lagrangian: 
+
+\begin{align}
+    \mathcal{L} = &\frac{1}{2}(\partial_\mu \phi^i)^2 +\frac{\mu^2}{2}\phi_i \phi^i - \frac{\lambda}{4!}(\phi_i \phi^i)^2 \notag \\
+    &-\frac{1}{2}\delta_z \phi^2 (\partial_\mu \phi_i)^2 - \frac{\delta_\mu^2}{2}(\phi_i \phi^i) - \frac{\delta \lambda}{4!}(\phi_i \phi^i)^2 
+\end{align}
+
+The second line in the equation is the counterterms lagrangian, and they it can be expressed in terms of the fields \(\pi, \sigma\) as 
+
+\begin{align}
+    \mathcal{L}_{ct} = &\frac{\delta_z}{2}(\partial_\mu \pi^k)^2 - \frac{1}{2}(\delta_\mu + \delta_\lambda v^2)(\pi^k)^2 + \frac{\delta_z}{2}(\partial_\mu \sigma)^2 - \frac{1}{2}(\delta_\mu + 3\delta_\lambda v^2)\sigma^2 \notag \\ 
+    & -(\delta_\mu v + \delta_\lambda v^3)\sigma - \delta_\lambda v \sigma(\pi^k)^2 - \delta_\lambda v \sigma^3 \notag \\ 
+    & -\frac{\delta_\lambda}{4}(\pi^k)^4 - \frac{\delta_\lambda}{2}\sigma^2 (\pi^k)^2 - \frac{\delta_\lambda}{4}\sigma^4
+\end{align}
+
+From this one computes the counterterms Feynman rules. Before starting the computations, we make the following observation: two distinct scenarios can now unfold: 
+
+\begin{enumerate}
+    \item To cure all the UV divergences, the counterterms in the lagrangian are insufficient. Me must therefore try and add other counterterms to elimininate the extra infinities. This does not necessarly imply that the theory is not renormazible. But the extra terms would not be symmetric under the original \(O(N)\) symmetry of the lagrangian. We then would conclude that, at the quantum level, the symmetry is \emph{not} realized. 
+    \item A small miracle happens, and three counterterms are enough to fix UV divergences. 
+\end{enumerate}
+
+Let's start with the computations. We have 3 different counterterms, so we need 3 renormalization conditions. 
+
+\section{The effective potential}
+
+How can we not lose the geometrical and intuitive thinking that comes from the classical Goldstone's theorem? In the quantum theory this is not so easy to do, because the expectation value of the field on the vaccum \(<\phi>\) has contributions from both the classical potential and also quantum corrections. 
+
+We will develop a function, that at it's minimum gives \(<\phi>\). At tree level, this will coincide with the standard potential. 
+
+To obtain such function we use the analogy between quantum field theory and thermodynamics. Recall that a state at non-zero temperature has termal fluctuations, that we saw to be identical to loop corrections in quantum field theory. At non-zero temperature, we know in thermodynamics what is the preferred state: it is the one the minimizes the Gibbs free energy. 
+
+We will then construct the quantum analog of the Gibbs free energy. Start by considering 
+
+\begin{align}
+    Z[J] = e^{-iE[J]} = \int \mathcal{D}\phi \exp\left(i \int d^4x \mathcal{L} + \phi J\right)
+\end{align}
+
+Then 
+
+\begin{align}
+    \frac{\delta}{\delta J(x)}E(J) = i\frac{\delta}{\delta J(x)}\log(Z)= -\frac{\int \mathcal{D}\phi \phi e^{\left(i \int d^4x \mathcal{L} + \phi J\right)}}{\int \mathcal{D}\phi e^{\left(i \int d^4x \mathcal{L} + \phi J\right)}}
+\end{align}
+
+We use the following notation: 
+
+\begin{align}
+    \frac{\delta E}{\delta J} = - \bra{\Omega}\phi\ket{\Omega}_J 
+\end{align}
+
+witch makes sense because the RHS is the vacuum expectation value of the field, in presence of an external source \(J(x)\). It is also convienient to give another name, 
+
+\begin{align}
+    \phi_{cl} = \bra{\Omega}\phi\ket{\Omega}_J 
+\end{align}
+
+
+
+
+
+
+\end{document}
+
+ 
