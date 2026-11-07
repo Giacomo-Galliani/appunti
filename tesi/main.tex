@@ -27,7 +27,145 @@
 
 \chapter{NLO computations in the subtraction scheme}
 
-\section{\(q(p_1)\bar{q}(p_2) \to V + g(p_4)\), V colorless}
+\section{\(q(p_1)+\bar{q}(p_2) \to V + g(p_4)\), V colorless}
+
+Consider the production of a lepton pair, by annichilation of a quark and a antiquark. These process are known as DY process. At LO (in \(\alpha_s\)), there are two diagrams, when the exchange is mediated by a photon or a Z boson. The amplitude is known. We label \(p_1\) the momentum of the quark, and \(p_2\) of the anti-quark. The two diagrams are in figure \ref{fig:LODY}, and we write their amplitudes as  
+
+\begin{align}
+    \label{eq:LOme}
+    \mathcal{M}(1, 2) = \delta_{ij}\bar{v}(p_2)\gamma^\mu u(p_1)L_\mu(p_\ell, p_{\bar{\ell}})
+\end{align}
+
+The function \(L_\mu\) contains the propagator of the photon/Z boson, as well as the lepton vertex. So we just used the electromagnetic vertex of the quarks. 
+
+As is well known, if we have to compute the cross section at NLO, there are two type of corrections we need to compute. Naturally there are the 1 loop diagrams, that are called virtual, because in the sub-process, an off-shell virtual particle is created. Then there are the real diagrams: in those, an extra gluon appears in the final space. This processes are real because in those a real on-shell gluon is created, and in particular the final phase space is different. Real diagrams are tree level: they should be easy, but the integration over the final state gluon gives some trouble. 
+
+Let us discuss in detail. In figure \ref{fig:NLODY} we've drawn the relevant diagrams, both real and virtual. Let's focus on the real. Their amplitude is obtained by eq. \ref{eq:LOme}, by adding the multiplicative factor of the extra color vertex, times the quark propagator, that can take values of \(p_1 - p_4\), or \(-(p_2-p_4)\), if \(p_4\) is the momentum of the emitted gluon. 
+
+\begin{figure}
+    \caption{the LO diagrams for DY process}
+    \label{fig:LODY}
+    \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {\(q\)}; 
+            \vertex [below right = of a] (b);
+            \vertex [below left= of b] (c) {\(\bar{q}\)}; 
+            \vertex [right = of b] (d);  
+            \vertex [below right= of d] (e) {\(\ell\)};
+            \vertex [above right= of d] (f) {\(\bar{\ell}\)}; 
+            \diagram{
+                (a) -- [fermion] (b); 
+                (b) -- [fermion] (c); 
+                (b) -- [boson, edge label = \(\gamma/Z\)] (d); 
+                (e) -- [fermion] (d); 
+                (d) -- [fermion] (f); 
+            }; 
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+\end{figure}
+
+\begin{figure}
+    \caption{NLO diagrams for DY process}
+    \label{fig:NLODY}
+    \begin{multicols}{2}
+    \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a) {\(q\)}; 
+            \vertex [below right = of a] (b);
+            \vertex [below left= of b] (c); 
+            \vertex [right = of b] (d);  
+            \vertex [below right= of d] (e) {\(\ell\)};
+            \vertex [above right= of d] (f) {\(\bar{\ell}\)}; 
+            \vertex [below left = of c] (g) {\(\bar{q}\)};
+            \vertex [below = of e] (h); 
+            \diagram{
+                (a) -- [fermion] (b); 
+                (b) -- [fermion] (g); 
+                (b) -- [boson, edge label = \(\gamma/Z\)] (d); 
+                (e) -- [fermion] (d); 
+                (d) -- [fermion] (f); 
+                (c) -- [gluon, momentum = \(p_4\)] (h); 
+            }; 
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \columnbreak
+    \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a); 
+            \vertex [below right = of a] (b);
+            \vertex [below left= of b] (c) {\(\bar{q}\)}; 
+            \vertex [right = of b] (d);  
+            \vertex [below right= of d] (e) {\(\ell\)};
+            \vertex [above right= of d] (f) {\(\bar{\ell}\)}; 
+            \vertex [above = of f] (g); 
+            \vertex [above left = of a] (h) {\(q\)}; 
+            \diagram{
+                (h) -- [fermion] (b); 
+                (b) -- [fermion] (c); 
+                (b) -- [boson, edge label = \(\gamma/Z\)] (d); 
+                (e) -- [fermion] (d); 
+                (d) -- [fermion] (f); 
+                (a) -- [gluon, momentum = \(p_4\)] (g);
+            }; 
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \end{multicols}
+\end{figure}
+
+
+Thus, we write 
+
+\begin{align}
+    \mathcal{M}(1, 2, 4) = \eps^*_\nu(p_4)g_{s, b}(T^a)_{ij}\bar{v}(p_2)\left( \gamma^\mu\frac{\slashed{p_1}-\slashed{p_4}}{(p_1-p_4)^2}\gamma^\nu - \gamma^\nu \frac{ \slashed{p_2}-\slashed{p_4}}{(p_2-p_4)^2}\gamma^\mu\right) u(p_1)L_\mu (p_\ell, p_{\bar{\ell}})
+\end{align}
+
+To simplify things, we'd like to use Dirac's equation, that tells us \(\slashed{p_1}u(p_1) = 0 = \bar{v}(p_2)\slashed{p_2}\) (we will always consider massless quarks). In both cases, we anti-commute with the \(\gamma^\nu\) Dirac gamma, 
+
+\begin{align}
+    &\slashed{p_1}\gamma^\nu u(p_1) = \left\{ \slashed{p_1}, \gamma^\nu \right\} u(p_1) = 2p_1^\nu u(p_1) \notag \\ 
+    &\bar{v}(p_2)\gamma^\nu\slashed{p_2} = 2\bar{v}(p_2)p_2^\nu 
+\end{align}
+
+Now consider the "soft" limit, where \(E_4 \to 0\): then we can take \(\slashed{p}_4 = 0\) in the numerator. For the denominator instead we use \((p_1-p_4)^2 = -2p_1 \cdot p_4 = -2E_1 E_4 (1-\cos\theta_{14}) = -2E_1 E_4 \rho_{14}\). In general, we indicate \(\rho_{ij} = (1 - n_i \cdot n_j)\), if \(n_i\) are unit vector that point in the same direction as \(p_i\). Therefore \(\rho_{ij} \in [0, 2], \, \forall i, j\).   
+
+We define \(S_i A := \lim_{E_i \to 0}A\). We find 
+
+\begin{align}
+    S_4 \mathcal{M}(1, 2, 4) = g_{s, b}\eps^*_\nu (p_4) (T^a)_{ij} \bar{v}(p_2)\left( -\frac{\gamma^\mu p_1^\nu}{E_1 E_4\rho_{14}}  + \frac{\gamma^\mu p_2^\nu}{E_2 E_4\rho_{24}}\right)u(p_1)L_\mu (p_\ell, p_{\bar{\ell}})
+\end{align}
+
+squaring this, we can write 
+
+\begin{align}
+    S_4 |\mathcal{M}(1, 2,4)|^2 &= -\frac{g_{s, b}^2 (N_c^2-1)}{2N_c E_4^2} \left(-\frac{p_1^\nu}{E_1 \rho_{14}}  +\frac{p_2^\nu}{E_2\rho_{24}}\right)^2|\mathcal{M}(1, 2)|^2 \notag \\ 
+    &= 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{p_1\cdot p_2}{E_1E_2 \rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2 = 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{\rho_{12}}{\rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2
+\end{align}
+
+In the first line, the factor \(N_c^2-1\) comes from \(\text{Tr}(T^a T^a) = \frac{1}{2}\delta^{aa} = \frac{N_c^2 -1}{2}\), and the factor \(N_c^-1\) is the color factor of \(|\mathcal{M}(1, 2)|^2\). Thus we see \(C_F = \frac{N_c^2 -1}{2N_c}\) appearing naturally. This is the known factorization of the matrix element in the soft limit, and the factor before \(|\mathcal{M}(1, 2)|^2\) is called \emph{eikonal} factor. In can be shown that this is happens universally, not only for DY process.
+
+Now that we have properly obtained the eikonal factor, we see that its integral over the gluon finale phase space is not finite. Of course this is a problem: we cannot, for example, put the integral in a MC program and get a sensibile result. 
+
+To see how the problem can be resolved, first we introduce some useful notation. We also switch to the more general case where the process is \(q\bar{q} \to V + g\), with \(V\) colorless particles. We denote the contribution of the real diagrams of \(d\sigma^{NLO}\) as 
+
+\begin{align}
+    d\sigma^R = \frac{1}{2s}\int [dg_4] F_{LM}(1, 2, 4)
+\end{align}
+
+where \((2s)^{-1}\) is the flux factor, \([dg_4] = \frac{d^{d-1}p_4\theta(E_{max}-E_4)}{(2\pi)^d 2E_4}\) and 
+
+\begin{align}
+    F_{LM}(1, 2, 4) = d\text{Lips}_V |\mathcal{M}(1, 2,4)|^2 \mathcal{F}_{kin}(1, 2, 4)
+\end{align}
+
+where \(d\text{Lips}_V\) is the lorentz invariant phase space of the particles \(V\), and \(\mathcal{F}_{kin}(1, 2, 4)\) is a IR safe observable. 
+
+Now notice that the soft limit is not the only point in the phase space that is not integrable. There is also the so called \emph{collinear} singularity, that arises if \(\theta_{14}\) or \(\theta_{24}\) vanishes (or, equivalently, \(\rho_{12}\) or \(\rho_{14}\) go to 0). 
 
 
 
