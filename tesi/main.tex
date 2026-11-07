@@ -74,20 +74,21 @@ Let us discuss in detail. In figure \ref{fig:NLODY} we've drawn the relevant dia
         \begin{tikzpicture}
         \begin{feynman}
             \vertex (a) {\(q\)}; 
-            \vertex [below right = of a] (b);
-            \vertex [below left= of b] (c); 
-            \vertex [right = of b] (d);  
-            \vertex [below right= of d] (e) {\(\ell\)};
-            \vertex [above right= of d] (f) {\(\bar{\ell}\)}; 
-            \vertex [below left = of c] (g) {\(\bar{q}\)};
-            \vertex [below = of e] (h); 
+            \vertex [right = of a] (b);
+            \vertex [below = of b] (c) ; 
+            \vertex [right = of c] (d);  
+            \vertex [right = of b] (g); 
+            \vertex [below right= of g] (e) {\(\ell\)};
+            \vertex [above right= of g] (f) {\(\bar{\ell}\)}; 
+            \vertex [left = of c] (h) {\(\bar{q}\)}; 
             \diagram{
                 (a) -- [fermion] (b); 
-                (b) -- [fermion] (g); 
-                (b) -- [boson, edge label = \(\gamma/Z\)] (d); 
-                (e) -- [fermion] (d); 
-                (d) -- [fermion] (f); 
-                (c) -- [gluon, momentum = \(p_4\)] (h); 
+                (b) -- [fermion] (c); 
+                (c) -- [gluon, momentum = \(p_4\)] (d); 
+                (e) -- [fermion] (g); 
+                (g) -- [fermion] (f); 
+                (b) -- [boson, edge label = \(\gamma/Z\)] (g);
+                (c) -- [fermion] (h); 
             }; 
         \end{feynman}
         \end{tikzpicture}
@@ -96,21 +97,22 @@ Let us discuss in detail. In figure \ref{fig:NLODY} we've drawn the relevant dia
     \begin{center}
         \begin{tikzpicture}
         \begin{feynman}
-            \vertex (a); 
-            \vertex [below right = of a] (b);
-            \vertex [below left= of b] (c) {\(\bar{q}\)}; 
-            \vertex [right = of b] (d);  
+            \vertex (a) {\(q\)}; 
+            \vertex [right = of a] (b);
+            \vertex [below = of b] (c) ; 
+            \vertex [right = of c] (d);  
             \vertex [below right= of d] (e) {\(\ell\)};
             \vertex [above right= of d] (f) {\(\bar{\ell}\)}; 
-            \vertex [above = of f] (g); 
-            \vertex [above left = of a] (h) {\(q\)}; 
+            \vertex [right = of b] (g); 
+            \vertex [left = of c] (h) {\(\bar{q}\)}; 
             \diagram{
-                (h) -- [fermion] (b); 
+                (a) -- [fermion] (b); 
                 (b) -- [fermion] (c); 
-                (b) -- [boson, edge label = \(\gamma/Z\)] (d); 
+                (c) -- [boson, edge label = \(\gamma/Z\)] (d); 
                 (e) -- [fermion] (d); 
                 (d) -- [fermion] (f); 
-                (a) -- [gluon, momentum = \(p_4\)] (g);
+                (b) -- [gluon, momentum = \(p_4\)] (g);
+                (c) -- [fermion] (h); 
             }; 
         \end{feynman}
         \end{tikzpicture}
@@ -143,6 +145,7 @@ We define \(S_i A := \lim_{E_i \to 0}A\). We find
 squaring this, we can write 
 
 \begin{align}
+    \label{eq:softfactorization}
     S_4 |\mathcal{M}(1, 2,4)|^2 &= -\frac{g_{s, b}^2 (N_c^2-1)}{2N_c E_4^2} \left(-\frac{p_1^\nu}{E_1 \rho_{14}}  +\frac{p_2^\nu}{E_2\rho_{24}}\right)^2|\mathcal{M}(1, 2)|^2 \notag \\ 
     &= 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{p_1\cdot p_2}{E_1E_2 \rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2 = 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{\rho_{12}}{\rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2
 \end{align}
@@ -165,10 +168,39 @@ where \((2s)^{-1}\) is the flux factor, \([dg_4] = \frac{d^{d-1}p_4\theta(E_{max
 
 where \(d\text{Lips}_V\) is the lorentz invariant phase space of the particles \(V\), and \(\mathcal{F}_{kin}(1, 2, 4)\) is a IR safe observable. 
 
-Now notice that the soft limit is not the only point in the phase space that is not integrable. There is also the so called \emph{collinear} singularity, that arises if \(\theta_{14}\) or \(\theta_{24}\) vanishes (or, equivalently, \(\rho_{12}\) or \(\rho_{14}\) go to 0). 
+Now notice that the soft limit is not the only point in the phase space that is not integrable. There is also the so called \emph{collinear} singularity, that arises if \(\theta_{14}\) or \(\theta_{24}\) vanishes (or, equivalently, \(\rho_{12}\) or \(\rho_{14}\) go to 0). To be able to integrate the matrix element numerically we must therefor subtract both the soft and the collinear divergences. To this aim we also define the collinear operator, 
 
+\begin{align}
+    C_{ij}A = \lim_{\rho_{ij} \to 0}A 
+\end{align}
 
+The isoleted divergences of \(F_{LM}(1, 2, 4)\) are given by \(C_{41}F_{LM}(1, 2, 4), \, C_{42}F_{LM}(1, 2, 4), \, S_4F_{LM}(1, 2, 4)\). We thus re-write \(d\sigma^R\) as (using the convention where \(\int [dg_4] \ldots = <\ldots> \))
 
+\begin{align}
+    d\sigma^R &= \frac{1}{2s}<(C_{41}+C_{42})F_{LM}(1, 2, 4)> + \frac{1}{2s}<(1 - (C_{41}+C_{42}))F_{LM}(1, 2, 4)> \notag \\ 
+    &= \frac{1}{2s}(<(C_{41} + C_{42})F_{LM}(1, 2, 4)> + <(I - C_{41} - C_{42})S_4F_{LM}(1, 2, 4)> + <\hat{O}_{NLO}F_{LM}(1, 2, 4)>) 
+\end{align}
+
+where we defined \(\hat{O}_{NLO} = (I-C{41}- C_{42})(I-S_4)\). The term \(\propto \hat{O}_{NLO}\) is now free from any singularity by costruction, and can be numerically computed safely. Hence we must compute only the two extra terms. 
+
+\clm{}{}{
+
+    The term \( <(I - C_{41} - C_{42})S_4F_{LM}(1, 2, 4)>\) is zero 
+}
+
+To see this, we use the expresion for \(S_4 F_{LM}(1, 2, 4)\) that we derived earlier (eq. \ref{eq:softfactorization}). In the general case, the formula can be written as 
+
+\begin{align}
+    S_4 F_{LM}(1, 2, 4) = \frac{2g_{s,b}^2 C_F}{E_4^2}\frac{\rho_{12}}{\rho_{14}\rho_{24}}F_{LM}(1, 2)
+\end{align}
+
+We have to compute the action of \(C_{14}\) as well as \(C_{24}\) on this. Of course the limit affects only the fraction \(\frac{\rho_{12}}{\rho_{14}\rho_{24}}\). In the CM frame, \(\rho_{12} = 2\). Also, if \(p_4\) is allined with \(p_1\), it must be anti-parallel to \(p_2\). We conclude that 
+
+\begin{align}
+    C_{14}\frac{\rho_{12}}{\rho_{14}\rho_{24}} = \frac{1}{\rho_{14}}, \quad C_{24}\frac{\rho_{12}}{\rho_{14}\rho_{24}} = \frac{1}{\rho_{24}} \implies (C_{14} + C_{24}) \frac{\rho_{12}}{\rho_{14}\rho_{24}} = \frac{1}{\rho_{14}} + \frac{1}{\rho_{24}} = \frac{\rho_{14} + \rho_{24}}{\rho_{14}\rho_{24}}
+\end{align}
+
+Again since we're in the CM frame, \(\rho_{14} + \rho_{24} = 2 = \rho_{12}\). We conclude that \(C_{14} + C_{42}\) leaves \(SF_{LM}(1, 2, 4)\) unchanged, and so \((I - C_{41} - C_{42})S_4F_{LM}(1, 2, 4) = 0\). 
 
 
 
