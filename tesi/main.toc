@@ -1,5 +1,8 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
 \contentsline {chapter}{\numberline {1}NLO computations in the subtraction scheme}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}\(q(p_1)+\bar {q}(p_2) \to V + g(p_4)\), V colorless}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.1}The singularities of the NLO real corrections for DY processes}{2}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}The soft limit}{3}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}The collinear limit}{4}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}The subtraction scheme for \(q\bar {q} \to V + g\)}{4}{section.1.2}%
 \contentsfinish 

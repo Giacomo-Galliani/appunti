@@ -27,7 +27,7 @@
 
 \chapter{NLO computations in the subtraction scheme}
 
-\section{\(q(p_1)+\bar{q}(p_2) \to V + g(p_4)\), V colorless}
+\section{The singularities of the NLO real corrections for DY processes}
 
 Consider the production of a lepton pair, by annichilation of a quark and a antiquark. These process are known as DY process. At LO (in \(\alpha_s\)), there are two diagrams, when the exchange is mediated by a photon or a Z boson. The amplitude is known. We label \(p_1\) the momentum of the quark, and \(p_2\) of the anti-quark. The two diagrams are in figure \ref{fig:LODY}, and we write their amplitudes as  
 
@@ -124,8 +124,11 @@ Let us discuss in detail. In figure \ref{fig:NLODY} we've drawn the relevant dia
 Thus, we write 
 
 \begin{align}
+    \label{eq:NLOme}
     \mathcal{M}(1, 2, 4) = \eps^*_\nu(p_4)g_{s, b}(T^a)_{ij}\bar{v}(p_2)\left( \gamma^\mu\frac{\slashed{p_1}-\slashed{p_4}}{(p_1-p_4)^2}\gamma^\nu - \gamma^\nu \frac{ \slashed{p_2}-\slashed{p_4}}{(p_2-p_4)^2}\gamma^\mu\right) u(p_1)L_\mu (p_\ell, p_{\bar{\ell}})
 \end{align}
+
+\subsection{The soft limit}
 
 To simplify things, we'd like to use Dirac's equation, that tells us \(\slashed{p_1}u(p_1) = 0 = \bar{v}(p_2)\slashed{p_2}\) (we will always consider massless quarks). In both cases, we anti-commute with the \(\gamma^\nu\) Dirac gamma, 
 
@@ -154,7 +157,18 @@ In the first line, the factor \(N_c^2-1\) comes from \(\text{Tr}(T^a T^a) = \fra
 
 Now that we have properly obtained the eikonal factor, we see that its integral over the gluon finale phase space is not finite. Of course this is a problem: we cannot, for example, put the integral in a MC program and get a sensibile result. 
 
-To see how the problem can be resolved, first we introduce some useful notation. We also switch to the more general case where the process is \(q\bar{q} \to V + g\), with \(V\) colorless particles. We denote the contribution of the real diagrams of \(d\sigma^{NLO}\) as 
+This is not the only singularity of the amplitude squared. In the soft limit, the denominator cointains the factors \(\rho_{14}\rho_{24}\propto (1-\cos\theta_{14})(1-\cos\theta_{24})\) that go to zero as \(\theta^{2}\) as \(\theta \to 0\). Thus also the angular integral is divergent. 
+
+\subsection{The collinear limit}
+
+That the angular integral is divergent in the collinear limit (i.e. when one of the \(\theta\)s goes to zero) is true also when the gluon emmitted is \emph{hard}. To see this we go back to the amplitude, eq. \ref{eq:NLOme}. 
+
+
+\section{The subtraction scheme for \(q\bar{q} \to V + g\)}
+
+As mentioned before, if an integral is divergent, we cannot integrate it numerically. A possibile strategy for dealing with this problem is defining some operators that extract the singularities. Then one can try to compute analitically the integral in the particular limit, and use a numerical algorithm (e.g. Monte Carlo integrator) to compute the regular integral.   
+
+To see how we can do this in practice, first we introduce some useful notation. We also switch to the more general case where the process is \(q\bar{q} \to V + g\), with \(V\) colorless particles. We denote the contribution of the real diagrams of \(d\sigma^{NLO}\) as 
 
 \begin{align}
     d\sigma^R = \frac{1}{2s}\int [dg_4] F_{LM}(1, 2, 4)
@@ -201,6 +215,50 @@ We have to compute the action of \(C_{14}\) as well as \(C_{24}\) on this. Of co
 \end{align}
 
 Again since we're in the CM frame, \(\rho_{14} + \rho_{24} = 2 = \rho_{12}\). We conclude that \(C_{14} + C_{42}\) leaves \(SF_{LM}(1, 2, 4)\) unchanged, and so \((I - C_{41} - C_{42})S_4F_{LM}(1, 2, 4) = 0\). 
+
+The only term that we have to deal with is therefore 
+
+\begin{align}
+    <(C_{41} + C_{42})F_{LM}(1,2,4)>
+\end{align}
+
+When we derived the collinear limit factorization for the DY process (eq. ), we mentioned that it was completely universal. We can safely write than 
+
+\begin{align}
+    \label{eq:collimNLO}
+    C_{41}F_{LM}(1, 2, 4) = \frac{g^2_{s,b}}{E_4^2\rho_{14}}\frac{1-z}{z}P_{qq}(z)F_{LM}(z\cdot1, 2)
+\end{align}
+
+The splitting function is defined as before, and \(z = 1- E_4/E_1\). We also simplified the denominator using \((p_1-p_4)^2 = -2p_1\cdot p_4 = -2E_1E_4\rho_{14} = -2E_4^2\rho_{14}\frac{E_1}{E_4} = -2\frac{E_4^2\rho_{14}}{1-z}\). 
+
+Problems start to arise when we consider this term integrated over the gluon final phase space. We need to evaluate the integral in dimensional regularization, so we can cancel it with the UV divergences of the virutual NLO corrections. We write then 
+
+\begin{align}
+    [dg_4] = \frac{E_4^{d-3}dE_4 d\cos\theta (1-\cos^2\theta)^{d/2-2} d\Omega_{d-2}}{2(2\pi)^{d-1}}
+\end{align}
+
+since \(E_4 = |p_4|\). Our integrand (eq. \ref{eq:collimNLO}) depends on \(E_4\) through \(z\), and the angular dependence is only in \(\rho_{14}^{-1}\). Our next step is therefore to compute the angular integral, and to write the energy integral in terms of \(z\).  
+
+We obtain 
+
+\begin{align}
+    <C_{41}F_{LM}(1, 2, 4)> = -\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}(2E_1)^{-2\eps}\int_{z_{\min}}^1 \frac{dz}{(1-z)^{2\eps}}P_{qq}(z) \frac{F_{LM}(z\cdot 1, 2)}{z}
+\end{align}
+
+Now we need to write to write the \(z\) integral in such a way that the combination with the virtual corrections is straightforward. 
+
+Notice that when \(z\to 1\) the integral is divergent (or at least would be divergent in the limit \(\eps \to 0\)): this is of course the soft limit. We write \(F_{LM}(1,2,4)/z = G(z)\), and we split \(P_{qq}\) in a regular function plus a singular, when \(z\to 1\): 
+
+\begin{align}
+    P_{qq}(z) = \frac{2C_F}{1-z} + P^{reg}_{qq}(z)
+\end{align}
+
+
+
+
+
+
+
 
 
 
