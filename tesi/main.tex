@@ -163,6 +163,33 @@ This is not the only singularity of the amplitude squared. In the soft limit, th
 
 That the angular integral is divergent in the collinear limit (i.e. when one of the \(\theta\)s goes to zero) is true also when the gluon emmitted is \emph{hard}. To see this we go back to the amplitude, eq. \ref{eq:NLOme}. 
 
+\section{Dealing with IR divergences: pdfs renormalization}
+
+If the result is infinite, at some points in our computation we must have done a mistake. Actually, the mistakes are two: 
+
+\begin{enumerate}
+    \item We did not consider the virtual processes that contribute to the same order in \(\alpha_s\). 
+    \item We computed a partonic cross section: alone, it is not a physical observable as we can't have free partons in the initial state. 
+\end{enumerate}
+
+To obtain a sensible result, first we need to add up the virtual corrections, and then we need to integrate the cross section using the partonic distribution functions (pdfs). Thus, we can write the pdfs as a sum of a bare pdf and a counterterm, that eliminates the remaining poles. 
+
+The \emph{hadronic} (thus observable) cross section is given from \(F_{LM}(1, 2)\) as 
+
+\begin{align}
+    \int_0^1 dx_1 dx_2 f_q^{bare}(x_1)f_q^{bare}(x_2)\frac{1}{x_1P_1 x_2P_2}F_{LM}(x_1P_1, x_2P_2)
+\end{align}
+
+where \(P_1, \, P_2\) are the momenta of the incoming hadrons, and we recognize the flux factor \((2s)^{-1} = (x_1P_1 x_2P_2)^{-1}\). 
+ 
+As done for the couplings or masses, the counterterms for the pdfs can be computed as a perturbative series in \(\alpha_s\). In the \(\bar{\text{MS}}\) scheme, one writes the bare pdfs in terms of the remormalized using 
+
+\begin{align}
+    f_i^{bare}(x) = [\delta_{ij}\delta(1-y_2)+\frac{\alpha_s(\mu^2)}{2\pi}\frac{1}{\eps}\hat{P}^{(0)}_{ij}(y_1) + o(\alpha_s^2)] \otimes f_j^{ren}(y_2)
+\end{align}
+
+where \(\otimes\) is the convolution. \(\hat{P}^{(0)}_{ij}\) is instead the Altarelli-Parisi kernel function. 
+
 
 \section{The subtraction scheme for \(q\bar{q} \to V + g\)}
 
@@ -242,22 +269,114 @@ since \(E_4 = |p_4|\). Our integrand (eq. \ref{eq:collimNLO}) depends on \(E_4\)
 We obtain 
 
 \begin{align}
+    \label{eq:collzintegral}
     <C_{41}F_{LM}(1, 2, 4)> = -\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}(2E_1)^{-2\eps}\int_{z_{\min}}^1 \frac{dz}{(1-z)^{2\eps}}P_{qq}(z) \frac{F_{LM}(z\cdot 1, 2)}{z}
 \end{align}
 
-Now we need to write to write the \(z\) integral in such a way that the combination with the virtual corrections is straightforward. 
-
-Notice that when \(z\to 1\) the integral is divergent (or at least would be divergent in the limit \(\eps \to 0\)): this is of course the soft limit. We write \(F_{LM}(1,2,4)/z = G(z)\), and we split \(P_{qq}\) in a regular function plus a singular, when \(z\to 1\): 
+Now we need to write to write the \(z\) integral in such a way that the combination with the virtual corrections is straightforward, i.e. the pole structure is completely explicit. This is still clearly not the case, as in the limit \(z\to 1\) the integral is divergent (or at least would be divergent in the limit \(\eps \to 0\)): this is of course the soft limit. We write \(F_{LM}(1,2,4)/z = G(z)\), and we rewrite \(P_{qq}(z)\) in the following way:  
 
 \begin{align}
-    P_{qq}(z) = \frac{2C_F}{1-z} + P^{reg}_{qq}(z)
+    P_{qq}(z) &= \frac{C_F}{1-z} + \frac{C_F z^2}{1-z} - C_F\eps(1-z) = \frac{2C_F}{1-z} + \frac{C_F(z^2 -1)}{1-z} -C_F\eps(1-z) \notag \\ 
+    &= \frac{2C_F}{1-z} + P_{qq}^{reg}(z)
 \end{align}
 
+In doing so we explicitly separated \(P_{qq}\) in a a piece that is singular in the limit \(z\to1\), \(\frac{2C_F}{1-z}\), and one piece that is regular \(P^{rel}_{qq} = -C_F((z+1) + \eps(1-z))\). 
 
+Consider then the integral in \(z\): (we can safely extend the integral to the range \([0, 1]\) as \(F_{LM}\) contains the final state phase space that is zero if there is not enough energy to produce the final state particles, i.e. if \(z<z_{\min}\))
 
+\begin{align}
+    I_z &= \int_0^1 dz \left[ \frac{2C_F}{(1-z)^{1+2\eps}}+(1-z)^{-2\eps}P_{qq}^{reg}(z) \right]G(z) = \notag \\ 
+    &= \int_0^1 dz \left[ \frac{2C_F(G(z)-G(1))}{(1-z)^{1+2\eps}}+(1-z)^{-2\eps}P_{qq}^{reg}(z)G(z) \right] + X
+\end{align}
 
+The last expression holds only if 
 
+\begin{align}
+    X = \int_0^1 dz \frac{2C_FG(1)}{(1-z)^{1+2\eps}} = \frac{2C_FG(1)}{-2\eps} = -\frac{C_F G(1)}{\eps}
+\end{align}
 
+We notice than that we've taken the divergent part out of the integral. The first fraction is not divergent anymore as also the numerator now goes to zero as \(z\to1\). More explicitly, we write \(\frac{G(z)-G(1)}{(1-z)^{1+2\eps}}\)as a power series: 
+
+\begin{align}
+    \frac{G(z)-G(1)}{(1-z)^{1+2\eps}} &= (1-z)^{-2\eps}\left( \frac{G(z)-G(1)}{1-z} \right) = e^{-2\eps\log(1-z)}\left( \frac{G(z)-G(1)}{1-z} \right) = \notag \\ 
+    &= \sum_{n=0}^{\infty} \frac{(-1)^n (2\eps)^n \log^n(1-z)}{n!}\left( \frac{G(z)-G(1)}{1-z} \right) 
+\end{align}
+
+The first part of the integral then becomes  
+
+\begin{align}
+    2C_F \sum_{n=0}^{\infty}\frac{(-2\eps)^n}{n!}\int_0^1 \frac{\log^n(1-z)}{(1-z)}(G(z)-G(1)) = 2C_F \sum_{n=0}^{\infty}\frac{(-2\eps)^n}{n!}\int_0^1 \mathcal{D}_n(z) G(z)  
+\end{align}
+
+The factors \(\mathcal{D}_n\) are defined by the last equality and are called \emph{plus-distributions}.
+
+In equation \ref{eq:collzintegral} the \(z\) integral is moltiplied by a pole \(1/\eps\). Therefore we must expand the integral up to \(o(\eps)\). The whole integral now reads
+
+\begin{align}
+    I_z = -\frac{C_F F_{LM}(1, 2)}{\eps} + \underbrace{2C_F \sum_{n=0}^{\infty}\frac{(-2\eps)^n}{n!}\int_0^1 \mathcal{D}_n(z) G(z)}_{=I_z^1} + \underbrace{\int_0^1 dz (1-z)^{-2\eps}P_{qq}^{reg}(z)}_{=I_z^2}
+\end{align}
+
+The first term is already explicit, so we just need to expand \(I_z^1, I_z^2\): 
+
+\begin{align}
+    &I_z^1 = 2C_F \left( \int_0^1 dz D_0(z) G(z)  -2\eps \int_0^1 dz D_1(z)G(z)\right) \notag \\ 
+    &I_z^2 = \int_0^1 (1-z)^{-2\eps}P_{qq}^{reg}(z) = -C_F\int_0^1 dz e^{-2\eps\log(1-z)}(z+1 - \eps(1-z)) = \notag \\ 
+    &\quad = -C_F\int_0^1 [(z+1) -2\eps\log(1-z)(z+1) + \eps(1-z)G(z) 
+\end{align}
+
+Combining everything, we find: 
+
+\begin{align}
+    \label{eq:Izres}
+    I_z = -\frac{C_F F_{LM}(1, 2)}{\eps} + C_F \int_0^1 dz (2\mathcal{D}_0 - (1+z)) + \eps[2\log(1-z)(z+1) - (1-z) -4\mathcal{D}_1(z)]G(z) + o(\eps^2)
+\end{align}
+
+Our result is then 
+
+\begin{align}
+    \label{eq:colintegralres}
+    \braket{C_{41}F_{LM}(1, 2, 4)} = -\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\left[-C_F \left(\frac{1}{\eps} +\frac{3}{2} \right)\braket{F_{LM}(1, 2)} + \int_0^1 \hat{P}_{qq, R}(z)\braket{\frac{F(z\cdot 1, 2)}{z}}\right]    
+\end{align}
+
+where \(\hat{P}_{qq, R}\) is a modified splitting function, explicitly given by 
+
+\begin{align}
+    &\hat{P}_{qq, R} = \hat{P}_{qq}^{(0)} + \eps \hat{P}_{qq}^{(\eps)} + o(\eps^2),  \notag \\ 
+    &\hat{P}_{qq}^{(0)} = C_F\left(2\mathcal{D}_0 -(1+z) + \frac{3}{2}\delta(1-z)\right) \notag \\ 
+    &\hat{P}_{qq}^{(\eps)} = C_F(2\log(1-z)(z+1)- (1-z) - 4\mathcal{D}_1(z))
+\end{align}
+
+the expression for \(\hat{P}^{(0)}_{qq}\) matches the LO Altarelli-Parisi splitting kernel. Notice that to obtain eq. \ref{eq:colintegralres} we just used our result for the z integral (eq. \ref{eq:Izres}) into \ref{eq:collzintegral}, adding and subtracting the factor \(-3/2\). 
+
+Having obtained this expression for the first collinear limit, the second one will be analogous. We can then write the real cross section, in the explicit form that we wanted: 
+
+\begin{align}
+    2sd\sigma^{R} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + 2C_F[\alpha_s]\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\left[ \left(\frac{1}{\eps^2} +\frac{3}{2\eps} \right)\braket{F_{LM}(1, 2)}\right] \notag \\ 
+    &-\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 \hat{P}_{qq, R}(z)\left(\braket{\frac{F(z\cdot 1, 2)}{z}} + \braket{\frac{F(1, z\cdot 2)}{z}}  \right)
+\end{align}
+
+We make some comments on this result. The first part is integrable, and can be integrated numerically. The second part is the most divergent (\(\propto \eps^{-2}\)), and multiplies directly the LO factor, \(\braket{F_{LM}(1, 2)}\). Those poles are what we expect to be canceled together with the poles form the virtual diagrams. Lastly, the last term, proportional to \(\eps^{-1}\), is proportional to the LO amplitude with rescaled energy. Such factors \emph{do not} arise when computing UV divergences, and therefore must be canceled with the collinear counterterms. 
+
+Let's now add the UV poles that come from the virtual diagrams. We use Catani's representation of renormalized one loop amplitudes: 
+
+\begin{align}
+    2sd\sigma^{V} = -2[\alpha_s]\cos(\eps \pi)\left( \frac{C_F}{\eps^2}+\frac{3C_F}{2\eps} \right)s^{-\eps}\braket{F_{LM}(1, 2)} + \braket{F_{LV}^{fin}(1, 2)}
+\end{align}
+
+The sum of the two contributes is thus 
+
+\begin{align}
+    2sd\sigma^{V+R} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \notag \\
+    &2[\alpha_s]s^{-\eps}\left( \frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)} -\cos(\pi\eps)\right)\left( \frac{C_F}{\eps^2} +\frac{3C_F}{2\eps}\right)\braket{F_{LM}(1, 2)} + \notag \\ 
+    &- \frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 dz \hat{P}_{qq, R}\left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
+\end{align}
+
+Expanding the function \(\mathcal{S}(1, 2) = s^{-\eps}\left( \frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)} -\cos(\pi\eps)\right)\left( \frac{C_F}{\eps^2} +\frac{3C_F}{2\eps}\right)\) up to \(o(1)\), one finds that all the poles are calceled, leaving 
+
+\begin{align}
+    2sd\sigma^{V+R} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \frac{2\pi^2C_F}{3}[\alpha_s]s^{-\eps}\braket{F_{LM}(1, 2)} \notag \\
+    &- \frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 dz \hat{P}_{qq, R}\left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
+\end{align}
 
 
 
