@@ -177,6 +177,7 @@ To obtain a sensible result, first we need to add up the virtual corrections, an
 The \emph{hadronic} (thus observable) cross section is given from \(F_{LM}(1, 2)\) as 
 
 \begin{align}
+    \label{eq:hadcrosssec}
     \int_0^1 dx_1 dx_2 f_q^{bare}(x_1)f_q^{bare}(x_2)\frac{1}{x_1P_1 x_2P_2}F_{LM}(x_1P_1, x_2P_2)
 \end{align}
 
@@ -188,8 +189,33 @@ As done for the couplings or masses, the counterterms for the pdfs can be comput
     f_i^{bare}(x) = [\delta_{ij}\delta(1-y_2)+\frac{\alpha_s(\mu^2)}{2\pi}\frac{1}{\eps}\hat{P}^{(0)}_{ij}(y_1) + o(\alpha_s^2)] \otimes f_j^{ren}(y_2)
 \end{align}
 
-where \(\otimes\) is the convolution. \(\hat{P}^{(0)}_{ij}\) is instead the Altarelli-Parisi kernel function. 
+where \(\otimes\) is the convolution. \(\hat{P}^{(0)}_{ij}\) is instead the Altarelli-Parisi kernel function. Inserting this in equation \ref{eq:hadcrosssec}, considering for now only the terms in \(x_1\), one gets 
 
+\begin{align}
+    &\int_0^1 dx_1 f_q^{bare}(x_1)\frac{F_{LM}(x_1P_1, \ldots)}{x_1} = \notag \\ 
+    &\int_0^1 dx_1 f_q^{ren}(x_1)\frac{F_{LM}(x_1P_1, \ldots)}{x_1} + \int_0^1 dx_1 \frac{\alpha_s(\mu^2)}{2\pi\eps}[\hat{P}^{(0)}_{qq}\otimes f_q^{ren}](x_1) \frac{F_{LM}(x_1P_1, \ldots)}{x_1} 
+\end{align}
+
+We recognize in the second term a counterterm of order \(\alpha_s\). Writing explicitly the convolution, and integrating over \(x_1\) using the delta function, we obtain: 
+
+\begin{align}
+    &\int_0^1 dx_1 dy_1 dy_2 \frac{\alpha_s(\mu^2)}{2\pi x_1\eps}\hat{P}_{qq}(y_1)f_q^{ren}(y_2)F_{LM}(x_1P_1, \ldots)\delta(x_1- y_1y_2) =\notag \\ 
+    &\int_0^1 dy_1 dy_2 \frac{\alpha_s(\mu^2)}{2\pi y_1 y_2\eps}\hat{P}^{(0)}_{qq}(y_1)f^{ren}_{q}(y_2)F_{LM}(y_1y_2 P_1, \ldots) \notag  = \\ 
+    &\int_0^1 dx_1 \frac{f^{ren}_q (x_1)}{x_1}\int_0^1 dz \frac{\alpha_s(\mu^2)}{2\pi z} \frac{1}{\eps}\hat{P}^{(0)}_{qq}(z)F_{LM}(zx_1 P_1, \ldots)
+\end{align}
+
+We recognize therefore a \emph{partonic} counterterm, given by 
+
+\begin{align}
+    d\sigma^{CV, 1} = \frac{\alpha_s(\mu^2)}{2\pi\eps}\int_0^1 dz \hat{P}_{qq}(z)\frac{F_{LM}(z\cdot1, 2)}{z}
+\end{align}
+
+Adding the contribution to the other renormalized pdf (\(f^{bare}_{q}(x_2)\)), we get the form of the explicit counterterm: 
+
+\begin{align}
+    \label{eq:pdfpartoniccounterterm}
+    d\sigma^{CV} = \frac{\alpha_s(\mu^2)}{2\pi\eps}\int_0^1 dz \hat{P}_{qq}^{(0)}(z)\left[ \frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z} \right]
+\end{align}
 
 \section{The subtraction scheme for \(q\bar{q} \to V + g\)}
 
@@ -377,6 +403,23 @@ Expanding the function \(\mathcal{S}(1, 2) = s^{-\eps}\left( \frac{\Gamma^2(1-\e
     2sd\sigma^{V+R} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \frac{2\pi^2C_F}{3}[\alpha_s]s^{-\eps}\braket{F_{LM}(1, 2)} \notag \\
     &- \frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 dz \hat{P}_{qq, R}\left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
 \end{align}
+
+All is left is adding the pdfs counterterm. In the \(\bar{\text{MS}}\) scheme, this means adding the factor in eq. \ref{eq:pdfpartoniccounterterm} to the partonic cross section. We therefore find 
+
+\begin{align}
+    2sd\sigma^{NLO} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \frac{2\pi^2C_F}{3}[\alpha_s]s^{-\eps}\braket{F_{LM}(1, 2)} + \notag \\ 
+    & \frac{\alpha_s(\mu^2)}{2\pi\eps}\left(1-\frac{\mu^{2\eps}s^{-\eps} e^{\eps\gamma_E}\Gamma(1-\eps)}{\Gamma(1-2\eps)}\right)\int_0^1 dz \hat{P}^{0}_{qq}(z) \left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right] \notag \\ 
+    &- [\alpha_s]\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 dz \hat{P}^{(\eps)}_{qq, R}\left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
+\end{align}
+
+Notice that the third line is free from any pole. Expanding the \(\eps\) dependent terms in the second line up to \(o(\eps)\), we find \(\eps\log(s/\mu^2)\), so the poles do indeed cancel. The final result is therefore 
+
+\begin{align}
+    2sd\sigma^{NLO} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \frac{2\pi^2C_F}{3}\frac{\alpha_s(\mu^2)}{2\pi}\braket{F_{LM}(1, 2)} + \notag \\ 
+    & \frac{\alpha_s(\mu^2)}{2\pi}\int_0^1 dz \left[\hat{P}^{(0)}_{qq}(z)\log\left( \frac{s}{\mu^2} \right) - \hat{P}^{(\eps)}_{qq, R}\right] \left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
+\end{align}
+
+where we also performed the limit \(\eps \to 0\). 
 
 
 
