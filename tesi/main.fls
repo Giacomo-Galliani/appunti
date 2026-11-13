@@ -1860,6 +1860,17 @@ INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmssbx10.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-euf.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-euf.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-euf.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/microtype/mt-euf.cfg
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
 INPUT main.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
@@ -1867,6 +1878,7 @@ INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmex10.pfb

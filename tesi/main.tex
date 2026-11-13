@@ -412,7 +412,15 @@ All is left is adding the pdfs counterterm. In the \(\bar{\text{MS}}\) scheme, t
     &- [\alpha_s]\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}s^{-\eps}\int_0^1 dz \hat{P}^{(\eps)}_{qq, R}\left[\frac{F_{LM}(z\cdot1, 2)}{z} + \frac{F_{LM}(1, z\cdot 2)}{z}  \right]
 \end{align}
 
-Notice that the third line is free from any pole. Expanding the \(\eps\) dependent terms in the second line up to \(o(\eps)\), we find \(\eps\log(s/\mu^2)\), so the poles do indeed cancel. The final result is therefore 
+Notice that the third line is free from any pole. Expanding the \(\eps\) dependent terms in the second line up to \(o(\eps)\) we get:  
+
+\begin{align}
+    \left( 1 - \frac{\mu^{2\eps}s^{-\eps}\Gamma(1-\eps)}{\Gamma(1-2\eps)} \right) &= 1 - e^{\eps(\log(\mu^2/s) +\gamma_E)}\frac{1+\eps\gamma_E}{1+2\eps\gamma_E} \notag \\ 
+    &= 1 - (1-\eps(\log(\mu^2/s)) + \eps\gamma_E)(1-\eps\gamma_E) + o(\eps^2) = \eps\log\left( \frac{s}{\mu^2} \right) + o(\eps^2)
+\end{align}
+
+The poles cancel completely! The final result is then
+
 
 \begin{align}
     2sd\sigma^{NLO} = &\braket{\hat{O}_{NLO}F_{LM}(1, 2, 4)} + \braket{F_{LV}^{fin}(1, 2)} + \frac{2\pi^2C_F}{3}\frac{\alpha_s(\mu^2)}{2\pi}\braket{F_{LM}(1, 2)} + \notag \\ 
@@ -420,6 +428,60 @@ Notice that the third line is free from any pole. Expanding the \(\eps\) depende
 \end{align}
 
 where we also performed the limit \(\eps \to 0\). 
+
+\section{A first generalization: the case \(q\bar{q} \to X + Ng\)}
+
+For the hadronic process \(pp \to X + N\) jets , the full cross section is given in terms of the partonic cross sections as 
+
+\begin{align}
+    \label{eq:qqXNgcrosssec}
+    d\sigma = \sum_{a, b} \int dx_1 dx_2 f_a(x_1, \mu_F)f_b(x_2, \mu_F)d\hat{\sigma}_{ab}(x_1, x_2, \mu_R, \mu_F; O)
+\end{align}
+
+Where \(\mu_{R}\) is the renormalization scale, \(\mu_F\) the factorization scale. \(O\), instead, is an appropriate observable, that also provides an IR safe definitions of the \(N\) jets. This means that the tree level amplitude is safe from IR divergences (this is good news of course, because at tree level we wouldn't be able to cancel those divergences adding up the IR divergences of virtual processes, as well as the pdfs counterterms). For the moment, we're interested in \(d\hat{\sigma}_{ab}^{NLO}\), that is given (exactly as the last section) by the sum of 3 distinct terms: 
+
+\begin{align}
+    d\hat{\sigma}^{NLO}_{ab} = d\hat{\sigma}^{R} + d\hat{\sigma}^{V} + d\hat{\sigma}^{pdf}
+\end{align}
+
+the three terms are, in order, the real, virtual and pdf counterterm cross section. 
+
+Let's start with the real emission cross section. This process is \(1_a + 1_b \to X + (N+1)g\). It is again a tree level amplitude, with an extra gluon in the final phase space. 
+
+An important point is that since the observable \(O\) makes sure that at least \(N\) partons are resolved, only one gluon can become soft or collinear. We must therefore be able to identify this unresolved parton. We introduce than the damping factors \(\Delta^{(i)}\), \(i \in 3, \ldots, N_p+1\), (\(N_p\) is the number of partons involved in the process, so for \(pp \to X + N g\), \(N_p = N+2\) and we always leave the indexes \(1, 2\) for the initial state partons) that are defined in such way that they go to zero for every \(i\), except if the parton \(i\) is unresolved. They also provide a partition of unity, 
+
+\begin{align}
+    \sum_{i=3}^{N_p+1}\Delta^{(i)} = 1
+\end{align}
+
+Following the same scheme of the previous section (and using the same notation), we want to compute 
+
+\begin{align}
+    \braket{F_{LM}(1, 2; 3, \ldots, N_p +1, X)} = \sum_{i=3}^{N_p+1}\braket{\Delta^{(i)}F_{LM}(1, 2; 3, \ldots, N_p +1, X)}
+\end{align}
+
+In this last equation, \(F_{LM}(\ldots)\) is completely symmetric in any exchange of the \(N +1\) external gluons. Then in each term of the sum, we can re-label the index, in such a way that all the damping functions are identical, and we obtain 
+
+\begin{align}
+    \sum_{i=3}^{N_p+1}\braket{\Delta^{(i)}F_{LM}(1, 2; 3, \ldots, N_p +1, X)} = \braket{(N_p-1)\Delta^{\mathfrak{m}}F_{LM}(\mathfrak{m})}
+\end{align}
+
+The factor \(N_p-1\) multiplies the \(1/(N_{p}-1)!\), turning it into \(1/(N_p-2)! = 1/N!\), where \(N\) are the number of resolved jets. This is therefore the same symmetry factor that sits in the \(F_{LM}\) of the virtual processes. To the sake of IR poles combinations we can omit in both functions the explicit symmetry factor.   
+
+As we did in the previous section, we now want to extract the divergences, using the operators \(S_i, \, C_{ij}\). First, we list the action of those operators on the damping functions, 
+
+\begin{align}
+    S_{\mathfrak{m}} \Delta^{(\mathfrak{m})} = 1, \quad C_{a\mathfrak{m}}\Delta^{(\mathfrak{m})} = 1, \quad C_{i\mathfrak{m}}\delta^{(\mathfrak{m})} = \frac{E_{\mathfrak{m}}}{E_{\mathfrak{m}} + E_i} =: z_{\mathfrak{m}, i}
+\end{align}
+
+where \(a = 1, 2\) and \(i = 3, \ldots, N_p +1\), as before. We start by subtracting the soft, 
+
+\begin{align}
+    \braket{F_{LM}(\mathfrak{m})} = \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} + \braket{\bar{S}_{\mathfrak{m}}F_{LM}(\mathfrak{m})}
+\end{align}
+
+For any operator \(A\), we denote \(\bar{A} = I -A\). In the previous section, we only had to consider the collinear limit, because in that case we found that acting with the collinear operators on the soft limit leaves the expression invariant. This is not the case anymore, as the gluon can go collinear to both initial state and final state resolved partons.  
+
 
 
 
