@@ -148,7 +148,7 @@ We define \(S_i A := \lim_{E_i \to 0}A\). We find
 squaring this, we can write 
 
 \begin{align}
-    \label{eq:softfactorization}
+    \label{eq:softDYfactorization}
     S_4 |\mathcal{M}(1, 2,4)|^2 &= -\frac{g_{s, b}^2 (N_c^2-1)}{2N_c E_4^2} \left(-\frac{p_1^\nu}{E_1 \rho_{14}}  +\frac{p_2^\nu}{E_2\rho_{24}}\right)^2|\mathcal{M}(1, 2)|^2 \notag \\ 
     &= 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{p_1\cdot p_2}{E_1E_2 \rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2 = 2\frac{g_{s, b}^2 C_F}{E_4^2}\left( \frac{\rho_{12}}{\rho_{14}\rho_{24}} \right)|\mathcal{M}(1, 2)|^2
 \end{align}
@@ -158,6 +158,27 @@ In the first line, the factor \(N_c^2-1\) comes from \(\text{Tr}(T^a T^a) = \fra
 Now that we have properly obtained the eikonal factor, we see that its integral over the gluon finale phase space is not finite. Of course this is a problem: we cannot, for example, put the integral in a MC program and get a sensibile result. 
 
 This is not the only singularity of the amplitude squared. In the soft limit, the denominator cointains the factors \(\rho_{14}\rho_{24}\propto (1-\cos\theta_{14})(1-\cos\theta_{24})\) that go to zero as \(\theta^{2}\) as \(\theta \to 0\). Thus also the angular integral is divergent. 
+
+In this section we focused on a particular process (DY), but we used a rather general approach. Indeed, one can show that the factorization of the amplitude in the soft limit is universal, and given by the following formula (Catani, 2000): 
+
+\begin{align}
+    \label{eq:Catanisoftfact}
+    \lim_{E_q \to 0 }|\mathcal{M}(p_1, \ldots, p_n; q)|^2 = -4\pi\alpha_s \mu^{2\eps}\sum_{ij}S_{ij}\vec{T}_i \cdot \vec{T}_j |\mathcal{M}(p_1, \ldots, p_n)|^2, \quad S_{ij} = \frac{p_i\cdot p_j}{(p_i\cdot q)(p_j \cdot q)}
+\end{align}
+
+Let's show that this reproduces eq \ref{eq:softDYfactorization}. Remember that \(g_{s, b}^2 = 4\pi\alpha_s\). For now, let's not worry about UV divergences and the running of \(\alpha_s\). The new part is computing the color products. In general, one can compute them using \((\vec{T}_q)^2 = (\vec{T}_{\bar{q}})^2 = C_F\), as well as color conservation. The sum runs over the distinct indexes \(i, j\) and is symmetric in the exchange. So we find 
+
+\begin{align}
+    -2g_{s, b}^2 \frac{p_i\cdot p_j}{(p_i\cdot q)(p_j\cdot q)}(\vec{T}_q \cdot \vec{T}_{\bar{q}})|\mathcal{M}(1, 2)|^2 
+\end{align}
+
+Using color conservation, 
+
+\begin{align}
+    \vec{T}_q + \vec{T}_{\bar{q}} = 0 \implies (\vec{T}_q + \vec{T}_{\bar{q}})^2 = 2C_F +2\vec{T}_q \cdot \vec{T}_{\bar{q}} = 0 \implies \vec{T}_q \cdot \vec{T}_{\bar{q}} = -C_F 
+\end{align}
+
+So we recover our previous expression. 
 
 \subsection{The collinear limit}
 
@@ -292,11 +313,37 @@ Problems start to arise when we consider this term integrated over the gluon fin
 
 since \(E_4 = |p_4|\). Our integrand (eq. \ref{eq:collimNLO}) depends on \(E_4\) through \(z\), and the angular dependence is only in \(\rho_{14}^{-1}\). Our next step is therefore to compute the angular integral, and to write the energy integral in terms of \(z\).  
 
-We obtain 
+Let's start from the angular integral, that simply reads 
+
+\begin{align}
+    \int d\Omega_{d-2} d\cos\theta \frac{(1-\cos^2\theta)^2}{1-\cos\theta} = \int d\Omega_{d-2}\int d\cos\theta (1-\cos\theta)^{d/2-3}(1+\cos\theta)^{d/2-2}
+\end{align}
+
+The last integral strongly resembles the euler \(\beta\) integral definition, 
+
+\begin{align}
+    B(\alpha, \gamma) = \int_0^1 dx x^{\alpha-1}(1-x)^{\gamma-1} = \beta(\alpha, \gamma) = \frac{\Gamma(\alpha)\Gamma(\gamma)}{\Gamma(\alpha+\gamma)}
+\end{align}
+
+So we use the substitution \(x = \frac{1}{2}(1-\cos\theta)\): 
+
+\begin{align}
+    \int d\Omega_{d-2} 2^{d-4}\int_0^1 dx (x)^{d/2-3}(1-x)^{d/2-2} &= \int d\Omega_{d-2}2^{d-4}\frac{\Gamma(d/2-2)\Gamma(d/2-1)}{\Gamma(d-3)} \notag \\ 
+    &= -\frac{1}{\eps 4^{\eps}}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}\int d\Omega_{d-2}
+\end{align}
+
+We now use \([\alpha_s] = \int d\Omega_{d-2}\frac{g_{s, b}^2\mu_0^{2\eps}}{2(2\pi)^{d-1}}\) (the factor \(\mu_0^{2\eps}\) is needed for dimensional reasons, since from now on we will take \(d = 4-2\eps\)), and the full integral reads
+
+\begin{align}
+    \braket{C_{41}F_{LM}(1,2, 4)} = -\frac{[\alpha_s]}{\eps 4^{1+\eps}}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}\int dE_4  E_4^{d-5}\theta(E_{max} - E)\frac{1-z}{z}P_{qq}(z)F_{LM}(z\cdot 1, 2)
+\end{align}
+
+Then, we use \(z = 1-E_4/E_1 \implies E_4 = (1-z)E_1, \, \,  dE_4 = -E_1 dz \), 
 
 \begin{align}
     \label{eq:collzintegral}
-    <C_{41}F_{LM}(1, 2, 4)> = -\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}(2E_1)^{-2\eps}\int_{z_{\min}}^1 \frac{dz}{(1-z)^{2\eps}}P_{qq}(z) \frac{F_{LM}(z\cdot 1, 2)}{z}
+    \braket{C_{41}F_{LM}(1,2, 4)} &= -\frac{[\alpha_s]}{\eps 4^{1+\eps}}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}\int_{z_{\min}}^1 dz E_1  [(1-z)E_1]^{-(1+2\eps)}\frac{1-z}{z}P_{qq}(z)F_{LM}(z\cdot 1, 2) \notag \\ 
+    &= -\frac{[\alpha_s]}{\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}(2E_1)^{-2\eps}\int_{z_{\min}}^1 \frac{dz}{(1-z)^{2\eps}}P_{qq}(z) \frac{F_{LM}(z\cdot 1, 2)}{z}
 \end{align}
 
 Now we need to write to write the \(z\) integral in such a way that the combination with the virtual corrections is straightforward, i.e. the pole structure is completely explicit. This is still clearly not the case, as in the limit \(z\to 1\) the integral is divergent (or at least would be divergent in the limit \(\eps \to 0\)): this is of course the soft limit. We write \(F_{LM}(1,2,4)/z = G(z)\), and we rewrite \(P_{qq}(z)\) in the following way:  
@@ -482,7 +529,17 @@ where \(a = 1, 2\) and \(i = 3, \ldots, N_p +1\), as before. We start by subtrac
 
 For any operator \(A\), we denote \(\bar{A} = I -A\). In the previous section, we only had to consider the collinear limit, because in that case we found that acting with the collinear operators on the soft limit leaves the expression invariant. This is not the case anymore, as the gluon can go collinear to both initial state and final state resolved partons.  
 
+Therefore we must already write \(\braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})}\), expliciting the \(\eps\) pole structure. We use the universal form of the soft gluon limit (eq. \ref{eq:Catanisoftfact}), and we integrate it over the gluon final phase space: 
 
+\begin{align}
+    \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} = -\frac{g_{s, b}^2\mu^{2\eps}}{2(2\pi)^{d-1}}\int dE_{\mathfrak{m}} E_{\mathfrak{m}}^{d-5}\theta(E_{max} - E)d^{d-2}\Omega \sum_{(ij)}\frac{\rho_{ij}}{\rho_{i\mathfrak{m}}\rho_{j\mathfrak{m}}}(\vec{T}_i \cdot \vec{T}_j)\braket{F_{LM}}
+\end{align}
+
+From now one we use \(d = 4-2\eps\), and we inserted the scale \(\mu^{2\eps}\). The energy integral is straightforward,
+
+\begin{align}
+    \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} = -\frac{g_{s, b}^2}{2(2\pi)^{d-1}}\left( \frac{E_{\max}}{\mu}\right)^{-2\eps}\int d^{d-2}\Omega \sum_{(ij)}\frac{\rho_{ij}}{\rho_{i\mathfrak{m}}\rho_{j\mathfrak{m}}}(\vec{T}_i \cdot \vec{T}_j)\braket{F_{LM}}
+\end{align}
 
 
 
