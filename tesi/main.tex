@@ -541,6 +541,44 @@ From now one we use \(d = 4-2\eps\), and we inserted the scale \(\mu^{2\eps}\). 
     \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} = -\frac{g_{s, b}^2}{2(2\pi)^{d-1}}\left( \frac{E_{\max}}{\mu}\right)^{-2\eps}\int d^{d-2}\Omega \sum_{(ij)}\frac{\rho_{ij}}{\rho_{i\mathfrak{m}}\rho_{j\mathfrak{m}}}(\vec{T}_i \cdot \vec{T}_j)\braket{F_{LM}}
 \end{align}
 
+The angular integral is slightly more complicated, and can be expressed in terms of Gauss's hypergeometric function, \(\, _2F_1(a, b, c,d)\). The whole integral reads 
+
+\begin{align}
+    \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} = -[\alpha_s]\frac{(2E_{\max}/\mu)^{-2\eps}}{\eps^2}\sum_{(ij)}^{N_p}\braket{\eta_{ij}^{-\eps}K_{ij}(\vec{T}_i \cdot \vec{T}_j)F_{LM}}
+\end{align}
+
+We now proceed in substituting the singular limits, and define a partition of the phase space, that has the following properties: 
+
+\begin{align}
+    \sum_{i=1}^{N_p}\omega^{\mathfrak{m}i} = 1, \quad C_{j\mathfrak{m}}\omega^{i\mathfrak{m}} = \delta_j^i
+\end{align}
+
+We find 
+
+\begin{align}
+    \label{eq:intFLMm}
+    \braket{F_{LM}(\mathfrak{m})} = &\braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} + \sum_i \braket{\bar{S}_{\mathfrak{m}}C_{\mathfrak{m} i}F_{LM}(\mathfrak{m})} + \notag \\ 
+    &+\sum_i \braket{\bar{S}_{\mathfrak{m}}\bar{C}_{\mathfrak{m} i} \omega^{i\mathfrak{m}} F_{LM}(\mathfrak{m})}
+\end{align}
+
+Now the last line has all the singularities removed. The first one we have computed, with all the \(\eps\) poles fully explicit. Thus we need to compute the second term, to compute the total \emph{real emission} NLO corrections. As always, we also want to express the result in such a way that the combination with the virtual IR poles is straightforward. 
+
+Of course, in the sum of the second term of eq. \ref{eq:intFLMm}, there are two disinct classes of corrections: in the case where \(i = a\), the unresolved FS gluon is emmitted by a IS parton. In the second case, it is emitted by another FS gluon. The former is more complicated for two reasons: the initial state parton can be both a gluon or a quark, and the factorization is given by a \emph{rescaled} LO \(F_{LM}\). The integral over the energy \(E_{\mathfrak{m}}\) is not computable because it is process dependent. We must use a strategy similar to what we did for \(pp \to X\) in the previous section.   
+
+We start by considering this last case. The form of the collinear IS limit is universal, 
+
+\begin{align}
+    \braket{\bar{S}_{\mathfrak{m}}C_{a\mathfrak{m}}\Delta^{(\mathfrak{m})}F_{LM}(\mathfrak{m})} = \braket{\bar{S}_{\mathfrak{m}}\frac{g^2_{s,b}}{E^2_{\mathfrak{m}}\rho_{\mathfrak{m}a}} \frac{1-z}{z}P_{aa}(z)F_{LM}(z\cdot 1_a, 2_b ; \ldots)}
+\end{align}
+
+The agular integral goes as always, 
+
+\begin{align}
+    -\frac{[\alpha_s]}{\eps}\bar{S}_{\mathfrak{m}}\left(\frac{2E_1}{\mu}\right)^{-2\eps}\int_{z_\min}^1 \frac{dz}{(1-z)^{2\eps}} \frac{F_{LM}(z\cdot1_a,2_b;\ldots)}{z}P_{aa}(z)
+\end{align}
+
+
+
 
 
 \end{document}
