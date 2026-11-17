@@ -571,10 +571,30 @@ We start by considering this last case. The form of the collinear IS limit is un
     \braket{\bar{S}_{\mathfrak{m}}C_{a\mathfrak{m}}\Delta^{(\mathfrak{m})}F_{LM}(\mathfrak{m})} = \braket{\bar{S}_{\mathfrak{m}}\frac{g^2_{s,b}}{E^2_{\mathfrak{m}}\rho_{\mathfrak{m}a}} \frac{1-z}{z}P_{aa}(z)F_{LM}(z\cdot 1_a, 2_b ; \ldots)}
 \end{align}
 
-The agular integral goes as always, 
+The angular integral goes as always, 
 
 \begin{align}
-    -\frac{[\alpha_s]}{\eps}\bar{S}_{\mathfrak{m}}\left(\frac{2E_1}{\mu}\right)^{-2\eps}\int_{z_\min}^1 \frac{dz}{(1-z)^{2\eps}} \frac{F_{LM}(z\cdot1_a,2_b;\ldots)}{z}P_{aa}(z)
+    -\frac{[\alpha_s]}{\eps}\bar{S}_{\mathfrak{m}}\left(\frac{2E_1}{\mu}\right)^{-2\eps}\int_{z_{\min}}^1 \frac{dz}{(1-z)^{2\eps}} \frac{F_{LM}(z\cdot1_a,2_b;\ldots)}{z}P_{aa}(z)
+\end{align}
+
+We can extract from the kernels \(P_{aa}\) a term that behaves like a delta function in \(z-1\). We write 
+
+\begin{align}
+    -\left[ \left( \frac{2E_1}{\mu} \right)^{-2\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)} \right]P_{aa}(z) = \Gamma_{1a}\delta(1-z) + P_{aa}^{gen}(z)
+\end{align}
+
+THe functions \(\Gamma_{ia}\) are called generalized anomalous parton dimension . It is also possible to split \(P_{aa}^{gen}\) as
+
+\begin{align}
+    P_{aa}^{gen} = -\left[ \left( \frac{2E_1}{\mu} \right)^{-2\eps}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)} \right](-\hat{P}^{(0)}_{aa} + \eps P^{fin}_{aa})
+\end{align}
+
+where \(\hat{P}^{(0)}\) is the Altarelli-Parisi LO kernel. In this way, the cancellation with the pdfs counterterm (eq. \ref{eq:pdfpartoniccounterterm}) is straightforward. Instead, \(P^{fin}_{aa}\) gives a finite contribution to the cross section as it is a \(o(\eps^0)\) quantity. Finally, the poles proportional to the anomalous dimension of the partons will be canceled with virtual corrections, as they are \(\propto \delta(1-z)\). 
+
+Let's show this explicitly. First, we write the full partonic real cross section contribution as 
+
+\begin{align}
+    2sd\hat{\sigma}^R_{ab} = 
 \end{align}
 
 
