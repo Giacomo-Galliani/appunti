@@ -544,6 +544,7 @@ From now one we use \(d = 4-2\eps\), and we inserted the scale \(\mu^{2\eps}\). 
 The angular integral is slightly more complicated, and can be expressed in terms of Gauss's hypergeometric function, \(\, _2F_1(a, b, c,d)\). The whole integral reads 
 
 \begin{align}
+    \label{eq:intsoftlimNLO}
     \braket{S_{\mathfrak{m}}F_{LM}(\mathfrak{m})} = -[\alpha_s]\frac{(2E_{\max}/\mu)^{-2\eps}}{\eps^2}\sum_{(ij)}^{N_p}\braket{\eta_{ij}^{-\eps}K_{ij}(\vec{T}_i \cdot \vec{T}_j)F_{LM}}
 \end{align}
 
@@ -604,7 +605,135 @@ Now we want to combine this with the virtual corrections, that are universal, an
 
 \section{\(pp \to X\), double real corrections}
 
-The diagrams that contribute to the cross section for \(pp \to X\) at NNLO in QCD can be divided into 3 categories: double real emission, real-virtual, double virtual. Examples can be found in fig ??. Among them, the most complicated, at least for the IR pole structure, are the double real. 
+The diagrams that contribute to the cross section for \(pp \to X\) at NNLO in QCD can be divided into 3 categories: double real emission, real-virtual, double virtual. Examples can be found in fig \ref{fig:NNLOppX}. Among them, the most complicated, at least for the IR pole structure, are the double real. 
+
+As we did in the NLO case, we subtract first soft and then collinear dirvergences. At the end, we get a fully regolalized and integrable result, plus all the divergent parts, expressed, when possibile, as \(\eps^{-n}\) poles (as before we mork in DR, with \(d = 4-2\eps\)).  
+
+Of course, the poles emerge from integrating the double real corrections over the final gluons phase space, \([dg_4][dg_5]\). This is a two particle phase space, and also the matrix element for the process is more complicated: this explains why the NNLO computation is much harder then the NLO computation. The basic ideas, though, are the same.   
+
+\begin{figure}
+    \caption{Examples of diagrams that contribute to \(pp \to X\) at NNLO}
+    \label{fig:NNLOppX}
+    \begin{multicols}{3}
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [right = of a] (b);
+                    \vertex [right = of b] (c);  
+                    \vertex [below right = of c] (d); 
+                    \vertex [right = of d] (e);
+                    \vertex [below left = of d] (f);
+                    \vertex [left = of f] (g);
+                    \vertex [left = of g] (h);
+                    \diagram{
+                        (a) -- [fermion] (b) -- [fermion] (c) -- [fermion] (d) -- [fermion] (f) -- [fermion] (g) -- [fermion] (h); 
+                        (d) -- [boson] (e); 
+                        (b) -- [gluon] (g); 
+                        (c) -- [gluon] (f); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \columnbreak
+    \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [right = of a] (b);
+                    \vertex [right = of b] (c);  
+                    \vertex [below right = of c] (d); 
+                    \vertex [right = of d] (e);
+                    \vertex [below left = of d] (f);
+                    \vertex [left = of f] (g);
+                    \vertex [left = of g] (h);
+                    \vertex [right = of c] (l); 
+                    \diagram{
+                        (a) -- [fermion] (b) -- [fermion] (c) -- [fermion] (d) -- [fermion] (f) -- [fermion] (g) -- [fermion] (h); 
+                        (d) -- [boson] (e); 
+                        (b) -- [gluon] (g); 
+                        (c) -- [gluon] (l); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \columnbreak
+        \begin{center}
+            \begin{tikzpicture}
+                \begin{feynman}
+                    \vertex (a); 
+                    \vertex [right = of a] (b);
+                    \vertex [right = of b] (c);  
+                    \vertex [below = of b] (d); 
+                    \vertex [below = of d] (e);
+                    \vertex [right = of d] (f);
+                    \vertex [right = of d] (g);
+                    \vertex [left = of e] (h);
+                    \vertex [right = of e] (l);
+                    \diagram{
+                        (a) -- [fermion] (b) -- [fermion] (d) -- [fermion] (e) -- [fermion] (h);
+                        (b) -- [gluon] (c); 
+                        (d) -- [gluon] (g); 
+                        (e) -- [boson] (l); 
+                    }; 
+                \end{feynman}
+            \end{tikzpicture}
+        \end{center}
+    \end{multicols}
+\end{figure}
+
+The full list of limits we have to take to extract the divergences is the following: 
+
+\begin{align}
+    S_{ij}, \quad S_i, \quad C_{ij, lm}, \quad C_{ij}
+\end{align}
+
+that corrispond to the double-soft, soft, double-colinear, single-colliear limit. In the following sections, we compute all the contributes that emerge when appling the subtraction scheme. 
+
+\subsection{Single-soft}
+
+Let's now focus on the term 
+
+\begin{align}
+    \braket{(I-S_{45})S_5 F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+To start we have to consider the limit of the amplitued when \(E_5 \to 0\), i.e. \(g_5\) goes soft. We use again Catani's universal formula for the factorization \ref{eq:Catanisoftfact}: 
+
+\begin{align}
+    S_5 F_{LM}(1, 2, 4, 5) = -g^2_{s, b} \left[ \sum_{(ij)}S_{ij} (5) \vec{T_i} \cdot \vec{T}_j \right] F_{LM}(1, 2, 4) = -\frac{g_{s,b}^2}{E_5^2}\left[ \sum_{ i < j}\frac{\rho_{ij}}{\rho_{i5}\rho_{j5}} (2\vec{T}_i \cdot \vec{T}_j)\right]F_{LM}(1, 2, 4)
+\end{align}
+
+we must evaluate the sum in the squared parenthesis. We remind the reader that in the sum the indexes take values \(i, j = 1, 2, 4, \, i < j\). Color conservation tells us that \(\vec{T}_1 + \vec{T}_2 = \vec{T}_3\). As \(1, 2\) are quarks, \(\vec{T}_1^2 = \vec{T}_2^2 = C_F\), while \(\vec{T}_4^2 = C_A\). We can than manipolate the color conservation equation to read the scalar products: 
+
+\begin{align}
+    &(\vec{T}_1 + \vec{T}_2)^2 = \vec{T}_3^2 \implies 2\vec{T}_1\cdot \vec{T}_2 = -(2C_F - C_A) \notag \\ 
+    &(\vec{T}_1 - \vec{T}_3)^2 = \vec{T}_2^2 \implies 2\vec{T}_1\cdot \vec{T}_3 = - C_A \notag \\
+    &(\vec{T}_2 - \vec{T}_3)^2 = \vec{T}_1^2 \implies 2\vec{T}_2\cdot \vec{T}_3 = - C_A
+\end{align}
+
+So the limit reads 
+
+\begin{align}
+    S_5 F_{LM}(1, 2, 4, 5) = \frac{g^2_{s, b}}{E_5^2}\left[ (2C_F - C_A)\frac{\rho_{12}}{\rho_{15}\rho_{25}}  + C_A \left( \frac{\rho_{14}}{\rho_{15}\rho_{45}} + \frac{\rho_{24}}{\rho_{25}\rho_{45}} \right)\right] F_{LM}(1,2,4)
+\end{align}
+
+All dependence on the momentum of \(g_5\) is in the eikonal factor. We can therefore integrate: the integral is completely analogous to the one to obtain eq. \ref{eq:intsoftlimNLO}. After integrating, we find 
+
+\begin{align}
+    &\braket{(I-S_{45})S_5 F_{LM}(1, 2, 4, 5)} = \braket{J_{124} (I-S_{45})F_{LM}(1, 2, 4)}, \notag \\ 
+    &\quad J_{124} = \frac{[\alpha_s]}{\eps^2}\left( \frac{E_4}{\mu} \right)^{-2\eps}\left[ (2C_F-C_A)(2\rho_{12})^{-\eps}K_{12} + C_A((2\rho_{14})^{-\eps}K_{14} + (2\rho_{24})^{-\eps}K_{24}) \right]
+\end{align}
+
+Unfortunately, this is still not quite the end of the story. We've regulated all divergences that may regard \(g_5\), but we still have to deal with \(g_4\). It can't go soft, because we have removed that possibility. But it can still go collinear to one of the initial state quarks. We therefore have to extract them, using 
+
+\begin{align}
+    \braket{J_{124}\bar{S}_4 F_{LM}(1, 2, 4)} = \braket{(\bar{C_{41} + C_{42}})J_{124}\bar{S}_4F_{LM}(1, 2, 4)} + \braket{C_{41} + C_{42}J_{124}\bar{S}_4F_{LM}(1, 2, 4)} 
+\end{align}
+
+the first term is free from any divergences, exept for the ones that we extracted previously. The second term is what we will be focusing on. We will compute the action of \(C_{41}\) and then deduce the action of \(C_{42}\).  
+
+
 
 
 
