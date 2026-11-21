@@ -731,7 +731,55 @@ Unfortunately, this is still not quite the end of the story. We've regulated all
     \braket{J_{124}\bar{S}_4 F_{LM}(1, 2, 4)} = \braket{(\bar{C_{41} + C_{42}})J_{124}\bar{S}_4F_{LM}(1, 2, 4)} + \braket{C_{41} + C_{42}J_{124}\bar{S}_4F_{LM}(1, 2, 4)} 
 \end{align}
 
-the first term is free from any divergences, exept for the ones that we extracted previously. The second term is what we will be focusing on. We will compute the action of \(C_{41}\) and then deduce the action of \(C_{42}\).  
+the first term is free from any divergences, except for the ones that we extracted previously. The second term is what we will be focusing on. We will compute the action of \(C_{41}\) and then deduce the action of \(C_{42}\).  
+
+As we're in the frame of the CM, \(\rho_{12} = 2\), and \(\eta_{12} = \rho_{12}/2 = 1\). It's also straightforward to see that \(C_{14}\rho_{24} = \rho_{14}\). We also remind the reader the following properties of the hypergeometric gauss function, 
+
+\begin{align}
+    _2 F_1 (a, b, c, 0) = 1, \quad \lim_{\eta \to 0} \eta^{1+\eps} \, _2 F_1(1, 1, 1-\eps, 1-\eta) = \Gamma(1+\eps)\Gamma(1-\eps) 
+\end{align}
+
+Thus the action of \(C_{41}\) on \(J_{124}\) is given by 
+
+\begin{align}
+    \lim_{\eta_{14}\to 0} J_{124} = \left( \frac{[\alpha_s]E_4^{-2\eps}}{\eps^2}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}\left(2C_F4^{-\eps} + C_A (2\rho_{14})^{-\eps}\Gamma(1-\eps)\Gamma(1+\eps) \right) \right)
+\end{align}
+
+Also using the usual universal form of the collinear limit on the amplitude, we get 
+
+\begin{align}
+    C_{41}J_{124}\bar{S}_4 F_{LM}(1, 2, 4) = \left( \frac{[\alpha_s]^2E_4^{-2-2\eps}}{4\pi\eps^2\rho_{14}}\frac{\Gamma^2(1-\eps)}{\Gamma(1-2\eps)}\left(2C_F4^{-\eps} + C_A (2\rho_{14})^{-\eps}\Gamma(1-\eps)\Gamma(1+\eps) \right) \right) \times \\ \left( \frac{1-z}{z} \right)P_{qq}(z)F_{LM}(z\cdot 1, 2) 
+\end{align}
+
+Now we need to integrate over \([g_4]\). As always the energy integral is process dependent, and cannot be performed. Still, we compute the angular integral and we express the energy integral as an integral in \(z\): the term proportional to \(C_F\) contains the same angular integral that was present in the NLO computation. The term proportional to \(C_A\) is slightly different, and reads 
+
+\begin{align}
+    \int \frac{d\cos\theta (1-\cos^2\theta)^{d/2-2}}{\rho_{14} (2\rho_{14})^{-\eps}} = 2^{-2\eps}\int_0^1 d\eta_{14} \eta_{14}^{-1-2\eps}(1-\eta_{14})^{-\eps} = -\frac{2^{-2\eps}}{2\eps}\frac{\Gamma(1-2\eps)\Gamma(1-\eps)}{\Gamma(1-3\eps)}
+\end{align}
+
+And the energy integral is therefore given by 
+
+\begin{align}
+    -\frac{[\alpha_s]^22^{-2\eps}}{\eps^3}\left[ 2C_F\frac{\Gamma^4(1-\eps)}{\Gamma^2(1-2\eps)} + \frac{C_A}{2}\frac{\Gamma^3(1-\eps)\Gamma(1+\eps)}{\Gamma(1-3\eps)}\right]\int dE_4 E_4^{d-3} E_4^{-2-2\eps} \frac{1-z}{z}P_{qq}(z) F_{LM}(z\cdot 1, 2)
+\end{align}
+
+We then switch the integration variable to \(E_4 \to z = 1-E_4/E_1\) (\(\implies E_4 = E_1(1-z)\)), and we obtain 
+
+\begin{align}
+    -\frac{[\alpha_s]^2(2E_1/\mu)^{-4\eps}}{\eps^3}\left[ 2C_F\frac{\Gamma^4(1-\eps)}{\Gamma^2(1-2\eps)} + \frac{C_A}{2}\frac{\Gamma^3(1-\eps)\Gamma(1+\eps)}{\Gamma(1-3\eps)}\right]\int_{z_{\min}}^1 dz \frac{(1-z)^{-1-4\eps}}{z}\mathcal{P}_{qq}(z) F_{LM}(z\cdot 1, 2)
+\end{align}
+
+Where we abbreviate \(\mathcal{P}_{qq} = \frac{1-z}{z}P_{qq}(z)\). This last equation would be the result of \(\braket{C_{41}J_{124}F_{LM}(1,2, 4)}\). It is not yet what we need, as we also have to insert the operator \(\bar{S}_4\) that makes \(g_4\) not go soft. This is not hard to do, as the soft limit for \(g_4\) is just the limit \(z\to 1\): 
+
+\begin{align}
+    \braket{C_{41}J_{124}\bar{S}_4F_{LM}(1,2, 4)} = -\frac{[\alpha_s]^2(2E_1/\mu)^{-4\eps}}{\eps^3}\left[ 2C_F\frac{\Gamma^4(1-\eps)}{\Gamma^2(1-2\eps)} + \frac{C_A}{2}\frac{\Gamma^3(1-\eps)\Gamma(1+\eps)}{\Gamma(1-3\eps)}\right] \times \\ 
+    \int_{z_{\min}}^1 dz (1-z)^{-1-4\eps}\hat{\mathcal{P}}^{(-)}_{qq}(z)F_{LM}(z\cdot 1, 2)
+\end{align}
+
+the operator \(\hat{\mathcal{P}}^{(-)}_{qq}\) acts on the function of \(z\) \(F_{LM}(z\cdot1, 2)\), as \(\hat{\mathcal{P}}^{(-)}_{qq} f(z) = \mathcal{P}_{qq}f(z) - 2C_F f(1)\). Notice that \(\mathcal{P}_{qq} \xrightarrow{z\to 1} 2C_F\), so \(\mathcal{P}^{(-)}_{qq} f(z)\) goes to zero as \(z \to 1\). 
+
+
+
 
 
 
