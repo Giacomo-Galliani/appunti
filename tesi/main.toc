@@ -10,4 +10,6 @@
 \contentsline {chapter}{\numberline {2}NNLO QCD corrections}{15}{chapter.2}%
 \contentsline {section}{\numberline {2.1}\(pp \to X\), double real corrections}{15}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Single-soft}{15}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}single-colliner (dc partitions)}{18}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}single collinear - (tc partitions)}{19}{subsection.2.1.3}%
 \contentsfinish 

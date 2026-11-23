@@ -778,6 +778,155 @@ Where we abbreviate \(\mathcal{P}_{qq} = \frac{1-z}{z}P_{qq}(z)\). This last equ
 
 the operator \(\hat{\mathcal{P}}^{(-)}_{qq}\) acts on the function of \(z\) \(F_{LM}(z\cdot1, 2)\), as \(\hat{\mathcal{P}}^{(-)}_{qq} f(z) = \mathcal{P}_{qq}f(z) - 2C_F f(1)\). Notice that \(\mathcal{P}_{qq} \xrightarrow{z\to 1} 2C_F\), so \(\mathcal{P}^{(-)}_{qq} f(z)\) goes to zero as \(z \to 1\). 
 
+\subsection{single-colliner (dc partitions)}
+
+We now focus on the term
+
+\begin{align}
+    \label{eq:scdc}
+    \sum_{(ij) \in \text{dc}}\braket{(I - S_{45})(I-S_5)[C_{4i}[dg_4] + C_{5j}[dg_5]]\omega^{i4, j5}F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+starting first from the sector \(14, 25\). Since the action of \(S_{45}\) is the same if there is or there is not \(S_5\), we can drop the first subtraction term. We write then 
+
+\begin{align}
+    C_{41}(I-S_5)\omega^{14, 25}F_{LM}(1, 2, 4, 5) = \tilde{\omega}^{14, 25}_{1 \parallel 4}C_{41}(I-S_5)F_{LM}(1, 2, 4, 5)
+\end{align}
+
+and using the universal collinear initial state factorization, 
+
+\begin{align}
+    C_{41}(I-S_5)\omega^{14, 25}F_{LM}(1, 2, 4, 5) = \tilde{\omega}^{14, 25}_{1 \parallel 4}\frac{g_{s, b}^2}{E_4^2\rho_{14}}\frac{1-z}{z}P_{qq}(z)F_{LM}(z\cdot 1, 2, 5)
+\end{align}
+
+where as always, \(z = 1-\frac{E_4}{E_1}\). Before integrating, we notice that in eq. \ref{eq:scdc}, the collinear operator also act on the final state space \([dg_4]\). Before computing the limit, we write the final phase space in a useful way, also absorbing the bare coupling from the collinear limit of the amplitude: 
+
+\begin{align}
+    g^2_{s, b} [dg_4]\theta(E_4-E_5) &= g_{s, b}^2 \frac{d^{d-1}P_4}{(2\pi)^{d-1}(2E_4)}\theta(E_4-E_5) = \frac{dE_4 E_4^{d-3}d^{d-2}\Omega}{2 (2\pi)^{d-1}}\theta(E_4-E_5) \notag \\ 
+    &= \frac{dE_4 E_4^{d-3} d\eta_{14} 2^{1-2\eps}\eta_{14}^{-\eps}(1-\eta_{14})^{-\eps}g_{s, b}^2 d^{d-3}\Omega}{2(2\pi)^{d-1}}\theta(E_4-E_5) \notag \\ 
+    &= [\alpha_s]dE_4 E_4^{d-3} d\eta_{14} 2^{1-2\eps}\eta_{14}^{-\eps}(1-\eta_{14})^{-\eps}\theta(E_4-E_5)
+\end{align}
+
+In the last equation we integrated over \(d^{d-3}\Omega\). We also switch \(E_4 \to z\), as we've done many times: 
+
+\begin{align}
+    g^2_{s, b} [dg_4]\theta(E_4-E_5) &= 2^{1-2\eps}[\alpha_s]\eta_{14}^{-\eps}(1-\eta_{14})^{-\eps}E_1 dz E_1^{1-2\eps}(1-z)^{1-2\eps}\theta(z(E_5) - z) \notag \\ 
+    &= [dg_4]\rho_{14}E_4^2 s^{-\eps} \eta_{14}^{-1-\eps}(1-\eta_{14})^{-\eps} \frac{dz}{(1-z)^{1+2\eps}} \theta(z(E_5) -z)
+\end{align}
+
+in the last equation we semplified the expression so it's product with the amplitude is straightforward. Morover, the collinear limit is given by 
+
+\begin{align}
+    C_{41}g^2_{s, b} [dg_4]\theta(E_4-E_5) = [dg_4]\rho_{14}E_4^2 s^{-\eps} \eta_{14}^{-1-\eps}\frac{dz}{(1-z)^{1+2\eps}} \theta(z(E_5) -z)
+\end{align}
+
+Putting everything together and integrating, we get 
+
+\begin{align}
+    \braket{C_{41} [dg_4]\theta(E_4-E_5)F_{LM}(1, 2,4, 5)} &= [\alpha_s] s^{-\eps} \int_0^1 d\eta_{14}\eta_{14}^{-1-\eps}\int_{z_{\min}}^{z_{\max}(E_5)} dz \frac{\mathcal{P}_{qq}(z)\braket{\tilde{\omega}^{14, 25}_{1 \parallel 4}F_{LM}(z\cdot 1, 2, 5)}}{(1-z)^{1+2\eps}} \notag \\ 
+    &= -\frac{[\alpha_s] s^{-\eps}}{\eps}\int_{z_{\min}}^{z_{\max}(E_5)} dz \mathcal{P}_{qq}(z)\frac{\braket{\tilde{\omega}^{14, 25}_{1 \parallel 4}F_{LM}(z\cdot 1, 2, 5)}}{(1-z)^{1+2\eps}}
+\end{align}
+
+Now, we need to consider the term with \(C_{52}\). Following the same steps as before, we get 
+
+\begin{align}
+    \braket{(I-S{45})(I-S_5)C_{52}w^{14, 25}[dg_5]F_{LM}(1, 2, 4, 5)} = -\frac{[\alpha_s]s^{-\eps}}{\eps}\int_{z_{\min}(E_4)}^1 \frac{dz\hat{\mathcal{P}}^{(-)}_{qq}}{(1-z)^{1+2\eps}} \braket{\tilde{w}^{14, 25}_{5\parallel 2}F_{LM}(1, z\cdot 2, 4)}
+\end{align}
+
+here of course \(z = 1-E_5/E_2\). The result slightly differs becouse 
+
+\begin{enumerate}
+    \item \(E_5\) must be smaller than \(E_4\), so the integration over \(z\) has to be performed up to \(z=1\). 
+    \item The operator \(I-S_5\) now acts on the gluon that is collinear: we therefore treat it introducing \(\hat{\mathcal{P}}^{(-)}_{qq}\), exactly like in the single-soft term. 
+\end{enumerate}
+
+Summing the two results, we get the sector \(14, 25\). The other double-collinear sector is the \(15, 24\), and its result is the same, with the obvious replacements. To conclude this computation we must add up this four contributions. 
+
+\subsection{single collinear - (tc partitions)}
+
+We now want to compute 
+
+\begin{align}
+    \sum_{i \in \text{tc}} \braket{ (I-S_{45}(I-S_5))[\theta^{(a)}C_{5i} + \theta^{(b)}C_{45} + \theta^{(c)}C_{4i} + \theta^{(d)}C_{45}] [dg_4][dg_5] w^{i4, i5}F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+we start by
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{(a)}C_{51}[dg_5]w^{14, 15}F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+This is similar to the previous computation. The theta factor \(\theta^{(a)} = \theta(\eta_{14}/2-\eta_{15})\) modifies the extrems of integration in the angular integral of \(g_5\), in the following way: 
+
+\begin{align}
+    \int_0^1 d\eta_{15} \frac{\theta^{(a)}}{\eta_{15}^{1+\eps}} = \int_0^{\eta_{14}/2} \frac{d\eta_{15}}{\eta_{15}^{1+\eps}} = -\frac{(\eta_{14}/2)^{-\eps}}{\eps}
+\end{align}
+
+the rest is analogous. Since \(g_5\) is both collinear and hard, we get
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{(a)}C_{51}[dg_5]w^{14, 15}F_{LM}(1, 2, 4, 5)} = -\frac{[\alpha_s]s^{-\eps}}{\eps} \int_{z_{\min(E_4)}}^1 dz \frac{\hat{\mathcal{P}}_{qq}^{(-)}}{(1-z)^{1+2\eps}}\braket{\tilde{w}^{14, 15}_{1 \parallel 5} (\rho_{14}/4)^{-\eps}F_{LM}(z\cdot 1, 2, 4)}
+\end{align}
+
+We treat the term 
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{(c)}C_{41}[dg_4]w^{14, 15}F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+because it's very similar. This time it's \(g_4\) that goes collinear, so the result is given by 
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{(c)}C_{41}[dg_4]w^{14, 15}F_{LM}(1, 2, 4, 5)}  = -\frac{[\alpha_s]s^{-\eps}}{\eps} \int_{z_{\min(E_4)}}^{z_{\max}(E_5)} dz \frac{\hat{\mathcal{P}}_{qq}^{(-)}}{(1-z)^{1+2\eps}}\braket{\tilde{w}^{14, 15}_{1 \parallel 4} (\rho_{15}/4)^{-\eps}F_{LM}(z\cdot 1, 2, 5)}
+\end{align}
+
+Instead, the sectors \((b), (d)\) are very different, as they are the sectors in wich \(g_4, g_5\) become collinear between each other. We start with 
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{b, d}C_{45}w^{14, 15}[dg_5]F_{LM}(1, 2, 4, 5)}
+\end{align}
+
+the collinear limit on the amplitude is the standard final state collinear limit: 
+
+\begin{align}
+    C_{45}F_{LM}(1, 2, 4, 5) &= \frac{g^2_{s, b}}{E_5^2 \rho_{45}}\frac{E_5}{E_4}P_{gg, \mu\nu}(z)F^{\mu\nu}_{LM}(1, 2, 4+5) \notag \\ 
+    &= \frac{g^2_{s, b}}{E_5^2 \rho_{45}}\frac{z}{1-z}\left[P^{(0)}_{gg}(z)F_{LM}(1, 2, 45) + P_{gg}^\perp(z)k_{\perp, \mu}k_{\perp, \nu}F^{\mu\nu}_{LM}(1, 2, 45) \right]
+\end{align}
+
+with 
+
+\begin{align}
+    P^{(0)}_{gg} = 2C_A \left( \frac{z}{1-z} + \frac{1-z}{z} \right), \quad P^\perp_{gg}(z) = 4C_A(1-\eps)z(1-z)
+\end{align}
+
+here \(z\) is the fraction of the total momentum, \(p_{45} = p_4 + p_5\) that is carried by \(p_5\). Instead, \(k_\perp\) is a trasverse vector. It comes from the following decomposition 
+
+\begin{align}
+    p_5 = \alpha p_4 + \beta \bar{p}_4 + k_\perp 
+\end{align}
+
+where \(\bar{p}_4 = (p_4^0, -\vec{p}_4)\), and we call it trasverse because \(k_\perp \cdot p_4 = k_\perp \cdot \bar{p}_4 = 0\). 
+
+In order to proceed, we need an explicit parametrization of these vectors and the final phase space. Consider then 
+
+\begin{align}
+    [dg_4][dg_5]\theta(E_{\max}-E_4)\theta(E_4 - E_5)
+\end{align}
+
+We can take \(E_4 = x_1 E_{\max}\), \(E_5 = x_2 E_4 = x_2 x_1 E_{\max}\), with \(x_1, x_2 \in [0, 1]\). In this way, we write 
+
+\begin{align}
+    [dg_4][dg_5] &= dE_4 E_4^{d-3}dE_5 E_5^{d-3} d\Omega_{45}, \quad d\Omega_{45} = \frac{d^{d-2}\Omega_4}{2(2\pi)^{d-1}}\frac{d^{d-2}\Omega_5}{2(2\pi)^{d-1}} \notag \\ 
+    &= E_{\max}^{4-4\eps}(dx_1 x_1^{3-2\eps})(dx_2 x_2^{1-2\eps})
+\end{align}
+
+
+
+
+
+
+
+
 
 
 
