@@ -476,7 +476,7 @@ The poles cancel completely! The final result is then
 
 where we also performed the limit \(\eps \to 0\). 
 
-\section{A first generalization: the case \(q\bar{q} \to X + Ng\)}
+\section{A first generalization: the case \(pp \to X + Nj\)}
 
 For the hadronic process \(pp \to X + N\) jets , the full cross section is given in terms of the partonic cross sections as 
 
@@ -899,7 +899,7 @@ with
     P^{(0)}_{gg} = 2C_A \left( \frac{z}{1-z} + \frac{1-z}{z} \right), \quad P^\perp_{gg}(z) = 4C_A(1-\eps)z(1-z)
 \end{align}
 
-here \(z\) is the fraction of the total momentum, \(p_{45} = p_4 + p_5\) that is carried by \(p_5\). Instead, \(k_\perp\) is a trasverse vector. It comes from the following decomposition 
+here \(z\) is the fraction of the total momentum, \(p_{45} = p_4 + p_5\) that is carried by \(p_5\). With \(F_{LM}^{\mu\nu}\) we indicate the standard amplitude, where the modulus square of the process in not contracted with \(\sum_{\text{pol}}\eps^{*\mu}(p_4)\eps^{*\nu}(p_5)\). Instead, \(k_\perp\) is a trasverse vector. It comes from the following decomposition 
 
 \begin{align}
     p_5 = \alpha p_4 + \beta \bar{p}_4 + k_\perp 
@@ -920,6 +920,53 @@ We can take \(E_4 = x_1 E_{\max}\), \(E_5 = x_2 E_4 = x_2 x_1 E_{\max}\), with \
     &= E_{\max}^{4-4\eps}(dx_1 x_1^{3-2\eps})(dx_2 x_2^{1-2\eps})
 \end{align}
 
+Assume that the initial momenta is directed in the z-axis. Since we work in DR, we then write 
+
+\begin{align}
+    p_{1, 2} = E_{1, 2}(t^\mu \pm e_3^\mu)
+\end{align}
+
+with \(t^\mu = (1, 0, 0, 0; 0 ,\ldots)\) and \(e_3^\mu = (0, 0, 0, 1; 0, \ldots)\). We also parametrize the external gluon momenta as follows: 
+
+\begin{align}
+    &p_4 = E_4(t^\mu + \cos\theta_{41}e^\mu_3 +\sin\theta_{41}b^\mu) \notag \\ 
+    &p_5 = E_5(t^\mu + \cos\theta_{51}e^\mu_3 +\sin\theta_{51}(\cos\varphi_{45}b^\mu+ \sin\varphi_{45}a^\mu))
+\end{align}
+
+We've introduced a new pair of vectors, \(a^\mu, b^\mu\) that obey \(t \cdot a = e_3 \cdot a = t \cdot b = e_3 \cdot b = a \cdot b = 0\). Starting from this, one can get the full parametrization of the phase space, in each of the sectors \(a, b, c, d\). All the details can be found in ??. 
+
+In this parametrization, the limits reads 
+
+\begin{align}
+    C_{45}\left[ \frac{d\Omega_{45}^{(bd)}}{\eta_{45}} \right] = N_{\eps}^{(b, d)}\frac{d\Omega_{g_4}}{(2\pi)^{d-1}}\left[ \frac{1}{8\pi^2}\frac{(4\pi)^\eps}{\Gamma(1-\eps)} \right]\left[ \frac{d\Omega_{d-3, a}}{\Omega_{d-3}} \right]\frac{dx_3}{x_3^{1+\eps}(1-x_3)^{-\eps}}\frac{dx_4}{x_4^{1-2\eps}}d\Lambda
+\end{align}
+
+where \(d\Lambda\) is a complicated expression, and accounts for the azimuthal angle \(\varphi_{45}\). Notice that the hard matrix element \(F_{LM}(1, 2, 45)\) does not depend on \(\Lambda, a^\mu\). Furthermore, in this parametrization 
+
+\begin{align}
+    k_\perp = a\sqrt{1-\lambda} + r\sqrt{\lambda}, \quad r = e_3\sin\theta_{41} - b\cos\theta_{41}
+\end{align}
+
+we can put this back in the expression for  and integrate. At the end of the computation, one finds 
+
+\begin{align}
+    \braket{(I-S_{45})(I-S_5)\theta^{(b)}C_{45}w^{14, 15}[dg_5]F_{LM}(1, 2, 4, 5)} =  \\ 
+    -\frac{[\alpha_s]}{2\eps}N_{\eps}^{(b)}\int_{E_4 > E_5} [dg_4] \tilde{w}^{14, 15}_{4 \parallel 5} x_3^{-\eps}(1-x_3)^\eps \frac{dE_5}{E_5^{1+2\eps}}(I-S_{45})(I-S_5)\mathcal{P}_{45}(1,2,4,5)
+\end{align}
+
+where 
+
+\begin{align}
+    \mathcal{P}_{45}(1, 2, 4, 5) = \frac{E_5}{E_4}\left[ P_{gg}\left( \frac{E_5}{E_4 + E_5}, \eps \right)F_{LM}(1, 2, 45) + \eps P_{gg}^{\perp} \left( \frac{E_5}{E_4 + E_5}\right)r_\mu r_\nu F_{LM}^{\mu\nu}(1, 2, 45)  \right]
+\end{align}
+
+we need to know how the operator \((I-S_{45})(I-S_5)\) acts on the function \(\mathcal{P}_{45}\). It's straightforward, except for the spin correlated part. To start, notice that \(P^\perp_{gg}(E_5/(E_4+E_5)) \to 0\) as \(E_5 \to 0\). Then we drop \(S_5\), and we only have to worry to the action of \(S_{45}\), the double soft operator. We now focus on \(S_{45}r_\mu r_\nu F_{LM}^{\mu\nu}(1, 2, 45)\). 
+
+To start, notice that \(r^2 = 0, r\cdot p_4 =0\). This means that \(r^\mu\) is a valid polarization vector for the momentum \(4+5\), that is parallel to \(4\) in the collinear limit. This means that the soft limit for \(r_\mu r_\nu F_{LM}^{\mu\nu}\) is the same as for the process \(q\bar{q} \to V +g\): 
+
+\begin{align}
+    S_{45}r_\mu r_\nu F^{\mu\nu}_{LM}(1, 2, 4) = \frac{2C_F}{E_4^2}\frac{\rho_{12}}{\rho_{14}\rho_{24}} = S_4 F_{LM}(1, 2, 4)
+\end{align}
 
 
 
@@ -927,6 +974,208 @@ We can take \(E_4 = x_1 E_{\max}\), \(E_5 = x_2 E_4 = x_2 x_1 E_{\max}\), with \
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{\(pp \to X +Nj\), double real emission}
+
+As before, we separate the partonic cross section at NNLO as 
+
+\begin{align}
+    d\hat{\sigma}_{ab}^{\text{NNLO}} = d\hat{\sigma}_{ab}^{\text{VV}} + d\hat{\sigma}_{ab}^{\text{RV}} + d\hat{\sigma}_{ab}^{\text{RR}} + d\hat{\sigma}_{ab}^{\text{pdf}} 
+\end{align}
+
+this four contribution refer to the double virtual, real-virtual, double real and pdfs counterterms. At NNLO the number of terms is much bigger than the NLO, but in principle the logic of the computation is the same. As in the color singlet case, the only change is the partion of the phase space, that prevents the collinear limits to overlap. 
+
+As before, the real-virtual and double-real emission matrix elements are divergent in the limit where one of the gluons goes unresolved (soft, collinear, or both). To identify the potentially unresolved gluons, we use the damping functions \(\Delta^{(i)}, \, \Delta^{(ij)}\). Then, much like the NLO computation, we use the symmetry of the external gluons to write 
+
+\begin{align}
+    2s d\bar{\sigma}^{\text{NNLO}} = \braket{F_{\text{VV}}} + \braket{\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} + \frac{1}{2!}\braket{\Delta^{(\mathfrak{mn})}F_{\text{LM}}({\mathfrak{mn}})}
+\end{align}
+
+where we omitted the dependence on the resolved gluons. The first two terms have the same symmetry factor, \(1/(N_p-2)!\), while the last one has an extra \(2\) factor, as the two unresolved gluons are identical. We can remove it imposing an \emph{energy ordering}:
+
+\begin{align}
+    2s d\bar{\sigma}^{\text{NNLO}} = \braket{F_{\text{VV}}} + \braket{\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} + \braket{\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})}
+\end{align}
+
+where \(\theta_{\mathfrak{mn}} := \theta(E_{\mathfrak{m}} - E_{\mathfrak{n}})\). It is clear that in the sum of this three terms, the quantities that appear live in 3 different phase space: ignoring the color singlet that is the same for every term, some contribution live in \(N\) resolved parton final state, \(N+1\) resolved parton final state, and finally \(N+2\) resolved parton final state. Schematically we write 
+
+\begin{align}
+    \label{eq:finalstatesplittingNNLOppXN}
+    2sd\bar{\sigma}^{\text{NNLO}} = \Sigma_{N} + \Sigma_{N+1} +\Sigma_{N+2}
+\end{align}
+
+This splitting of the various contribution is both natural and useful, as cancellation of the poles can occur only into those separate contributions. In other terms, each term in the RHS of eq. \ref{eq:finalstatesplittingNNLOppXN} is finite.  
+
+Let's start to recognize some contributions to this factors. The two loop virtual corrections have the same final state kinematics as the Born, so they all contribute only to \(\Sigma_N\). From now on, we adopt the following notation: if we recognize a term that contributes to \(\Sigma_{M}, \, M = N, N+1, N+2\), we call this contribution \(\Sigma_M^{(i)}\) if it's the i-th term that we find contributes to \(\Sigma_M\). 
+
+We begin by isolating the soft divergences: for the double real emission we need both the single soft limits (\(S_{\mathfrak{m}}\)), and the double soft, (\(S_{\mathfrak{mn}}\)): 
+
+\begin{align}
+    \braket{\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} &= \braket{S_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} + \braket{\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} \notag \\ 
+    &= \braket{S_{\mathfrak{mn}}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} + \braket{S_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} + \braket{\bar{S}_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})}
+\end{align}
+
+Look more closely at the term \(\braket{S_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})}\): in this, the gluon \(\mathfrak{m}\) cannot go soft. It is then natural to also extract the collinear singolarities. In detail, we write it as 
+
+\begin{align}
+    \braket{S_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} &= \braket{\bar{S}_{\mathfrak{m}}S_{\mathfrak{n}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} \notag \\ 
+    &= \braket{\bar{S}_{\mathfrak{m}}\Delta^{(\mathfrak{m})}S_{\mathfrak{n}}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} \notag \\ 
+    &= \sum_{i}^{N_p}\braket{C_{i\mathfrak{m}}\bar{S}_{\mathfrak{m}}\Delta^{(\mathfrak{m})}S_{\mathfrak{n}}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})} + \braket{\mathcal{O}_{\text{NLO}}\Delta^{(\mathfrak{m})}S_{\mathfrak{n}}\theta_{\mathfrak{mn}}F_{\text{LM}}({\mathfrak{mn}})}
+\end{align}
+
+The operator \(\mathcal{O}_{\text{NLO}}\) is the same that we used in the NLO analysis, and fully regulates the gluon \(\mathfrak{m}\), that is therefore a resolved gluon. We do the same trick for the real-virtual term: 
+
+\begin{align}
+    \braket{\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} &= \braket{S_{\mathfrak{m}}F_{\text{RV}}(\mathfrak{m})} + \braket{\bar{S}_{\mathfrak{m}}\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} \notag \\ 
+    &= \braket{S_{\mathfrak{m}}F_{\text{RV}}(\mathfrak{m})} + \sum_{i}^{N_p}\braket{C_{i\mathfrak{m}}\bar{S}_{\mathfrak{m}}\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} + \braket{\mathcal{O}_{\text{NLO}}\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} 
+\end{align}
+
+Notice that with this splitting, only the soft regulated term \(\braket{\bar{S}_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})}\) can contribute to multiple resolved face spaces (because we do not know nothing on the collinear nature of the gluons). For the others, we can check presisely, at witch term they contribute in \ref{eq:finalstatesplittingNNLOppXN}: we obtain 
+
+\begin{align}
+    2sd\bar{\sigma}^{\text{NNLO}} = \Sigma^{(1)}_N + \Sigma^{(1)}_{N+1} + \Sigma_{RR}
+\end{align}
+
+with 
+
+\begin{align}
+    &\Sigma^{(1)}_N = \braket{F_{\text{VV}}} + \braket{S_{\mathfrak{m}}F_{\text{RV}}(\mathfrak{m})} + \sum_{i}^{N_p}\braket{C_{i\mathfrak{m}}\bar{S}_{\mathfrak{m}}\Delta^{(\mathfrak{m})}[F_{\text{RV}}(\mathfrak{m}) + S_{\mathfrak{n}}\theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})]} + \braket{S_{\mathfrak{mn}}\theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})} \notag \\ 
+    &\Sigma^{(1)}_{N+1} = \braket{\mathcal{O}_{\text{NLO}}\Delta^{(\mathfrak{m})}F_{\text{RV}}(\mathfrak{m})} + \braket{\mathcal{O}_{\text{NLO}}\Delta^{(\mathfrak{m})}S_{\mathfrak{n}}\theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})} \notag \\ 
+    &\Sigma_{\text{RR}} = \braket{\bar{S}_{\mathfrak{n}}\bar{S}_{\mathfrak{mn}}\Delta^{(\mathfrak{mn})}\theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})}
+\end{align}
+
+We stress that \(\Sigma_{\text{RR}}\) gives contribution to all \(\Sigma_{M}\). As we did for \(pp \to X\), we partition the phase space in 4 different regions, labeled by \(a, b, c, d\). Then we can split 
+
+\begin{align}
+    \Sigma_{\text{RR}} = \Sigma^{\text{fin}}_{N+2} + \Sigma^{(2)}_N + \Sigma_{\text{RR, 2c}} + \Sigma_{\text{RR, 1c}}
+\end{align}
+
+This four terms rapresent the collinear substracted term, that can be numerically integrated, in 4 dimensions for every process, the triple collinear term, that has already been computed in the literature, the double collinear and finally the single collinear. 
+
+Let's now focus on the double collinear. We write it as 
+
+\begin{align}
+    \Sigma_{\text{RR, 2c}} = -\sum_{(ij)}^{N_p} \braket{\bar{S}_{\mathfrak{mn}}\bar{S}_{\mathfrak{n}}C_{i\mathfrak{m}}C_{j\mathfrak{n}}[dp_{\mathfrak{m}}][dp_{\mathfrak{n}}]\omega^{i\mathfrak{m}, j\mathfrak{n}}\Delta^{(\mathfrak{mn})}\Theta_{\mathfrak{mn}}F_{\text{LM}}(\mathfrak{mn})}
+\end{align}
+
+This is tricky because the collinear operators act also on the phase space of the gluons \(g_\mfm , g_\mfn\). This is not the case for the other contributions, that we should sum together! Unfortunately, this is the price we have to pay if we want to keep the splitting with \(\Sigma^{(2)}_N\), that it's been already computed. To deal with this, we do a little digression, and explain how we parametrize the phase space. 
+
+It is useful to have two different parametrization for the triple collinear and the double collinear case. We will only consider the latter for now. Write 
+
+\begin{align}
+    [dp_\mfm][dp_\mfn] = (dE_\mfm E_\mfm ^{1-2\eps})(dE_\mfn E_\mfn ^{1-2\eps})(d\Omega_{\mfm\mfn}^{d-1}), \quad d\Omega_{\mfm\mfn}^{d-1} = [d\Omega_{\mfm}^{d-1}][d\Omega_{\mfn}^{d-1}], \quad [d\Omega_i^{d-1}] = \frac{d\Omega_i^{d-1}}{2(2\pi)^{d-1}} 
+\end{align}
+
+In the double collinear limit, the unresolved partons \(\mfm, \mfn\) go collinear to two distinct hard final state partons, with momenta \(p_i, p_j, \, i \neq j, \, i, j \in [1, N_p]\). We define the vectors \(t^\mu = (1, \vec{0})\), \(e^\mu_i = (0, \vec{n}_i)\) that satisfy \(p^\mu_i = E_i (t^\mu + e^\mu_i)\) as well as \(p^\mu_j = E_j (t^\mu + e^\mu_j)\). In other words, \(\vec{n}_{i/j}\) is a spacelike vector that points in the spatial direction of \(p_{i/j}\). It is then natural to write 
+
+\begin{align}
+    &p^\mu_\mfm = E_\mfm(t^\mu + \cos\theta_{\mfm i}e^\mu_i +\sin\theta_{\mfm i}b^\mu_\mfm) \notag \\ 
+    &p^\mu_\mfm = E_\mfn(t^\mu + \cos\theta_{\mfn j}e^\mu_j +\sin\theta_{\mfn j}b^\mu_\mfn) 
+\end{align}
+
+so one finds exactly the same pattern as the NLO case, with of course two distinct phase spaces. For this reason this parametrization is sometimes called \(\text{NLO}^2\). 
 
 
 
